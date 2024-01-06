@@ -1,0 +1,135 @@
+nav{
+    width: 100%;
+    /* max-width: 450vw; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e77b3;
+    padding: 15px 25px;
+    box-shadow: 0 0 5px 0 gray;
+}
+nav h1{
+    color:white;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 45px;
+    
+}
+li{
+    list-style: none;
+
+}
+li a{
+    
+    color: white;
+    text-decoration: none;
+}
+li a:hover{
+    color: rgb(245, 190, 87);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+div #logout {
+    text-decoration: none;
+    background-color: rgb(50, 87, 110);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+div #logout:hover{
+    box-shadow: 0 0 5px 0 whitesmoke;
+    transition: 0.3s;
+
+}
+.toggle-btn{
+    display: none;
+    color: white;
+}
+.dropdown_menu {
+    position: absolute;
+    right: 13px;
+    top: 65px;
+    height: 0;
+    width: 315px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(65px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+
+}
+
+.dropdown_menu.open {
+    height: 280px;
+    z-index: 1;
+}
+
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.dropdown_menu li a{
+    color: white;
+}
+.dropdown_menu li a:hover{
+    color: rgb(245, 190, 87);
+}
+
+.dropdown_menu .action {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: rgb(50, 87, 110);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+.active{
+    color: rgb(129, 169, 238);
+}
+
+@media screen and (max-width:812px) {
+    .dropdown_menu .active{
+        color: gray;
+    }
+    nav ul{
+        display: none;
+    }
+    #toggle-btn{
+        display: block;
+        left: 125px;
+        top: 20px;
+    }
+    .toggle-btn{
+        display: block;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .dropdown_menu{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .dropdown_menu{
+        right: 5px;
+        width: 250px;
+    }
+}

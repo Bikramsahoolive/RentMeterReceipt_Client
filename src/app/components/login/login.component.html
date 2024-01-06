@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="login-form">
+        <h1>Login</h1>
+        <!-- <p>{{adminService.loginMsg()}}</p> -->
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" >
+            <div class="input-field">
+                <input type="email" placeholder="Enter Email." ngModel name="username" required>
+            </div>
+            
+            <div class="input-field">
+                <input type="password" placeholder="Enter Password." ngModel name="password"required>
+            </div>
+                <button>Login</button>
+        </form>
+    </div>
+</div>
