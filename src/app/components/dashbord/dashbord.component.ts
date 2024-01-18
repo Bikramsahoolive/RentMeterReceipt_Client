@@ -6,8 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashbord.component.css']
 })
 export class DashbordComponent {
-  toggleMenu(menubar:any)
-  {
-      menubar.classList.toggle('menu-open');
-  }
+  
 }
