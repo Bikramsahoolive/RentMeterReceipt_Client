@@ -2,34 +2,52 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import{ FormsModule} from '@angular/forms'
+import {HttpClientModule} from '@angular/common/http'
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { DashbordComponent } from './components/dashbord/dashbord.component';
-import { MainMeterComponent } from './components/main-meter/main-meter.component';
-import { SubMeterComponent } from './components/sub-meter/sub-meter.component';
-import { ManageComponent } from './components/manage/manage.component';
-import { MenubarComponent } from './components/menubar/menubar.component';
-import { DashbordUserComponent } from './components/dashbord-user/dashbord-user.component';
-import { DashbordContentComponent } from './components/dashbord-content/dashbord-content.component';
-import { MainMeterMenuComponent } from './components/main-meter-menu/main-meter-menu.component';
-import { SubMeterMenuComponent } from './components/sub-meter-menu/sub-meter-menu.component';
-import { ManageMenuComponent } from './components/manage-menu/manage-menu.component';
-import { CreateBillComponent } from './components/mainmeter-component/create-bill/create-bill.component';
-import { CreateSubMeterComponent } from './components/create-sub-meter/create-sub-meter.component';
-import { BillPaymentComponent } from './components/bill-payment/bill-payment.component';
-import { AdditionFinesComponent } from './components/addition-fines/addition-fines.component';
-import { RentHolderComponent } from './components/rent-holder/rent-holder.component';
-import { TotalBillComponent } from './components/total-bill/total-bill.component';
-import { BillDueComponent } from './components/bill-due/bill-due.component';
-import { LandlordProfileComponent } from './components/landlord-profile/landlord-profile.component';
-import { AddRentHolderComponent } from './components/add-rent-holder/add-rent-holder.component';
-import { TotalDueComponent } from './components/total-due/total-due.component';
-import { MainTableComponent } from './components/main-table/main-table.component';
-import { SubTableComponent } from './components/sub-table/sub-table.component';
+
+import { HeaderComponent } from './components/beforeLoginComponents/header/header.component';
+import { HomeComponent } from './components/beforeLoginComponents/home/home.component';
+import { SignupComponent } from './components/beforeLoginComponents/signup/signup.component';
+import { LoginComponent } from './components/beforeLoginComponents/login/login.component';
+
+import { DashbordComponent } from './components/afterLoginComponents/dashboard/dashbord.component';
+import { MenubarComponent } from './components/afterLoginComponents/menubar/menubar.component';
+
+import { DashbordUserComponent } from './components/landlord-components/landlord-dashboard-user/dashbord-user.component';
+import { DashbordContentComponent } from './components/landlord-components/landlord-dashboard-content/dashbord-content.component';
+import { MainMeterComponent } from './components/landlord-components/main-meter/main-meter.component';
+import { SubMeterComponent } from './components/landlord-components/sub-meter/sub-meter.component';
+import { ManageComponent } from './components/landlord-components/manage/manage.component';
+import { MainMeterMenuComponent } from './components/landlord-components/main-meter-menu/main-meter-menu.component';
+import { SubMeterMenuComponent } from './components/landlord-components/sub-meter-menu/sub-meter-menu.component';
+import { ManageMenuComponent } from './components/landlord-components/manage-menu/manage-menu.component';
+import { CreateBillComponent } from './components/landlord-components/create-bill/create-bill.component';
+import { CreateSubMeterComponent } from './components/landlord-components/create-rent-bill/create-sub-meter.component';
+import { BillPaymentComponent } from './components/landlord-components/bill-payment/bill-payment.component';
+import { AdditionFinesComponent } from './components//landlord-components/addition-fines/addition-fines.component';
+import { RentHolderComponent } from './components/landlord-components/rent-holder/rent-holder.component';
+import { TotalBillComponent } from './components/landlord-components/total-bill/total-bill.component';
+import { BillDueComponent } from './components/landlord-components/bill-due/bill-due.component';
+import { LandlordProfileComponent } from './components/landlord-components/landlord-profile/landlord-profile.component';
+import { AddRentHolderComponent } from './components/landlord-components/add-rent-holder/add-rent-holder.component';
+import { TotalDueComponent } from './components/landlord-components/total-due/total-due.component';
+import { MainTableComponent } from './components/landlord-components/main-table/main-table.component';
+import { SubTableComponent } from './components/landlord-components/sub-table/sub-table.component';
+
+
+
+
+import { RentholderDashbordContentComponent } from './components/rentholder-components/rentholder-dashboard-content/rentholder-dashbord-content.component';
+import { RentholderMenubarComponentComponent } from './components/rentholder-components/rentholder-dashboard-user/rentholder-menubar-component.component';
+import { AdminDashbordContentComponent } from './components/admin-components/admin-dashbord-content/admin-dashbord-content.component';
+import { AdminDashbordUserComponent } from './components/admin-components/admin-dashbord-user/admin-dashbord-user.component';
+import { FooterComponent } from './components/beforeLoginComponents/footer/footer.component';
+import { SignupStatusComponent } from './components/beforeLoginComponents/signup-status/signup-status.component';
 
 @NgModule({
   declarations: [
@@ -58,12 +76,22 @@ import { SubTableComponent } from './components/sub-table/sub-table.component';
     AddRentHolderComponent,
     TotalDueComponent,
     MainTableComponent,
-    SubTableComponent
+    SubTableComponent,
+    SignupComponent,
+    RentholderDashbordContentComponent,
+    RentholderMenubarComponentComponent,
+    AdminDashbordContentComponent,
+    AdminDashbordUserComponent,
+    FooterComponent,
+    SignupStatusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

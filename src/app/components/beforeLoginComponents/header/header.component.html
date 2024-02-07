@@ -1,0 +1,29 @@
+<header>
+    <nav>
+        <h1>RentⓝMeter.Receipt</h1>
+        <ul>
+            <li *ngIf="authService.Landlord()"><a routerLink="">Home</a></li>
+            <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord">Dashbord</a></li>
+            <li *ngIf="authService.Landlord()"><a routerLink="main-meter">Main Meter</a></li>
+            <li *ngIf="authService.Landlord()"><a routerLink="sub-meter">Rent Bill</a></li>
+            <li *ngIf="authService.Landlord()"><a routerLink="manage">Manage</a></li>
+            <div *ngIf="authService.isLogin() else loginForm " ><a (click)="logout()" id="logout">Logout</a></div>
+            <ng-template #loginForm>
+                <li><a routerLink="home">Home</a></li>
+                <li><a routerLink="home">About</a></li>
+                <li><a routerLink="home">Contact Us</a></li>
+                <li><a routerLink="/signup-status">Status</a></li>
+                <li><a routerLink="/signup">Sign Up</a></li>
+                <div><a id="logout" routerLink="/login">Login</a></div>
+            </ng-template>
+        </ul>
+        <div class="toggle-btn"><i #tglBtn class="fa-solid fa-bars" (click)="dropdownToggle(dropdown,tglBtn)"></i></div>
+    </nav>
+    <div class="dropdown_menu " #dropdown>
+        <li><a href="/rnmr" class="active">Dashbord</a></li>
+        <li><a href="mainMeter.php">Main Meter</a></li>
+        <li><a href="subMeter.php">Sub Meter</a></li>
+        <li><a href="html/manage.php" class="">Manage</a></li>
+        <div><a href="/logout.php" class="logout">Logout</a></div>
+    </div>
+</header>

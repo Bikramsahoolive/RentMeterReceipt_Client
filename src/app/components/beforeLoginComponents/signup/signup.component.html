@@ -1,0 +1,36 @@
+<div class="content">
+    <div class="cont">
+    <h1 class="titel">Landlord Registration</h1>
+<form #signupForm="ngForm" (ngSubmit)="signup(signupForm.value)">
+    <div class="user-details">
+    <div class="input-box">
+        <span class="details">Name:</span>
+    <input type="text" ngModel name="name" required >
+    </div>
+    <div class="input-box">
+        <span class="details">Phone:</span>
+    <input type="text" ngModel name="phone" required>
+    </div>
+    <div class="input-box">
+        <span class="details" >Email:</span>
+        <input type="email" ngModel name="email" required>
+    </div>
+    <div class="input-box">
+        <span class="details">UPI ID:</span>
+        <input type="email" ngModel name="upi" required>
+    </div>
+    <div class="input-box">
+        <span class="details">Password:</span>
+    <input type="password" ngModel name="password" required>
+    </div>
+    <div class="input-box">
+        <span class="details">Confirm Password:</span>
+        <input type="text" ngModel name="confPass" required>
+    </div>
+</div>
+<div class="button">
+    <input type="submit" value="Sign Up">
+</div> 
+</form>
+</div>
+</div>

@@ -1,0 +1,61 @@
+.content{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin-top: 30px;
+}
+.input-box{
+    width: 100%;
+    border: 5px double black;
+    border-radius: 6px;
+}
+.input-box input{
+    border: none;
+    outline: none;
+    padding: 8px 15px;
+}
+.input-box i{
+    margin-right: 8px;
+    cursor: pointer;
+}
+.status-field{
+    margin-top: 50px;
+    box-shadow: 0 0 5px 2px gray;
+    border-radius: 6px;
+    width: 450px;
+    height: 50vh;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+}
+.status-field h1{
+    width: 100%;
+    border-bottom: 2px double gray;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+ .data{
+    width: 100%;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.pending{
+    color: rgb(187, 125, 9);
+    display: none;
+}
+.approved {
+    color: green;
+    /* display: none; */
+}
+.rejected{
+    color: red;
+    display: none;
+}

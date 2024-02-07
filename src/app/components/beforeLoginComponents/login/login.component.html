@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="login-form">
+        <h1>Login</h1>
+        <!-- <p>{{adminService.loginMsg()}}</p> -->
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" >
+            
+            <div class="input-field">
+                <input type="text" placeholder="Enter Phone." ngModel name="phone" required>
+            </div>
+            
+            <div class="input-field">
+                <input type="password" placeholder="Enter Password." ngModel name="password"required>
+            </div>
+            <div class="input-field">
+                <select ngModel name="userType" required>
+                    <option value="">User Type</option>
+                    <option value="landlord">Landlord</option>
+                    <option value="rentholder">Rent Holder</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+                <button>Login</button><br> <br>
+                <span>Are you a landlord ? </span><a routerLink="/signup">SignUp now</a>
+        </form>
+    </div>
+</div>

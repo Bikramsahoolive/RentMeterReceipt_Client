@@ -1,0 +1,25 @@
+<div class="content">
+    <div class="input-field">
+    <div class="input-box">
+        <input type="text" placeholder="Enter Registration no." #regnum>
+        <i class="fa-solid fa-magnifying-glass" (click)="getStatus(regnum.value,statusField)"></i>
+    </div>
+</div>
+<div class="status-field" #statusField>
+    <h1>Status</h1>
+    <div class="data">
+        <span>Name: </span><strong>Bikram Sahoo</strong>
+    </div>
+    <div class="data">
+        <span>Phone: </span><strong>9776999202</strong>
+    </div>
+    <div class="data">
+        <span>Email: </span><strong>bikramsahoo@live.in</strong>
+    </div>
+    <div class="data">
+        <span>Status: </span><strong class="pending">Pending </strong><strong class="approved" >Aproved </strong><strong class="rejected">Rejected </strong>
+    </div>
+    <p class="pending">*Please wait your request is under process.</p>
+    <p class="approved">*Please login with your phone and password.</p>
+</div>
+</div>
