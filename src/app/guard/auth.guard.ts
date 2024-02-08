@@ -8,9 +8,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   authServ.checkSession();
 
-  let data:any =  localStorage.getItem('connect.sid');
+  let data:any =  localStorage.getItem('connect.rid');
   data = atob(data);
-   if(data !='false'){
+   if(data !==false){
       return true;
   }
   return false;
