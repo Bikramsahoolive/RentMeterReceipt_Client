@@ -10,8 +10,11 @@ export class DashbordUserComponent {
   email:any='';
   phone:any=''
   ngOnInit(){
-     this.name = localStorage.getItem('name');
-     this.email = localStorage.getItem('email');
-     this.phone = localStorage.getItem('phone');
+    let getEncData:any = localStorage.getItem('connect.sid');
+    let actualData = atob(getEncData)
+    let userData = JSON.parse(actualData);
+     this.name = userData.name;
+     this.email = userData.email;
+     this.phone = userData.phone;
   }
 }

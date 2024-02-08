@@ -7,6 +7,13 @@
     text-align: center;
     color: rgb(0, 0, 0);
 }
+.msg{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+    color: green;
+
+}
 .cont{
     max-width: 800px;
     width: 100%;
@@ -60,22 +67,16 @@ form .button{
     justify-content: space-between;
 }
 form input[type="submit"]{
-    background-color: #1e77b3;
+    background-color: #7373f3;
     transition: ease 0.2s;
+    outline: none;
+    border: none;
     
 }
 form input[type="submit"]:hover{
-    background-color: #16527a;
+    background-color: #4848ac;
 }
-/* .button{
-    margin-top: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 45px;
-    width: 47%;
-    color: white;
-    background-color: #b3341e;
-} */
+
 
 
 @media screen and (max-width:420px) {

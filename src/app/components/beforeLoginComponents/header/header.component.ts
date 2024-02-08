@@ -9,7 +9,7 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
 export class HeaderComponent {
   constructor(public authService:AuthServiceService){}
   ngOnInit(){
-    localStorage.setItem('connect.sid',"	ZmFsc2U=");
+    localStorage.setItem('connect.rid',btoa('false'));
  }
   dropdownToggle(dropdown:any,tglBtn:any)
   {

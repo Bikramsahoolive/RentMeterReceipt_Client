@@ -46,7 +46,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'signup-status',component:SignupStatusComponent},
-  {path:'dashbord-admin',component:DashbordComponent,
+  {path:'dashbord-admin',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:AdminDashbordContentComponent,outlet:'outlet1'},
   {path:'',component:AdminDashbordUserComponent,outlet:'outlet2'},

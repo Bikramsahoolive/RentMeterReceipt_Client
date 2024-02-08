@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,6 +93,7 @@ import { SignupStatusComponent } from './components/beforeLoginComponents/signup
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

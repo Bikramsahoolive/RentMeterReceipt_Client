@@ -53,9 +53,14 @@
 }
 .approved {
     color: green;
-    /* display: none; */
+    display: none;
 }
 .rejected{
     color: red;
     display: none;
+}
+.error{
+    color: red;
+    display: none;
+    
 }

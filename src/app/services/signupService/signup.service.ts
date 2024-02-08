@@ -15,5 +15,8 @@ export class SignupService {
 signUp(data:any){
   return this.http.post('http://localhost:5800/signup',data,{headers:this.header});
 }
+signUpStatus(id:String){
+  return this.http.get(`http://localhost:5800/signup/status/${id}`,{headers:this.header});
+}
 
 }

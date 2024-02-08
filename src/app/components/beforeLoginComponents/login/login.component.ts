@@ -16,7 +16,7 @@ export class LoginComponent {
       this.authServ.landlordLogin(auth);
       
     }else if (auth.userType==="admin"){
-      console.log(auth);
+      this.authServ.adminLogin(auth);
     }else if(auth.userType==="rentholder"){
       console.log(auth);
     }else{

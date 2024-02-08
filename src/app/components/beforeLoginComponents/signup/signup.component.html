@@ -1,7 +1,13 @@
 <div class="content">
     <div class="cont">
-    <h1 class="titel">Landlord Registration</h1>
-<form #signupForm="ngForm" (ngSubmit)="signup(signupForm.value)">
+    <h1 class="titel">Sign Up Request</h1>
+    <div class="msg">
+        <h5>{{regId}}</h5>
+    </div>
+    <!-- <div class="error">
+        <h5>{{errMsg}}</h5>
+    </div> -->
+<form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
     <div class="user-details">
     <div class="input-box">
         <span class="details">Name:</span>
