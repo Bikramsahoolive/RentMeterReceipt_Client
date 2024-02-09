@@ -14,11 +14,11 @@ export class SignupStatusComponent {
   reqPhone:string="";
   reqEmail:string="";
   getStatus(id:any,statusField:any,pending:any,aproved:any,rejected:any,error:any){
-    this.spinner.show();
+    
     error.style.display="none";
     statusField.style.display="none";
     if(id){
-      
+      this.spinner.show();
       this.signupservice.signUpStatus(id).subscribe({
         next:(res:any)=>{
           
@@ -26,7 +26,7 @@ export class SignupStatusComponent {
           this.reqPhone=res.phone;
           this.reqEmail=res.email;
           if(res.status=="pending")pending.style.display="block";
-          if(res.status=="aproved")aproved.style.display="block";
+          if(res.status=="approved")aproved.style.display="block";
           if(res.status=="rejected")rejected.style.display="block";
 
           statusField.style.display="block";

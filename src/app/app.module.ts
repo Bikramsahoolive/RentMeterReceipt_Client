@@ -49,6 +49,9 @@ import { AdminDashbordContentComponent } from './components/admin-components/adm
 import { AdminDashbordUserComponent } from './components/admin-components/admin-dashbord-user/admin-dashbord-user.component';
 import { FooterComponent } from './components/beforeLoginComponents/footer/footer.component';
 import { SignupStatusComponent } from './components/beforeLoginComponents/signup-status/signup-status.component';
+import { LandlordRequestComponent } from './components/admin-components/landlord-request/landlord-request.component';
+import { LandlordRequestPipe } from './pipes/landlord-request.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,10 @@ import { SignupStatusComponent } from './components/beforeLoginComponents/signup
     AdminDashbordContentComponent,
     AdminDashbordUserComponent,
     FooterComponent,
-    SignupStatusComponent
+    SignupStatusComponent,
+    LandlordRequestComponent,
+    LandlordRequestPipe,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

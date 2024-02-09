@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,9 +10,10 @@ import { SignupService } from 'src/app/services/signupService/signup.service';
 })
 export class SignupComponent {
 
-  constructor(private toastr: ToastrService ,private signupService:SignupService){}
+  constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){}
   regId:String = "";
   signup(form:NgForm){
+    this.spinner.show();
     const data = form.value;
 
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
@@ -21,9 +23,12 @@ export class SignupComponent {
           next:(result:any)=>{
             console.log(result);
           this.regId = result.message;
+          this.spinner.hide();
           },
           error:(err)=>{
+            this.spinner.hide();
             this.toastr.error(`${err.error.message}`, 'Error!',);
+            
           },
           complete:()=>{
             form.reset();

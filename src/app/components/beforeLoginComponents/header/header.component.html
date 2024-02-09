@@ -14,7 +14,7 @@
             <ng-template #loginForm>
                 <li><a routerLink="home">Home</a></li>
                 <li><a routerLink="home">About</a></li>
-                <li><a routerLink="home">Contact Us</a></li>
+                <li><a (click)="scroll()">Contact Us</a></li>
                 <li><a routerLink="/signup-status">Status</a></li>
                 <li><a routerLink="/signup">Sign Up</a></li>
                 <div><a id="logout" routerLink="/login">Login</a></div>
@@ -30,3 +30,4 @@
         <div><a href="/logout.php" class="logout">Logout</a></div>
     </div>
 </header>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-scale" [fullScreen] = "true"><p style="color: white" > Please Wait... </p></ngx-spinner>

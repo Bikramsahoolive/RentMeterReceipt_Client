@@ -37,6 +37,7 @@ import { RentholderMenubarComponentComponent } from './components/rentholder-com
 
 import { AdminDashbordContentComponent } from './components/admin-components/admin-dashbord-content/admin-dashbord-content.component';
 import { AdminDashbordUserComponent } from './components/admin-components/admin-dashbord-user/admin-dashbord-user.component';
+import { LandlordRequestComponent } from './components/admin-components/landlord-request/landlord-request.component';
 const dashbord: Routes=[
   
 ]
@@ -52,6 +53,8 @@ children:[
   {path:'',component:AdminDashbordUserComponent,outlet:'outlet2'},
 ]
 },
+{path:'request-landlord',component:LandlordRequestComponent,canActivate:[authGuard]},
+
   {path:'dashbord-landlord',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:DashbordContentComponent,outlet:'outlet1'},
