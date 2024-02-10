@@ -30,7 +30,7 @@
           <th>Action</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of datalist | landlordRequest:filter.value |search:searchTerm">
+          <tr *ngFor="let item of datalist | landlordRequest:filter.value |search:searchTerm |paginate:{itemsPerPage: 5 ,currentPage:page,totalItems:datalist.length};">
 
             <td data-label="ID">{{item.id}}</td>
             <td data-label="Date">06/12/2023</td>
@@ -57,5 +57,5 @@
 </div>
 </section>
 <div class="pagination">
-    <!-- <pagination-controls class="paginate" (pageChange)="page=$event"></pagination-controls> -->
+    <pagination-controls class="paginate" (pageChange)="page=$event"></pagination-controls>
 </div>

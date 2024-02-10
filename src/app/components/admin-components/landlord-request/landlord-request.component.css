@@ -52,7 +52,8 @@
     display: none;
 }
 .filter{
-    
+    display: flex;
+    justify-content: end;
     margin-left:55px;
     margin-bottom:50px;
 }
@@ -72,19 +73,22 @@
     margin-left: 20px;
 }
 .paginate{
-    position: absolute ;
-    right: 25px;
+    /* position: absolute ; */
+    /* right: 25px; */
+    display: flex;
+    justify-content: end;
+    margin: 20px 0;
 }
-.paginate .current{
+/* .paginate .current{
     background-color: #1e77b3;
     border-radius: 50% !important;
     width: 30px !important;
-}
-.ngx-pagination .current{
+} */
+/* .ngx-pagination .current{
     background-color: #1e77b3;
     border-radius: 50% !important;
     width: 30px !important;
-}
+} */
 
 
 
@@ -191,6 +195,7 @@
         color: white;
         border-radius: 5px;
         margin-right: 20px;
+        margin-bottom: 10px;
         cursor: pointer;
     
 }

@@ -1,39 +1,39 @@
 <div class="content">
 <div class="cont">
     <h1 class="titel">Add Rent-Holder</h1>
-<form action="">
+<form #rentHolderData="ngForm" (ngSubmit)="getRentHolderData(rentHolderData)">
     <div class="user-details">
     <div class="input-box">
         <span class="details">Name:</span>
-    <input type="text" id="date">
+    <input type="text" ngModel name="name">
     </div>
     <div class="input-box">
         <span class="details" >Members Count:</span>
-        <input type="number" id="cname">
+        <input type="number" ngModel name="member_count">
     </div>
     <div class="input-box">
         <span class="details">Phone:</span>
-    <input type="tel" id="bill-period">
+    <input type="tel" ngModel name="phone">
     </div>
     <div class="input-box">
         <span class="details" >Email:</span>
-        <input type="email" id="cname">
+        <input type="email" ngModel name="email">
     </div>
     <div class="input-box">
         <span class="details">Monthly Rent(₹):</span>
-        <input type="number" id="monthly-rent">
+        <input type="number" ngModel name="rent">
     </div>
     <div class="input-box">
         <span class="details">Rent Deed / Identity Document:</span>
-        <input type="file" class="file">
+        <input type="file" ngModel (change)="fileInput($event)" name="file">
     </div>
     <div class="input-box">
         <span class="details">Password:</span>
-    <input type="password" id="total-amount">
+    <input type="password" ngModel name="password">
     </div>
     <div class="input-box">
         <span class="details">Confirm Password:</span>
-    <input type="password" id="total-amount">
+    <input type="password" ngModel name="confPass">
     </div>
 </div>
 <div class="button">

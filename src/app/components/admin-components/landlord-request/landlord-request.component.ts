@@ -10,7 +10,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LandlordRequestComponent {
   searchTerm:any;
   userMessage:any;
-  datalist:any;
+  datalist:any;;
+  page:number=1;
+  
 
   constructor(private signupServ:SignupService,private spinner:NgxSpinnerService){}
   ngOnInit(){

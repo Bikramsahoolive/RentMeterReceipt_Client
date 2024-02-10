@@ -5,6 +5,8 @@ import{ FormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {NgxPaginationModule} from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 
@@ -99,7 +101,8 @@ import { SearchPipe } from './pipes/search.pipe';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
