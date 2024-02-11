@@ -17,7 +17,7 @@
             </thead>
             <!-- Responsive Table Body Section -->
             <tbody class="responsive-table__body">
-                <tr class="responsive-table__row">
+                <tr class="responsive-table__row" *ngFor="let user of users">
                     <td class="responsive-table__body__text responsive-table__body__text--name">
                         <svg class="user-icon" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
                             <path d="m256.025 483.334 101.429-25.614c57.895-48.074 94.771-120.586 94.771-201.719 0-125.144-87.711-229.801-205.012-255.852-137.316 4.631-247.213 117.407-247.213 255.851 0 71.112 29 135.446 75.812 181.836z" fill="#cbe2ff" />
@@ -40,16 +40,16 @@
                             <path d="m344.019 383.695c-3.861-3.854-4.783-9.762-2.282-14.61l9.65-18.71c1.915-3.713.409-8.275-3.341-10.117l-49.256-24.198c30.978 52.255-23.517 165.929-38.923 195.9 1.448-.025 2.893-.061 4.335-.109 21.265-19.695 77.248-73.94 88.888-109.424 1.47-4.482.271-9.405-3.067-12.737-1.865-1.863-4.017-4.012-6.004-5.995z" fill="#365e7d" />
                             <path d="m256.898 365.327-26.06 21.764 13.278 16.781h23.767l13.279-17.771z" fill="#dd636e" />
                         </svg>
-                        Itishree Das
+                        {{user.name}}
                     </td>
-                    <td class="responsive-table__body__text responsive-table__body__text--status" data-title="Join : ">Jul 17, 2017</td>
-                    <td class="responsive-table__body__text responsive-table__body__text--types" data-title="Phone : "> 9615478965</td>
-                    <td class="responsive-table__body__text responsive-table__body__text--update"data-title="Rent : "> 4400 </td>
+                    <td class="responsive-table__body__text responsive-table__body__text--status" data-title="Join : ">{{user.doj}}</td>
+                    <td class="responsive-table__body__text responsive-table__body__text--types" data-title="Phone : "> {{user.phone}}</td>
+                    <td class="responsive-table__body__text responsive-table__body__text--update"data-title="Rent : ">{{user.rent}}</td>
                     <td class="responsive-table__body__text responsive-table__body__text--country"data-title="Action : "><i class="fa-regular fa-trash-can delete-icon"></i> <i
-                        class="fa-solid fa-pen-to-square update-icon"></i><i class="fa-regular fa-file-lines"></i></td>
+                        class="fa-solid fa-pen-to-square update-icon"></i><i class="fa-regular fa-file-lines"(click)="downloadDoc(user.deedURL)"></i></td>
                     
                 </tr>
-                <tr class="responsive-table__row">
+                <!-- <tr class="responsive-table__row">
                     <td class="responsive-table__body__text responsive-table__body__text--name">
                         <svg class="user-icon" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
                             <path d="m256.025 483.334 101.429-25.614c57.895-48.074 94.771-120.586 94.771-201.719 0-125.144-87.711-229.801-205.012-255.852-137.316 4.631-247.213 117.407-247.213 255.851 0 71.112 29 135.446 75.812 181.836z" fill="#cbe2ff" />
@@ -79,8 +79,8 @@
                     <td class="responsive-table__body__text responsive-table__body__text--types" data-title="Phone : "> 9856325478</td>
                     <td class="responsive-table__body__text responsive-table__body__text--update"data-title="Join : "> Jul 17, 2019</td>
                     <td class="responsive-table__body__text responsive-table__body__text--country"data-title="Rent : "> 3500</td>
-                </tr>
-                <tr class="responsive-table__row">
+                </tr> -->
+                <!-- <tr class="responsive-table__row">
                     <td class="responsive-table__body__text responsive-table__body__text--name">
                         <svg class="user-icon" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
                             <path d="m256.025 483.334 101.429-25.614c57.895-48.074 94.771-120.586 94.771-201.719 0-125.144-87.711-229.801-205.012-255.852-137.316 4.631-247.213 117.407-247.213 255.851 0 71.112 29 135.446 75.812 181.836z" fill="#cbe2ff" />
@@ -110,7 +110,7 @@
                     <td class="responsive-table__body__text responsive-table__body__text--types" data-title="Phone : "> 9152364785</td>
                     <td class="responsive-table__body__text responsive-table__body__text--update"data-title="Join : "> Jul 17, 2021</td>
                     <td class="responsive-table__body__text responsive-table__body__text--country"data-title="Rent : "> 2000</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>

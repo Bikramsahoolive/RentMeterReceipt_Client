@@ -6,18 +6,12 @@
         <select class="selector" #filter name="" id="" (change)="dataFilter(filter.value)">
             <option value="0">Normal</option>
             <option value="1">Reverse</option>
-            <option value="2">A-Z</option>
-            <option value="3">Z-A</option>
         </select>
     </div>
 </div>
-<div class="msg">
-    <!-- <p>{{userMessage}}</p> -->
-</div>
-
 <section class="container">
     <div class="content">
-        <h1 class="head">Sub-Meter Record</h1>
+        <h1 class="head">Rent-bill Record</h1>
     <div class="data">
     
     <div class="data-table">
@@ -30,6 +24,7 @@
           <th>Current Unit</th>
           <th>Adjust Unit</th>
           <th>Unit Advance</th>
+          <th>Per Unit</th>
           <th>e-Bill Amount</th>
           <th>Monthly Rent</th>
           <th>Previous Due</th>
@@ -37,50 +32,32 @@
           <th>fine Type</th>
           <th>Total Due</th>
           <th>Paid Amount</th>
+          <th>Due Date</th>
           <th>Payment Date</th>
           <th>Action</th>
           
           
         </thead>
         <tbody>
-          <tr>
-            <td data-label="Bill ID : ">154689</td>
-            <td data-label="Bill Date : ">06/12/2023</td>
-            <td data-label="Consumer Name : ">Bikram Sahoo</td>
-            <td data-label="Previous Unit : ">150</td>
-            <td data-label="Current Unit : ">230</td>
-            <td data-label="Adjust Unit : ">5</td>
-            <td data-label="Unit Advance : ">85</td>
-            <td data-label="e-Bill Amount : ">408.00</td>
-            <td data-label="Monthly Rent : ">2000.00</td>
-            <td data-label="Previous Due : ">50.00</td>
-            <td data-label="fine Amount : ">50</td>
-            <td data-label="fine Type : ">Late Payment</td>
-            <td data-label="Total Due : ">2458.00</td>
-            <td data-label="Paid  Amount : ">2000.00</td>
-            <td data-label="Payment Date : ">18/12/2023</td>
-            <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon"></i> <i
-                class="fa-solid fa-pen-to-square update-icon"></i></td>
-          </tr>
-          
-          <tr>
-            <td data-label="Bill ID : ">154689</td>
-            <td data-label="Bill Date : ">06/12/2023</td>
-            <td data-label="Consumer Name : ">Bikram Sahoo</td>
-            <td data-label="Previous Unit : ">150</td>
-            <td data-label="Current Unit : ">230</td>
-            <td data-label="Adjust Unit : ">5</td>
-            <td data-label="Unit Advance : ">85</td>
-            <td data-label="e-Bill Amount : ">408.00</td>
-            <td data-label="Monthly Rent : ">2000.00</td>
-            <td data-label="Previous Due : ">50.00</td>
-            <td data-label="fine Amount : ">50</td>
-            <td data-label="fine Type : ">Late Payment</td>
-            <td data-label="Total Due : ">2458.00</td>
-            <td data-label="Paid  Amount : ">2000.00</td>
-            <td data-label="Payment Date : ">18/12/2023</td>
-            <td><i class="fa-regular fa-trash-can delete-icon"></i> <i
-                class="fa-solid fa-pen-to-square update-icon" ></i></td>
+          <tr *ngFor="let data of datalist | search:searchTerm">
+            <td data-label="Bill ID : ">{{data.id}}</td>
+            <td data-label="Bill Date : ">{{data.billingDate}}</td>
+            <td data-label="Consumer Name : ">{{data.consumer_Name}}</td>
+            <td data-label="Previous Unit : ">{{data.previousUnit}}</td>
+            <td data-label="Current Unit : ">{{data.currentUnit}}</td>
+            <td data-label="Adjust Unit : ">{{data.adjustUnit}}</td>
+            <td data-label="Unit Advance : ">{{data.unitAdv}}</td>
+            <td data-label="Per Unit : ">{{data.perunit}}</td>
+            <td data-label="e-Bill Amount : ">{{data.eBill}}</td>
+            <td data-label="Monthly Rent : ">{{data.rent}}</td>
+            <td data-label="Previous Due : ">{{data.dueAmount}}</td>
+            <td data-label="fine Amount : ">{{data.fine_amt}}</td>
+            <td data-label="fine Type : ">{{data.fine_type}}</td>
+            <td data-label="Total Due : ">{{data.final_amt}}</td>
+            <td data-label="Paid  Amount : ">{{data.paid_amt}}</td>
+            <td data-label="Due Date : ">{{data.dueDate}}</td>
+            <td data-label="Payment Date : ">{{data.payment_date}}</td>
+            <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon" (click)="deleteData(data.id)"></i></td>
           </tr>
         </tbody>
       </table>

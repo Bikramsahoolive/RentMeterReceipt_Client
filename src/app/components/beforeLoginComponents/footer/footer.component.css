@@ -32,3 +32,44 @@ footer {
     line-height: 30px;
     color: rgb(156, 148, 148);
   }
+
+
+
+  @media screen and (max-width: 770px) and (min-width: 200px){
+
+    footer {
+      background-color: #212529;
+      color: gray;
+      padding: 30px 10px;
+      display: grid;
+      grid-template-columns: 1fr;
+      /* gap: 20px; */
+      width: 100%;
+    }
+  
+    #footer-name h2 {
+      color: #5445f5;
+      margin-bottom: 10px;
+    }
+  
+    #footer-social-icon {
+      margin: 20px 0;
+    }
+  
+    #footer-social-icon i {
+      font-size: 1.3rem;
+      padding: 0 10px;
+    }
+  
+    .footer-link h4 {
+      color: white;
+      margin-bottom: 20px;
+    }
+  
+    .footer-link a {
+      display: block;
+      text-decoration: none;
+      line-height: 30px;
+      color: rgb(156, 148, 148);
+    }
+  }

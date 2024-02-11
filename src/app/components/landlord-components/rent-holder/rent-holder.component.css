@@ -19,7 +19,7 @@
 .container h1{
     text-align: center;
     margin-top: 70px;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-bottom: 30px;
 }
 @media (max-width: 425px){

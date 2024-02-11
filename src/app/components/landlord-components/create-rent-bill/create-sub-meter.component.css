@@ -5,7 +5,7 @@
 }
 .titel{
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 .cont{
     max-width: 800px;
@@ -23,7 +23,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px 0 12px 0;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 form .user-details .input-box{
     margin: 10px 0 6px 0;
@@ -44,8 +44,16 @@ form .user-details .input-box{
     outline: none;
     padding-left: 15px;
     font-size: 16px;
-    
     border-radius: 5px;
+}
+.user-details .input-box select{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid black;
 }
 form input[type="submit"],input[type="reset"]{
     margin-top: 20px;

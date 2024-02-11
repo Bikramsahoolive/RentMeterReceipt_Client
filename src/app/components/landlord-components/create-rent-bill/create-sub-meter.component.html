@@ -1,47 +1,50 @@
 <div class="content">
     <div class="cont">
-    <h1 class="titel">Create Sub-Meter Bill</h1>
-<form action="">
+    <h1 class="titel">Create Rent-Bill</h1>
+<form #rentbill="ngForm" (submit)="createRentBill(rentbill)">
     <div class="user-details">
     <div class="input-box">
         <span class="details">Billing Date:</span>
-    <input type="date" id="date">
+    <input type="date" [(ngModel)]="dToday" name="billingDate">
     </div>
     <div class="input-box">
         <span class="details">Bill Period:</span>
-    <input type="month" id="bill-period">
+    <input type="month" ngModel name="bill-period">
     </div>
     <div class="input-box">
-        <span class="details" >Consumer Name:</span>
-        <input type="Text" id="cname">
+        <span class="details" >Rent-Holder Name:</span>
+        <select name="cname" #name (change)="getRent(name.value)">
+            <option value="">Select</option>
+            <option *ngFor="let user of users" value={{user.id}}>{{user.name}}</option>
+        </select>
     </div>
     <div class="input-box">
         <span class="details">Monthly Rent(₹):</span>
-        <input type="text" id="monthly-rent">
+        <input type="text" [(ngModel)]="rentval" name="rent" readonly required>
     </div>
     <div class="input-box">
         <span class="details">Total Amount(₹):</span>
-    <input type="number" id="total-amount">
+    <input type="number" ngModel name="totalAmount">
     </div>
     <div class="input-box">
         <span class="details">Total Unit:</span>
-        <input type="number" id="total-unit">
+        <input type="number" ngModel name="totalUnit">
     </div>
     <div class="input-box">
         <span class="details">Prvious Unit:</span>
-    <input type="number" id="previous-unit">
+    <input type="number" ngModel name="previousUnit">
     </div>
     <div class="input-box">
         <span class="details">Current Unit:</span>
-    <input type="number" id="Current-unit">
+    <input type="number" ngModel name="currentUnit">
     </div>
     <div class="input-box">
         <span class="details">Adjust Unit(if any):</span>
-    <input type="number" id="adjust-unit">
+    <input type="number" ngModel name="adjustUnit">
     </div>
     <div class="input-box">
-        <span class="details">Previous Due(if any):</span>
-    <input type="number" id="due-amount">
+        <span class="details">Previous Due/Payment(if any):</span>
+    <input type="number" ngModel name="dueAmount">
     </div>
 </div>
 <div class="button">

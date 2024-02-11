@@ -25,9 +25,21 @@ export class SignupStatusComponent {
           this.reqName=res.name;
           this.reqPhone=res.phone;
           this.reqEmail=res.email;
-          if(res.status=="pending")pending.style.display="block";
-          if(res.status=="approved")aproved.style.display="block";
-          if(res.status=="rejected")rejected.style.display="block";
+          if(res.status=="pending"){
+            pending.style.display="block";
+            aproved.style.display="none";
+            rejected.style.display="none";
+          };
+          if(res.status=="approved"){
+            aproved.style.display="block";
+            rejected.style.display="none";
+            pending.style.display="none";
+          };
+          if(res.status=="rejected"){
+            rejected.style.display="block"
+            pending.style.display="none";
+            aproved.style.display="none";
+          };
 
           statusField.style.display="block";
           this.spinner.hide();
