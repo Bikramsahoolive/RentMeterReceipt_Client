@@ -1,13 +1,21 @@
-<section class="form">
-        
-    <form action="">
-        <h1 class="head">Bill Payment (Offline)</h1>
+<div class="container">
+    <div class="content">
+<form #billPay="ngForm" (submit)="billPayment(billPay)">
+    <h1 class="head">Bill Payment (Offline)</h1>
+    <div class="input-box">
         <label for="load">Bill ID:</label>
-        <input type="number" id="load">
-        <label for="bill-date">Payment Date:</label>
-        <input type="date" id="bill-date">
-        <label for="prv-unit">Paid Amount(₹):</label>
-        <input type="number" id="prv-unit">
-        <input type="submit" value="Submit">
-    </form>
-</section>
+        <input type="text" ngModel name="id">
+    </div>
+    <div class="input-box">
+        <label for="load">Payment Date::</label>
+        <input type="date" [(ngModel)]="currentDate" name="payment_date" >
+    </div>
+    <div class="input-box">
+        <label for="prv-unit">Paid Amount (₹):</label>
+    <input type="number" ngModel name="paid_amt">
+    </div>
+    
+    <input type="submit" value="Submit">
+</form>
+</div>
+</div>

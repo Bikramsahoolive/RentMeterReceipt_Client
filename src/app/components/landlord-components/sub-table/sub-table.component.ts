@@ -25,7 +25,7 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
   }
   ngOnInit(){
     this.spinner.show();
-    this.landlordServ.getRentBillData().subscribe({
+    this.landlordServ.getAllRentBillData().subscribe({
       next:(res:any)=>{
         res = res.reverse();
           this.datalist=res;
@@ -43,7 +43,7 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
     let confirmDelete = confirm("Are You Sure! This Action Is irreversible.");
     if(confirmDelete){
       this.spinner.show();
-      this.landlordServ.deleteUserData(id).subscribe({
+      this.landlordServ.deleteRentBillData(id).subscribe({
         next:(res:any)=>{
           this.ngOnInit();
           this.toster.success(`${res.message}`,'success');

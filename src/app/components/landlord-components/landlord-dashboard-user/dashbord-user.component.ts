@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 export class DashbordUserComponent {
   name:any='';
   email:any='';
-  phone:any=''
+  phone:any='';
+  landlordPhoto:any;
   ngOnInit(){
     let getEncData:any = localStorage.getItem('connect.sid');
     let actualData = atob(getEncData)
@@ -16,5 +17,6 @@ export class DashbordUserComponent {
      this.name = userData.name;
      this.email = userData.email;
      this.phone = userData.phone;
+     this.landlordPhoto = userData.photo ? userData.photo: "../../../assets/profile.jpg";
   }
 }

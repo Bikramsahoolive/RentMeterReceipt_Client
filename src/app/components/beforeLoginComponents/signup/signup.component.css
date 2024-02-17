@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url('../../../../assets/background/rnmrBackground.png');
 }
 .titel{
     text-align: center;
@@ -21,11 +22,17 @@
     margin-top:30px;
     padding: 25px 30px;
     border-radius: 8px;
+    box-shadow: 0 0 5px 2px gray;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 50px;
 
 }
 .cont .titel{
     font-size: 25px;
     font-weight: 500;
+    border-bottom: 3px solid gray;
+    padding-bottom: 20px;
 }
 .cont form .user-details{
     display: flex;
@@ -53,8 +60,16 @@ form .user-details .input-box{
     outline: none;
     padding-left: 15px;
     font-size: 16px;
-    
     border-radius: 5px;
+}
+.user-details .input-box .file{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    padding: 8px 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid black;
 }
 form input[type="submit"]{
     margin-top: 20px;

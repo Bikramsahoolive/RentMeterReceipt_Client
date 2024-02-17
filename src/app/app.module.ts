@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {QRCodeModule} from 'angularx-qrcode';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +56,9 @@ import { SignupStatusComponent } from './components/beforeLoginComponents/signup
 import { LandlordRequestComponent } from './components/admin-components/landlord-request/landlord-request.component';
 import { LandlordRequestPipe } from './pipes/landlord-request.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { PrintRentBillComponent } from './components/landlord-components/print-rent-bill/print-rent-bill.component';
+import { ContactComponent } from './components/beforeLoginComponents/contact/contact.component';
+import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +97,10 @@ import { SearchPipe } from './pipes/search.pipe';
     SignupStatusComponent,
     LandlordRequestComponent,
     LandlordRequestPipe,
-    SearchPipe
+    SearchPipe,
+    PrintRentBillComponent,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +110,8 @@ import { SearchPipe } from './pipes/search.pipe';
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

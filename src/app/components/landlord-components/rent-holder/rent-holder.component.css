@@ -15,6 +15,7 @@
 }
 .container .data-table{
     height: 50vh;
+    overflow: scroll;
 }
 .container h1{
     text-align: center;

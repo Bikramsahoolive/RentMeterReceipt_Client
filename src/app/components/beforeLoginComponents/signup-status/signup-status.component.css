@@ -4,13 +4,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    margin-top: 30px;
+    justify-content: start;background-image:url('../../../../assets/background/rnmrBackground.png'
+    );
 }
 .input-box{
     width: 100%;
     border: 5px double black;
     border-radius: 6px;
+    background-color: white;
+     margin-top: 30px;
 }
 .input-box input{
     border: none;
@@ -32,6 +34,7 @@
     flex-direction: column;
     align-items: center;
     display: none;
+    background-color: white;
 }
 .status-field h1{
     width: 100%;
@@ -58,10 +61,4 @@
 .rejected{
     color: red;
     display: none;
-}
-.error{
-    color: red;
-    display: none;
-    margin-top: 100px;
-    
 }

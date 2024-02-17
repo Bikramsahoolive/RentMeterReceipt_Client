@@ -2,21 +2,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.titel{
-    text-align: center;
+    background-image: url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
 }
 .cont{
     max-width: 800px;
     width: 100%;
     padding: 25px 30px;
     border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 0 5px 2px gray;
+    margin: 30px 0;
 
 }
 .cont .titel{
+    text-align: center;
     font-size: 25px;
     font-weight: 500;
-    color: white;
+    color: rgb(24, 23, 23);
+    border-bottom: 2px solid gray;
+    padding-bottom: 20px;
 }
 .cont form .user-details{
     display: flex;
@@ -55,8 +59,10 @@ form input[type="submit"],input[type="reset"]{
     border-radius: 5px;
     cursor: pointer;
     height: 45px;
-    width: 47%;
+    width: 100%;
     color: white;
+    outline: none;
+    border: none;
 }
 form .button{
     display: flex;
@@ -72,6 +78,10 @@ form input[type="submit"]:hover{
 }
 form input[type="reset"]{
     background-color: #b3341e;
+}
+.select{
+    text-align: center;
+    margin-top: 30px;
 }
 
 

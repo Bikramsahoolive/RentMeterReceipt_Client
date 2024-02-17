@@ -73,3 +73,8 @@ footer {
       color: rgb(156, 148, 148);
     }
   }
+  @media print{
+    footer{
+      display: none;
+    }
+  }

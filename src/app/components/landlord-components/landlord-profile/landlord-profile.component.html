@@ -1,45 +1,54 @@
 <div class="content">
 <div class="cont">
     <h1 class="titel">Profile Update</h1>
-<form action="">
+    <div class="select">
+        <div class="update_val">
+            
+            <span>UPI: <input type="checkbox" #upicheck (change)="toggleInput(upicheck.checked,'upi')" ></span>
+            <span> | Photo: <input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')"></span>
+            <span> | Signature: <input type="checkbox" #sigcheck (change)="toggleInput(sigcheck.checked,'sign')"></span>
+            <span> | Password: <input type="checkbox" #passcheck (change)="toggleInput(passcheck.checked,'password')"></span>
+        
+        </div>
+    </div>
+<form #landlordUpdate="ngForm" (submit)="updateLandlord(landlordUpdate)">
     <div class="user-details">
     <div class="input-box">
         <span class="details">Name:</span>
-    <input type="text" id="name">
+    <input type="text" [(ngModel)]="landlordData.name" name="name"  disabled>
     </div>
     <div class="input-box">
         <span class="details">Phone:</span>
-    <input type="number" id="phone">
+    <input type="number" [(ngModel)]="landlordData.phone" name="phone"  disabled>
     </div>
     <div class="input-box">
         <span class="details" >Email:</span>
-        <input type="email" id="email">
+        <input type="email" [(ngModel)]="landlordData.email" name="email" disabled>
     </div>
     <div class="input-box">
         <span class="details">UPI ID:</span>
-        <input type="text" id="password">
+        <input type="email" [(ngModel)]="landlordData.upi" name="upi"  [disabled]="upiInput" >
     </div>
     <div class="input-box">
         <span class="details">Photo:</span>
-    <input type="file" class="file">
+    <input type="file" class="file" ngModel name="photo"  [disabled]="photoInput" (change)="fileUpload($event,'photo')">
     </div>
     <div class="input-box">
         <span class="details">Signature:</span>
-        <input type="file" class="file">
+        <input type="file" class="file" ngModel name="signature" [disabled]="signInput" (change)="fileUpload($event,'signature')">
     </div>
     <div class="input-box">
         <span class="details">Password:</span>
-        <input type="password" id="password">
+        <input type="password" ngModel name="password" [disabled]="passwordInput">
     </div>
     <div class="input-box">
         <span class="details">Confirm Password:</span>
-        <input type="password" id="password">
+        <input type="password" ngModel name="cPass" [disabled]="passwordInput">
     </div>
     
 </div>
 <div class="button">
     <input type="submit" value="Update">
-    <input type="reset" value="Reset">
 </div> 
 </form>
 </div>

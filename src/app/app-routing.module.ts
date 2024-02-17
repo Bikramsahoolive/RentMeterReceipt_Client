@@ -38,6 +38,9 @@ import { RentholderMenubarComponentComponent } from './components/rentholder-com
 import { AdminDashbordContentComponent } from './components/admin-components/admin-dashbord-content/admin-dashbord-content.component';
 import { AdminDashbordUserComponent } from './components/admin-components/admin-dashbord-user/admin-dashbord-user.component';
 import { LandlordRequestComponent } from './components/admin-components/landlord-request/landlord-request.component';
+import { PrintRentBillComponent } from './components/landlord-components/print-rent-bill/print-rent-bill.component';
+import { ContactComponent } from './components/beforeLoginComponents/contact/contact.component';
+import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
 const dashbord: Routes=[
   
 ]
@@ -47,6 +50,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'signup-status',component:SignupStatusComponent},
+  {path:'contact',component:ContactComponent},
+  {path:'about',component:AboutComponent},
   {path:'dashbord-admin',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:AdminDashbordContentComponent,outlet:'outlet1'},
@@ -75,7 +80,9 @@ children:[
 ]
 },
 {path:'create-MainBill',component:CreateBillComponent,canActivate:[authGuard]},
-{path:'create-SubBill',component:CreateSubMeterComponent,canActivate:[authGuard]},
+{path:'create-rent-bill',component:CreateSubMeterComponent,canActivate:[authGuard]},
+
+{path:'print-rent-bill/:id',component:PrintRentBillComponent,canActivate:[authGuard]},
 
 {path:'bill-payment',component:BillPaymentComponent,canActivate:[authGuard]},
 {path:'fine-addition',component:AdditionFinesComponent,canActivate:[authGuard]},
@@ -86,8 +93,8 @@ children:[
 {path:'add-rentHolder',component:AddRentHolderComponent,canActivate:[authGuard]},
 {path:'total-due',component:TotalDueComponent,canActivate:[authGuard]},
 {path:'mainMeter-table',component:MainTableComponent,canActivate:[authGuard]},
-{path:'subMeter-table',component:SubTableComponent,canActivate:[authGuard]},
-{path:'sub-meter',component:DashbordComponent,canActivate:[authGuard],
+{path:'rent-bill-table',component:SubTableComponent,canActivate:[authGuard]},
+{path:'rent-bill',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:SubMeterComponent,outlet:'outlet1'},
   {path:'',component:SubMeterMenuComponent,outlet:'outlet2'}

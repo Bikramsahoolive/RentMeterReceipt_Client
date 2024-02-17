@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url(../../../../assets/background/design-flower-line-wallpaper-preview.jpg);
  }
  .card{
     width: 100%;
@@ -13,8 +14,9 @@
     
  }
  .head{
-    padding: 10px 60px;
+    /* padding: 10px 60px; */
     color: rgb(0, 0, 0);
+    background-color: white;
 }
  .card div{
     /* background-color: rgb(90, 136, 30); */

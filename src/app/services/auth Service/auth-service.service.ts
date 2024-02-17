@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  constructor(private http:HttpClient, private router:Router,private spinner :NgxSpinnerService) { }
+  constructor(private http:HttpClient, private router:Router,private spinner :NgxSpinnerService,private toastr:ToastrService ) { }
   private isLogedIn:boolean=false;
   private isAdmin:boolean=false;
   private isLandlord:boolean=false;
@@ -15,9 +16,7 @@ export class AuthServiceService {
    header = new HttpHeaders({
     'Content-Type':'application/json',
     'api_key':'bikram123456@$&',
-    
-    
-  })
+  });
   
 
   adminLogin(data:any)
@@ -33,18 +32,16 @@ export class AuthServiceService {
     this.isAdmin=true;
     this.router.navigate(['dashbord-admin']); 
     this.spinner.hide();
-        
-        
-
-    }
-    ,error:(err:any)=>{
+    },
+    error:(err:any)=>{
       console.log(err.error);
-      this.spinner.hide
+      // this.toastr.error(err.error.message,'Error');
+      this.spinner.hide;
 
     },
-    // complete:()=>{
-    //   console.log("compllited");
-    // }
+    complete:()=>{
+      this.spinner.hide();
+    }
   })
 
   }
@@ -56,17 +53,20 @@ landlordLogin(data:any){
   this.http.post('http://localhost:5800/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
         
-          let localData = JSON.stringify(res);
-          let encData =btoa(localData);
+      // if(res.status){
+        let localData = JSON.stringify(res);
+        let encData =btoa(localData);
         localStorage.setItem("connect.sid",encData);
         localStorage.setItem("connect.rid",btoa(res.isActive));
         this.isLogedIn = true;
         this.isLandlord=true;
         this.router.navigate(['dashbord-landlord']);  
-        this.spinner.hide();  
+        this.spinner.hide(); 
+      // }
+           
 
-    }
-    ,error:(err:any)=>{
+    },
+     error:(err:any)=>{
       console.log(err.error);
       this.spinner.hide();
 
@@ -85,7 +85,6 @@ landlordLogin(data:any){
 
 
 checkSession(){
-  this.spinner.show();
   this.http.post(`http://localhost:5800/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
 
     localStorage.setItem("connect.rid",btoa(result.isActive));
@@ -97,14 +96,16 @@ if(result.userType==='admin'){
 }else if(result.userType==='rentholder'){
   console.log('rentholder');
 }
-this.spinner.hide();
     
 if (result.isActive==false){
   localStorage.setItem("connect.sid","null");
-      this.router.navigate(['home']);
+  this.isLogedIn = false;
+  this.isLandlord=false;
+  this.isAdmin=false;
+  this.router.navigate(['home']);
 }
 
- })
+ });
  
  }
 

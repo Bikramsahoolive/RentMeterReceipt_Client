@@ -9,13 +9,12 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./signup-status.component.css']
 })
 export class SignupStatusComponent {
-  constructor(private toster :ToastrService, private signupservice : SignupService, private spinner:NgxSpinnerService){}
+  constructor(private toastr :ToastrService, private signupservice : SignupService, private spinner:NgxSpinnerService){}
   reqName:string="";
   reqPhone:string="";
   reqEmail:string="";
-  getStatus(id:any,statusField:any,pending:any,aproved:any,rejected:any,error:any){
+  getStatus(id:any,statusField:any,pending:any,aproved:any,rejected:any){
     
-    error.style.display="none";
     statusField.style.display="none";
     if(id){
       this.spinner.show();
@@ -46,7 +45,7 @@ export class SignupStatusComponent {
         },
         error:(err)=>{
           console.log(err.error);
-          error.style.display="block";
+          this.toastr.error(err.error.message,"Error");
           this.spinner.hide();
           
         }
@@ -54,7 +53,7 @@ export class SignupStatusComponent {
       
       
     }else{
-      this.toster.error("Invalid Input.","Error")
+      this.toastr.error("Invalid Input.","Error")
 
     }
     

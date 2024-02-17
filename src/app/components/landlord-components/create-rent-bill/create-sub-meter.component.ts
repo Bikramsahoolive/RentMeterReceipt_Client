@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-create-sub-meter',
@@ -11,12 +12,16 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class CreateSubMeterComponent {
 
-  constructor(private landlordServ:LandlordService, private spinner:NgxSpinnerService, private toster:ToastrService){}
+  constructor(private landlordServ:LandlordService,
+              private spinner:NgxSpinnerService,
+              private toster:ToastrService,
+              private route:Router
+              ){}
   dToday:any='';
   users:any;
   rentval:string='';
-  name:any;
-  usetId:any;
+  name:any='';
+  usetId:any='';
   ngOnInit(){
     this.spinner.show();
     let date= new Date();
@@ -24,7 +29,7 @@ export class CreateSubMeterComponent {
     let month =(date.getMonth()+1).toString().padStart(2,'0');
     let day = date.getDate();
     this.dToday=`${year}-${month}-${day}`;
-    console.log(this.dToday);
+    // console.log(this.dToday);
 
     this.landlordServ.getAllRentholder().subscribe({
       next:(res)=>{
@@ -59,10 +64,13 @@ export class CreateSubMeterComponent {
     let data = form.value;
     data.consumer_Name = this.name;
     data.rentholder_id=this.usetId;
-    console.log(data);
+    if(data.rent_status=='paid')data.rent=0;
+    delete data.rent_status;
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
         this.toster.success(`${res.message}`,'Success');
+        form.reset();
+        this.route.navigate([`/print-rent-bill/${res.id}`]);
       },
       error:(err)=>{
         console.error(err.error);

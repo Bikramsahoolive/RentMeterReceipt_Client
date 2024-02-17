@@ -1,0 +1,60 @@
+
+
+
+
+        <div class="container">
+            <div class="bill">
+
+            <h1>RentⓝMeter.Receipt</h1>
+         <div class="ebill">
+            <span>Billing Date: <Strong>{{bill.billingDate}}</Strong> | Unit Advance: <Strong>{{bill.unitAdv}}</Strong> | e-Bill: <Strong>₹{{bill.eBill}}</Strong></span>
+         </div>
+            
+
+            <div class="content">
+                <div class="data">
+                    <span>Bill No : </span> <Strong>{{bill.id}}</Strong>
+                </div>
+                <!-- <div class="data">
+                    <span>Bill Period : </span> <Strong>{{}}</Strong>
+                </div> -->
+                <div class="data">
+                    <span>Previous Unit : </span> <Strong>{{bill.previousUnit}}</Strong>
+                </div>
+                <div class="data">
+                    <span>Current Unit : </span> <Strong>{{bill.currentUnit}}</Strong>
+                </div>
+                <div class="data">
+                    <span>Adjust Unit : </span><Strong>{{bill.adjustUnit}}</Strong>
+                </div>
+                <div class="data">
+                    <span>Previous Due : </span> <Strong>₹{{bill.dueAmount}}</Strong>
+                </div>
+                <div class="data">
+                    <span>Monthly Rent : </span> <Strong>₹{{bill.rent}}</Strong>
+                </div>
+            </div>
+
+            <div class="total-bill">
+                <h3>Total Due on {{bill.consumer_Name}} : ₹{{bill.final_amt}}</h3>
+            </div>
+            
+            <div class="foot">
+                <div class=qrcode >
+                    <h5>Scan To Pay!</h5>
+                    <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
+                </div>
+                <div class="signature">
+                    <div class="signature-content"><span>Payment Due Date : <Strong>{{bill.dueDate}}</Strong> </span></div>
+                    <div class="sign">
+                        <img src="{{landlordSign}}">
+                    <div class="signature-content">Signature of Landlord.</div>
+                    </div>
+                    <div class="signature-content"><small>*Fine can be applied after payment due date.</small></div>
+                    <div class="signature-content"><small>*please verify payee data before UPI payment.</small></div>
+                </div>
+            </div>
+        </div>
+
+                <button (click)="print()">Print</button>
+        </div>

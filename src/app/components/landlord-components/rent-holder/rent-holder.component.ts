@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-rent-holder',
@@ -7,17 +9,22 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
   styleUrls: ['./rent-holder.component.css']
 })
 export class RentHolderComponent {
-  constructor(private landlordServ:LandlordService){}
+  constructor(private landlordServ:LandlordService,private spinner:NgxSpinnerService,private toster:ToastrService){}
   users:any=[];
 
 ngOnInit(){
+  this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
       next:(res:any)=>{
         this.users=res;
-        console.log(res);
+        this.spinner.hide();
       },
-      error:(err)=>{console.log(err.error)},
-      complete:()=>console.log('Complited')
+      error:(err)=>{
+        console.log(err.error);
+        this.toster.error('Something went wrong.','Error');
+        this.spinner.hide();
+      },
+      complete:()=>{}
       
     })
 }
@@ -28,6 +35,21 @@ downloadDoc(link:any){
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
-  
+}
+deleteRentHolder(id:any){
+  this.landlordServ.deleteRentHolderData(id).subscribe({
+    next:(res:any)=>{
+      if(res.status){
+        this.toster.success('Rent-Holder Deleted.','Success');
+        this.ngOnInit();
+      }
+    },
+    error:(err)=>{
+      console.log(err.error);
+      this.toster.error('Something went wrong.','Error');
+      
+
+    }
+  })
 }
 }

@@ -4,9 +4,6 @@
     <div class="msg">
         <h5>{{regId}}</h5>
     </div>
-    <!-- <div class="error">
-        <h5>{{errMsg}}</h5>
-    </div> -->
 <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
     <div class="user-details">
     <div class="input-box">
@@ -22,9 +19,17 @@
         <input type="email" ngModel name="email" required>
     </div>
     <div class="input-box">
-        <span class="details">UPI ID:</span>
+        <span class="details">UPI ID (Eg: Gpay/PhonePay Business):</span>
         <input type="email" ngModel name="upi" required>
     </div>
+    <!-- <div class="input-box">
+        <span class="details">Photo:</span>
+    <input type="file" class="file" ngModel name="photo" (change)="fileInput($event,'photo')">
+    </div>
+    <div class="input-box">
+        <span class="details">Signature:</span>
+        <input type="file" class="file" ngModel name="signature" (change)="fileInput($event,'sign')">
+    </div> -->
     <div class="input-box">
         <span class="details">Password:</span>
     <input type="password" ngModel name="password" required>

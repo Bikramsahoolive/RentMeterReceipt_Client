@@ -13,24 +13,45 @@ export class SignupComponent {
   constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){}
   regId:String = "";
   dToday:String='';
+  // landlordPhoto:any;
+  // landlordSign:any;
   ngOnInit(){
     let date= new Date();
     let year = date.getFullYear();
     let month =(date.getMonth()+1).toString().padStart(2,'0');
     let day = date.getDate();
     this.dToday=`${day}-${month}-${year}`;
-
-    
   }
+  // fileInput(event:any,type:any){
+  //   this.spinner.show();
+  //   const file = event.target.files[0];
+  //   if (file){
+      
+  //     if(file.size<1048576){
+  //     const reader = new FileReader();
+  //     reader.onload = (e)=>{
+  //       const dataUrl =e.target?.result as string;
+  //       if(type=='photo')this.landlordPhoto= dataUrl;
+  //       if(type=='signature')this.landlordSign= dataUrl;
+  //       this.spinner.hide();
+  //     }
+  //     reader.readAsDataURL(file);
+  //   }else{
+  //     this.toastr.error(`file large than 1MB`,`Error`);
+  //     this.spinner.hide();
+  //   }
+  // }
+    
+  // }
   signup(form:NgForm){
     const data = form.value;
-    console.log(data.termNconditions);
-    
+    // data.photo=this.landlordPhoto;
+    // data.signature=this.landlordSign;
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
       if (data.password === data.confPass){
         if (data.termNconditions){
           this.spinner.show();
-          // delete data.confPass;
+          delete data.confPass;
           this.signupService.signUp(data).subscribe({
             next:(result:any)=>{
               console.log(result);
@@ -49,7 +70,7 @@ export class SignupComponent {
           })
           
         }else{
-          this.toastr.error('Check on term & conditions.', 'Error!');
+          this.toastr.error('Accept term & conditions.', 'Error!');
         }
        
       }else{

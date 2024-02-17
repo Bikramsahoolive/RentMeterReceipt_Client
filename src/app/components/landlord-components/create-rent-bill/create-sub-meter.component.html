@@ -8,12 +8,8 @@
     <input type="date" [(ngModel)]="dToday" name="billingDate">
     </div>
     <div class="input-box">
-        <span class="details">Bill Period:</span>
-    <input type="month" ngModel name="bill-period">
-    </div>
-    <div class="input-box">
         <span class="details" >Rent-Holder Name:</span>
-        <select name="cname" #name (change)="getRent(name.value)">
+        <select name="consumer_Name" ngModel #name (change)="getRent(name.value)">
             <option value="">Select</option>
             <option *ngFor="let user of users" value={{user.id}}>{{user.name}}</option>
         </select>
@@ -21,6 +17,14 @@
     <div class="input-box">
         <span class="details">Monthly Rent(₹):</span>
         <input type="text" [(ngModel)]="rentval" name="rent" readonly required>
+    </div>
+    <div class="input-box">
+        <span class="details">Rent Status:</span>
+        <select name="rent_status" ngModel >
+            <option value="">Select</option>
+            <option value="notpaid">Not Paid</option>
+            <option value="paid">Paid</option>
+        </select>
     </div>
     <div class="input-box">
         <span class="details">Total Amount(₹):</span>

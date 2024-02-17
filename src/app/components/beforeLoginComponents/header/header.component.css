@@ -133,3 +133,9 @@ div #logout:hover{
         width: 250px;
     }
 }
+
+@media print {
+    header{
+        display: none;
+    }
+}
