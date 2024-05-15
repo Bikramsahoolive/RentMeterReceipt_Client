@@ -22,11 +22,25 @@
         <div class="toggle-btn"><i #tglBtn class="fa-solid fa-bars" (click)="dropdownToggle(dropdown,tglBtn)"></i></div>
     </nav>
     <div class="dropdown_menu " #dropdown>
-        <li><a href="/rnmr" class="active">Dashbord</a></li>
+        <!-- <li><a href="/rnmr" class="active">Dashbord</a></li>
         <li><a href="mainMeter.php">Main Meter</a></li>
         <li><a href="subMeter.php">Sub Meter</a></li>
         <li><a href="html/manage.php" class="">Manage</a></li>
         <div><a href="/logout.php" class="logout">Logout</a></div>
+        ////////////////////////////////////////////////////////////////// -->
+        <li *ngIf="authService.isLogin()"><a routerLink="">Home</a></li>
+        <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin">Dashbord</a></li>
+        <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord">Dashbord</a></li>
+        <li *ngIf="authService.Landlord()"><a routerLink="rent-bill">Rent Bill</a></li>
+        <li *ngIf="authService.Landlord()"><a routerLink="manage">Manage</a></li>
+        <div *ngIf="authService.isLogin() else loginForm " ><a (click)="logout()" id="logout">Logout</a></div>
+        <ng-template #loginForm>
+            <li><a routerLink="home">Home</a></li>
+            <li><a routerLink="about">About</a></li>
+            <li><a routerLink="contact">Contact Us</a></li>
+            <li><a routerLink="/signup-status">Status</a></li>
+            <!-- <div><a class="nav-btn" routerLink="login">Login</a></div> -->
+        </ng-template>
     </div>
 </header>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-scale" [fullScreen] = "true"><p style="color: white" > Please Wait... </p></ngx-spinner>

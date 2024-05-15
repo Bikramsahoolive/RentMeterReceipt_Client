@@ -13,17 +13,17 @@ export class SignupService {
     
   })
 signUp(data:any){
-  return this.http.post('http://localhost:5800/signup',data,{headers:this.header});
+  return this.http.post('https://rnmrs.onrender.com/signup',data,{headers:this.header});
 }
 signUpStatus(id:String){
-  return this.http.get(`http://localhost:5800/signup/status/${id}`,{headers:this.header});
+  return this.http.get(`https://rnmrs.onrender.com/signup/status/${id}`,{headers:this.header});
 }
 getSignUpData(){
-  return this.http.get(`http://localhost:5800/signup`,{withCredentials:true,headers:this.header});
+  return this.http.get(`https://rnmrs.onrender.com/signup`,{withCredentials:true,headers:this.header});
 }
 actionLandlordData(data:any){
   console.log(data.id);
-  return this.http.post(`http://localhost:5800/landlord/action/${data.id}`,data,{withCredentials:true,headers:this.header});
+  return this.http.post(`https://rnmrs.onrender.com/landlord/action/${data.id}`,data,{withCredentials:true,headers:this.header});
 }
 
 }

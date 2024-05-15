@@ -37,13 +37,10 @@ export class DashbordContentComponent {
 
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:any)=>{
-        if(!res.status){
-          this.totalDueAmt=0;
-          this.totalPaidAmt=0;
-        }
-        else if(res.length==1){
+        console.log(res[0]);
+         if(res.length==1){
           this.totalPaidAmt=res[0].paid_amt;
-          this.totalDueAmt=res[0].final_amt - res[0].paid_amt;
+          this.totalDueAmt=(+res[0].final_amt) - (+res[0].paid_amt);
           
         }
         else{let totalDue = res.reduce((a:any,b:any)=>(+a.final_amt) + (+b.final_amt));
@@ -52,6 +49,11 @@ export class DashbordContentComponent {
         this.totalDueAmt=totalDue-totalPaid;
       }
         
+        
+      },
+      error:(err)=>{
+        console.log(err.error);
+        this.toastr.error('something wents wrong','Error!');
         
       }
     })

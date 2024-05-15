@@ -22,7 +22,7 @@ export class AuthServiceService {
   adminLogin(data:any)
   {
     this.spinner.show();
-    this.http.post('http://localhost:5800/admin/login',data,{withCredentials:true,headers:this.header}).subscribe({
+    this.http.post('https://rnmrs.onrender.com/admin/login',data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
       let localData = JSON.stringify(res);
       let encData =btoa(localData);
@@ -50,7 +50,7 @@ landlordLogin(data:any){
 
   this.spinner.show();
 
-  this.http.post('http://localhost:5800/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
+  this.http.post('https://rnmrs.onrender.com/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
         
       // if(res.status){
@@ -85,7 +85,7 @@ landlordLogin(data:any){
 
 
 checkSession(){
-  this.http.post(`http://localhost:5800/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
+  this.http.post(`https://rnmrs.onrender.com/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
 
     localStorage.setItem("connect.rid",btoa(result.isActive));
     this.isLogedIn = result.isActive;
@@ -123,7 +123,7 @@ if (result.isActive==false){
 
  logout(){
 this.spinner.show();
-  this.http.post(`http://localhost:5800/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
+  this.http.post(`https://rnmrs.onrender.com/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
     localStorage.setItem("connect.rid",btoa(result.isActive));
     localStorage.setItem("connect.sid","null");
     this.isLogedIn = false;

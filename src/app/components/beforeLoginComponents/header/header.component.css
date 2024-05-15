@@ -40,6 +40,8 @@ div #logout {
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
+    width: 100%;
+    text-align: center;
 }
 div #logout:hover{
     box-shadow: 0 0 5px 0 whitesmoke;
@@ -65,7 +67,7 @@ div #logout:hover{
 }
 
 .dropdown_menu.open {
-    height: 280px;
+    height: 200px;
     z-index: 1;
 }
 
@@ -77,10 +79,10 @@ div #logout:hover{
 
 }
 .dropdown_menu li a{
-    color: white;
+    color: rgb(2, 2, 2);
 }
 .dropdown_menu li a:hover{
-    color: rgb(245, 190, 87);
+    color: rgb(70, 43, 190);
 }
 
 .dropdown_menu .action {
@@ -88,7 +90,7 @@ div #logout:hover{
     display: flex;
     justify-content: center;
 }
-.logout{
+/* .logout{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,6 +101,11 @@ div #logout:hover{
     border-radius: 10px;
     cursor: pointer;
     
+} */
+.dropdown_menu div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .active{
     color: rgb(129, 169, 238);

@@ -11,8 +11,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class SignupComponent {
 
   constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){}
-  regId:String = "";
-  dToday:String='';
+  regId:string= "";
+  dToday:string="";
   // landlordPhoto:any;
   // landlordSign:any;
   ngOnInit(){
