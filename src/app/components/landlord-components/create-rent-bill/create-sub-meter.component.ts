@@ -52,7 +52,6 @@ export class CreateSubMeterComponent {
       return element;
     });
     let user = arrayUser[0];
-    console.log(user.name);
     this.rentval=user.rent;
     this.name= user.name;
     this.usetId=user.id;

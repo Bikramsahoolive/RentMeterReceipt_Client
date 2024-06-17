@@ -20,7 +20,10 @@ export class HeaderComponent {
             ? 'fa-solid fa-xmark'
             : 'fa-solid fa-bars'
   }
-
+  hideMenu(dropdown:any,tglBtn:any){
+    dropdown.classList='dropdown_menu';
+    tglBtn.classList ='fa-solid fa-bars';
+  }
   logout(){
     this.authService.logout();
   }

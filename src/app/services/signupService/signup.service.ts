@@ -9,7 +9,7 @@ export class SignupService {
   constructor(private http:HttpClient) { }
   header = new HttpHeaders({
     'Content-Type':'application/json',
-    'api_key':'bikram123456@$&'
+    // 'api_key':''
     
   })
 signUp(data:any){

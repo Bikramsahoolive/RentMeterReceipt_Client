@@ -15,7 +15,7 @@ export class AuthServiceService {
 
    header = new HttpHeaders({
     'Content-Type':'application/json',
-    'api_key':'bikram123456@$&',
+    // 'api_key':''
   });
   
 
@@ -52,6 +52,7 @@ landlordLogin(data:any){
 
   this.http.post('https://rnmrs.onrender.com/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
+        // console.log(res);
         
       // if(res.status){
         let localData = JSON.stringify(res);

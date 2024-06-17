@@ -8,7 +8,7 @@ export class LandlordService {
   constructor(private http : HttpClient) { }
   header= new HttpHeaders({
     'Content-Type':'application/json',
-    'api_key':'bikram123456@$&'
+    // 'api_key':''
   })
   addRentHolder(data:any){
    return this.http.post('https://rnmrs.onrender.com/rent-holder',data,{withCredentials:true,headers:this.header});

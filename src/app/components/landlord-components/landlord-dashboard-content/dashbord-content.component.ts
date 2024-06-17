@@ -15,39 +15,58 @@ export class DashbordContentComponent {
     private landlordServ:LandlordService
     ){}
     rentHolderCount:number=0;
-    rentHolderData:any;
+    // rentHolderData:any;
     totalPaidAmt:number=0;
     totalDueAmt:number=0;
   ngOnInit(){
-    
+    this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
-      next:(res:any)=>{
+      next:(res:any)=>{        
         // this.rentHolderData=res;
-        this.rentHolderCount=res.length;
-        this.totalPaidAmt= res.reduce((a:any,b:any)=>(+a.paid_amt)+(+b.paid_amt));
+        if(res.status){
+          this.rentHolderCount=res.length;
+        
+        let count =0;
+        res.forEach((d:any)=>{
+         
+          count = count + (+d.paid_amt);
+        });
+       console.log(count);
+        }
+        
       },error:(err)=>{
         console.error(err.error);
         this.toastr.error('Something wents wrong.','Error');
       },complete:()=>{
-        // for(let i=0; i<this.rentHolderData.length;i++){
-        //   this.totalPaidAmt= this.totalPaidAmt+(+this.rentHolderData[i].paid_amt);
-        // }
+        this.spinner.hide();
       }
     });
 
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:any)=>{
-        console.log(res[0]);
-         if(res.length==1){
-          this.totalPaidAmt=res[0].paid_amt;
-          this.totalDueAmt=(+res[0].final_amt) - (+res[0].paid_amt);
-          
+
+        if(res.status){
+          if(res.length==1){
+            // this.totalPaidAmt=res[0].paid_amt;
+            let paidAmt = res[0].paid_amt;
+            console.log("Paid Amount =",paidAmt);
+            this.totalDueAmt=(+res[0].final_amt) - (+res[0].paid_amt);
+          }
+          else{
+          let due = 0;
+          res.forEach((element:any) => {
+            due = due + Number(element.final_amt);
+          });
+  
+          let totalPaid =0;
+          res.forEach((element:any)=>{
+            totalPaid = totalPaid + Number(element.paid_amt);
+          })
+  
+          this.totalPaidAmt = totalPaid;
+          this.totalDueAmt=due - totalPaid;
         }
-        else{let totalDue = res.reduce((a:any,b:any)=>(+a.final_amt) + (+b.final_amt));
-        let totalPaid =res.reduce((a:any,b:any)=>(+a.paid_amt)+(+b.paid_amt));
-        this.totalPaidAmt = totalPaid;
-        this.totalDueAmt=totalDue-totalPaid;
-      }
+        }
         
         
       },
