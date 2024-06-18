@@ -14,14 +14,14 @@ export class LoginComponent {
   login(auth:loginData){
     
     if (auth.userType==="landlord"){
-      delete auth.userType;
+      // delete auth.userType;
       this.authServ.landlordLogin(auth);
       
     }else if (auth.userType==="admin"){
-      delete auth.userType;
+      // delete auth.userType;
       this.authServ.adminLogin(auth);
     }else if(auth.userType==="rentholder"){
-      delete auth.userType;
+      // delete auth.userType;
       console.log(auth);
     }else{
       this.toastr.error('select user type. ', 'Error!',);

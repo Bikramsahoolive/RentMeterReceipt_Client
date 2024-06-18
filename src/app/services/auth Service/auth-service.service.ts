@@ -30,16 +30,12 @@ export class AuthServiceService {
     localStorage.setItem("connect.rid",btoa(res.isActive));
     this.isLogedIn = true;
     this.isAdmin=true;
-    this.router.navigate(['dashbord-admin']); 
+    this.router.navigate(['dashbord-admin']);
     this.spinner.hide();
     },
     error:(err:any)=>{
       console.log(err.error);
-      // this.toastr.error(err.error.message,'Error');
-      this.spinner.hide;
-
-    },
-    complete:()=>{
+      this.toastr.error(err.error.text, 'Error!',);
       this.spinner.hide();
     }
   })
@@ -62,19 +58,17 @@ landlordLogin(data:any){
         this.isLogedIn = true;
         this.isLandlord=true;
         this.router.navigate(['dashbord-landlord']);  
-        this.spinner.hide(); 
+        
       // }
            
 
     },
      error:(err:any)=>{
       console.log(err.error);
+      this.toastr.error(err.error.message, 'Error!',);
       this.spinner.hide();
 
-    },
-    // complete:()=>{
-    //   console.log("compllited");
-    // }
+    }
   })
 }
 
