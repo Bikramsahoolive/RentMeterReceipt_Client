@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 
 @Component({
@@ -8,12 +9,13 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
   styleUrls: ['./print-rent-bill.component.css']
 })
 export class PrintRentBillComponent {
-  constructor(private route:ActivatedRoute, private landlordServ:LandlordService){}
+  constructor(private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService){}
 paramId:any='';
 bill:any;
 upiLink:any;
 landlordSign:any="";
   ngOnInit(){
+    this.spinner.show();
       let urlid = this.route.snapshot.paramMap.get('id');
     this.landlordServ.getSingleRentBillData(urlid).subscribe({
       next:(res:any)=>{
@@ -28,6 +30,9 @@ landlordSign:any="";
           error:(err)=>{
             console.log(err.error);
             
+          },
+          complete:()=>{
+            this.spinner.hide();
           }
         });
       },

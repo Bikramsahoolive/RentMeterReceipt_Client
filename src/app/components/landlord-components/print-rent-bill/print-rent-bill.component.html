@@ -3,18 +3,16 @@
 
 
         <div class="container">
+            <button (click)="print()"><i class="fa-solid fa-print"></i></button>
             <div class="bill">
 
             <h1>RentⓝMeter.Receipt</h1>
          <div class="ebill">
-            <span>Billing Date: <Strong>{{bill.billingDate}}</Strong> | Unit Advance: <Strong>{{bill.unitAdv}}</Strong> | e-Bill: <Strong>₹{{bill.eBill}}</Strong></span>
+            <span>Date: <Strong>{{bill.billingDate}}</Strong> | Bill No: <Strong>{{bill.id}}</Strong></span>
          </div>
             
 
             <div class="content">
-                <div class="data">
-                    <span>Bill No : </span> <Strong>{{bill.id}}</Strong>
-                </div>
                 <!-- <div class="data">
                     <span>Bill Period : </span> <Strong>{{}}</Strong>
                 </div> -->
@@ -26,6 +24,12 @@
                 </div>
                 <div class="data">
                     <span>Adjust Unit : </span><Strong>{{bill.adjustUnit}}</Strong>
+                </div>
+                <div class="data">
+                    <span> Unit Advance: </span> <Strong>{{bill.unitAdv}}</Strong>
+                </div>
+                <div class="data">
+                    <span> e-Bill: </span> <Strong>₹{{bill.eBill}}</Strong>
                 </div>
                 <div class="data">
                     <span>Previous Due : </span> <Strong>₹{{bill.dueAmount}}</Strong>
@@ -56,5 +60,5 @@
             </div>
         </div>
 
-                <button (click)="print()">Print</button>
+                
         </div>

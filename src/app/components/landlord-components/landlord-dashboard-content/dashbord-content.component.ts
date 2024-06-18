@@ -23,8 +23,10 @@ export class DashbordContentComponent {
     this.landlordServ.getAllRentholder().subscribe({
       next:(res:any)=>{        
         // this.rentHolderData=res;
-        if(res.status){
-          this.rentHolderCount=res.length;
+        if(res.status == false){
+          return;
+        }
+        this.rentHolderCount=res.length;
         
         let count =0;
         res.forEach((d:any)=>{
@@ -32,7 +34,7 @@ export class DashbordContentComponent {
           count = count + (+d.paid_amt);
         });
        console.log(count);
-        }
+        
         
       },error:(err)=>{
         console.error(err.error);
@@ -45,7 +47,9 @@ export class DashbordContentComponent {
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:any)=>{
 
-        if(res.status){
+        if(res.status === false){
+          return;
+        }
           if(res.length==1){
             // this.totalPaidAmt=res[0].paid_amt;
             let paidAmt = res[0].paid_amt;
@@ -66,7 +70,7 @@ export class DashbordContentComponent {
           this.totalPaidAmt = totalPaid;
           this.totalDueAmt=due - totalPaid;
         }
-        }
+        
         
         
       },

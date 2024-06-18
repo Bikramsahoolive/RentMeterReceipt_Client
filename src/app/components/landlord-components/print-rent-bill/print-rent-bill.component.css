@@ -7,15 +7,15 @@
     background-color: whitesmoke;
 }
 .bill{
-    width: 450px;
-    height: 550px;
+    width: 325px;
+    height: 630px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
     box-shadow: 0 0 5px 2px rgb(192, 191, 191);
     border-radius: 5px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 .bill h1{
     padding: 10px 0;
@@ -70,6 +70,7 @@
 }
 .signature .signature-content{
     margin-top: 5px;
+    text-align:center;
 }
 .signature img{
     width: 150px;
