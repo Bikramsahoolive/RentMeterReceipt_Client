@@ -28,12 +28,12 @@ export class DashbordContentComponent {
         }
         this.rentHolderCount=res.length;
         
-        let count =0;
-        res.forEach((d:any)=>{
+      //   let count =0;
+      //   res.forEach((d:any)=>{
          
-          count = count + (+d.paid_amt);
-        });
-       console.log(count);
+      //     count = count + Number(d.paid_amt);
+      //   });
+      //  console.log(count);
         
         
       },error:(err)=>{
@@ -50,13 +50,6 @@ export class DashbordContentComponent {
         if(res.status === false){
           return;
         }
-          if(res.length==1){
-            // this.totalPaidAmt=res[0].paid_amt;
-            let paidAmt = res[0].paid_amt;
-            console.log("Paid Amount =",paidAmt);
-            this.totalDueAmt=(+res[0].final_amt) - (+res[0].paid_amt);
-          }
-          else{
           let due = 0;
           res.forEach((element:any) => {
             due = due + Number(element.final_amt);
@@ -69,7 +62,6 @@ export class DashbordContentComponent {
   
           this.totalPaidAmt = totalPaid;
           this.totalDueAmt=due - totalPaid;
-        }
         
         
         
