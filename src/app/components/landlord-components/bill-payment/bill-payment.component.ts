@@ -27,13 +27,21 @@ export class BillPaymentComponent {
     let id = data.id;
     this.landlordServe.getSingleRentBillData(id).subscribe({
       next:(res:any)=>{
+        let toPaidAmount = res.final_amt - res.paid_amt;
         if(res.final_amt == res.paid_amt){
           this.toastr.warning('Bill Already Paid','Warning');
           this.spinner.hide();
-        }else if(data.paid_amt>res.final_amt){
+        }
+        // else if(data.paid_amt>res.final_amt){
+        //   this.toastr.warning('Invalid paid amount','Warning');
+        //   this.spinner.hide();
+        // }
+         else if(data.paid_amt>toPaidAmount){
           this.toastr.warning('Invalid paid amount','Warning');
           this.spinner.hide();
-        }else{
+        }
+        
+        else{
 
           delete data.id;
     this.landlordServe.paymentBillData(data,id).subscribe({

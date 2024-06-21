@@ -7,8 +7,8 @@
     background-color: whitesmoke;
 }
 .bill{
-    width: 325px;
-    height: 620px;
+    width: 400px;
+    height: 565px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +18,7 @@
     margin-top: 20px;
 }
 .bill h1{
-    padding: 10px 0;
+    padding: 20px 0 5px 0;
 }
 .content{
     width: 90%;
@@ -27,7 +27,7 @@
 }
  .data{
     width: 100%;
-    padding: 8px 0;
+    padding: 5px 0;
     border-bottom: 1px solid rgb(175, 175, 175) ;
     display: flex;
     justify-content: space-between;
@@ -37,7 +37,7 @@
     width: 100%;
     border-top: 5px double black;
     border-bottom: 5px double black;
-    padding: 10px 0 ;
+    padding: 7px 0 ;
     display: flex;
     justify-content: center;
 }
@@ -45,7 +45,7 @@
     width: 100%;
     border-top: 5px double black;
     border-bottom: 5px double black;
-    padding: 10px 0 ;
+    padding: 8px 0 ;
     display: flex;
     justify-content: center;
 }
@@ -54,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px 0 0 20px;
 }
 .qrcode{
     width: 130px;
@@ -63,20 +64,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .signature{
-    margin: 0 20px;
+    margin: 0 10px;
 }
 .signature .signature-content{
     margin-top: 5px;
-    text-align:center;
+    text-align:start;
 }
 .signature img{
-    width: 150px;
+    width: 120px;
     position: relative;
-    top: 20px;
-    margin-bottom: 15px;
+    top: 5px;
+    margin-bottom: 5px;
     
 }
 .sign{
@@ -96,12 +98,20 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
+@media screen and (max-width:420px) {
+    .bill{
+        width:320px ;
+    }
+    
+}
 @media print {
     .container{
         height: 100vh;
     }
     .bill{
-        margin: 0;
+        margin:5px;
+        width: 400px;
+        height: 565px;
     }
     button{
         display: none;

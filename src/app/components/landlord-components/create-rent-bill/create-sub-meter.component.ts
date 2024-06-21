@@ -22,6 +22,7 @@ export class CreateSubMeterComponent {
   rentval:string='';
   name:any='';
   usetId:any='';
+  previousUnit:any;
   ngOnInit(){
     this.spinner.show();
     let date= new Date();
@@ -43,7 +44,6 @@ export class CreateSubMeterComponent {
         this.spinner.hide();
       }
     })
-
   }
   getRent(id:any){
     this.spinner.show();
@@ -55,7 +55,32 @@ export class CreateSubMeterComponent {
     this.rentval=user.rent;
     this.name= user.name;
     this.usetId=user.id;
-    this.spinner.hide();
+    this.landlordServ.getAllRentBillData().subscribe({
+      next:(res:any)=>{
+        let current = res.filter((e:any)=>{
+          if (e.rentholder_id == id)
+            return e;
+        })
+        if (current.length >0){
+          let cLength = current.length-1;
+        this.previousUnit = current[cLength].currentUnit;
+        }else{
+          this.previousUnit='';
+        }
+        this.spinner.hide();
+        
+        
+      },
+      error:(err)=>{
+        this.toster.error(`${err.error.text}`);
+        this.spinner.hide();
+      },
+      complete:()=>{
+        this.spinner.hide();
+      }
+    })
+
+    
   }
 
   createRentBill(form:NgForm){
