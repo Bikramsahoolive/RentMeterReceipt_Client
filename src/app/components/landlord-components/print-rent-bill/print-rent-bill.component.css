@@ -101,6 +101,7 @@ button{
 @media screen and (max-width:420px) {
     .bill{
         width:320px ;
+        height: 580px;
     }
     
 }

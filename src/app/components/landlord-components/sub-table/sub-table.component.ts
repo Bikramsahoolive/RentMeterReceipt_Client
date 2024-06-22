@@ -93,4 +93,17 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
     
     });
   }
+
+  copyBillId(btn:any,id:any){
+    navigator.clipboard.writeText(id)
+    .then(() => {
+      btn.classList = 'fa-solid fa-check';
+      setTimeout(()=>{
+        btn.classList = 'fa-regular fa-copy';
+      },3000)
+    })
+    .catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
 }

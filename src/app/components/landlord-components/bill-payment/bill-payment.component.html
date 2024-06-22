@@ -4,7 +4,7 @@
     <h1 class="head">Bill Payment (Offline)</h1>
     <div class="input-box">
         <label for="load">Bill ID:</label>
-        <input type="text" ngModel name="id">
+        <input type="number" ngModel name="id" #billId (blur)="getPaymentAmount(billId)">
     </div>
     <div class="input-box">
         <label for="load">Payment Date::</label>
@@ -12,7 +12,7 @@
     </div>
     <div class="input-box">
         <label for="prv-unit">Paid Amount (₹):</label>
-    <input type="number" ngModel name="paid_amt">
+    <input type="number" [(ngModel)]="payableAmount" name="paid_amt">
     </div>
     
     <input type="submit" value="Submit">

@@ -20,7 +20,7 @@
     </div>
     <div class="input-box">
         <span class="details">Rent Status:</span>
-        <select name="rent_status" ngModel >
+        <select name="rent_status" [(ngModel)]="rentStatus" >
             <option value="">Select</option>
             <option value="notpaid">Not Paid</option>
             <option value="paid">Paid</option>

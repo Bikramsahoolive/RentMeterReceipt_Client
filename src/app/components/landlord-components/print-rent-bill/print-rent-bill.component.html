@@ -45,8 +45,9 @@
             
             <div class="foot">
                 <div class=qrcode >
-                    <h5>Scan To Pay!</h5>
+                    <h5 style="text-align: center;">{{boxVal}}</h5>
                     <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
+                    <img src="{{paidSign}}" alt="" style="width: 120px;">
                 </div>
                 <div class="signature">
                     <div class="signature-content"><span>Payment Due Date : <Strong style="display: inline-block;">{{bill.dueDate}}</Strong> </span></div>

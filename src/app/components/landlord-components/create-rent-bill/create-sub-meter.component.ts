@@ -23,6 +23,7 @@ export class CreateSubMeterComponent {
   name:any='';
   usetId:any='';
   previousUnit:any;
+  rentStatus:string='';
   ngOnInit(){
     this.spinner.show();
     let date= new Date();
@@ -46,6 +47,12 @@ export class CreateSubMeterComponent {
     })
   }
   getRent(id:any){
+    if(id ===''){
+      this.rentval = '';
+      this.previousUnit = '';
+      this.rentStatus = '';
+      return;
+    }
     this.spinner.show();
    let arrayUser= this.users.filter((element:any)=>{
       if(element.id == id)
