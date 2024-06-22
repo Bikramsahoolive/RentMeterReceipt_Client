@@ -22,7 +22,6 @@ paidSign:string='';
     this.landlordServ.getSingleRentBillData(urlid).subscribe({
       next:(res:any)=>{
         let remainingAmt = Number(res.final_amt ) - Number(res.paid_amt);
-        console.log(remainingAmt);
         
         if(remainingAmt != 0){
           this.bill=res;

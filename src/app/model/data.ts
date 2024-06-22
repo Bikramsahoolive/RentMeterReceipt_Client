@@ -1,5 +1,5 @@
 export interface loginData{
-    phone:number,
+    phone:string,
     password:string,
     userType?:string
 }

@@ -12,6 +12,7 @@ export class LoginComponent {
   constructor(private toastr: ToastrService ,private authServ: AuthServiceService){}
 
   login(auth:loginData){
+    auth.phone = String(auth.phone);
     
     if (auth.userType==="landlord"){
       // delete auth.userType;
