@@ -22,7 +22,7 @@ export class AuthServiceService {
   adminLogin(data:any)
   {
     this.spinner.show();
-    this.http.post('https://c8bltjmv-3000.inc1.devtunnels.ms/admin/login',data,{withCredentials:true,headers:this.header}).subscribe({
+    this.http.post('https://rnmrs.onrender.com/admin/login',data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
       let localData = JSON.stringify(res);
       let encData =btoa(localData);
@@ -46,7 +46,7 @@ landlordLogin(data:any){
 
   this.spinner.show();
 
-  this.http.post('https://c8bltjmv-3000.inc1.devtunnels.ms/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
+  this.http.post('https://rnmrs.onrender.com/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
         // console.log(res);
         
@@ -80,7 +80,7 @@ landlordLogin(data:any){
 
 
 checkSession(){
-  this.http.post(`https://c8bltjmv-3000.inc1.devtunnels.ms/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
+  this.http.post(`https://rnmrs.onrender.com/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
 
     localStorage.setItem("connect.rid",btoa(result.isActive));
     this.isLogedIn = result.isActive;
@@ -118,7 +118,7 @@ if (result.isActive==false){
 
  logout(){
 this.spinner.show();
-  this.http.post(`https://c8bltjmv-3000.inc1.devtunnels.ms/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
+  this.http.post(`https://rnmrs.onrender.com/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
     localStorage.setItem("connect.rid",btoa(result.isActive));
     localStorage.setItem("connect.sid","null");
     this.isLogedIn = false;
