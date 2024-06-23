@@ -72,20 +72,15 @@
     border: 2px solid black;
     margin-left: 20px;
 }
-.paginate{
+/* .paginate{
     position: absolute ;
     right: 25px;
-}
-.paginate .current{
-    background-color: #1e77b3;
+} */
+/* .paginate .current{
+    background-color: #b31e1e;
     border-radius: 50% !important;
     width: 30px !important;
-}
-.ngx-pagination .current{
-    background-color: #1e77b3;
-    border-radius: 50% !important;
-    width: 30px !important;
-}
+} */
 
 
 
@@ -136,8 +131,8 @@
     color: #000000;
   }
   
-  .table tbody tr:nth-child(even) {
-    background-color: #d1e8f5;
+  .table tbody tr:nth-child(odd) {
+    background-color: #aaa8e8;
   }
 
   @media screen and (max-width:1280px) {
@@ -146,11 +141,11 @@
     }
 }
 
-  @media screen and (max-width:812px) {
+  /* @media screen and (max-width:812px) {
 
-}
+} */
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
     .container .data{
         width: 420px;
         height: 80vh;
@@ -171,10 +166,10 @@
       width: 100%;
     }
     .table tr {
-      margin-bottom: 15px;
+      margin-bottom: 50px;
     }
     .table td {
-      padding-left: 50%;
+      padding-left: 40%;
       text-align: right;
       position: relative;
     }

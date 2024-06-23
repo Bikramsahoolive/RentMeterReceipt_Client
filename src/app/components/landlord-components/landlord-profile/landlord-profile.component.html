@@ -6,7 +6,7 @@
             
             <span>UPI: <input type="checkbox" #upicheck (change)="toggleInput(upicheck.checked,'upi')" ></span>
             <span> | Photo: <input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')"></span>
-            <span> | Signature: <input type="checkbox" #sigcheck (change)="toggleInput(sigcheck.checked,'sign')"></span>
+            <span> | Sign: <input type="checkbox" #sigcheck (change)="toggleInput(sigcheck.checked,'sign')"></span>
             <span> | Password: <input type="checkbox" #passcheck (change)="toggleInput(passcheck.checked,'password')"></span>
         
         </div>
@@ -30,11 +30,11 @@
         <input type="email" [(ngModel)]="landlordData.upi" name="upi"  [disabled]="upiInput" >
     </div>
     <div class="input-box">
-        <span class="details">Photo:</span>
+        <span class="details">Photo:</span> <a href="">Remove Photo.</a>
     <input type="file" class="file" ngModel name="photo"  [disabled]="photoInput" (change)="fileUpload($event,'photo')">
     </div>
     <div class="input-box">
-        <span class="details">Signature:</span>
+        <span class="details">Signature:</span><a href="">Remove Signature.</a>
         <input type="file" class="file" ngModel name="signature" [disabled]="signInput" (change)="fileUpload($event,'signature')">
     </div>
     <div class="input-box">
@@ -51,5 +51,6 @@
     <input type="submit" value="Update">
 </div> 
 </form>
+<button class="delete-btn" (click)="deleteAccountPrompt(landlordData.id)">Delete Profile</button>
 </div>
 </div>

@@ -4,6 +4,7 @@ import{NgxSpinnerService} from 'ngx-spinner'
 import {ToastrService} from 'ngx-toastr';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import {Router} from '@angular/router'
+import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 
 @Component({
   selector: 'app-landlord-profile',
@@ -21,6 +22,7 @@ export class LandlordProfileComponent {
     private spinner:NgxSpinnerService,
     private toaster:ToastrService,
     private landlordServ:LandlordService,
+    private authServ:AuthServiceService,
     private route:Router
      ){}
   landlordId:any;
@@ -150,8 +152,22 @@ updateLandlord(form:NgForm){
     form.reset();
     this.ngOnInit();
   }
-  
-  
+}
+
+deleteAccountPrompt(id:any){
+  let confString = prompt("This Action is irreversible and permanently delete all releted data, To confirm please type ['delete landlord'] bellow.");
+  if(confString === 'delete landlord'){
+    // this.LandlordService.deleteLandlord(id).subscribe().
+    //   next:()=
+    this.authServ.logout();
+    
+
+    this.toaster.success(`Profile Deleted with id:${id}`);
+  }else if(confString===null){
+    // this.toaster.warning("Delete profile canceled.");
+  }else{
+    this.toaster.error("Sorry! wrong command.");
+  }
 }
 
 }

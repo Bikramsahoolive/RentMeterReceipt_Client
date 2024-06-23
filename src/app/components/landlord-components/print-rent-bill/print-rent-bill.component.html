@@ -45,9 +45,10 @@
             
             <div class="foot">
                 <div class=qrcode >
-                    <h5 style="text-align: center;">{{boxVal}}</h5>
+                    
                     <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
-                    <img src="{{paidSign}}" alt="" style="width: 120px;">
+                    <img src="{{paidSign}}" alt="" style="width: 190px;">
+                    <h5 style="text-align: center;">{{boxVal}}</h5>
                 </div>
                 <div class="signature">
                     <div class="signature-content"><span>Payment Due Date : <Strong style="display: inline-block;">{{bill.dueDate}}</Strong> </span></div>
@@ -56,7 +57,7 @@
                     <div class="signature-content">Signature of Landlord.</div>
                     </div>
                     <div class="signature-content"><small>*Fine can be applied after payment due date.</small></div>
-                    <div class="signature-content"><small>*please verify payee data before UPI payment.</small></div>
+                    <!-- <div class="signature-content"><small>*please verify payee data before UPI payment.</small></div> -->
                 </div>
             </div>
         </div>
