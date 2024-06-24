@@ -13,20 +13,29 @@ export class RentHolderComponent {
   users:any=[];
 
 ngOnInit(){
+  console.log('ngoninit');
+  
+  this.getAllRentHolder();
+}
+
+getAllRentHolder(){
+  console.log('get all rentholder');
   this.spinner.show();
-    this.landlordServ.getAllRentholder().subscribe({
-      next:(res:any)=>{
-        this.users=res;
-        this.spinner.hide();
-      },
-      error:(err)=>{
-        console.log(err.error);
-        this.toster.error('Something went wrong.','Error');
-        this.spinner.hide();
-      },
-      complete:()=>{}
+  this.landlordServ.getAllRentholder().subscribe({
+    next:(res:any)=>{
+      if(res.status!==false){
+      console.log(res);
+      this.users=res;
+}
+    },
+    error:(err)=>{
+      console.log(err.error);
+      this.toster.error('Something went wrong.','Error');
       
-    })
+    },
+    complete:()=>{this.spinner.hide();}
+    
+  })
 }
 downloadDoc(link:any){
   let downloadLink = document.createElement('a');
@@ -43,8 +52,9 @@ deleteRentHolder(id:any){
     this.landlordServ.deleteRentHolderData(id).subscribe({
       next:(res:any)=>{
         if(res.status){
+          this.users = [];
+          this.getAllRentHolder();
           this.toaster.success(`Rent Holder Deleted`,'Success');
-          this.ngOnInit();
         }
       },error:(error)=>{
         console.error(error);

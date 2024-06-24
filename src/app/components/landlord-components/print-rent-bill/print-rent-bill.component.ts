@@ -28,7 +28,8 @@ paidSign:string='';
           this.landlordServ.getLandlordData(res.landlord_id).subscribe({
             next:(res:any)=>{
               if(res.id){
-              this.upiLink=`upi://pay?pa=${res.upi}&pn=${res.name}&am=${this.bill.final_amt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
+                let payableAmount = res.final_amt - res.paid_amt;
+              this.upiLink=`upi://pay?pa=${res.upi}&pn=${res.name}&am=${payableAmount}.00&cu=INR&tn=RNMR:${this.bill.id}`;
               this.landlordSign=res.signature ? res.signature:"../../../../assets/images.png";
               this.boxVal ='Scan To Pay!';
               }

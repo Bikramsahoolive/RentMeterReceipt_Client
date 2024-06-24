@@ -19,6 +19,7 @@ export class LandlordRequestComponent {
     this.spinner.show();
     this.signupServ.getSignUpData().subscribe({
       next:(result:any)=>{
+        result = result.reverse();
         this.datalist=result;
         this.spinner.hide();
       },

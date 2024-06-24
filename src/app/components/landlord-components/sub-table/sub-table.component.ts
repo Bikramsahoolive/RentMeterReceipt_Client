@@ -27,8 +27,13 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
     this.spinner.show();
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:any)=>{
-        res = res.reverse();
+        if(res.status !== false){
+          res = res.reverse();
           this.datalist=res;
+        }else{
+          this.toster.error('No Bill Data Found.');
+        }
+
       },
       error:(err)=>{
         console.log(err.error);
@@ -40,13 +45,14 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
   }
   deleteData(id:number)
   {
-    let confirmDelete = confirm("Are You Sure! This Action Is irreversible.");
+    let confirmDelete = confirm("This Action Is irreversible, Are you sure !");
     if(confirmDelete){
       this.spinner.show();
       this.landlordServ.deleteRentBillData(id).subscribe({
         next:(res:any)=>{
-          this.ngOnInit();
+          this.datalist=[];
           this.toster.success(`${res.message}`,'success');
+          this.ngOnInit();
         },
         error:(err)=>{
           console.error(err.error);
@@ -71,7 +77,7 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
   }
 
   openSearch(box:any,input:any){
-    console.log(input);
+    // console.log(input);
    
     box.classList.forEach((item:string)=>{
       

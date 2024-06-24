@@ -34,8 +34,11 @@ export class CreateSubMeterComponent {
     // console.log(this.dToday);
 
     this.landlordServ.getAllRentholder().subscribe({
-      next:(res)=>{
-        this.users=res;
+      next:(res:any)=>{
+        if(res.status!==false){
+          this.users=res;
+        }
+        
       },
       error:(err)=>{
         this.toster.error(`${err.error.text}`);
@@ -64,17 +67,21 @@ export class CreateSubMeterComponent {
     this.usetId=user.id;
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:any)=>{
-        let current = res.filter((e:any)=>{
-          if (e.rentholder_id == id)
-            return e;
-        })
-        if (current.length >0){
-          let cLength = current.length-1;
-        this.previousUnit = current[cLength].currentUnit;
-        }else{
-          this.previousUnit='';
+        if(res.status!==false){
+          let current = res.filter((e:any)=>{
+            if (e.rentholder_id == id)
+              return e;
+          })
+          if (current.length >0){
+            let cLength = current.length-1;
+          this.previousUnit = current[cLength].currentUnit;
+          }else{
+            this.previousUnit='';
+          }
+          
         }
         this.spinner.hide();
+       
         
         
       },
@@ -99,9 +106,13 @@ export class CreateSubMeterComponent {
     delete data.rent_status;
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
-        this.toster.success(`${res.message}`,'Success');
-        form.reset();
-        this.route.navigate([`/print-rent-bill/${res.id}`]);
+        console.log(res);
+        if(res.status){
+          this.toster.success(`${res.message}`,'Success');
+          form.reset();
+          this.route.navigate([`/print-rent-bill/${res.id}`]);
+        }
+
       },
       error:(err)=>{
         console.error(err.error);
