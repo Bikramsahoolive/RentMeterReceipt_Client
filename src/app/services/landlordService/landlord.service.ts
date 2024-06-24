@@ -46,4 +46,7 @@ export class LandlordService {
   paymentBillData(data:any,id:any){
     return this.http.put(`https://rnmrs.onrender.com/rent-bill/bill/${id}`,data,{withCredentials:true,headers:this.header});
   }
+  deleteLandlordData(id:any){
+    return this.http.delete(`https://rnmrs.onrender.com/landlord/user/${id}`,{withCredentials:true,headers:this.header});
+  }
 }

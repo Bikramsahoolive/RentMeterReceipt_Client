@@ -22,8 +22,11 @@ getSignUpData(){
   return this.http.get(`https://rnmrs.onrender.com/signup`,{withCredentials:true,headers:this.header});
 }
 actionLandlordData(data:any){
-  console.log(data.id);
   return this.http.post(`https://rnmrs.onrender.com/landlord/action/${data.id}`,data,{withCredentials:true,headers:this.header});
+}
+
+sendSubMail(data:any){
+  return this.http.post(`https://rnmrs.onrender.com/email-subscribe`,data,{headers:this.header});
 }
 
 }

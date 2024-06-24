@@ -157,12 +157,15 @@ updateLandlord(form:NgForm){
 deleteAccountPrompt(id:any){
   let confString = prompt("This Action is irreversible and permanently delete all releted data, To confirm please type ['delete landlord'] bellow.");
   if(confString === 'delete landlord'){
-    // this.LandlordService.deleteLandlord(id).subscribe().
-    //   next:()=
-    this.authServ.logout();
-    
-
-    this.toaster.success(`Profile Deleted with id:${id}`);
+    this.landlordServ.deleteLandlordData(id).subscribe({
+      next:()=>{
+        this.toaster.success(`Your Profile id:${id} Deleted Successfully.`);
+        this.authServ.logout();
+      },error:(error)=>{
+        console.error(error);
+        this.toaster.error(`Something wents wrong.`);
+      }
+    });
   }else if(confString===null){
     // this.toaster.warning("Delete profile canceled.");
   }else{

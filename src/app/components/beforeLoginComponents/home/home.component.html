@@ -7,8 +7,8 @@
           <br><h3>Drop your email for more information.</h3> 
         </p>
         <div id="header-subscribe-form">
-          <input type="email" name="" id="" placeholder="Enter your email">
-          <input type="submit" value="Subscribe">
+          <input type="email" #subMail placeholder="Enter your email">
+          <input type="submit" value="Subscribe" (click)="sendSubMail(subMail)">
         </div>
       </div>
       <div id="header-page-image">
