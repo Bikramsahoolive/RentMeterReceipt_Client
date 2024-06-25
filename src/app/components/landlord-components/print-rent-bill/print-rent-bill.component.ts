@@ -26,11 +26,11 @@ paidSign:string='';
         if(remainingAmt != 0){
           this.bill=res;
           this.landlordServ.getLandlordData(res.landlord_id).subscribe({
-            next:(res:any)=>{
+            next:(LanlordRes:any)=>{
               if(res.id){
-                let payableAmount = res.final_amt - res.paid_amt;
-              this.upiLink=`upi://pay?pa=${res.upi}&pn=${res.name}&am=${payableAmount}.00&cu=INR&tn=RNMR:${this.bill.id}`;
-              this.landlordSign=res.signature ? res.signature:"../../../../assets/images.png";
+                
+              this.upiLink=`upi://pay?pa=${LanlordRes.upi}&pn=${LanlordRes.name}&am=${remainingAmt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
+              this.landlordSign=LanlordRes.signature ? LanlordRes.signature:"../../../../assets/images.png";
               this.boxVal ='Scan To Pay!';
               }
             },
@@ -44,14 +44,12 @@ paidSign:string='';
           });
         }else{
           this.paidSign='../../../../assets/background/paid.png';
-          this.boxVal = `Payment Date: ${res.payment_date}`;
+          this.boxVal = `Payment Date : ${ res.payment_date}`;
           this.bill=res;
           this.landlordServ.getLandlordData(res.landlord_id).subscribe({
-            next:(res:any)=>{
-              if(res.id){
-              // this.upiLink=`upi://pay?pa=${res.upi}&pn=${res.name}&am=${this.bill.final_amt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
-              this.landlordSign=res.signature ? res.signature:"../../../../assets/images.png";
-              // this.boxVal ='Scan To Pay!';
+            next:(LanlordRes:any)=>{
+              if(LanlordRes.id){
+              this.landlordSign=LanlordRes.signature ? LanlordRes.signature:"../../../../assets/images.png";
               }
             },
             error:(err)=>{

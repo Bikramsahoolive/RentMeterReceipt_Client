@@ -12,11 +12,13 @@ import {ToastrService} from 'ngx-toastr'
 export class SubTableComponent {
   searchTerm:any='';
 datalist:any;
+reserveData:any;
 userMessage:undefined | string;
 confirm:boolean|undefined;
 totalLength:any;
 page:number=1
 userService:any;
+isUnpaidFilter:boolean=false;
 constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerService, private toster:ToastrService){
 }
   userDetails(data:any)
@@ -30,6 +32,7 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
         if(res.status !== false){
           res = res.reverse();
           this.datalist=res;
+          this.reserveData=res;
         }else{
           this.toster.error('No Bill Data Found.');
         }
@@ -67,12 +70,31 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
 
   dataFilter(selector:string)
   {
-    
+
     if(selector==="0"){
+      if(this.isUnpaidFilter){
+        this.isUnpaidFilter = false;
+        this.datalist= this.reserveData;
+        return;
+      }
       this.datalist.reverse();
-    }
+    }else
     if(selector==="1"){
+      if(this.isUnpaidFilter){
+        this.isUnpaidFilter = false;
+        this.datalist= this.reserveData;
+      }
       this.datalist.reverse();
+    }else
+    if(selector==="2"){
+      this.isUnpaidFilter= true;
+      let usersVal:any = [];
+      this.datalist.forEach((element:any)=>{
+        if(element.final_amt !== element.paid_amt){
+          usersVal.push(element);
+        }
+      });
+      this.datalist = usersVal;
     }
   }
 

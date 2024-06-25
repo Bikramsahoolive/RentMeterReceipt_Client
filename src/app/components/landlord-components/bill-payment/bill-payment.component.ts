@@ -26,9 +26,20 @@ export class BillPaymentComponent {
     return `${year}-${month}-${day}`;
   }
 
+  dateFormater(date:any){
+
+    let dateData =new Date(date);
+    let year = dateData.getFullYear();
+    let month =(dateData.getMonth()+1).toString().padStart(2,'0');
+    let day = dateData.getDate();
+    return `${day}-${month}-${year}`;
+  }
+
   billPayment(form:NgForm){
     this.spinner.show();
     let data = form.value;
+    let reDate = this.dateFormater(data.payment_date);
+    data.payment_date = reDate;
     let id = data.id;
 
     if(data.paid_amt>this.toPaidAmount){
