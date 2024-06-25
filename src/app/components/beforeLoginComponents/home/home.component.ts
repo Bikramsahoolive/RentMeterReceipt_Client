@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
 
@@ -10,6 +11,7 @@ import { SignupService } from 'src/app/services/signupService/signup.service';
 export class HomeComponent {
   constructor(private toster:ToastrService,
     private homeServ :SignupService,
+    private spinner:NgxSpinnerService
   ){}
 
   sendSubMail(emailId:any){
@@ -19,6 +21,7 @@ export class HomeComponent {
       this.toster.error('Invalid Email Input','Frontend');
       return;
     }
+    this.spinner.show();
     this.homeServ.sendSubMail({email:emailId.value}).subscribe({
       next:(res:any)=>{
         if(res.status ==='success'){
@@ -32,6 +35,7 @@ export class HomeComponent {
         
       },complete:()=>{
         emailId.value = '';
+        this.spinner.hide();
       }
     })
       

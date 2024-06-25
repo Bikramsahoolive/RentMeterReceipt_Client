@@ -9,8 +9,10 @@
                     <th class="responsive-table__head__title responsive-table__head__title--name">Name
                     </th>
                     <th class="responsive-table__head__title responsive-table__head__title--status">Join in</th>
-                    <th class="responsive-table__head__title responsive-table__head__title--types">Phone</th>
                     <th class="responsive-table__head__title responsive-table__head__title--update">Rent</th>
+                    <th class="responsive-table__head__title responsive-table__head__title--status">Email</th>
+                    <th class="responsive-table__head__title responsive-table__head__title--types">Phone</th>
+                    <!-- <th class="responsive-table__head__title responsive-table__head__title--status">Member</th> -->
                     <th class="responsive-table__head__title responsive-table__head__title--country">Action</th>
                 </tr>
             </thead>
@@ -42,8 +44,10 @@
                         {{user.name}}
                     </td>
                     <td class="responsive-table__body__text responsive-table__body__text--status" data-title="Join : ">{{user.doj}}</td>
-                    <td class="responsive-table__body__text responsive-table__body__text--types" data-title="Phone : "> {{user.phone}}</td>
                     <td class="responsive-table__body__text responsive-table__body__text--update"data-title="Rent : ">{{user.rent}}</td>
+                    <td class="responsive-table__body__text responsive-table__body__text--status" data-title="Email : ">{{user.email}}</td>
+                    <td class="responsive-table__body__text responsive-table__body__text--types" data-title="Phone : "> {{user.phone}}</td>
+                    <!-- <td class="responsive-table__body__text responsive-table__body__text--status" data-title="Member : ">{{user.member_count}}</td> -->
                     <td class="responsive-table__body__text responsive-table__body__text--country"data-title="Action : "><i class="fa-regular fa-trash-can delete-icon" (click)="deleteRentHolder(user.id)"></i> <i
                         class="fa-solid fa-pen-to-square update-icon"></i><i class="fa-regular fa-file-lines"(click)="downloadDoc(user.deedURL)"></i></td>
                 </tr>

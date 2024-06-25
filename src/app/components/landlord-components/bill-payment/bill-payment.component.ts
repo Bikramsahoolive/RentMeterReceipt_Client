@@ -42,12 +42,10 @@ export class BillPaymentComponent {
     data.payment_date = reDate;
     let id = data.id;
 
-    if(data.paid_amt>this.toPaidAmount){
+    if(data.paid_amt>this.toPaidAmount || data.paid_amt === 0 || data.paid_amt ===null){
       this.toastr.warning('Invalid paid amount','Warning');
       this.spinner.hide();
-    }
-    
-    else{
+    }else{
 
       delete data.id;
 this.landlordServe.paymentBillData(data,id).subscribe({
