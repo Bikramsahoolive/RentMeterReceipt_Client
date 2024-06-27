@@ -41,6 +41,11 @@ form input{
     outline: none;
     border: 2px solid rgb(146, 145, 145);
     border-radius: 5px;
+    &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 }
 form input:focus{
     border: 2px solid rgb(51, 50, 50);

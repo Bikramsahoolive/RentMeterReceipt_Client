@@ -41,6 +41,7 @@ import { LandlordRequestComponent } from './components/admin-components/landlord
 import { PrintRentBillComponent } from './components/landlord-components/print-rent-bill/print-rent-bill.component';
 import { ContactComponent } from './components/beforeLoginComponents/contact/contact.component';
 import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
+import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
 const dashbord: Routes=[
   
 ]
@@ -49,6 +50,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
+  {path:'forgot-password',component:ForgotPasswordComponent},
   {path:'signup-status',component:SignupStatusComponent},
   {path:'contact',component:ContactComponent},
   {path:'about',component:AboutComponent},

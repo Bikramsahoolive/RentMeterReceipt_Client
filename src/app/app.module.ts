@@ -59,6 +59,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { PrintRentBillComponent } from './components/landlord-components/print-rent-bill/print-rent-bill.component';
 import { ContactComponent } from './components/beforeLoginComponents/contact/contact.component';
 import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
+import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { AboutComponent } from './components/beforeLoginComponents/about/about.c
     SearchPipe,
     PrintRentBillComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

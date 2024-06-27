@@ -73,6 +73,18 @@ landlordLogin(data:any){
 }
 
 
+forgotPassword(data:any){
+  return this.http.post(`https://rnmrs.onrender.com/forgot-password`,data,{headers:this.header});
+}
+
+
+resendForgotPassword(data:any){
+  return this.http.post(`https://rnmrs.onrender.com/forgot-password/resend`,data,{headers:this.header});
+}
+
+verifyforgotPassword(data:any){
+  return this.http.post(`https://rnmrs.onrender.com/forgot-password/verify`,data,{headers:this.header});
+}
 
 
 

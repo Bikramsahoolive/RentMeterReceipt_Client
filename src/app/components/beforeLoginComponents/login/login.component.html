@@ -5,7 +5,7 @@
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" >
             
             <div class="input-field">
-                <input type="number" placeholder="Enter Phone." ngModel name="phone" autofocus required>
+                <input type="number" placeholder="Enter User ID." ngModel #userId name="phone" autofocus required>
             </div>
             
             <div class="input-field">
@@ -13,7 +13,7 @@
                 
             </div>
             <div class="input-field">
-                <select ngModel name="userType" required>
+                <select ngModel #userType name="userType" required>
                     <option value="">User Type</option>
                     <option value="landlord">Landlord</option>
                     <option value="rentholder">Rent Holder</option>
@@ -21,8 +21,8 @@
                 </select>
             </div>
                 <button>Login</button><br> <br>
-                <span style="display: block; margin-bottom: 10px;"><a routerLink="">Forgot Password</a></span>
-                <span>Are you a landlord ? </span><a routerLink="/signup">Register Now</a>
+                <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none">Forgot Password</a></span>
+                <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;">Register Now</a>
         </form>
     </div>
 </div>
