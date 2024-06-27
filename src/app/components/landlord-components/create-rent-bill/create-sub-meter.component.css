@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
 }
 .titel{
     text-align: center;
@@ -17,6 +18,8 @@
 .cont .titel{
     font-size: 25px;
     font-weight: 500;
+    background-color: white;
+    padding: 10px;
 }
 .cont form .user-details{
     display: flex;
@@ -68,19 +71,29 @@ form .button{
     justify-content: space-between;
 }
 form input[type="submit"]{
-    background-color: #1e77b3;
+    background-color: #4242a9;
     transition: ease 0.2s;
+    outline: none;
+    border: navajowhite;
+    box-shadow: 7px 7px 10px 0 gray;
     
 }
 form input[type="submit"]:hover{
-    background-color: #16527a;
+    /* background-color: ; */
+    box-shadow: 0px 0px 5px 0 gray;
 }
 form input[type="reset"]{
-    background-color: #b3341e;
+    background-color: #972727;
+    border: navajowhite;
+    outline: none;
+    box-shadow: 7px 7px 10px 0 gray;
+}
+form input[type="reset"]:hover{
+    box-shadow: 0px 0px 5px 0 gray
 }
 
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:563px) {
     .user-details{
         flex-direction:column;
     }

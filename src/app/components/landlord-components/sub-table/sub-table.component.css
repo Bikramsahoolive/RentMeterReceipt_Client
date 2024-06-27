@@ -89,6 +89,7 @@
 
 
 .container{
+    background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,8 +132,12 @@
     color: #000000;
   }
   
-  .table tbody tr:nth-child(odd) {
+  .table tbody tr:nth-child(even) {
     background-color: #aaa8e8;
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background-color: #bdbdbe;
   }
 
   @media screen and (max-width:1280px) {
