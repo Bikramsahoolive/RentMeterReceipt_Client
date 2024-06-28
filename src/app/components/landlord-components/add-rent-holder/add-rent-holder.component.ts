@@ -29,7 +29,7 @@ export class AddRentHolderComponent {
       }
       reader.readAsDataURL(file);
     }else{
-      this.toster.error(`file large than 1MB`,`Error`);
+      this.toster.error(`file large than 1MB`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
     }
   }
@@ -47,8 +47,13 @@ export class AddRentHolderComponent {
   }
 
   getRentHolderData(form:NgForm){
+    let data=form.value;
+    let {name,member_count,email,phone,rent,password} = data;
+    if(name==="" || member_count==="" || email==="" || phone==="" || rent ==="" || password ===""){
+      this.toster.error('Please fill all inputs',"",{progressBar:true,positionClass:"toast-top-center"});
+      return;
+    }
     if(this.deedFileUrl!==''){
-      this.spinner.show();
     let data=form.value;
     if(data.confPass===data.password){
       delete data.confPass;
@@ -56,25 +61,26 @@ export class AddRentHolderComponent {
       data.deedURL=this.deedFileUrl;
       data.doj = this.getCurrentDate();
 
-      
+      this.spinner.show();
+
     this.addRentService.addRentHolder(data).subscribe({
       next:(res:any)=>{
-        if(res.status==true){
-          this.toster.success(res.message,`Success`);
+        if(res.status){
+          this.toster.success(res.message,`Success`,{progressBar:true,positionClass:"toast-top-center"});
           this.router.navigate(['/rent-holder']);
         }
       },
-      error:(err)=>this.toster.error(`${err.error}`,`Error`),
+      error:(err)=>this.toster.error(`${err.error}`,`Error`,{progressBar:true,positionClass:"toast-top-center"}),
       complete:()=>{
         this.spinner.hide();
         form.reset();
       }
     });
     }else{
-        this.toster.error(`Password not match.`,`Error`);
+        this.toster.error(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     }
     }else{
-      this.toster.error(`Invalid file.`,`Error`);
+      this.toster.error(`Invalid file.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     }
     
     

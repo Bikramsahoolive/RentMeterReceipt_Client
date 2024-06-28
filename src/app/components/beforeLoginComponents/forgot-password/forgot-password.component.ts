@@ -86,12 +86,12 @@ ngOnInit(){}
   verifyForgotPassword(newPass:any,confPass:any){
 
     if(newPass.value.length<8){
-      this.toster.error('Enter an eight digit password.');
+      this.toster.error('Enter an eight digit password.',"",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
 
       if(newPass.value !== confPass.value ){
-        this.toster.error('Password not mach.');
+        this.toster.error('Password not mach.',"",{progressBar:true,positionClass:"toast-top-center"});
         return;
       }
         this.spinner.show();
@@ -105,7 +105,7 @@ ngOnInit(){}
             this.toster.success(res.message);
             this.router.navigate(['/login']);
           }else if(res.status==="expired"){
-            this.toster.error(res.message);
+            this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             this.router.navigate(['/login']);
           }else{
             this.toster.error(res.message);
@@ -113,7 +113,7 @@ ngOnInit(){}
         },error:(err)=>{
           this.spinner.hide();  
           console.log(err);
-          this.toster.error("something wents wrong try again later.");
+          this.toster.error("something wents wrong try again later.","",{progressBar:true,positionClass:"toast-top-center"});
         },complete:()=>{
           this.spinner.hide();
         }
@@ -149,7 +149,7 @@ ngOnInit(){}
         this.authServ.forgotPassword(userData).subscribe({
           next:(res:any)=>{
             if(res.status ==='success'){
-              this.toster.success("OTP send successfully.");
+              this.toster.success("OTP send successfully.","",{progressBar:true,positionClass:"toast-top-center"});
               this.successMsg =`An otp has been sent to ********${res.email}`;
               this.userData = {
                 id:res.id,
@@ -169,7 +169,7 @@ ngOnInit(){}
             }
           },error:(error)=>{
             console.log(error);
-            this.toster.error("something wents wrong please try again later.");
+            this.toster.error("something wents wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
           },
           complete:()=>{
             this.spinner.hide();
@@ -197,7 +197,7 @@ ngOnInit(){}
         this.spinner.hide();
         if(res.status==='success'){
           this.resendOtpCount -= 1;
-        this.toster.success(res.message);
+        this.toster.success(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
         this.resendBtn.nativeElement.classList.add('hide');
         this.input1.nativeElement.focus();
         if(this.resendOtpCount > 0){
@@ -207,10 +207,10 @@ ngOnInit(){}
           this.setResendTimmer();
         } 
       }else{
-        this.toster.error("Resend OTP Failed, Try again.");
+        this.toster.error("Resend OTP Failed, Try again.","",{progressBar:true,positionClass:"toast-top-center"});
       }
     },error:(err)=>{
-      this.toster.error("something wents wrong.");
+      this.toster.error("something wents wrong.","",{progressBar:true,positionClass:"toast-top-center"});
       console.log(err);
       this.spinner.hide();
     }

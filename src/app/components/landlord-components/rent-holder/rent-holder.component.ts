@@ -30,7 +30,7 @@ getAllRentHolder(){
     },
     error:(err)=>{
       console.log(err.error);
-      this.toster.error('Something went wrong.','Error');
+      this.toster.error('Something went wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
       
     },
     complete:()=>{this.spinner.hide();}
@@ -54,16 +54,16 @@ deleteRentHolder(id:any){
         if(res.status){
           this.users = [];
           this.getAllRentHolder();
-          this.toaster.success(`Rent Holder Deleted`,'Success');
+          this.toaster.success(`Rent Holder Deleted`,'Success',{progressBar:true,positionClass:"toast-top-center"});
         }
       },error:(error)=>{
         console.error(error);
-        this.toaster.error(`Something wents wrong.`);
+        this.toaster.error(`Something wents wrong.`,"Error",{progressBar:true,positionClass:"toast-top-center"});
       }
     });
   }else if(confString===null){
   }else{
-    this.toaster.error("Sorry! wrong command.");
+    this.toaster.error("Sorry! wrong command.","",{progressBar:true,positionClass:"toast-top-center"});
   }
 
   

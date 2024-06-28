@@ -143,7 +143,7 @@ updateLandlord(form:NgForm){
     this.landlordServ.updateLandlordData(data,this.landlordId).subscribe({
       next:(res:any)=>{
         if (res.status==='success'){
-        this.toaster.success(res.mssage,'Success');
+        this.toaster.success(res.message,'',{progressBar:true,positionClass:"toast-top-center"});
         this.route.navigate(['dashbord-landlord']);
       }
       },
