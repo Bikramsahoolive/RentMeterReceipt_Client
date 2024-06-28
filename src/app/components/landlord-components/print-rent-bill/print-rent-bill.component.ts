@@ -13,7 +13,7 @@ export class PrintRentBillComponent {
 paramId:any='';
 bill:any;
 upiLink:any;
-landlordSign:any="";
+landlordSign:string="../../../../assets/images.png";
 boxVal:string='';
 paidSign:string='';
   ngOnInit(){
@@ -30,7 +30,11 @@ paidSign:string='';
               if(res.id){
                 
               this.upiLink=`upi://pay?pa=${LanlordRes.upi}&pn=${LanlordRes.name}&am=${remainingAmt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
-              this.landlordSign=LanlordRes.signature ? LanlordRes.signature:"../../../../assets/images.png";
+              if(!LanlordRes.signature || LanlordRes.signature===""){
+                this.landlordSign = "../../../../assets/images.png";
+              }else{
+              this.landlordSign=LanlordRes.signature;
+              }
               this.boxVal ='Scan To Pay!';
               }
             },

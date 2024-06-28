@@ -125,7 +125,7 @@ ngOnInit(){}
 
     
       if(phone.value ==="" || userType.value===""){
-        this.toster.error("Please Fill Inputs.");
+        this.toster.error("Please Fill Inputs.",'',{progressBar:true,positionClass:'toast-top-center'});
         return;
       }
 
@@ -133,7 +133,7 @@ ngOnInit(){}
       let validPhone = phoneRegex.test(phone.value);
 
       if(!validPhone){
-          this.toster.error('Enter a valid Phone.');
+          this.toster.error('Enter a valid User ID.');
           return;
       }
 

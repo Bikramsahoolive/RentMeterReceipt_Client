@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { landlordData } from 'src/app/model/data';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,13 +30,10 @@ export class LandlordService {
     return this.http.get(`https://rnmrs.onrender.com/rent-bill/bill/${id}`,{withCredentials:true,headers:this.header});
   }
   getLandlordData(id:any){
-    return this.http.get(`https://rnmrs.onrender.com/landlord/user/${id}`,{withCredentials:true,headers:this.header});
+    return this.http.get<landlordData>(`https://rnmrs.onrender.com/landlord/user/${id}`,{withCredentials:true,headers:this.header});
   }
   deleteRentHolderData(id:any){
     return this.http.delete(`https://rnmrs.onrender.com/rent-holder/user/${id}`,{withCredentials:true,headers:this.header});
-  }
-  getSingleLandlordData(id:any){
-    return this.http.get(`https://rnmrs.onrender.com/landlord/user/${id}`,{withCredentials:true,headers:this.header});
   }
   updateLandlordData(data:any,id:any ){
     return this.http.put(`https://rnmrs.onrender.com/landlord/user/${id}`,data,{withCredentials:true,headers:this.header});

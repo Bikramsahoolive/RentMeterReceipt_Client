@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import{NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-rent-holder',
   templateUrl: './add-rent-holder.component.html',
@@ -10,7 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class AddRentHolderComponent {
 
-  constructor(private addRentService:LandlordService, private spinner:NgxSpinnerService,private toster:ToastrService){}
+  constructor(private router:Router, private addRentService:LandlordService, private spinner:NgxSpinnerService,private toster:ToastrService){}
 
   deedFileUrl:string='';
 
@@ -34,6 +35,17 @@ export class AddRentHolderComponent {
   }
   }
 
+  getCurrentDate (){
+    let currentDate;
+    let date= new Date();
+    let year = date.getFullYear();
+    let month =(date.getMonth()+1).toString().padStart(2,'0');
+    let day = date.getDate();
+    currentDate=`${day}-${month}-${year}`;
+
+    return currentDate;
+  }
+
   getRentHolderData(form:NgForm){
     if(this.deedFileUrl!==''){
       this.spinner.show();
@@ -42,11 +54,14 @@ export class AddRentHolderComponent {
       delete data.confPass;
       delete data.file;
       data.deedURL=this.deedFileUrl;
+      data.doj = this.getCurrentDate();
+
       
     this.addRentService.addRentHolder(data).subscribe({
       next:(res:any)=>{
         if(res.status==true){
-          this.toster.success(`Rent-Holder Added`,`Success`)
+          this.toster.success(res.message,`Success`);
+          this.router.navigate(['/rent-holder']);
         }
       },
       error:(err)=>this.toster.error(`${err.error}`,`Error`),

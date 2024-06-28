@@ -1,6 +1,11 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
+.btn{
+  /* width: 100%; */
+  height: 60px;
+  background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+}
 .btn a{
     text-decoration: none;
     background-color: #25be64;
@@ -9,9 +14,17 @@
     position:absolute;
     right: 0;
     top:80px;
+    border-radius: 8px 0px 0px 8px;
+    box-shadow: 3px 3px 10px 0 gray;
+    transition: all 0.2s;
+}
+.container{
+  background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+  height: 90vh;
 }
 .btn a:hover{
-  background-color: #086830;
+  /* background-color: #086830; */
+  box-shadow: 0 0 3px 0 gray;
 }
 .container .data-table{
     height: 50vh;
@@ -19,7 +32,7 @@
 }
 .container h1{
     text-align: center;
-    margin-top: 70px;
+    /* margin-top: 70px; */
     color: rgb(0, 0, 0);
     margin-bottom: 30px;
 }
@@ -41,7 +54,7 @@
 }
 .responsive-table__row {
   display: grid;
-  border-bottom: 1px solid #b6b6b9;
+  border-bottom: 5px solid #b6b6b9;
   padding: 0 1.5rem;
 }
  i{
@@ -106,7 +119,7 @@
     content: attr(data-title);
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 320px) {
   .responsive-table__body__text::before {
     width: 100%;
     margin-bottom: 1rem;
