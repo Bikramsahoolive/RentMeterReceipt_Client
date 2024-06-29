@@ -61,20 +61,22 @@ siteKey:string="";
       if (data.password === data.confPass){
         if (data.termNconditions){
           if(!this.captchaVirification){
-            this.toastr.error('Captcha not verified','',{progressBar:true,positionClass:"toastn-top-center"});
+            this.toastr.info('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
+
           this.spinner.show();
           delete data.confPass;
           this.signupService.signUp(data).subscribe({
             next:(result:any)=>{
               console.log(result);
             this.regId = result.message;
+            this.toastr.success("registered.",'Successfully',{progressBar:true,positionClass:"toast-top-center"})
             this.spinner.hide();
             },
             error:(err)=>{
               this.spinner.hide();
-              this.toastr.error(`${err.error.message}`, 'Error!');
+              this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
               
             },
             complete:()=>{
@@ -84,16 +86,16 @@ siteKey:string="";
           })
           
         }else{
-          this.toastr.error('Accept term & conditions.', 'Error!');
+          this.toastr.info('Accept term & conditions.','',{progressBar:true,positionClass:"toast-top-center"});
         }
        
       }else{
-         this.toastr.error('Password not match.', 'Error!');
+         this.toastr.info('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
 
       }
 
     }else{
-      this.toastr.error('field/fields are empty.', 'Error!');
+      this.toastr.info('field/fields are empty.','',{progressBar:true,positionClass:"toast-top-center"});
     }
     
   }
