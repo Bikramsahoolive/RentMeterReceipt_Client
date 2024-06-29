@@ -108,7 +108,7 @@ fileUpload(event:any,fileType:string){
     let extention = file.name.split(".");
     // console.log(extention[1]);
     if(extention[1]=="jpg"){
-      if(file.size<102400){
+      if(file.size<5242880){
 
        
     reader.onload=(e)=>{
@@ -119,11 +119,11 @@ fileUpload(event:any,fileType:string){
 
 
       }else{
-        this.toaster.warning('Invalid File size ,only less than 100kb.','Error');
+        this.toaster.info('Invalid File size ,only less than 5MB.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
 
     }else{
-      this.toaster.warning('Invalid File type ,only jpg ,jpeg.','Error');
+      this.toaster.info('Invalid File type ,only jpg ,jpeg.','Error',{progressBar:true,positionClass:"toast-top-center"});
     }
     
     reader.readAsDataURL(file);
@@ -149,7 +149,7 @@ updateLandlord(form:NgForm){
       },
       error:(err)=>{
         console.error(err.error);
-        this.toaster.show('Something wents wrong!','Error');
+        this.toaster.error('Something wents wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
       },
       complete:()=>{
         this.spinner.hide();
@@ -157,10 +157,10 @@ updateLandlord(form:NgForm){
     });
     
   }else{
-    this.toaster.warning('Password not maatch','Invalid Password.');
+    this.toaster.info('Password not maatch','Invalid Password.',{progressBar:true,positionClass:"toast-top-center"});
   }
   }else{
-    this.toaster.warning('Mark update type','Invalid input.');
+    this.toaster.info('Mark update type','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
     form.reset();
     this.ngOnInit();
   }
@@ -171,17 +171,17 @@ deleteAccountPrompt(id:any){
   if(confString === 'delete landlord'){
     this.landlordServ.deleteLandlordData(id).subscribe({
       next:()=>{
-        this.toaster.success(`Your Profile id:${id} Deleted Successfully.`);
+        this.toaster.success(`Your Profile Deleted Successfully.`,"",{progressBar:true,positionClass:"toast-top-center"});
         this.authServ.logout();
       },error:(error)=>{
         console.error(error);
-        this.toaster.error(`Something wents wrong.`);
+        this.toaster.error(`Something wents wrong.`,"",{progressBar:true,positionClass:"toast-top-center"});
       }
     });
   }else if(confString===null){
     // this.toaster.warning("Delete profile canceled.");
   }else{
-    this.toaster.error("Sorry! wrong command.");
+    this.toaster.info("Sorry! wrong input.","",{progressBar:true,positionClass:"toast-top-center"});
   }
 }
 
@@ -198,13 +198,13 @@ removeBiometric(type:string){
     this.landlordServ.updateLandlordData(data,this.landlordId).subscribe({
       next:(res:any)=>{
         if (res.status==='success'){
-        this.toaster.success(`${type} removed.`);
+        this.toaster.success(`${type} removed.`,"",{progressBar:true,positionClass:"toast-top-center"});
         this.route.navigate(['dashbord-landlord']);
       }
       },
       error:(err)=>{
         console.error(err.error);
-        this.toaster.show('Something wents wrong!','Error');
+        this.toaster.error('Something wents wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
       },
       complete:()=>{
         this.spinner.hide();

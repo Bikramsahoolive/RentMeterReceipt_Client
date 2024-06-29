@@ -32,6 +32,9 @@ siteKey:string="";
     this.captchaVirification = false;
     
   }
+  resetCaptcha(){
+    this.captchaVirification = false;
+  }
   // fileInput(event:any,type:any){
   //   this.spinner.show();
   //   const file = event.target.files[0];
@@ -64,7 +67,7 @@ siteKey:string="";
             this.toastr.info('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
-
+          form.reset();
           this.spinner.show();
           delete data.confPass;
           this.signupService.signUp(data).subscribe({
@@ -78,9 +81,6 @@ siteKey:string="";
               this.spinner.hide();
               this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
               
-            },
-            complete:()=>{
-              form.reset();
             }
             
           })
