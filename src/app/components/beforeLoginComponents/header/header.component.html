@@ -5,6 +5,7 @@
             <li *ngIf="authService.isLogin()"><a routerLink="">Home</a></li>
 
             <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin">Dashbord</a></li>
+            <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder">Dashbord</a></li>
 
             <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord">Dashbord</a></li>
             <!-- <li *ngIf="authService.Landlord()"><a routerLink="main-meter">Main Meter</a></li> -->
@@ -31,6 +32,7 @@
         <li *ngIf="authService.isLogin()"><a routerLink=""(click)="hideMenu(dropdown,tglBtn)">Home</a></li>
         <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
         <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
+        <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
         <li *ngIf="authService.Landlord()"><a routerLink="rent-bill"(click)="hideMenu(dropdown,tglBtn)">Rent Bill</a></li>
         <li *ngIf="authService.Landlord()"><a routerLink="manage"(click)="hideMenu(dropdown,tglBtn)">Manage</a></li>
         <div *ngIf="authService.isLogin() else loginForm " (click)="hideMenu(dropdown,tglBtn)" ><a (click)="logout()" id="logout">Logout</a></div>

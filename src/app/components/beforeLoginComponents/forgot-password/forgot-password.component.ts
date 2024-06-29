@@ -86,12 +86,12 @@ ngOnInit(){}
   verifyForgotPassword(newPass:any,confPass:any){
 
     if(newPass.value.length<8){
-      this.toster.error('Enter an eight digit password.',"",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.info('Enter an eight digit password.',"",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
 
       if(newPass.value !== confPass.value ){
-        this.toster.error('Password not mach.',"",{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.info('Password not mach.',"",{progressBar:true,positionClass:"toast-top-center"});
         return;
       }
         this.spinner.show();
@@ -102,13 +102,13 @@ ngOnInit(){}
       this.authServ.verifyforgotPassword(data).subscribe({
         next:(res:any)=>{
           if(res.status==="success"){
-            this.toster.success(res.message);
+            this.toster.success(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             this.router.navigate(['/login']);
           }else if(res.status==="expired"){
             this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             this.router.navigate(['/login']);
           }else{
-            this.toster.error(res.message);
+            this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
           }
         },error:(err)=>{
           this.spinner.hide();  
@@ -125,7 +125,7 @@ ngOnInit(){}
 
     
       if(phone.value ==="" || userType.value===""){
-        this.toster.error("Please Fill Inputs.",'',{progressBar:true,positionClass:'toast-top-center'});
+        this.toster.info("Please Fill Inputs.",'',{progressBar:true,positionClass:'toast-top-center'});
         return;
       }
 
@@ -133,7 +133,7 @@ ngOnInit(){}
       let validPhone = phoneRegex.test(phone.value);
 
       if(!validPhone){
-          this.toster.error('Enter a valid User ID.');
+          this.toster.info('Enter a valid User ID.',"",{progressBar:true,positionClass:"toast-top-center"});
           return;
       }
 

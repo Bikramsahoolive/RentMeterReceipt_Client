@@ -38,6 +38,7 @@ export class DashbordContentComponent {
         
       },error:(err)=>{
         console.error(err.error);
+        this.spinner.hide();
         this.toastr.error('Something wents wrong.','Error');
       },complete:()=>{
         this.spinner.hide();

@@ -15,8 +15,10 @@
  }
  .head{
     /* padding: 10px 60px; */
-    color: rgb(0, 0, 0);
-    background-color: white;
+    color: rgb(121 120 120);
+    background-color: whitesmoke;
+    padding: 20px 30px;
+    border-radius: 8px;
 }
  .card div{
     /* background-color: rgb(90, 136, 30); */

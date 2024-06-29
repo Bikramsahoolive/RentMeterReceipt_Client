@@ -68,7 +68,7 @@ children:[
   {path:'',component:DashbordUserComponent,outlet:'outlet2'},
 ]
 },
-{path:'dashbord-rentholder',component:DashbordComponent,
+{path:'dashbord-rentholder',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:RentholderDashbordContentComponent,outlet:'outlet1'},
   {path:'',component:RentholderMenubarComponentComponent,outlet:'outlet2'}

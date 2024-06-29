@@ -3,15 +3,16 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { environment } from 'src/environment';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-siteKey:string="";
+siteKey:string= environment.siteKey;
   constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
-    this.siteKey = "6LdR0QMqAAAAAO9bw2BnT9RxX6tn1C7NfXqdzgxP";
+    // this.siteKey =;
   }
   captchaVirification:boolean=false;
   regId:string= "";

@@ -23,7 +23,7 @@ export class LoginComponent {
       this.authServ.adminLogin(auth);
     }else if(auth.userType==="rentholder"){
       // delete auth.userType;
-      console.log(auth);
+      this.authServ.rentholderLogin(auth);
     }else{
       this.toastr.error('select user type. ', 'Error!',);
     }

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AuthServiceService {
   private isLogedIn:boolean=false;
   private isAdmin:boolean=false;
   private isLandlord:boolean=false;
+  private isRentholder:boolean=false;
 
    header = new HttpHeaders({
     'Content-Type':'application/json',
@@ -22,7 +24,7 @@ export class AuthServiceService {
   adminLogin(data:any)
   {
     this.spinner.show();
-    this.http.post('https://rnmrs.onrender.com/admin/login',data,{withCredentials:true,headers:this.header}).subscribe({
+    this.http.post(`${environment.apiUrl}/admin/login`,data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
       let localData = JSON.stringify(res);
       let encData =btoa(localData);
@@ -46,7 +48,7 @@ landlordLogin(data:any){
 
   this.spinner.show();
 
-  this.http.post('https://rnmrs.onrender.com/landlord/login',data,{withCredentials:true,headers:this.header}).subscribe({
+  this.http.post(`${environment.apiUrl}/landlord/login`,data,{withCredentials:true,headers:this.header}).subscribe({
     next:(res:any)=>{
         // console.log(res);
         
@@ -72,18 +74,48 @@ landlordLogin(data:any){
   })
 }
 
+rentholderLogin(data:any){
+
+  this.spinner.show();
+
+  this.http.post(`${environment.apiUrl}/rentholder/login`,data,{withCredentials:true,headers:this.header}).subscribe({
+    next:(res:any)=>{
+        // console.log(res);
+        
+      // if(res.status){
+        let localData = JSON.stringify(res);
+        let encData =btoa(localData);
+        localStorage.setItem("connect.sid",encData);
+        localStorage.setItem("connect.rid",btoa(res.isActive));
+        this.isLogedIn = true;
+        this.isRentholder=true;
+        this.router.navigate(['dashbord-rentholder']);  
+        
+      // }
+           
+
+    },
+     error:(err:any)=>{
+      console.log(err.error);
+      this.toastr.error(err.error.message, 'Error!',);
+      this.spinner.hide();
+
+    }
+  })
+}
+
 
 forgotPassword(data:any){
-  return this.http.post(`https://rnmrs.onrender.com/forgot-password`,data,{headers:this.header});
+  return this.http.post(`${environment.apiUrl}/forgot-password`,data,{headers:this.header});
 }
 
 
 resendForgotPassword(data:any){
-  return this.http.post(`https://rnmrs.onrender.com/forgot-password/resend`,data,{headers:this.header});
+  return this.http.post(`${environment.apiUrl}/forgot-password/resend`,data,{headers:this.header});
 }
 
 verifyforgotPassword(data:any){
-  return this.http.post(`https://rnmrs.onrender.com/forgot-password/verify`,data,{headers:this.header});
+  return this.http.post(`${environment.apiUrl}/forgot-password/verify`,data,{headers:this.header});
 }
 
 
@@ -92,7 +124,7 @@ verifyforgotPassword(data:any){
 
 
 checkSession(){
-  this.http.post(`https://rnmrs.onrender.com/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
+  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
 
     localStorage.setItem("connect.rid",btoa(result.isActive));
     this.isLogedIn = result.isActive;
@@ -126,11 +158,14 @@ if (result.isActive==false){
     return this.isLandlord;
  }
 
+ Rentholder(){
+  return this.isRentholder;
+ }
 
 
  logout(){
 this.spinner.show();
-  this.http.post(`https://rnmrs.onrender.com/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
+  this.http.post(`${environment.apiUrl}/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
     localStorage.setItem("connect.rid",btoa(result.isActive));
     localStorage.setItem("connect.sid","null");
     this.isLogedIn = false;
