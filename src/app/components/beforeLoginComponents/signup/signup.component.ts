@@ -29,7 +29,7 @@ siteKey:string="";
     
   }
   expireCaptcha(){
-    this.captchaVirification=false;
+    this.captchaVirification = false;
     
   }
   // fileInput(event:any,type:any){
@@ -57,13 +57,13 @@ siteKey:string="";
     const data = form.value;
     // data.photo=this.landlordPhoto;
     // data.signature=this.landlordSign;
-    if(this.captchaVirification){
-      this.toastr.error('Verify Captcha.','',{progressBar:true,positionClass:"toastr-top-center"});
-      return;
-    }
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
       if (data.password === data.confPass){
         if (data.termNconditions){
+          if(!this.captchaVirification){
+            this.toastr.error('Captcha not verified','',{progressBar:true,positionClass:"toastn-top-center"});
+            return;
+          }
           this.spinner.show();
           delete data.confPass;
           this.signupService.signUp(data).subscribe({
