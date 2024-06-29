@@ -9,18 +9,28 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-
-  constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){}
+siteKey:string="";
+  constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
+    this.siteKey = "6LdR0QMqAAAAAO9bw2BnT9RxX6tn1C7NfXqdzgxP";
+  }
+  captchaVirification:boolean=false;
   regId:string= "";
   dToday:string="";
-  // landlordPhoto:any;
-  // landlordSign:any;
   ngOnInit(){
     let date= new Date();
     let year = date.getFullYear();
     let month =(date.getMonth()+1).toString().padStart(2,'0');
     let day = date.getDate();
     this.dToday=`${day}-${month}-${year}`;
+  }
+
+  successCaptcha(e:any){
+    this.captchaVirification = true;
+    
+  }
+  expireCaptcha(){
+    this.captchaVirification=false;
+    
   }
   // fileInput(event:any,type:any){
   //   this.spinner.show();
@@ -47,6 +57,10 @@ export class SignupComponent {
     const data = form.value;
     // data.photo=this.landlordPhoto;
     // data.signature=this.landlordSign;
+    if(this.captchaVirification){
+      this.toastr.error('Verify Captcha.','',{progressBar:true,positionClass:"toastr-top-center"});
+      return;
+    }
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
       if (data.password === data.confPass){
         if (data.termNconditions){

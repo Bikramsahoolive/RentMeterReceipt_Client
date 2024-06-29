@@ -17,9 +17,9 @@
 }
 .cont{
     max-width: 800px;
-    width: 100%;
+    width: 90%;
     height:auto;
-    max-height: 100vh;
+    max-height: 120vh;
     margin-top:30px;
     padding: 25px 30px;
     border-radius: 8px;
@@ -98,7 +98,7 @@ form input[type="submit"]:hover{
 
 
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:780px) {
     .user-details{
         flex-direction:column;
     }

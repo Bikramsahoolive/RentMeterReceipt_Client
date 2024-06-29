@@ -29,7 +29,7 @@ import { BillDueComponent } from './components/landlord-components/bill-due/bill
 import { LandlordProfileComponent } from './components/landlord-components/landlord-profile/landlord-profile.component';
 import { AddRentHolderComponent } from './components/landlord-components/add-rent-holder/add-rent-holder.component';
 import { TotalDueComponent } from './components/landlord-components/total-due/total-due.component';
-import { MainTableComponent } from './components/landlord-components/main-table/main-table.component';
+// import { MainTableComponent } from './components/landlord-components/main-table/main-table.component';
 import { SubTableComponent } from './components/landlord-components/sub-table/sub-table.component';
 
 import { RentholderDashbordContentComponent } from './components/rentholder-components/rentholder-dashboard-content/rentholder-dashbord-content.component';
@@ -94,7 +94,7 @@ children:[
 {path:'landlord-profile-update',component:LandlordProfileComponent,canActivate:[authGuard]},
 {path:'add-rentHolder',component:AddRentHolderComponent,canActivate:[authGuard]},
 {path:'total-due',component:TotalDueComponent,canActivate:[authGuard]},
-{path:'mainMeter-table',component:MainTableComponent,canActivate:[authGuard]},
+// {path:'mainMeter-table',component:MainTableComponent,canActivate:[authGuard]},
 {path:'rent-bill-table',component:SubTableComponent,canActivate:[authGuard]},
 {path:'rent-bill',component:DashbordComponent,canActivate:[authGuard],
 children:[

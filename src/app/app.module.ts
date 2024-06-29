@@ -10,7 +10,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {QRCodeModule} from 'angularx-qrcode';
-
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -113,7 +113,8 @@ import { ForgotPasswordComponent } from './components/beforeLoginComponents/forg
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     NgxPaginationModule,
-    QRCodeModule
+    QRCodeModule,
+    NgxCaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

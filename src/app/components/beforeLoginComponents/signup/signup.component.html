@@ -40,7 +40,13 @@
     </div>
 </div>
 <div class="button">
-    <span><input type="checkbox" ngModel name="termNconditions"> I agree to the <a routerLink="">term & conditions.</a></span>
+    <span style="margin-bottom: 20px;"><input type="checkbox" ngModel name="termNconditions"> I agree to the <a routerLink="">term & conditions.</a></span>
+    <ngx-recaptcha2 #captchaElem
+            [siteKey]="siteKey"
+            (success)="successCaptcha($event)"
+            (expire)="expireCaptcha()"
+            >
+          </ngx-recaptcha2>
     <input type="submit" value="Submit">
 </div> 
 </form>
