@@ -10,8 +10,8 @@ export interface landlordData{
     phone:string,
     email:string,
     upi:string,
-    photo:string,
-    signature:string,
+    photo?:string,
+    signature?:string,
     password:string,
     userType:string,
     termNconditions:boolean

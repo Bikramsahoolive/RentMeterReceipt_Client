@@ -29,7 +29,7 @@ export class LandlordProfileComponent {
   landlordId:any;
   landlordData:landlordData={
     id:"",
-    name:"string",
+    name:"",
     phone:"",
     email:"",
     upi:"",
