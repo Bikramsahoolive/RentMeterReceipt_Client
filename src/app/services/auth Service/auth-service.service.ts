@@ -37,7 +37,7 @@ export class AuthServiceService {
     },
     error:(err:any)=>{
       console.log(err.error);
-      this.toastr.error(err.error.text, 'Error!',);
+      this.toastr.error(err.error.text, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
     }
   })
@@ -67,7 +67,7 @@ landlordLogin(data:any){
     },
      error:(err:any)=>{
       console.log(err.error);
-      this.toastr.error(err.error.message, 'Error!',);
+      this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
 
     }
@@ -97,7 +97,7 @@ rentholderLogin(data:any){
     },
      error:(err:any)=>{
       console.log(err.error);
-      this.toastr.error(err.error.message, 'Error!',);
+      this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
 
     }
@@ -133,7 +133,7 @@ if(result.userType==='admin'){
 }else if(result.userType==='landlord'){
   this.isLandlord=result.isActive;
 }else if(result.userType==='rentholder'){
-  console.log('rentholder');
+    this.isRentholder=result.isActive;
 }
     
 if (result.isActive==false){

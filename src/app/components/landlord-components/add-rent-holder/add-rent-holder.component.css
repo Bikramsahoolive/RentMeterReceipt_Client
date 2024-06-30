@@ -46,7 +46,7 @@ form .user-details .input-box{
     outline: none;
     padding-left: 15px;
     font-size: 16px;
-    
+    background-color: white;
     border-radius: 5px;
 }
 .file{

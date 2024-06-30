@@ -107,7 +107,8 @@ fileUpload(event:any,fileType:string){
 
     let extention = file.name.split(".");
     // console.log(extention[1]);
-    if(extention[1]=="jpg"){
+    if(extention[1]=="jpg" || extention[1]==='png'){
+      
       if(file.size<5242880){
 
        

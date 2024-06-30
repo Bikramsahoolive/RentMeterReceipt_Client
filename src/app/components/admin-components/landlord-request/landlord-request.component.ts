@@ -58,7 +58,9 @@ if (state==='approved'){
   data.status=state;
  this.signupServ.actionLandlordData(data).subscribe({
   next:(res:any)=>{
-    console.log(res);
+    // console.log(res);
+    this.datalist=[];
+    this.ngOnInit();
     this.spinner.hide();
   },
   error:(err)=>{
@@ -66,13 +68,15 @@ if (state==='approved'){
     this.spinner.hide();
   }
  })
-  this.ngOnInit();
+  
 }
 if (state==='rejected'){
   data.status=state;
  this.signupServ.actionLandlordData(data).subscribe({
   next:(res:any)=>{
-    console.log(res);
+    // console.log(res);
+    this.datalist=[];
+    this.ngOnInit();
     this.spinner.hide();
   },
   error:(err)=>{
@@ -80,7 +84,6 @@ if (state==='rejected'){
     this.spinner.hide();
   }
  })
-  this.ngOnInit();
 }
   
 }
