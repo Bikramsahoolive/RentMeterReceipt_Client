@@ -171,6 +171,7 @@ this.spinner.show();
     this.isLogedIn = false;
     this.isAdmin = false;
     this.isLandlord=false;
+    this.isRentholder=false;
     this.router.navigate(['home']);
     this.spinner.hide();
   })
