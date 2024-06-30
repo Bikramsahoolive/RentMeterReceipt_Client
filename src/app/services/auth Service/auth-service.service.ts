@@ -96,8 +96,8 @@ rentholderLogin(data:any){
 
     },
      error:(err:any)=>{
-      console.log(err.error);
-      this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+      console.log(err);
+      this.toastr.error(err.error,'Error!',{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
 
     }

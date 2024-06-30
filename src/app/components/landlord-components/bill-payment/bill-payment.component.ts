@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
@@ -10,7 +11,7 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
   styleUrls: ['./bill-payment.component.css']
 })
 export class BillPaymentComponent {
-  constructor(private landlordServe :LandlordService,private spinner:NgxSpinnerService,private toastr:ToastrService){}
+  constructor(private router:Router,private landlordServe :LandlordService,private spinner:NgxSpinnerService,private toastr:ToastrService){}
   currentDate:any;
   toPaidAmount:number=0;
   payableAmount:any;
@@ -36,7 +37,7 @@ export class BillPaymentComponent {
   }
 
   billPayment(form:NgForm){
-    this.spinner.show();
+    
     let data = form.value;
     let reDate = this.dateFormater(data.payment_date);
     data.payment_date = reDate;
@@ -44,21 +45,22 @@ export class BillPaymentComponent {
 
     if(data.paid_amt>this.toPaidAmount || data.paid_amt === 0 || data.paid_amt ===null){
       this.toastr.warning('Invalid paid amount','Warning');
-      this.spinner.hide();
+      
     }else{
-
       delete data.id;
+      this.spinner.show();
 this.landlordServe.paymentBillData(data,id).subscribe({
   next:(res:any)=>{
     this.toastr.success(res.message,'Success');
     form.reset();
     this.currentDate = this.createDate();
+    this.router.navigate([`print-rent-bill/${id}`]);
   },
   error:(err)=>{
     console.log(err.error);
     this.toastr.error('Something Wents wrong.','Error');
-  },
-  complete:()=>this.spinner.hide()
+    this.spinner.hide();
+  }
 });
 
     }
@@ -71,21 +73,21 @@ this.landlordServe.paymentBillData(data,id).subscribe({
     if(id.value ==="" || (id.value).length<13){
       this.toastr.error('Invalid Bill ID','Error');
     }else{
-
+      this.spinner.show();
       this.landlordServe.getSingleRentBillData(id.value).subscribe({
         next:(res:any)=>{
           
           if(res.final_amt == res.paid_amt){
             this.toastr.warning('Bill Already Paid','Warning');
-            this.spinner.hide();
           }else{
             this.toPaidAmount = res.final_amt - res.paid_amt;
             this.payableAmount = res.final_amt - res.paid_amt;
-
           }
+          this.spinner.hide();
         },error:(error)=>{
           console.log(error);
           this.toastr.error('error while fetch bill data.','Error');
+          this.spinner.hide();
         }
       })
 

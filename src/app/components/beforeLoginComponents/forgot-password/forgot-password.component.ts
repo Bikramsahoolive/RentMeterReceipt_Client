@@ -166,13 +166,14 @@ ngOnInit(){}
               this.otpExpString.nativeElement.classList.remove('hide');
               this.resendBtn.nativeElement.classList.add('hide');
              },600000);
+            }else{
+              this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             }
+            this.spinner.hide();
           },error:(error)=>{
+            this.spinner.hide();
             console.log(error);
             this.toster.error("something wents wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
-          },
-          complete:()=>{
-            this.spinner.hide();
           }
         })
 
@@ -207,7 +208,7 @@ ngOnInit(){}
           this.setResendTimmer();
         } 
       }else{
-        this.toster.error("Resend OTP Failed, Try again.","",{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error(res.messages,"",{progressBar:true,positionClass:"toast-top-center"});
       }
     },error:(err)=>{
       this.toster.error("something wents wrong.","",{progressBar:true,positionClass:"toast-top-center"});
