@@ -42,9 +42,8 @@ import { PrintRentBillComponent } from './components/landlord-components/print-r
 import { ContactComponent } from './components/beforeLoginComponents/contact/contact.component';
 import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
 import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
-const dashbord: Routes=[
-  
-]
+import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
+
 const routes: Routes = [
   {path:'',component:HomeComponent,canActivate:[authGuard]},
   {path:'home',component:HomeComponent},
@@ -107,7 +106,8 @@ children:[
   {path:'',component:ManageComponent,outlet:'outlet1'},
   {path:'',component:ManageMenuComponent,outlet:'outlet2'}
 ]
-}
+},
+{path:"rentholder/bill-data",component:BillDetailsComponent,canActivate:[authGuard]}
 ];
 
 @NgModule({

@@ -60,6 +60,7 @@ import { PrintRentBillComponent } from './components/landlord-components/print-r
 import { ContactComponent } from './components/beforeLoginComponents/contact/contact.component';
 import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
 import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
+import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { ForgotPasswordComponent } from './components/beforeLoginComponents/forg
     PrintRentBillComponent,
     ContactComponent,
     AboutComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    BillDetailsComponent
   ],
   imports: [
     BrowserModule,

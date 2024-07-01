@@ -11,6 +11,7 @@
             <!-- <li *ngIf="authService.Landlord()"><a routerLink="main-meter">Main Meter</a></li> -->
             <li *ngIf="authService.Landlord()"><a routerLink="rent-bill">Rent Bill</a></li>
             <li *ngIf="authService.Landlord()"><a routerLink="manage">Manage</a></li>
+            <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data">Bill Details</a></li>
             <div *ngIf="authService.isLogin() else loginForm " ><a (click)="logout()" id="logout">Logout</a></div>
             <ng-template #loginForm>
                 <li><a routerLink="home" (click)="hideMenu(dropdown,tglBtn)">Home</a></li>
@@ -35,6 +36,7 @@
         <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
         <li *ngIf="authService.Landlord()"><a routerLink="rent-bill"(click)="hideMenu(dropdown,tglBtn)">Rent Bill</a></li>
         <li *ngIf="authService.Landlord()"><a routerLink="manage"(click)="hideMenu(dropdown,tglBtn)">Manage</a></li>
+        <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data"(click)="hideMenu(dropdown,tglBtn)">Bill Details</a></li>
         <div *ngIf="authService.isLogin() else loginForm " (click)="hideMenu(dropdown,tglBtn)" ><a (click)="logout()" id="logout">Logout</a></div>
         <ng-template #loginForm>
             <li><a routerLink="home"(click)="hideMenu(dropdown,tglBtn)">Home</a></li>
@@ -45,4 +47,4 @@
         </ng-template>
     </div>
 </header>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-scale" [fullScreen] = "true"><p style="color: white" > Please Wait... </p></ngx-spinner>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Data Receiving... </p></ngx-spinner>

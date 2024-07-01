@@ -27,7 +27,7 @@
             "styles": [
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/ngx-spinner/animations/line-scale.css"
+              "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css"
             ],
             "scripts": []
           },

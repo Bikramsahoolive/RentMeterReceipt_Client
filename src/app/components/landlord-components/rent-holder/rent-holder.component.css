@@ -27,7 +27,7 @@
   box-shadow: 0 0 3px 0 gray;
 }
 .container .data-table{
-    height: 50vh;
+    height: 80vh;
     overflow: scroll;
 }
 .container h1{

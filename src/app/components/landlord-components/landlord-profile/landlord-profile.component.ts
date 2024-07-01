@@ -109,7 +109,7 @@ fileUpload(event:any,fileType:string){
     // console.log(extention[1]);
     if(extention[1]=="jpg" || extention[1]==='png'){
       
-      if(file.size<5242880){
+      if(file.size<548487){
 
        
     reader.onload=(e)=>{
@@ -120,7 +120,7 @@ fileUpload(event:any,fileType:string){
 
 
       }else{
-        this.toaster.info('Invalid File size ,only less than 5MB.','Error',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.info('Invalid File size ,only less than 500kb.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
 
     }else{

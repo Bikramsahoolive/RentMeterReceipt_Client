@@ -1,0 +1,212 @@
+
+/* .table td .update-icon{
+    margin-left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(77, 75, 75);
+} */
+/* .msg p{
+    background-color: rgb(245, 115, 115);
+    color: white;  
+    text-align: center;  
+} */
+/* .table td .delete-icon{
+    font-size: 20px;
+    color:black;
+    cursor: pointer;
+} */
+.search{
+    width: 100%;
+    /* height: 30px; */
+    position: relative;
+    padding-top: 5px;
+    
+}
+.search .filter{
+    border: 2px solid gray;
+    background-color: whitesmoke;
+    box-shadow: 0 0 5px 2px gray;
+    border-radius: 8px;
+
+}
+.searchbar{
+    position: absolute;
+    /* top:4px;
+    left: 4px; */
+    padding: 10px 12px;
+    width: 39px;
+    box-shadow: 0 0 10px 0 black;
+    border-radius:30px;
+    overflow: hidden;
+    transition: width 0.7s;
+    background-color: whitesmoke;
+    z-index: 1;
+}
+.open{
+    width: 250px;
+}
+.search-icon{
+    cursor: pointer;
+}
+.searchbar input{
+    outline: none;
+    border: none;
+    width: 200px;
+    background-color: whitesmoke;
+    font-size: 15px;
+    margin-left: 10px;
+    
+}
+.hide{
+    display: none;
+}
+.filter{
+    position: absolute;
+    right:0;
+}
+.filter i{
+    color: black;
+    font-size: 18px;
+    margin-left: 5px;
+}
+.msg{
+    width: 100%;
+    height: 20px;
+
+}
+.selector{
+    height: 35px;
+    padding: 6px 10px;
+    border: none;
+    background-color: whitesmoke;
+    outline: none;
+}
+/* .paginate{
+    position: absolute ;
+    right: 25px;
+} */
+/* .paginate .current{
+    background-color: #b31e1e;
+    border-radius: 50% !important;
+    width: 30px !important;
+} */
+
+
+
+
+
+
+
+.container{
+    background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    margin-left: 20;
+}
+.container h1{
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    color: rgb(0, 0, 0);
+}
+.container .data{
+    width: 100%;
+    overflow-x: scroll;
+}
+.container .data-table{
+    width: 100%;
+    height:78vh;
+    /* margin-top: 30px; */
+    /* margin-left: 200px; */
+}
+.content{
+    width: 95%;
+    max-width: 700px;
+}
+.table {
+    width: 100%;
+    min-width: 300px;
+    border-collapse: collapse;
+    
+  }
+  
+  .table td,
+  .table th {
+    padding: 12px 15px;
+    border: 1px solid #4d4a4a;
+    text-align: center;
+    font-size: 16px;
+    
+  }
+  
+  .table th {
+    background-color: #1d4281;
+    color: white;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #7698d1;
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background-color: #bdbdbe;
+  }
+
+  @media screen and (max-width:1280px) {
+    /* .container .data{
+        width: 700px;
+    } */
+}
+
+  /* @media screen and (max-width:812px) {
+
+} */
+
+/* @media (max-width: 700px) {
+    .container .data{
+        width: 420px;
+        height: 80vh;
+    }
+    .table{
+        margin-left: 0;
+        min-width:0;
+    }
+    .table thead {
+      display: none;
+    }
+  
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+      display: block;
+      width: 100%;
+    }
+    .table tr {
+      margin-bottom: 50px;
+    }
+    .table td {
+      padding-left: 40%;
+      text-align: right;
+      position: relative;
+    }
+    .table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 15px;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: left;
+    }
+} */
+
+@media (max-width: 348px){
+.data{
+    overflow-x: scroll;
+}
+}

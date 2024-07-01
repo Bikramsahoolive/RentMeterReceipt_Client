@@ -29,7 +29,7 @@
                     <span> Unit Advance: </span> <Strong>{{bill.unitAdv}}</Strong>
                 </div>
                 <div class="data">
-                    <span> e-Bill: </span> <Strong>₹{{bill.eBill}}</Strong>
+                    <span> electric Bill: </span> <Strong>₹{{bill.eBill}}</Strong>
                 </div>
                 <div class="data">
                     <span>Previous Due : </span> <Strong>₹{{bill.dueAmount}}</Strong>
@@ -50,8 +50,8 @@
                 <div class=qrcode >
                     
                     <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
-                    <img src="{{paidSign}}" alt="" style="width: 190px;">
-                    <h5 style="text-align: center;width: 110px;">{{boxVal}}</h5>
+                    <img src="{{paidSign}}" alt="" style="width: 120px;;">
+                    <h5 style="text-align: center;width: 110px;z-index: 1;">{{boxVal}}</h5>
                 </div>
                 <div class="signature">
                     <div class="signature-content"><span>Payment Due Date : <Strong style="display: inline-block;">{{bill.dueDate}}</Strong> </span></div>
@@ -64,6 +64,5 @@
                 </div>
             </div>
         </div>
-
-                
+            <button *ngIf="showPayBtn" (click)="payNow()">Pay Now</button>
         </div>

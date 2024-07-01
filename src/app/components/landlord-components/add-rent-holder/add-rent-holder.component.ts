@@ -65,16 +65,16 @@ export class AddRentHolderComponent {
 
     this.addRentService.addRentHolder(data).subscribe({
       next:(res:any)=>{
+        form.reset();
         if(res.status){
           this.toster.success(res.message,`Success`,{progressBar:true,positionClass:"toast-top-center"});
           this.router.navigate(['/rent-holder']);
         }
-      },
-      error:(err)=>this.toster.error(`${err.error}`,`Error`,{progressBar:true,positionClass:"toast-top-center"}),
-      complete:()=>{
         this.spinner.hide();
-        form.reset();
-      }
+      },
+      error:(err)=>{this.toster.error(`${err.error}`,`Error`,{progressBar:true,positionClass:"toast-top-center"})
+      this.spinner.hide();
+    }
     });
     }else{
         this.toster.error(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
