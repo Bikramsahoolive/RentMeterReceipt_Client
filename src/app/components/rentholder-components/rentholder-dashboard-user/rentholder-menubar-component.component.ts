@@ -33,6 +33,7 @@ export class RentholderMenubarComponentComponent {
            }else{
             this.rentholderPhoto = "../../../assets/profile.jpg";
            }
+           this.spinner.hide();
       },error:(error:any)=>{
         console.log(error);
       }
