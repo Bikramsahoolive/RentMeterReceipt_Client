@@ -51,14 +51,14 @@ export class BillPaymentComponent {
       this.spinner.show();
 this.landlordServe.paymentBillData(data,id).subscribe({
   next:(res:any)=>{
-    this.toastr.success(res.message,'Success');
+    this.toastr.success(res.message,'Success',{positionClass:"toast-top-center",progressBar:true});
     form.reset();
     this.currentDate = this.createDate();
     this.router.navigate([`print-rent-bill/${id}`]);
   },
   error:(err)=>{
     console.log(err.error);
-    this.toastr.error('Something Wents wrong.','Error');
+    this.toastr.error('Something Wents wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
     this.spinner.hide();
   }
 });
@@ -71,14 +71,14 @@ this.landlordServe.paymentBillData(data,id).subscribe({
 
   getPaymentAmount(id:any){
     if(id.value ==="" || (id.value).length<13){
-      this.toastr.error('Invalid Bill ID','Error');
+      this.toastr.info('Invalid Bill ID','Error',{positionClass:"toast-top-center",progressBar:true});
     }else{
       this.spinner.show();
       this.landlordServe.getSingleRentBillData(id.value).subscribe({
         next:(res:any)=>{
           
           if(res.final_amt == res.paid_amt){
-            this.toastr.warning('Bill Already Paid','Warning');
+            this.toastr.info('Bill Already Paid','Warning',{positionClass:"toast-top-center",progressBar:true});
           }else{
             this.toPaidAmount = res.final_amt - res.paid_amt;
             this.payableAmount = res.final_amt - res.paid_amt;
@@ -86,7 +86,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
           this.spinner.hide();
         },error:(error)=>{
           console.log(error);
-          this.toastr.error('error while fetch bill data.','Error');
+          this.toastr.error('error while fetch bill data.','Error',{positionClass:"toast-top-center",progressBar:true});
           this.spinner.hide();
         }
       })

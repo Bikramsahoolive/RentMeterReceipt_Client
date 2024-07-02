@@ -25,13 +25,13 @@ export class HomeComponent {
     this.homeServ.sendSubMail({email:emailId.value}).subscribe({
       next:(res:any)=>{
         if(res.status ==='success'){
-          this.toster.success("Email Subscribed Successfully.");
+          this.toster.success("Your Email Subscribed","",{positionClass:"toast-top-center",progressBar:true});
         }else{
-          this.toster.error('Something Went wrong.');
+          this.toster.error('Error occored, try again.',"",{positionClass:"toast-top-center",progressBar:true});
         }
       },error:(err)=>{
         console.error(err);
-        this.toster.error('Something Went wrong.');
+        this.toster.error('Something Went wrong.',"",{positionClass:"toast-top-center",progressBar:true});
         
       },complete:()=>{
         emailId.value = '';

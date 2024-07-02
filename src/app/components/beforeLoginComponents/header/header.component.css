@@ -26,11 +26,11 @@ li a{
     
     color: white;
     text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
 }
 li a:hover{
     color: rgb(245, 190, 87);
-    transition: 0.3s;
-    cursor: pointer;
 }
 
 div #logout {
@@ -54,21 +54,23 @@ div #logout:hover{
 }
 .dropdown_menu {
     position: absolute;
-    right: 13px;
-    top: 65px;
+    /* right: 13px; */
+    top: 58px;
     height: 0;
-    width: 315px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(65px);
-    border-radius: 10px;
+    width: 100%;
+    background:rgb(115 115 243);
+    /* backdrop-filter: blur(65px); */
+    border-radius:0 0 10px 10px;
     overflow: hidden;
     transition: height 0.3s ease;
+    padding-bottom: 5px;
 
 }
 
 .dropdown_menu.open {
-    height: 200px;
+    height: auto;
     z-index:3;
+    max-height: 50vh;
 }
 
 .dropdown_menu li {
@@ -79,11 +81,11 @@ div #logout:hover{
 
 }
 .dropdown_menu li a{
-    color: rgb(2, 2, 2);
+    color: rgb(231, 231, 231);
 }
-.dropdown_menu li a:hover{
-    color: rgb(70, 43, 190);
-}
+/* .dropdown_menu li a:hover{
+    color:rgb(245, 190, 87);
+} */
 
 .dropdown_menu .action {
     width: 100%;
@@ -128,7 +130,7 @@ div #logout:hover{
     }
 }
 
-@media screen and (max-width:375px) {
+/* @media screen and (max-width:375px) {
     .dropdown_menu{
         width: 300px;
     }
@@ -139,7 +141,7 @@ div #logout:hover{
         right: 5px;
         width: 250px;
     }
-}
+} */
 
 @media print {
     header{

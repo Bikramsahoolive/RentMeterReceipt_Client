@@ -45,7 +45,7 @@ export class SignupStatusComponent {
         },
         error:(err)=>{
           console.log(err.error);
-          this.toastr.error(err.error.message,"Error");
+          this.toastr.error(err.error.message,"Error",{positionClass:"toast-top-center",progressBar:true});
           this.spinner.hide();
           
         }
@@ -53,7 +53,7 @@ export class SignupStatusComponent {
       
       
     }else{
-      this.toastr.error("Invalid Input.","Error")
+      this.toastr.info("Invalid Input.","",{positionClass:"toast-top-center",progressBar:true})
 
     }
     

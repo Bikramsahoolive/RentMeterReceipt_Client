@@ -322,7 +322,7 @@ input[type="number"]::-webkit-inner-spin-button {
       overflow-x: hidden;
     }
   
-    .nav {
+    /* .nav {
       padding: 0 20px;
       background-color: #fff;
       height: auto;
@@ -333,24 +333,23 @@ input[type="number"]::-webkit-inner-spin-button {
       position: sticky;
       top: 0;
       box-shadow: 0 5px 0 #ffffff, 5px 0 0 #f8f7f7;
-    }
+    } */
   
-    #logo-text a {
+    /* #logo-text a {
       text-decoration: none;
       font-size: 1.1rem;
       color: #5445f5;
       font-weight: lighter;
-    }
+    } */
   
-    #check {
+    /* #check {
       display: none;
-    }
+    } */
   
     .toggle {
       font-size: 1.5rem;
       color: gray;
       cursor: pointer;
-  
       display: block;
     }
   
@@ -368,18 +367,18 @@ input[type="number"]::-webkit-inner-spin-button {
       transition: all 1s;
     } */
   
-    .nav ul li {
+    /* .nav ul li {
       list-style-type: none;
-    }
+    } */
   
-    .nav ul li a {
+    /* .nav ul li a {
       text-decoration: none;
       padding: 0 10px;
       color: gray;
       font-weight: 300;
       line-height: 2em;
       font-size: 1.5rem;
-    }
+    } */
   
     /* .nav ul li a:hover {
       color: #5a4fdc;

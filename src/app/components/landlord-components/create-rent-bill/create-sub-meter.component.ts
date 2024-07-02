@@ -41,7 +41,7 @@ export class CreateSubMeterComponent {
         
       },
       error:(err)=>{
-        this.toster.error(`${err.error.text}`);
+        this.toster.error(`${err.error.text}`,"",{positionClass:"toast-top-center",progressBar:true});
         this.spinner.hide();
       },
       complete:()=>{
@@ -86,7 +86,7 @@ export class CreateSubMeterComponent {
         
       },
       error:(err)=>{
-        this.toster.error(`${err.error.text}`);
+        this.toster.error(`${err.error.text}`,"",{positionClass:"toast-top-center",progressBar:true});
         this.spinner.hide();
       },
       complete:()=>{
@@ -108,7 +108,7 @@ export class CreateSubMeterComponent {
       next:(res:any)=>{
         console.log(res);
         if(res.status){
-          this.toster.success(`${res.message}`,'Success');
+          this.toster.success(`${res.message}`,'Success',{positionClass:"toast-top-center",progressBar:true});
           form.reset();
           this.route.navigate([`/print-rent-bill/${res.id}`]);
         }
@@ -116,7 +116,7 @@ export class CreateSubMeterComponent {
       },
       error:(err)=>{
         console.error(err.error);
-        this.toster.error(`${err.error.text}`,'Error');
+        this.toster.error(`${err.error.text}`,'Error',{positionClass:"toast-top-center",progressBar:true});
         this.spinner.hide();
       },
       complete:()=>{
