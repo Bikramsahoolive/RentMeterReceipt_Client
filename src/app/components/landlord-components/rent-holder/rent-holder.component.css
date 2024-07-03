@@ -36,11 +36,11 @@
     color: rgb(0, 0, 0);
     margin-bottom: 30px;
 }
-@media (max-width: 425px){
+/* @media (max-width: 425px){
     .container .data-table{
         height: 85vh;
     }
-}
+} */
 
 /* Responsive Table Style */
 .responsive-table {
