@@ -32,7 +32,7 @@ export class BillPaymentComponent {
     let dateData =new Date(date);
     let year = dateData.getFullYear();
     let month =(dateData.getMonth()+1).toString().padStart(2,'0');
-    let day = dateData.getDate();
+    let day = dateData.getDate().toString().padStart(2,'0');
     return `${day}-${month}-${year}`;
   }
 

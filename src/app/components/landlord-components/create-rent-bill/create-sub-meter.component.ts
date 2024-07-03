@@ -29,7 +29,7 @@ export class CreateSubMeterComponent {
     let date= new Date();
     let year = date.getFullYear();
     let month =(date.getMonth()+1).toString().padStart(2,'0');
-    let day = date.getDate();
+    let day = date.getDate().toString().padStart(2,'0');
     this.dToday=`${year}-${month}-${day}`;
     // console.log(this.dToday);
 
@@ -76,7 +76,7 @@ export class CreateSubMeterComponent {
             let cLength = current.length-1;
           this.previousUnit = current[cLength].currentUnit;
           }else{
-            this.previousUnit='';
+            this.previousUnit=user.current_unit;
           }
           
         }
@@ -98,18 +98,20 @@ export class CreateSubMeterComponent {
   }
 
   createRentBill(form:NgForm){
-    this.spinner.show();
     let data = form.value;
     data.consumer_Name = this.name;
     data.rentholder_id=this.usetId;
     if(data.rent_status=='paid')data.rent=0;
+    if(data.adjustUnit===null || data.adjustUnit==='')data.adjustUnit=0;
     delete data.rent_status;
+    this.spinner.show();
+    form.reset();
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
-        console.log(res);
+        // console.log(res);
         if(res.status){
           this.toster.success(`${res.message}`,'Success',{positionClass:"toast-top-center",progressBar:true});
-          form.reset();
+          
           this.route.navigate([`/print-rent-bill/${res.id}`]);
         }
 

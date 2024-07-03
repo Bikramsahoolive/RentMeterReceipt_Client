@@ -14,22 +14,29 @@ export class AddRentHolderComponent {
   constructor(private router:Router, private addRentService:LandlordService, private spinner:NgxSpinnerService,private toster:ToastrService){}
 
   deedFileUrl:string='';
+  photoFile:string='';
 
-  fileInput(event:any){
+  fileInput(event:any,type:string){
     this.spinner.show();
     const file = event.target.files[0];
     if (file){
       
-      if(file.size<1048576){
+      if(file.size<524576){
       const reader = new FileReader();
       reader.onload = (e)=>{
         const dataUrl =e.target?.result as string;
-        this.deedFileUrl= dataUrl;
+        if(type ==='document'){
+          this.deedFileUrl= dataUrl;
+        }
+        if(type === 'photo'){
+          this.photoFile = dataUrl;
+        }
+        
         this.spinner.hide();
       }
       reader.readAsDataURL(file);
     }else{
-      this.toster.error(`file large than 1MB`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`file large than 500kb`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
     }
   }
@@ -40,7 +47,7 @@ export class AddRentHolderComponent {
     let date= new Date();
     let year = date.getFullYear();
     let month =(date.getMonth()+1).toString().padStart(2,'0');
-    let day = date.getDate();
+    let day = date.getDate().toString().padStart(2,'0');
     currentDate=`${day}-${month}-${year}`;
 
     return currentDate;
@@ -48,17 +55,22 @@ export class AddRentHolderComponent {
 
   getRentHolderData(form:NgForm){
     let data=form.value;
-    let {name,member_count,email,phone,rent,password} = data;
-    if(name==="" || member_count==="" || email==="" || phone==="" || rent ==="" || password ===""){
-      this.toster.error('Please fill all inputs',"",{progressBar:true,positionClass:"toast-top-center"});
+    let {name,member_count,current_unit,email,phone,rent,password} = data;
+    if(name==="" || member_count==="" || member_count ===null || current_unit===null ||current_unit===""||current_unit===null || email==="" || phone==="" || rent ==="" ||rent ===null || password ===""){
+      this.toster.info('Please fill all inputs',"",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
-    if(this.deedFileUrl!==''){
+    if(member_count<1){
+      this.toster.info('Invalid member count.',"",{progressBar:true,positionClass:"toast-top-center"});
+      return;
+    }
+    if(this.deedFileUrl!=='' || this.photoFile!==''){
     let data=form.value;
     if(data.confPass===data.password){
       delete data.confPass;
       delete data.file;
       data.deedURL=this.deedFileUrl;
+      data.photo = this.photoFile;
       data.doj = this.getCurrentDate();
 
       this.spinner.show();
@@ -77,10 +89,10 @@ export class AddRentHolderComponent {
     }
     });
     }else{
-        this.toster.error(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.info(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     }
     }else{
-      this.toster.error(`Invalid file.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.info(`Invalid file.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     }
     
     
