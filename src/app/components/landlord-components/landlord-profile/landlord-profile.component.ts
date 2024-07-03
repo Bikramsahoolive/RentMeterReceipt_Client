@@ -37,7 +37,6 @@ export class LandlordProfileComponent {
     signature:"",
     password:"",
     userType:"",
-    termNconditions:true
   };
   landlordPhoto:any;
   landlordSignature:any;

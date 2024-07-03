@@ -13,6 +13,5 @@ export interface landlordData{
     photo?:string,
     signature?:string,
     password:string,
-    userType:string,
-    termNconditions:boolean
+    userType:string
 }
