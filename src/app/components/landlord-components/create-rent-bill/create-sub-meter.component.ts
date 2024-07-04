@@ -103,13 +103,14 @@ export class CreateSubMeterComponent {
     data.rentholder_id=this.usetId;
     if(data.rent_status=='paid')data.rent=0;
     if(data.adjustUnit===null || data.adjustUnit==='')data.adjustUnit=0;
+    if(data.dueAmount===null || data.dueAmount==='')data.dueAmount=0;
     delete data.rent_status;
     this.spinner.show();
-    form.reset();
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
         // console.log(res);
         if(res.status){
+          form.reset();
           this.toster.success(`${res.message}`,'Success',{positionClass:"toast-top-center",progressBar:true});
           
           this.route.navigate([`/print-rent-bill/${res.id}`]);
