@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     background-image: url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+    padding: 50px 0;
 }
 .titel{
     text-align: center;
@@ -16,19 +17,21 @@
 
 }
 .cont{
-    max-width: 800px;
+    max-width: 500px;
     width: 90%;
     height:auto;
-    max-height: 120vh;
-    margin-top:30px;
+    max-height: 145vh;
     padding: 25px 30px;
     border-radius: 8px;
     box-shadow: 0 0 5px 2px gray;
     background-color: white;
     border-radius: 5px;
-    margin-bottom: 50px;
-
 }
+.captcha{
+    width: 100%;
+    overflow: hidden;
+}
+
 .cont .titel{
     font-size: 25px;
     font-weight: 500;
@@ -37,14 +40,16 @@
 }
 .cont form .user-details{
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
     justify-content: space-between;
     margin: 20px 0 12px 0;
     color: rgb(0, 0, 0);
 }
 form .user-details .input-box{
-    margin: 10px 0 6px 0;
-    width: calc(100% / 2 - 20px);
+    margin: 15px 0 15px 0;
+    width:100% ;
+    /* alc(100% / 2 - 20px); */
 }
 .user-details .input-box .details{
     font-weight: 600;
@@ -56,11 +61,12 @@ form .user-details .input-box{
     margin-bottom: 5px;
 }
 .user-details .input-box input{
-    height: 45px;
+    height: 35px;
     width: 100%;
     outline: none;
     padding-left: 15px;
     font-size: 16px;
+    border:2px solid gray;
     border-radius: 5px;
 }
 .user-details .input-box .file{
@@ -76,7 +82,7 @@ form input[type="submit"]{
     margin-top: 20px;
     border-radius: 5px;
     cursor: pointer;
-    height: 45px;
+    height: 35px;
     width: 100%;
     color: white;
 }

@@ -23,11 +23,14 @@ getSignUpData(){
   return this.http.get(`${environment.apiUrl}/signup`,{withCredentials:true,headers:this.header});
 }
 actionLandlordData(data:any){
-  return this.http.post(`${environment.apiUrl}/landlord/action/${data.id}`,data,{withCredentials:true,headers:this.header});
+  return this.http.post(`${environment.apiUrl}/landlord/action`,data,{withCredentials:true,headers:this.header});
 }
 
 sendSubMail(data:any){
   return this.http.post(`${environment.apiUrl}/email-subscribe`,data,{headers:this.header});
+}
+signUpVerify(data:any){
+  return this.http.post(`${environment.apiUrl}/signup/verify`,data,{headers:this.header})
 }
 
 }

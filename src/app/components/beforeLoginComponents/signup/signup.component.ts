@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from 'src/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -11,17 +12,17 @@ import { environment } from 'src/environment';
 })
 export class SignupComponent {
 siteKey:string= environment.siteKey;
-  constructor(private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
+  constructor(private router : Router, private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
     // this.siteKey =;
   }
   captchaVirification:boolean=false;
-  regId:string= "";
   dToday:string="";
+  regNumber:string="";
   ngOnInit(){
     let date= new Date();
     let year = date.getFullYear();
     let month =(date.getMonth()+1).toString().padStart(2,'0');
-    let day = date.getDate();
+    let day = date.getDate().toString().padStart(2,'0');
     this.dToday=`${day}-${month}-${year}`;
   }
 
@@ -59,32 +60,41 @@ siteKey:string= environment.siteKey;
   // }
   signup(form:NgForm){
     const data = form.value;
-    // data.photo=this.landlordPhoto;
-    // data.signature=this.landlordSign;
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
       if (data.password === data.confPass){
         if (data.termNconditions){
+          if(this.regNumber===""){
+            this.toastr.info('send OTP first.','',{progressBar:true,positionClass:"toast-top-center"});
+            return;
+          }
+          if(data.otp==="" || data.otp===null){
+            this.toastr.info('OTP cant be empty.','',{progressBar:true,positionClass:"toast-top-center"});
+            return;
+          }
           if(!this.captchaVirification){
             this.toastr.info('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
-          form.reset();
+
           this.spinner.show();
-          delete data.confPass;
-          this.signupService.signUp(data).subscribe({
+          data.id = this.regNumber;
+          
+          this.signupService.actionLandlordData(data).subscribe({
             next:(result:any)=>{
-              console.log(result);
-            this.regId = result.message;
-            this.toastr.success("registered.",'Successfully',{progressBar:true,positionClass:"toast-top-center"})
-            this.spinner.hide();
+              if(result.status==='success'){
+            this.toastr.success("registered.",'Successfully',{progressBar:true,positionClass:"toast-top-center"});
+                this.regNumber='';
+                this.router.navigate(['login']);
+              }else{
+                this.toastr.error(result.message,'',{progressBar:true,positionClass:"toast-top-center"});
+              }
+              this.spinner.hide();
             },
             error:(err)=>{
               this.spinner.hide();
               this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
-              
             }
-            
-          })
+          });
           
         }else{
           this.toastr.info('Accept term & conditions.','',{progressBar:true,positionClass:"toast-top-center"});
@@ -99,6 +109,33 @@ siteKey:string= environment.siteKey;
       this.toastr.info('field/fields are empty.','',{progressBar:true,positionClass:"toast-top-center"});
     }
     
+  }
+
+  sendOtp(name:any,phone:any,email:any){
+    if(name.value==="" || phone.value===""||email.value===""){
+      this.toastr.info('Fill above inputs.',"",{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
+    let data={
+      name:name.value,
+      phone:phone.value,
+      email:email.value
+    };
+    this.spinner.show();
+    this.signupService.signUpVerify(data).subscribe({
+      next:(res:any)=>{
+        this.spinner.hide()
+        if(res.status==='success'){
+          this.regNumber = res.id;
+          this.toastr.success("OTP Sent successfully","",{positionClass:"toast-top-center",progressBar:true});
+        }
+        console.log(res);
+        
+      },error:(err)=>{
+        this.spinner.hide();
+        this.toastr.error(err.error.message,"",{positionClass:"toast-top-center",progressBar:true});
+      }
+    });
   }
 
 }
