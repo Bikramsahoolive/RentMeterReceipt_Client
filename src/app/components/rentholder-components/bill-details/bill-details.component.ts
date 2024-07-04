@@ -37,12 +37,11 @@ export class BillDetailsComponent {
           }else{
             this.toster.error('No Bill Data Found.');
           }
-  
+          this.spinner.hide();
         },
         error:(err)=>{
           console.log(err.error);
-        },
-        complete:()=>{
+          this.toster.error(err.error.text,"",{progressBar:true,positionClass:"toast-top-center"});
           this.spinner.hide();
         }
       })
