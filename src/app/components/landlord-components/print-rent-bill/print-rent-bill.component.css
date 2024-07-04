@@ -17,7 +17,7 @@
     background-color: white;
     box-shadow: 0 0 5px 2px rgb(192, 191, 191);
     border-radius: 5px;
-    margin-top: 20px;
+    margin: 10px 0;
 }
 .bill h1{
     padding: 5px 0 5px 0;
@@ -91,7 +91,7 @@
     justify-content: center;
 }
 button{
-    margin-top: 20px;
+    margin: 20px 0;
     padding: 10px 25px;
     background-color: #7373f3;
     color: white;
