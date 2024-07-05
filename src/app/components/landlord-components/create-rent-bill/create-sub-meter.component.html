@@ -20,32 +20,76 @@
     </div>
     <div class="input-box">
         <span class="details">Rent Status:</span>
-        <select name="rent_status" [(ngModel)]="rentStatus" >
+        <select name="rent_status" [(ngModel)]="rentStatus" [disabled]="isRentholderChoosen" >
             <option value="">Select</option>
-            <option value="notpaid">Not Paid</option>
             <option value="paid">Paid</option>
+            <option value="notpaid">Not Paid</option>
         </select>
     </div>
-    <div class="input-box">
-        <span class="details">Main-Meter Bill Amount(₹):</span>
-    <input type="number" ngModel name="totalAmount">
+
+
+
+
+    <div class="input-box" style="width: 100%;">
+        <span class="details"> Electric Bill Status:</span>
+        <select name="electric_status" [(ngModel)]="ebillStatus" #selectElc [disabled]="isRentholderChoosen" (change)="showElc(selectElc)" >
+            <option value="">Select</option>
+            <option value="pa">Paid</option>
+            <option value="mmbd">By Main-Meter Bill Details</option>
+            <option value="pu">By Per Unit Amount</option>
+            <option value="am">By Amount</option>
+        </select>
     </div>
-    <div class="input-box">
-        <span class="details">Main-Meter Consumed Unit:</span>
-        <input type="number" ngModel name="totalUnit">
+
+
+
+
+    <div class="main-meter hide" #mainMeter style="width: 100%;">
+        <div class="input-box">
+            <span class="details">Main-Meter Bill Amount(₹):</span>
+        <input type="number" ngModel name="totalAmount">
+        </div>
+        <div class="input-box">
+            <span class="details">Main-Meter Consumed Unit:</span>
+            <input type="number" ngModel name="totalUnit">
+        </div>
     </div>
-    <div class="input-box">
-        <span class="details">Prvious Unit:</span>
-    <input type="number" [(ngModel)]="previousUnit" readonly name="previousUnit">
+
+
+
+
+    <div class="sub-meter hide" #subMeter style="width: 100%;">
+        <div class="input-box">
+            <span class="details">Prvious Unit(sub-meter):</span>
+        <input type="number" [(ngModel)]="previousUnit" readonly name="previousUnit">
+        </div>
+        <div class="input-box">
+            <span class="details">Current Unit(sub-meter):</span>
+        <input type="number" ngModel name="currentUnit">
+        </div>
+        <div class="input-box hide" #perUnit>
+            <span class="details">Per Unit Amount(₹):</span>
+        <input type="number" ngModel name="per_unit">
+        </div>
+        <div class="input-box">
+            <span class="details">Adjust Unit(if any):</span>
+        <input type="number" ngModel name="adjustUnit">
+        </div>
     </div>
-    <div class="input-box">
-        <span class="details">Current Unit:</span>
-    <input type="number" ngModel name="currentUnit">
+    
+    <div class="elc-amt hide" style="width: 100%;" #elcAmt>
+        <div class="input-box" style="width: 100%;">
+            <span class="details">Electric Bill Amount:</span>
+        <input type="number" ngModel name="ebill_amt">
+        </div>
     </div>
+
+
     <div class="input-box">
-        <span class="details">Adjust Unit(if any):</span>
-    <input type="number" ngModel name="adjustUnit">
+        <span class="details">Water Bill:</span>
+    <input type="number" ngModel name="water_bill">
     </div>
+   
     <div class="input-box">
         <span class="details">Previous Due/Payment(if any):</span>
     <input type="number" ngModel name="dueAmount">
@@ -53,7 +97,7 @@
 </div>
 <div class="button">
     <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
+    <!-- <input type="reset" value="Reset"> -->
 </div> 
 </form>
 </div>

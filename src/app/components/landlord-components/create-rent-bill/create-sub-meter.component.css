@@ -24,13 +24,19 @@
     background-color: white;
     padding: 10px;
 }
-.cont form .user-details{
+.cont form .user-details,.main-meter,.sub-meter,.elc-amt{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 20px 0 12px 0;
+    align-items: center;
+    /* margin: 20px 0 12px 0; */
     color: rgb(0, 0, 0);
 }
+.hide{
+    display: none;
+}
+
+
 form .user-details .input-box{
     margin: 10px 0 6px 0;
     width: calc(100% / 2 - 20px);
@@ -72,6 +78,7 @@ form input[type="submit"],input[type="reset"]{
 form .button{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
 }
 form input[type="submit"]{
     background-color: #4242a9;
@@ -79,7 +86,7 @@ form input[type="submit"]{
     outline: none;
     border: navajowhite;
     box-shadow: 7px 7px 10px 0 gray;
-    
+    width: 100%;
 }
 form input[type="submit"]:hover{
     box-shadow: 0px 0px 5px 0 gray;
@@ -89,6 +96,7 @@ form input[type="reset"]{
     border: none;
     outline: none;
     box-shadow: 7px 7px 10px 0 gray;
+    width: 100%;
 }
 form input[type="reset"]:hover{
     box-shadow: 0px 0px 5px 0 gray

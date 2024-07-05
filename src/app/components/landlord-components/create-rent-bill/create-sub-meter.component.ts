@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ViewChild, ElementRef} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -24,6 +24,12 @@ export class CreateSubMeterComponent {
   usetId:any='';
   previousUnit:any;
   rentStatus:string='';
+  ebillStatus:string='';
+  isRentholderChoosen:boolean = true;
+  @ViewChild('mainMeter') mainMeter!: ElementRef;
+  @ViewChild('subMeter') subMeter!: ElementRef;
+  @ViewChild('perUnit') perUnit!: ElementRef;
+  @ViewChild('elcAmt') elcAmt!: ElementRef;
   ngOnInit(){
     this.spinner.show();
     let date= new Date();
@@ -51,9 +57,18 @@ export class CreateSubMeterComponent {
   }
   getRent(id:any){
     if(id ===''){
+      
       this.rentval = '';
       this.previousUnit = '';
       this.rentStatus = '';
+      this.ebillStatus='';
+      this.isRentholderChoosen=true;
+      this.name ='';
+      this.mainMeter.nativeElement.classList.add('hide');
+      this.subMeter.nativeElement.classList.add('hide');
+      this.perUnit.nativeElement.classList.add('hide');
+      this.elcAmt.nativeElement.classList.add('hide');
+      this.isElcBillPaid=false;
       return;
     }
     this.spinner.show();
@@ -78,7 +93,7 @@ export class CreateSubMeterComponent {
           }else{
             this.previousUnit=user.current_unit;
           }
-          
+          this.isRentholderChoosen=false;
         }
         this.spinner.hide();
        
@@ -98,13 +113,68 @@ export class CreateSubMeterComponent {
   }
 
   createRentBill(form:NgForm){
+    if(this.name ===""){
+      this.toster.info(`Choose Rentholder. `,'Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
     let data = form.value;
+    if (data.rent_status ===''){
+      this.toster.info(`Choose Rent Status. `,'Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
+    if(data.electric_status===''){
+      this.toster.info(`Choose Electric Bill Status. `,'Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
     data.consumer_Name = this.name;
     data.rentholder_id=this.usetId;
     if(data.rent_status=='paid')data.rent=0;
     if(data.adjustUnit===null || data.adjustUnit==='')data.adjustUnit=0;
     if(data.dueAmount===null || data.dueAmount==='')data.dueAmount=0;
+    if(data.water_bill==="" || data.water_bill===null)data.water_bill=0;
+    if(data.electric_status==="pa"){
+      data.ebill_amt=0;
+      data.totalAmount=0;
+      data.totalUnit=0;
+      data.per_unit=0;
+      data.adjustUnit=0;
+      data.currentUnit=null;
+    }
+    if(data.electric_status==="mmbd"){
+      if(data.totalAmount ==="" || data.totalAmount ===null|| data.totalUnit===''||data.totalUnit===null||data.currentUnit===""||data.currentUnit===null){
+        this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
+      data.ebill_amt=0;
+      data.per_unit=0;
+
+    }
+    if(data.electric_status==="pu"){
+      if(data.per_unit===""||data.per_unit===null||data.currentUnit===""||data.currentUnit===null){
+        this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
+      data.ebill_amt=0;
+      data.totalAmount=0;
+      data.totalUnit=0;
+    }
+    if(data.electric_status==='am'){
+      if(data.ebill_amt===""||data.ebill_amt===null){
+        this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
+      data.totalAmount=0;
+      data.totalUnit=0;
+      data.per_unit=0;
+      data.adjustUnit=0;
+      data.currentUnit=null;
+    }
     delete data.rent_status;
+    
+    console.log(data);
+
+    return;
+
     this.spinner.show();
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
@@ -126,6 +196,48 @@ export class CreateSubMeterComponent {
         this.spinner.hide();
       }
     });
+  }
+isElcBillPaid:boolean=false;
+  showElc(selectElc:any){
+    
+    switch(selectElc.value){
+      case '':
+        this.mainMeter.nativeElement.classList.add('hide');
+        this.subMeter.nativeElement.classList.add('hide');
+        this.perUnit.nativeElement.classList.add('hide');
+        this.elcAmt.nativeElement.classList.add('hide');
+        this.isElcBillPaid=false;
+      break;
+      case 'pa':
+        this.mainMeter.nativeElement.classList.add('hide');
+        this.subMeter.nativeElement.classList.add('hide');
+        this.perUnit.nativeElement.classList.add('hide');
+        this.elcAmt.nativeElement.classList.add('hide');
+        this.isElcBillPaid=true;
+      break;
+      case 'mmbd':
+        this.mainMeter.nativeElement.classList.remove('hide');
+        this.subMeter.nativeElement.classList.remove('hide');
+        this.perUnit.nativeElement.classList.add('hide');
+        this.elcAmt.nativeElement.classList.add('hide');
+        this.isElcBillPaid=false;
+      break;
+      case 'pu':
+        this.mainMeter.nativeElement.classList.add('hide');
+        this.subMeter.nativeElement.classList.remove('hide');
+        this.perUnit.nativeElement.classList.remove('hide');
+        this.elcAmt.nativeElement.classList.add('hide');
+        this.isElcBillPaid=false;
+      break;
+      case 'am':
+        this.mainMeter.nativeElement.classList.add('hide');
+        this.subMeter.nativeElement.classList.add('hide');
+        this.perUnit.nativeElement.classList.add('hide');
+        this.elcAmt.nativeElement.classList.remove('hide');
+        this.isElcBillPaid=false;
+      break;
+    }
+
   }
 
 }
