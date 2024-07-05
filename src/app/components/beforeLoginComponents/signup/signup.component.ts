@@ -69,8 +69,8 @@ siteKey:string= environment.siteKey;
             this.toastr.info('send OTP first.','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
-          if(data.otp==="" || data.otp===null){
-            this.toastr.info('OTP cant be empty.','',{progressBar:true,positionClass:"toast-top-center"});
+          if(data.otp==="" || data.otp===null ||data.otp.length !== 6){
+            this.toastr.info('','Invalid OTP',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
           const upiRegex = /^[^\s@]+@[^\s@]+$/;
@@ -154,7 +154,7 @@ siteKey:string= environment.siteKey;
       return;
     }
 
-    // this.isReadonly = true;
+    this.isReadonly = true;
 
     let data={
       name:name.value,
