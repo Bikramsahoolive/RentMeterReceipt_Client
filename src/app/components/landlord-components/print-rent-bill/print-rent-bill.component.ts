@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
   styleUrls: ['./print-rent-bill.component.css']
 })
 export class PrintRentBillComponent {
-  constructor( private toastr:ToastrService,private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService){}
+  constructor( private toastr:ToastrService,private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
 paramId:any='';
 bill:any;
 upiLink:any;

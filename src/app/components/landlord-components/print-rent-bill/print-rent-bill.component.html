@@ -64,5 +64,5 @@
                 </div>
             </div>
         </div>
-            <button *ngIf="showPayBtn" (click)="payNow()">Pay Now</button>
+            <button *ngIf="showPayBtn && authServe.Rentholder()" (click)="payNow()">Pay Now</button>
         </div>
