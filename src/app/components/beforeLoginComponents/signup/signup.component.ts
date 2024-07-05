@@ -154,8 +154,6 @@ siteKey:string= environment.siteKey;
       return;
     }
 
-    this.isReadonly = true;
-
     let data={
       name:name.value,
       phone:phone.value,
@@ -166,6 +164,7 @@ siteKey:string= environment.siteKey;
       next:(res:any)=>{
         this.spinner.hide()
         if(res.status==='success'){
+          this.isReadonly = true;
           this.sendOtpCount -= 1;
           this.regNumber = res.id;
           this.toastr.success("OTP Sent successfully","",{positionClass:"toast-top-center",progressBar:true});
