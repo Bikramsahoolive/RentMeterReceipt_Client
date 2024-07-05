@@ -18,6 +18,8 @@ siteKey:string= environment.siteKey;
   captchaVirification:boolean=false;
   dToday:string="";
   regNumber:string="";
+  isReadonly:boolean=false;
+  sendOtpCount:number=2;
   ngOnInit(){
     let date= new Date();
     let year = date.getFullYear();
@@ -71,6 +73,15 @@ siteKey:string= environment.siteKey;
             this.toastr.info('OTP cant be empty.','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
+          const upiRegex = /^[^\s@]+@[^\s@]+$/;
+          if(!upiRegex.test(data.upi)){
+            this.toastr.info('','Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
+            return;
+          }
+          if((data.password).length <8 || (data.password).length >16 ){
+            this.toastr.info('Enter an 8 to 16 digit password.','Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
+            return;
+          }
           if(!this.captchaVirification){
             this.toastr.info('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
             return;
@@ -112,10 +123,39 @@ siteKey:string= environment.siteKey;
   }
 
   sendOtp(name:any,phone:any,email:any){
+    if(this.sendOtpCount < 1){
+      this.toastr.error('Maximum OTP Reached.',"",{positionClass:"toast-top-center",progressBar:true});
+      this.router.navigate(['/home']);
+      return;
+    }
     if(name.value==="" || phone.value===""||email.value===""){
       this.toastr.info('Fill above inputs.',"",{positionClass:"toast-top-center",progressBar:true});
       return;
     }
+
+    const phoneRegex = /^[06789]/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameRegex = /[\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if((name.value).length > 25 || name.value.length <5){
+      this.toastr.info('Length should be 5 to 25',"Invalid Name",{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
+     if(nameRegex.test(name.value)){
+      this.toastr.info('Number or Special Char not allowed.',"Invalid Name",{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
+
+    if((phone.value).length !==10 || !phoneRegex.test(phone.value)){
+      this.toastr.info('',"Invalid Phone.",{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
+    if((email.value).length >30 ||!emailRegex.test(email.value)){
+      this.toastr.info('',"Invalid Email",{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
+
+    // this.isReadonly = true;
+
     let data={
       name:name.value,
       phone:phone.value,
@@ -126,11 +166,10 @@ siteKey:string= environment.siteKey;
       next:(res:any)=>{
         this.spinner.hide()
         if(res.status==='success'){
+          this.sendOtpCount -= 1;
           this.regNumber = res.id;
           this.toastr.success("OTP Sent successfully","",{positionClass:"toast-top-center",progressBar:true});
         }
-        console.log(res);
-        
       },error:(err)=>{
         this.spinner.hide();
         this.toastr.error(err.error.message,"",{positionClass:"toast-top-center",progressBar:true});

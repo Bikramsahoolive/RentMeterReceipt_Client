@@ -6,16 +6,16 @@
     <div class="user-details">
     <div class="input-box">
         <!-- <span class="details">Name:</span> -->
-    <input type="text" #cname ngModel name="name" required placeholder="Enter Name" >
+    <input type="text" #cname ngModel name="name" [readOnly]="isReadonly" required placeholder="Enter Name" >
     </div>
     <div class="input-box">
         <!-- <span class="details">Phone:</span> -->
-    <input type="text" #phone ngModel name="phone" required placeholder="Enter Phone">
+    <input type="tel" #phone ngModel name="phone" [readOnly]="isReadonly" required placeholder="Enter Phone">
     </div>
     <div class="input-box" style="width: 100%;">
         <!-- <span class="details" >Email:</span> -->
-        <input type="email" #email ngModel name="email" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email">
-        <input (click)="sendOtp(cname,phone,email)" class="otp-btn" style="padding: 10px 20px; background-color: blueviolet; border: none; border-radius: 0 0 10px 10px; color: white;cursor: pointer;" type="button" value="Send OTP">
+        <input type="email" #email ngModel name="email" [readOnly]="isReadonly" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email">
+        <input (click)="sendOtp(cname,phone,email)" class="otp-btn" style="padding: 10px 20px; background-color: blueviolet; border: none; border-radius: 0 0 15px 15px; color: white;cursor: pointer;" type="button" value="Send OTP">
     </div>
     <div class="input-box">
         <!-- <span class="details">Enter OTP:</span> -->

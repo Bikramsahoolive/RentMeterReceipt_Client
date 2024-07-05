@@ -85,8 +85,8 @@ ngOnInit(){}
 
   verifyForgotPassword(newPass:any,confPass:any){
 
-    if(newPass.value.length<8){
-      this.toster.info('Enter an eight digit password.',"",{progressBar:true,positionClass:"toast-top-center"});
+    if(newPass.value.length<8 || newPass.value.length>16 ){
+      this.toster.info('Enter an 8 to 16 digit password.',"Invalid Password",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
 
