@@ -16,32 +16,35 @@
                 <!-- <div class="data">
                     <span>Bill Period : </span> <Strong>{{}}</Strong>
                 </div> -->
+                <div *ngIf="bill.electric_status !=='am'">
+                    <div class="data" >
+                        <span>Previous Unit : </span> <Strong>{{bill.previousUnit}}</Strong>
+                    </div>
+                    <div class="data">
+                        <span>Current Unit : </span> <Strong>{{bill.currentUnit}}</Strong>
+                    </div>
+                    <div class="data">
+                        <span>Adjust Unit : </span><Strong>{{bill.adjustUnit}}</Strong>
+                    </div>
+                    <div class="data">
+                        <span> Unit Advance: </span> <Strong>{{bill.unitAdv}}</Strong>
+                    </div>
+                </div>
+                
                 <div class="data">
-                    <span>Previous Unit : </span> <Strong>{{bill.previousUnit}}</Strong>
+                    <span> Electric Bill( + ) : </span> <Strong>₹{{bill.eBill}}</Strong>
                 </div>
                 <div class="data">
-                    <span>Current Unit : </span> <Strong>{{bill.currentUnit}}</Strong>
+                    <span>Monthly Rent( + ) : </span> <Strong>₹{{bill.rent}}</Strong>
                 </div>
                 <div class="data">
-                    <span>Adjust Unit : </span><Strong>{{bill.adjustUnit}}</Strong>
+                    <span>Water Bill( + ) : </span> <Strong>₹{{bill.water_bill}}</Strong>
                 </div>
                 <div class="data">
-                    <span> Unit Advance: </span> <Strong>{{bill.unitAdv}}</Strong>
+                    <span>Previous Due( + ) : </span> <Strong>₹{{bill.dueAmount}}</Strong>
                 </div>
                 <div class="data">
-                    <span> Electric Bill(+) : </span> <Strong>₹{{bill.eBill}}</Strong>
-                </div>
-                <div class="data">
-                    <span>Monthly Rent(+) : </span> <Strong>₹{{bill.rent}}</Strong>
-                </div>
-                <div class="data">
-                    <span>Water Bill(+) : </span> <Strong>₹{{bill.water_bill}}</Strong>
-                </div>
-                <div class="data">
-                    <span>Previous Due(+) : </span> <Strong>₹{{bill.dueAmount}}</Strong>
-                </div>
-                <div class="data">
-                    <span>Paid Amount(-) : </span> <Strong>₹{{bill.paid_amt}}</Strong>
+                    <span>Paid Amount( - ) : </span> <Strong>₹{{bill.paid_amt}}</Strong>
                 </div>
             </div>
 

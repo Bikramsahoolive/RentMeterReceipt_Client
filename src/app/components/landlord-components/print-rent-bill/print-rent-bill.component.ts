@@ -82,6 +82,9 @@ showPayBtn:boolean=false;
     window.print();
   }
   payNow(){
+    let upiBtn=document.createElement('a');
+    upiBtn.href=this.upiLink;
+    upiBtn.click();
     this.toastr.info("Pay Now feature is coming soon.","Unavailable",{positionClass:"toast-top-center",progressBar:true})
   }
 }
