@@ -133,10 +133,10 @@ export class CreateSubMeterComponent {
     if(data.dueAmount===null || data.dueAmount==='')data.dueAmount=0;
     if(data.water_bill==="" || data.water_bill===null)data.water_bill=0;
     if(data.electric_status==="pa"){
-      data.ebill_amt=0;
+      data.eBill=0;
       data.totalAmount=0;
       data.totalUnit=0;
-      data.per_unit=0;
+      data.perunit=0;
       data.adjustUnit=0;
       data.currentUnit=null;
     }
@@ -145,35 +145,34 @@ export class CreateSubMeterComponent {
         this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
         return;
       }
-      data.ebill_amt=0;
-      data.per_unit=0;
+      data.eBill=0;
+      data.perunit=0;
 
     }
     if(data.electric_status==="pu"){
-      if(data.per_unit===""||data.per_unit===null||data.currentUnit===""||data.currentUnit===null){
+      if(data.perunit===""||data.perunit===null||data.currentUnit===""||data.currentUnit===null){
         this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
         return;
       }
-      data.ebill_amt=0;
+      data.eBill=0;
       data.totalAmount=0;
       data.totalUnit=0;
     }
     if(data.electric_status==='am'){
-      if(data.ebill_amt===""||data.ebill_amt===null){
+      if(data.eBill===""||data.eBill===null){
         this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
         return;
       }
       data.totalAmount=0;
       data.totalUnit=0;
-      data.per_unit=0;
+      data.perunit=0;
       data.adjustUnit=0;
       data.currentUnit=null;
     }
     delete data.rent_status;
     
-    console.log(data);
+    // console.log(data);
 
-    return;
 
     this.spinner.show();
     this.landlordServ.createRentBill(data).subscribe({
