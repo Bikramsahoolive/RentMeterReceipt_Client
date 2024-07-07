@@ -30,7 +30,7 @@ export class RentHolderComponent {
     userType: ''
     }
   ];
-
+  isTableDataAvailable:boolean=false;
 ngOnInit(){
   this.getAllRentHolder();
 }
@@ -39,15 +39,15 @@ getAllRentHolder(){
   this.spinner.show();
   this.landlordServ.getAllRentholder().subscribe({
     next:(res:rentholderData[])=>{
+      this.isTableDataAvailable=true;
       this.users=res;
+      this.spinner.hide();
     },
     error:(err)=>{
       console.log(err.error);
-      this.toster.error('Something went wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
-      
-    },
-    complete:()=>{this.spinner.hide();}
-    
+      this.toster.error(err.error.message,'Error',{progressBar:true,positionClass:"toast-top-center"});
+      this.spinner.hide();
+    }
   })
 }
 downloadDoc(link:any){

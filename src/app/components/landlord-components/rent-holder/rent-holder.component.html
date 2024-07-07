@@ -2,7 +2,7 @@
 <section class="container">
     <h1 class="head">Rent-Holder Details</h1>
     <div class="data-table">
-        <table class="responsive-table">
+        <table class="responsive-table" *ngIf="isTableDataAvailable">
             <!-- Responsive Table Header Section -->
             <thead class="responsive-table__head">
                 <tr class="responsive-table__row">

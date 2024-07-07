@@ -14,8 +14,15 @@ export class HomeComponent {
     private spinner:NgxSpinnerService
   ){}
 
-  sendSubMail(emailId:any){
+  ngOnInit(){
+    this.homeServ.startServer().subscribe({
+      next:()=>{
+        // this.toster.success("Waked-up","Server",{positionClass:"toast-top-center",progressBar:true});
+      }
+    })
+  }
 
+  sendSubMail(emailId:any){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailRegex.test(emailId.value)){
       this.toster.error('Invalid Email Input','Frontend');
@@ -37,11 +44,6 @@ export class HomeComponent {
         emailId.value = '';
         this.spinner.hide();
       }
-    })
-      
-    
-
-
-
+    });
   }
 }

@@ -4,6 +4,7 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router'
+import { rentBillData } from 'src/app/model/data';
 
 @Component({
   selector: 'app-create-sub-meter',
@@ -80,13 +81,12 @@ export class CreateSubMeterComponent {
     this.rentval=user.rent;
     this.name= user.name;
     this.usetId=user.id;
+    this.previousUnit=user.current_unit;
     this.landlordServ.getAllRentBillData().subscribe({
-      next:(res:any)=>{
-        if(res.status!==false){
+      next:(res:rentBillData[])=>{
           let current = res.filter((e:any)=>{
-            if (e.rentholder_id == id)
-              return e;
-          })
+            if (e.rentholder_id === id) {return e;}
+          });
           if (current.length >0){
             let cLength = current.length-1;
           this.previousUnit = current[cLength].currentUnit;
@@ -94,18 +94,18 @@ export class CreateSubMeterComponent {
             this.previousUnit=user.current_unit;
           }
           this.isRentholderChoosen=false;
-        }
-        this.spinner.hide();
-       
-        
-        
+          this.spinner.hide();
       },
       error:(err)=>{
-        this.toster.error(`${err.error.text}`,"",{positionClass:"toast-top-center",progressBar:true});
         this.spinner.hide();
+        console.log(err.error);
+        this.isRentholderChoosen=false;
+        if(err.error.status !==false){
+          this.toster.error(`Something wents wrong`,"Error",{positionClass:"toast-top-center",progressBar:true});
+        }
       },
       complete:()=>{
-        this.spinner.hide();
+        this.isRentholderChoosen=false;
       }
     })
 
@@ -145,6 +145,10 @@ export class CreateSubMeterComponent {
         this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
         return;
       }
+      if(data.totalAmount<1 || data.totalUnit<1){
+        this.toster.info('Enter Valid Main Bill Amount and Unit.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
       data.eBill=0;
       data.perunit=0;
 
@@ -152,6 +156,10 @@ export class CreateSubMeterComponent {
     if(data.electric_status==="pu"){
       if(data.perunit===""||data.perunit===null||data.currentUnit===""||data.currentUnit===null){
         this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
+      if(data.perunit<1){
+        this.toster.info('Enter Valid Per Unit Amount','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
         return;
       }
       data.eBill=0;
@@ -163,6 +171,10 @@ export class CreateSubMeterComponent {
         this.toster.info('Fill bill details.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
         return;
       }
+      if(data.eBill<1){
+        this.toster.info('Enter Valid Electric Bill Amount','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
       data.totalAmount=0;
       data.totalUnit=0;
       data.perunit=0;
@@ -171,8 +183,10 @@ export class CreateSubMeterComponent {
     }
     delete data.rent_status;
     
-    // console.log(data);
-
+    if(data.water_bill<0){
+  this.toster.info('Enter Valid Water Bill Amount.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+  return;
+}
 
     this.spinner.show();
     this.landlordServ.createRentBill(data).subscribe({

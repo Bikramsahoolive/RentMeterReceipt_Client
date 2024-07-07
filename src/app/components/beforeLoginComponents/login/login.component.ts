@@ -13,6 +13,14 @@ export class LoginComponent {
 
   login(auth:loginData){
     auth.phone = String(auth.phone);
+    if(auth.phone==='' || auth.password===''){
+      this.toastr.info('Invalid Input.', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      return;
+    }
+    if(auth.phone.length!==10){
+      this.toastr.info('Invalid User ID.', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      return;
+    }
     
     if (auth.userType==="landlord"){
       // delete auth.userType;
@@ -25,7 +33,7 @@ export class LoginComponent {
       // delete auth.userType;
       this.authServ.rentholderLogin(auth);
     }else{
-      this.toastr.error('select user type. ', 'Error!',);
+      this.toastr.info('Select Usertype. ', 'Error!',{positionClass:'toast-top-center',progressBar:true});
     }
     
   }

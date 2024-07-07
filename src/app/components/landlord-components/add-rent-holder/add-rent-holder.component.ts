@@ -66,7 +66,12 @@ export class AddRentHolderComponent {
     }
     if(this.deedFileUrl!=='' || this.photoFile!==''){
     let data=form.value;
+    if(data.password.length<8 || data.password.length>16 ){
+      this.toster.info('password must be 8 to 16 digit.',`Invalid Password`,{progressBar:true,positionClass:"toast-top-center"});
+      return;
+    }
     if(data.confPass===data.password){
+
       delete data.confPass;
       delete data.file;
       data.deedURL=this.deedFileUrl;

@@ -38,7 +38,34 @@ datalist:rentBillData[]=[
     water_bill: 0
   }
 ];
-reserveData:any;
+
+reserveData:rentBillData[]=[
+  {
+    adjustUnit: 0,
+    billingDate: '',
+    consumer_Name: '',
+    currentUnit: 0,
+    dueAmount: 0,
+    dueDate: '',
+    eBill: 0,
+    electric_status: '',
+    final_amt: 0,
+    id: '',
+    landlord_id: '',
+    landlord_name: '',
+    paid_amt: 0,
+    payment_date: '',
+    perunit: 0,
+    previousUnit: 0,
+    rent: 0,
+    rentholder_id: '',
+    totalAmount: 0,
+    totalUnit: 0,
+    unitAdv: 0,
+    water_bill: 0
+  }
+];
+isTableDataAvailable:boolean=false;
 userMessage:undefined | string;
 confirm:boolean|undefined;
 totalLength:any;
@@ -55,22 +82,16 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
     this.spinner.show();
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:rentBillData[])=>{
-        console.log(res);
-        
-        // if(res.status !== false){
+        this.isTableDataAvailable = true;
           res = res.reverse();
           this.datalist=res;
           this.reserveData=res;
-        // }else{
-        //   this.toster.error('No Bill Data Found.');
-        // }
-
+          this.spinner.hide();
       },
       error:(err)=>{
-        console.log(err.error);
-      },
-      complete:()=>{
         this.spinner.hide();
+        console.log(err.error);
+        this.toster.error(err.error.message,'Error',{progressBar:true,positionClass:"toast-top-center"});
       }
     })
   }

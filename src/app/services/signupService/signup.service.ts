@@ -13,6 +13,9 @@ export class SignupService {
     // 'api_key':''
     
   })
+  startServer(){
+    return this.http.get(`${environment.apiUrl}/`,{headers:this.header});
+ }
 signUp(data:any){
   return this.http.post(`${environment.apiUrl}/signup`,data,{headers:this.header});
 }
