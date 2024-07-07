@@ -40,6 +40,7 @@
 form .user-details .input-box{
     margin: 10px 0 6px 0;
     width: calc(100% / 2 - 20px);
+    background-color: whitesmoke;
 }
 .user-details .input-box .details{
     font-weight: 600;

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { rentBillData, rentholderData } from 'src/app/model/data';
 import { environment } from 'src/environment';
 
 @Injectable({
@@ -19,10 +20,10 @@ export class RentholderServiceService {
   })
 
   getRentholderData(id:any){
-    return this.http.get<any>(`${environment.apiUrl}/rentholder/user/${id}`,{withCredentials:true,headers:this.header});
+    return this.http.get<rentholderData>(`${environment.apiUrl}/rentholder/user/${id}`,{withCredentials:true,headers:this.header});
   }
 
   getAllRentBillData(){
-    return this.http.get(`${environment.apiUrl}/rent-bill/rentholder`,{withCredentials:true,headers:this.header});
+    return this.http.get<[rentBillData]>(`${environment.apiUrl}/rent-bill/rentholder`,{withCredentials:true,headers:this.header});
   }
 }

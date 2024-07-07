@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { rentholderData } from 'src/app/model/data';
 import { RentholderServiceService } from 'src/app/services/rentholderService/rentholder-service.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class RentholderMenubarComponentComponent {
     this.phone = userData.phone;
 
     this.rentHolderServe.getRentholderData(userData.id).subscribe({
-      next:(res:any)=>{
+      next:(res:rentholderData)=>{
         if(res.photo && res.photo!==""){
             this.rentholderPhoto = res.photo;
            }else{

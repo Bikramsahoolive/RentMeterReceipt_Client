@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { rentBillData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import { RentholderServiceService } from 'src/app/services/rentholderService/rentholder-service.service';
 
@@ -12,8 +13,58 @@ import { RentholderServiceService } from 'src/app/services/rentholderService/ren
 export class BillDetailsComponent {
 
   searchTerm:any='';
-  datalist:any;
-  reserveData:any;
+  datalist:rentBillData[]=[
+    {
+      adjustUnit: 0,
+      billingDate: '',
+      consumer_Name: '',
+      currentUnit: 0,
+      dueAmount: 0,
+      dueDate: '',
+      eBill: 0,
+      electric_status: '',
+      final_amt: 0,
+      id: '',
+      landlord_id: '',
+      landlord_name: '',
+      paid_amt: 0,
+      payment_date: '',
+      perunit: 0,
+      previousUnit: 0,
+      rent: 0,
+      rentholder_id: '',
+      totalAmount: 0,
+      totalUnit: 0,
+      unitAdv: 0,
+      water_bill: 0
+    }
+  ];
+  reserveData:rentBillData[]=[
+    {
+      adjustUnit: 0,
+      billingDate: '',
+      consumer_Name: '',
+      currentUnit: 0,
+      dueAmount: 0,
+      dueDate: '',
+      eBill: 0,
+      electric_status: '',
+      final_amt: 0,
+      id: '',
+      landlord_id: '',
+      landlord_name: '',
+      paid_amt: 0,
+      payment_date: '',
+      perunit: 0,
+      previousUnit: 0,
+      rent: 0,
+      rentholder_id: '',
+      totalAmount: 0,
+      totalUnit: 0,
+      unitAdv: 0,
+      water_bill: 0
+    }
+  ];
   userMessage:undefined | string;
   confirm:boolean|undefined;
   totalLength:any;
@@ -29,15 +80,11 @@ export class BillDetailsComponent {
     ngOnInit(){
       this.spinner.show();
       this.rentholderServe.getAllRentBillData().subscribe({
-        next:(res:any)=>{
-          if(res.status !== false){
+        next:(res:rentBillData[])=>{
             res = res.reverse();
             this.datalist=res;
             this.reserveData=res;
-          }else{
-            this.toster.error('No Bill Data Found.');
-          }
-          this.spinner.hide();
+           this.spinner.hide();
         },
         error:(err)=>{
           console.log(err.error);

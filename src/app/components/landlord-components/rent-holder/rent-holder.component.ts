@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import { rentholderData } from 'src/app/model/data';
 
 @Component({
   selector: 'app-rent-holder',
@@ -10,23 +11,35 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class RentHolderComponent {
   constructor(private toaster:ToastrService,private landlordServ:LandlordService,private spinner:NgxSpinnerService,private toster:ToastrService){}
-  users:any=[];
+  users:rentholderData[]=[
+    {
+    current_unit: 0,
+    deedURL: '',
+    doj: '',
+    email: '',
+    id: '',
+    landlord_id: '',
+    landlord_name: '',
+    member_count: 0,
+    name: '',
+    paid_amt: 0,
+    password: '',
+    phone: '',
+    photo: '',
+    rent: 0,
+    userType: ''
+    }
+  ];
 
 ngOnInit(){
-  console.log('ngoninit');
-  
   this.getAllRentHolder();
 }
 
 getAllRentHolder(){
-  console.log('get all rentholder');
   this.spinner.show();
   this.landlordServ.getAllRentholder().subscribe({
-    next:(res:any)=>{
-      if(res.status!==false){
-      console.log(res);
+    next:(res:rentholderData[])=>{
       this.users=res;
-}
     },
     error:(err)=>{
       console.log(err.error);

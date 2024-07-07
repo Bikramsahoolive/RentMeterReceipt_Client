@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr'
+import { rentBillData } from 'src/app/model/data';
 
 @Component({
   selector: 'app-sub-table',
@@ -11,7 +12,32 @@ import {ToastrService} from 'ngx-toastr'
 })
 export class SubTableComponent {
   searchTerm:any='';
-datalist:any;
+datalist:rentBillData[]=[
+  {
+    adjustUnit: 0,
+    billingDate: '',
+    consumer_Name: '',
+    currentUnit: 0,
+    dueAmount: 0,
+    dueDate: '',
+    eBill: 0,
+    electric_status: '',
+    final_amt: 0,
+    id: '',
+    landlord_id: '',
+    landlord_name: '',
+    paid_amt: 0,
+    payment_date: '',
+    perunit: 0,
+    previousUnit: 0,
+    rent: 0,
+    rentholder_id: '',
+    totalAmount: 0,
+    totalUnit: 0,
+    unitAdv: 0,
+    water_bill: 0
+  }
+];
 reserveData:any;
 userMessage:undefined | string;
 confirm:boolean|undefined;
@@ -28,14 +54,16 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
   ngOnInit(){
     this.spinner.show();
     this.landlordServ.getAllRentBillData().subscribe({
-      next:(res:any)=>{
-        if(res.status !== false){
+      next:(res:rentBillData[])=>{
+        console.log(res);
+        
+        // if(res.status !== false){
           res = res.reverse();
           this.datalist=res;
           this.reserveData=res;
-        }else{
-          this.toster.error('No Bill Data Found.');
-        }
+        // }else{
+        //   this.toster.error('No Bill Data Found.');
+        // }
 
       },
       error:(err)=>{

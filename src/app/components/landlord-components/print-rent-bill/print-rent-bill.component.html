@@ -16,7 +16,7 @@
                 <!-- <div class="data">
                     <span>Bill Period : </span> <Strong>{{}}</Strong>
                 </div> -->
-                <div *ngIf="bill.electric_status !=='am'">
+                <div *ngIf="bill.electric_status !=='am' && bill.electric_status !=='pa'">
                     <div class="data" >
                         <span>Previous Unit : </span> <Strong>{{bill.previousUnit}}</Strong>
                     </div>
@@ -43,7 +43,7 @@
                 <div class="data">
                     <span>Previous Due( + ) : </span> <Strong>₹{{bill.dueAmount}}</Strong>
                 </div>
-                <div class="data">
+                <div class="data" *ngIf="bill.paid_amt!=0">
                     <span>Paid Amount( - ) : </span> <Strong>₹{{bill.paid_amt}}</Strong>
                 </div>
             </div>
