@@ -44,7 +44,7 @@ export class BillPaymentComponent {
     let id = data.id;
 
     if(data.paid_amt>this.toPaidAmount || data.paid_amt === 0 || data.paid_amt ===null){
-      this.toastr.warning('Invalid paid amount','Warning');
+      this.toastr.info('Invalid paid amount','',{positionClass:"toast-top-center",progressBar:true});
       
     }else{
       delete data.id;
@@ -78,7 +78,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
         next:(res:any)=>{
           
           if(res.final_amt == res.paid_amt){
-            this.toastr.info('Bill Already Paid','Warning',{positionClass:"toast-top-center",progressBar:true});
+            this.toastr.info('Bill Already Paid','',{positionClass:"toast-top-center",progressBar:true});
           }else{
             this.toPaidAmount = res.final_amt - res.paid_amt;
             this.payableAmount = res.final_amt - res.paid_amt;
@@ -86,7 +86,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
           this.spinner.hide();
         },error:(error)=>{
           console.log(error);
-          this.toastr.error('error while fetch bill data.','Error',{positionClass:"toast-top-center",progressBar:true});
+          this.toastr.error('Bill ID is not exist.','Error',{positionClass:"toast-top-center",progressBar:true});
           this.spinner.hide();
         }
       })

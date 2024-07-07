@@ -30,6 +30,7 @@
 form .user-details .input-box{
     margin: 10px 0 6px 0;
     width: calc(100% / 2 - 20px);
+    background-color: whitesmoke;
 }
 .user-details .input-box .details{
     font-weight: 600;
@@ -63,9 +64,12 @@ form input[type="submit"],input[type="reset"]{
 }
 form .button{
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }
 form input[type="submit"]{
+    width: 100%;
     background-color: #4242a9;
     transition: ease 0.2s;
     outline: none;

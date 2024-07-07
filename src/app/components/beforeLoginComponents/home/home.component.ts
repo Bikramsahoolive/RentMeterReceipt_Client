@@ -14,13 +14,7 @@ export class HomeComponent {
     private spinner:NgxSpinnerService
   ){}
 
-  ngOnInit(){
-    this.homeServ.startServer().subscribe({
-      next:()=>{
-        // this.toster.success("Waked-up","Server",{positionClass:"toast-top-center",progressBar:true});
-      }
-    })
-  }
+  ngOnInit(){}
 
   sendSubMail(emailId:any){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
