@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr'
+import { rentBillData, rentholderData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 
 @Component({
@@ -21,11 +22,8 @@ export class DashbordContentComponent {
   ngOnInit(){
     this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
-      next:(res:any)=>{        
+      next:(res:rentholderData[])=>{ 
         // this.rentHolderData=res;
-        if(res.status == false){
-          return;
-        }
         this.rentHolderCount=res.length;
         
       //   let count =0;
@@ -38,26 +36,24 @@ export class DashbordContentComponent {
         
       },error:(err)=>{
         console.error(err.error);
+        if(err.error.status !== false){
+          this.toastr.error('Something wents wrong.','Error');
+        }
         this.spinner.hide();
-        this.toastr.error('Something wents wrong.','Error');
       },complete:()=>{
         this.spinner.hide();
       }
     });
 
     this.landlordServ.getAllRentBillData().subscribe({
-      next:(res:any)=>{
-
-        if(res.status === false){
-          return;
-        }
+      next:(res:rentBillData[])=>{
           let due = 0;
-          res.forEach((element:any) => {
+          res.forEach((element:rentBillData) => {
             due = due + Number(element.final_amt);
           });
   
           let totalPaid =0;
-          res.forEach((element:any)=>{
+          res.forEach((element:rentBillData)=>{
             totalPaid = totalPaid + Number(element.paid_amt);
           })
   
@@ -68,8 +64,11 @@ export class DashbordContentComponent {
         
       },
       error:(err)=>{
+        if(err.error.status !== false){
+          this.toastr.error('something wents wrong','Error!');
+        }
         console.log(err.error);
-        this.toastr.error('something wents wrong','Error!');
+       
         
       }
     })

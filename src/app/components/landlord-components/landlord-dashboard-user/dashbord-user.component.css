@@ -36,4 +36,7 @@
 } 
 h1,h3,p{
     padding: 10px 0;
+    width:80%;
+    overflow-x: scroll;
+    scrollbar-width: none;
 }

@@ -4,7 +4,7 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router'
-import { rentBillData } from 'src/app/model/data';
+import { rentBillData, rentholderData } from 'src/app/model/data';
 
 @Component({
   selector: 'app-create-sub-meter',
@@ -41,14 +41,16 @@ export class CreateSubMeterComponent {
     // console.log(this.dToday);
 
     this.landlordServ.getAllRentholder().subscribe({
-      next:(res:any)=>{
-        if(res.status!==false){
+      next:(res:rentholderData[])=>{
           this.users=res;
-        }
+        
         
       },
       error:(err)=>{
-        this.toster.error(`${err.error.text}`,"",{positionClass:"toast-top-center",progressBar:true});
+        if(err.error.status!==false){
+          this.toster.error(`Something wents wrong.`,"Error",{positionClass:"toast-top-center",progressBar:true});
+        }
+        console.log(err.error);
         this.spinner.hide();
       },
       complete:()=>{
