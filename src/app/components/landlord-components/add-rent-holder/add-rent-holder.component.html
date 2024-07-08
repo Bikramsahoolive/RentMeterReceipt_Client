@@ -24,16 +24,16 @@
         <input type="number" ngModel name="rent">
     </div>
     <div class="input-box">
-        <span class="details">Current Meter Unit:</span>
+        <span class="details">Current Meter Unit(Sub Meter)[if any]:</span>
         <input type="number" ngModel name="current_unit">
     </div>
     <div class="input-box">
-        <span class="details">Photo:</span>
-        <input type="file" class="file" ngModel (change)="fileInput($event,'photo')" name="photo">
+        <span class="details">Photo[if any]:</span>
+        <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo">
     </div>
     <div class="input-box">
         <span class="details">Rent Deed / Identity Document:</span>
-        <input type="file" class="file" ngModel (change)="fileInput($event,'document')" name="file">
+        <input type="file" #doc class="file" ngModel (change)="fileInput($event,'document',doc)" name="file">
     </div>
     <div class="input-box">
         <span class="details">Password:</span>
