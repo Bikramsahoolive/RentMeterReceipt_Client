@@ -38,8 +38,8 @@ export class LandlordProfileComponent {
     password:"",
     userType:"",
   };
-  landlordPhoto:any;
-  landlordSignature:any;
+  landlordPhoto:string="";
+  landlordSignature:string="";
 
   ngOnInit(){
     this.spinner.show();
@@ -67,38 +67,38 @@ toggleInput(val:boolean,box:string){
   // console.log(box,!val);
 if(box=='upi'){
   this.upiInput=!val;
-  this.updateCheckbox=true;
+  // this.updateCheckbox=true;
   if (!val){
-  this.updateCheckbox=false;
+  // this.updateCheckbox=false;
   }
 }
 
 if(box=='photo'){
   this.photoInput=!val;
-  this.updateCheckbox=true;
+  // this.updateCheckbox=true;
   if(!val){
-    this.landlordPhoto= undefined;
-    this.updateCheckbox=false;
+    this.landlordPhoto= "";
+    // this.updateCheckbox=false;
   }
 }
 if(box=='sign'){
   this.signInput=!val;
-  this.updateCheckbox=true;
+  // this.updateCheckbox=true;
   if(!val){
-    this.landlordSignature= undefined;
-    this.updateCheckbox=false;
+    this.landlordSignature= "";
+    // this.updateCheckbox=false;
   }
 }
 if(box=='password'){
   this.passwordInput=!val;
-  this.updateCheckbox=true;
+  // this.updateCheckbox=true;
   if(!val){
-    this.updateCheckbox=false;
+    // this.updateCheckbox=false;
   }
 }
 }
 
-fileUpload(event:any,fileType:string){
+fileUpload(event:any,fileType:string, inputField:any){
   let file = event.target.files[0];
   // console.log(file);
   if (file){
@@ -106,7 +106,7 @@ fileUpload(event:any,fileType:string){
 
     let extention = file.name.split(".");
     // console.log(extention[1]);
-    if(extention[1]=="jpg" || extention[1]==='png'){
+    if(extention[1]=="jpg" || extention[1]==='png' || extention[1]==="jpeg"){
       
       if(file.size<548487){
 
@@ -119,11 +119,13 @@ fileUpload(event:any,fileType:string){
 
 
       }else{
+        inputField.value="";
         this.toaster.info('Invalid File size ,only less than 500kb.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
 
     }else{
-      this.toaster.info('Invalid File type ,only jpg ,jpeg.','Error',{progressBar:true,positionClass:"toast-top-center"});
+      inputField.value="";
+      this.toaster.info('Invalid File type ,only jpg, jpeg, png allowed.','Error',{progressBar:true,positionClass:"toast-top-center"});
     }
     
     reader.readAsDataURL(file);
@@ -132,11 +134,42 @@ fileUpload(event:any,fileType:string){
 
 
 updateLandlord(form:NgForm){
-  if(this.updateCheckbox){
+  if(!this.upiInput || !this.passwordInput || !this.photoInput || !this.signInput){
     let data = form.value;
-  if(this.landlordPhoto)data.photo=this.landlordPhoto;
-  if(this.landlordSignature)data.signature=this.landlordSignature;
+    const upiRegex = /^[^\s@]+@[^\s@]+$/;
+    if(!this.upiInput){
+      if(data.upi==="" || !upiRegex.test(data.upi)){
+        this.toaster.info("Enter a valid UPI ID.",'Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
+        return;
+      }
+    }
+
+    if(!this.photoInput){
+      if(this.landlordPhoto===""){
+        this.toaster.info("Select a valid photo File.",'Invalid Photo',{progressBar:true,positionClass:"toast-top-center"});
+        return;
+      }else{
+        data.photo=this.landlordPhoto;
+      }
+    }
+
+    if(!this.signInput){
+      if(this.landlordSignature===""){
+        this.toaster.info("Select a valid Signature File.",'Invalid Signature',{progressBar:true,positionClass:"toast-top-center"});
+        return;
+      }else{
+        data.signature=this.landlordSignature;
+      }
+    }
+
+    if(!this.passwordInput){
+      if( data.password==="" || data.password.length < 8 || data.password.length > 16){
+        this.toaster.info("Enter a valid 8 to 16 digit password.",'Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
+        return;
+      }
+    }
   if(data.cPass == data.password){
+
     this.spinner.show();
     delete data.cPass;
 
@@ -157,12 +190,12 @@ updateLandlord(form:NgForm){
     });
     
   }else{
-    this.toaster.info('Password not maatch','Invalid Password.',{progressBar:true,positionClass:"toast-top-center"});
+    this.toaster.info('Password not matching','Invalid Password.',{progressBar:true,positionClass:"toast-top-center"});
   }
   }else{
-    this.toaster.info('Mark update type','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
-    form.reset();
-    this.ngOnInit();
+    this.toaster.info('Mark Update Type','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
+    // form.reset();
+    // this.ngOnInit();
   }
 }
 
