@@ -102,7 +102,7 @@ form input[type="submit"]:hover{
 }
 
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:550px) {
     .user-details{
         flex-direction:column;
     }
