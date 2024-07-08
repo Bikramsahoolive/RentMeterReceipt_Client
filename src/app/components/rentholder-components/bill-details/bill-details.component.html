@@ -39,7 +39,7 @@
           
         </thead>
         <tbody>
-          <tr *ngFor="let data of datalist | search:searchTerm |paginate:{itemsPerPage:15 ,currentPage:page,totalItems:datalist.length};">
+          <tr *ngFor="let data of datalist | search:searchTerm |paginate:{itemsPerPage:12 ,currentPage:page,totalItems:datalist.length};">
             <td data-label="Bill Date : ">{{data.billingDate}}</td>
             <td data-label="Bill ID : "><a style="color: #3e4f5e;" routerLink="/print-rent-bill/{{data.id}}">{{data.id}}</a> <i class="fa-regular fa-copy " #copyBtn style="margin-left: 20px;cursor: pointer; " (click)="copyBillId(copyBtn,data.id)"></i></td>
             
