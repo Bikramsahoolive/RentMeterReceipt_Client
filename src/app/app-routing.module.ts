@@ -43,10 +43,11 @@ import { ContactComponent } from './components/beforeLoginComponents/contact/con
 import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
 import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
 import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
+import { rentholderAuthGuard } from './guard/rentholder-auth.guard';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent,canActivate:[authGuard]},
-  {path:'home',component:HomeComponent},
+  {path:'',component:HomeComponent},
+  // {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'forgot-password',component:ForgotPasswordComponent},
@@ -67,7 +68,7 @@ children:[
   {path:'',component:DashbordUserComponent,outlet:'outlet2'},
 ]
 },
-{path:'dashbord-rentholder',component:DashbordComponent,canActivate:[authGuard],
+{path:'dashbord-rentholder',component:DashbordComponent,canActivate:[rentholderAuthGuard],
 children:[
   {path:'',component:RentholderDashbordContentComponent,outlet:'outlet1'},
   {path:'',component:RentholderMenubarComponentComponent,outlet:'outlet2'}
@@ -107,7 +108,7 @@ children:[
   {path:'',component:ManageMenuComponent,outlet:'outlet2'}
 ]
 },
-{path:"rentholder/bill-data",component:BillDetailsComponent,canActivate:[authGuard]}
+{path:"rentholder/bill-data",component:BillDetailsComponent,canActivate:[rentholderAuthGuard]}
 ];
 
 @NgModule({

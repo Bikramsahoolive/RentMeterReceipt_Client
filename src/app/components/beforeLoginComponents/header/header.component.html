@@ -14,7 +14,7 @@
             <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data">Bill Details</a></li>
             <div *ngIf="authService.isLogin() else loginForm " ><a (click)="logout()" id="logout">Logout</a></div>
             <ng-template #loginForm>
-                <li><a routerLink="home" (click)="hideMenu(dropdown,tglBtn)">Home</a></li>
+                <li><a routerLink="" (click)="hideMenu(dropdown,tglBtn)">Home</a></li>
                 <li><a routerLink="about" (click)="hideMenu(dropdown,tglBtn)">About</a></li>
                 <li><a routerLink="contact" (click)="hideMenu(dropdown,tglBtn)">Contact Us</a></li>
                 <!-- <li><a routerLink="/signup-status" (click)="hideMenu(dropdown,tglBtn)">Status</a></li> -->
@@ -39,7 +39,7 @@
         <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data"(click)="hideMenu(dropdown,tglBtn)">Bill Details</a></li>
         <div *ngIf="authService.isLogin() else loginForm " (click)="hideMenu(dropdown,tglBtn)" ><a (click)="logout()" id="logout">Logout</a></div>
         <ng-template #loginForm>
-            <li><a routerLink="home"(click)="hideMenu(dropdown,tglBtn)">Home</a></li>
+            <li><a routerLink=""(click)="hideMenu(dropdown,tglBtn)">Home</a></li>
             <li><a routerLink="about"(click)="hideMenu(dropdown,tglBtn)">About</a></li>
             <li><a routerLink="contact"(click)="hideMenu(dropdown,tglBtn)">Contact Us</a></li>
             <!-- <li><a routerLink="/signup-status"(click)="hideMenu(dropdown,tglBtn)">Status</a></li> -->

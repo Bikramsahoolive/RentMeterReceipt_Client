@@ -6,6 +6,7 @@ export interface loginData {
 
 export interface landlordData {
     id: string,
+    dor?:string,
     name: string,
     phone: string,
     email: string,

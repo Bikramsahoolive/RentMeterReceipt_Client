@@ -89,6 +89,12 @@ siteKey:string= environment.siteKey;
 
           this.spinner.show();
           data.id = this.regNumber;
+
+          let date= new Date();
+          let year = date.getFullYear();
+          let month =(date.getMonth()+1).toString().padStart(2,'0');
+          let day = date.getDate().toString().padStart(2,'0');
+          data.dor=`${year}-${month}-${day}`;
           
           this.signupService.actionLandlordData(data).subscribe({
             next:(result:any)=>{

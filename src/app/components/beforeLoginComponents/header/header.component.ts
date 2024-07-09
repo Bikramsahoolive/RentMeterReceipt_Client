@@ -10,6 +10,7 @@ export class HeaderComponent {
   constructor(public authService:AuthServiceService){}
   ngOnInit(){
     localStorage.setItem('connect.rid',btoa('false'));
+      this.authService.checkSession();
  }
   dropdownToggle(dropdown:any,tglBtn:any)
   {

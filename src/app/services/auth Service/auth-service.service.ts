@@ -119,13 +119,36 @@ verifyforgotPassword(data:any){
 }
 
 
+checkLandlordSession(){
+  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
+    next:(result:any)=>{
+      if(result.isActive){
+        if(result.userType!=='landlord'){
+          this.router.navigate(['']);
+        }
+      }
+    }
+  });
+}
 
+
+checkrentHolderSession(){
+  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
+    next:(result:any)=>{
+      if(result.isActive){
+        if(result.userType!=='rentholder'){
+          this.router.navigate(['']);
+        }
+      }
+    }
+  });
+}
 
 
 
 checkSession(){
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
-
+    if (result.isActive){
     localStorage.setItem("connect.rid",btoa(result.isActive));
     this.isLogedIn = result.isActive;
 if(result.userType==='admin'){
@@ -135,16 +158,23 @@ if(result.userType==='admin'){
 }else if(result.userType==='rentholder'){
     this.isRentholder=result.isActive;
 }
-    
-if (result.isActive==false){
+}else{
+  if(this.isLogedIn){
+    this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast-top-center"});
+  }
   localStorage.setItem("connect.sid","null");
   this.isLogedIn = false;
   this.isLandlord=false;
+  this.isRentholder=false;
   this.isAdmin=false;
-  this.router.navigate(['home']);
+  this.router.navigate(['']);
 }
 
- });
+ },(err)=>{
+  console.log(err.error);
+  this.toastr.error('Somthing wents wrong','Error!',{progressBar:true,positionClass:"toast-top-center"});
+ }
+);
  
  }
 
@@ -166,13 +196,13 @@ if (result.isActive==false){
  logout(){
 this.spinner.show();
   this.http.post(`${environment.apiUrl}/logout`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
-    localStorage.setItem("connect.rid",btoa(result.isActive));
+    localStorage.setItem("connect.rid",btoa('false'));
     localStorage.setItem("connect.sid","null");
     this.isLogedIn = false;
     this.isAdmin = false;
     this.isLandlord=false;
     this.isRentholder=false;
-    this.router.navigate(['home']);
+    this.router.navigate(['']);
     this.spinner.hide();
   })
 
