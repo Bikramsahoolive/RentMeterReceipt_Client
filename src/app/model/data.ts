@@ -6,7 +6,7 @@ export interface loginData {
 
 export interface landlordData {
     id: string,
-    dor?:string,
+    dor:string,
     name: string,
     phone: string,
     email: string,
@@ -14,7 +14,9 @@ export interface landlordData {
     photo: string,
     signature: string,
     password: string,
-    userType: string
+    userType: string,
+    plan:string,
+    rcrCount:number
 }
 
 export interface rentBillData {

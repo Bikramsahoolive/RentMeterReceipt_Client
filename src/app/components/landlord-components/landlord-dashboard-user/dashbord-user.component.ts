@@ -8,9 +8,11 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
   styleUrls: ['./dashbord-user.component.css']
 })
 export class DashbordUserComponent {
-  name:any='';
-  email:any='';
-  phone:any='';
+  name:string='';
+  email:string='';
+  phone:string='';
+  plan:string='';
+  designation:string='';
   landlordPhoto:string="../../../assets/profile.jpg";
   constructor(
     private landlordServ:LandlordService,
@@ -25,6 +27,8 @@ export class DashbordUserComponent {
 
     this.landlordServ.getLandlordData(userData.id).subscribe({
       next:(res:landlordData)=>{
+        this.designation=res.userType;
+        this.plan=res.plan;
         if(res.photo && res.photo!==""){
             this.landlordPhoto = res.photo;
            }else{

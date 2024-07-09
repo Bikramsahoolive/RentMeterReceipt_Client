@@ -15,6 +15,7 @@ export class RentholderDashbordContentComponent {
   constructor(private landlordServ:LandlordService,private rentholderServe:RentholderServiceService,private spinner:NgxSpinnerService,private toastr:ToastrService ){}
   landlordData:landlordData={
     id: '',
+    dor:'',
     name: '',
     phone: '',
     email: '',
@@ -22,7 +23,9 @@ export class RentholderDashbordContentComponent {
     photo: '',
     signature: '',
     password: '',
-    userType: ''
+    userType: '',
+    plan:'',
+    rcrCount:0
   };
   rentholderData:any;
   // datalist:any;

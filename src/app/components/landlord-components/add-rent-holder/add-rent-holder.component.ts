@@ -111,7 +111,6 @@ if(current_unit==="" || current_unit===null){
     }
     if(data.confPass===data.password){
 
-      delete data.confPass;
       delete data.file;
       data.deedURL=this.deedFileUrl;
       data.photo = this.photoFile;
@@ -128,7 +127,10 @@ if(current_unit==="" || current_unit===null){
         }
         this.spinner.hide();
       },
-      error:(err)=>{this.toster.error(`${err.error}`,`Error`,{progressBar:true,positionClass:"toast-top-center"})
+      error:(err)=>{
+      console.error(err.error);
+        
+      this.toster.error(`${err.error.message}`,`Error`,{progressBar:true,positionClass:"toast-top-center"})
       this.spinner.hide();
     }
     });

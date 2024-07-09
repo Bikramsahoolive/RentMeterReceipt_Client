@@ -29,6 +29,7 @@ export class LandlordProfileComponent {
   landlordId:any;
   landlordData:landlordData={
     id:"",
+    dor:"",
     name:"",
     phone:"",
     email:"",
@@ -37,6 +38,8 @@ export class LandlordProfileComponent {
     signature:"",
     password:"",
     userType:"",
+    plan:"",
+    rcrCount:0
   };
   landlordPhoto:string="";
   landlordSignature:string="";
