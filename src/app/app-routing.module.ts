@@ -84,7 +84,7 @@ children:[
 {path:'create-MainBill',component:CreateBillComponent,canActivate:[authGuard]},
 {path:'create-rent-bill',component:CreateSubMeterComponent,canActivate:[authGuard]},
 
-{path:'print-rent-bill/:id',component:PrintRentBillComponent,canActivate:[authGuard]},
+{path:'print-rent-bill/:id',component:PrintRentBillComponent},
 
 {path:'bill-payment',component:BillPaymentComponent,canActivate:[authGuard]},
 {path:'fine-addition',component:AdditionFinesComponent,canActivate:[authGuard]},

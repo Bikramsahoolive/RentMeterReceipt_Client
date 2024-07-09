@@ -149,33 +149,45 @@ checkrentHolderSession(){
 checkSession(){
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe((result:any)=>{
     if (result.isActive){
-    localStorage.setItem("connect.rid",btoa(result.isActive));
-    this.isLogedIn = result.isActive;
-if(result.userType==='admin'){
-  this.isAdmin=result.isActive;
-}else if(result.userType==='landlord'){
-  this.isLandlord=result.isActive;
-}else if(result.userType==='rentholder'){
-    this.isRentholder=result.isActive;
-}
+    localStorage.setItem("connect.rid",btoa('true'));
 }else{
-  if(this.isLogedIn){
-    this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast-top-center"});
-  }
+  localStorage.setItem("connect.rid",btoa('false'));
+  this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast-top-center"});
   localStorage.setItem("connect.sid","null");
-  this.isLogedIn = false;
-  this.isLandlord=false;
-  this.isRentholder=false;
-  this.isAdmin=false;
-  this.router.navigate(['']);
+  this.router.navigate(['login']);
 }
-
  },(err)=>{
   console.log(err.error);
   this.toastr.error('Somthing wents wrong','Error!',{progressBar:true,positionClass:"toast-top-center"});
  }
 );
  
+ }
+
+ setHeader(){
+  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
+    next:(result:any)=>{
+    if (result.isActive){
+      this.isLogedIn = true;
+
+      if(result.userType==='admin'){
+        this.isAdmin=result.isActive;
+      }else if(result.userType==='landlord'){
+        this.isLandlord=result.isActive;
+      }else if(result.userType==='rentholder'){
+          this.isRentholder=result.isActive;
+      }
+    }else{
+      this.isLandlord=false;
+      this.isRentholder=false;
+      this.isAdmin=false;
+      this.isLogedIn = false;
+    }
+    },error:(err)=>{
+      console.log(err.error);
+      
+    }
+    });
  }
 
  isLogin(){
