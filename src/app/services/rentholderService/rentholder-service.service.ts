@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { rentBillData, rentholderData } from 'src/app/model/data';
+import { rentBillData, rentholderData, updateRentholderData } from 'src/app/model/data';
 import { environment } from 'src/environment';
 
 @Injectable({
@@ -25,5 +25,8 @@ export class RentholderServiceService {
 
   getAllRentBillData(){
     return this.http.get<[rentBillData]>(`${environment.apiUrl}/rent-bill/rentholder`,{withCredentials:true,headers:this.header});
+  }
+  updateRentholderData(id:string,data:updateRentholderData){
+    return this.http.put(`${environment.apiUrl}/rentholder/user/${id}`,data,{withCredentials:true,headers:this.header});
   }
 }

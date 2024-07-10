@@ -61,3 +61,15 @@ export interface rentholderData {
     rent: number,
     userType: string
 }
+
+export interface updateRentholderData{
+    current_unit?: number,
+    deedURL?: string,
+    email?: string,
+    member_count?: number,
+    name?: string,
+    password?: string,
+    phone?: string,
+    photo?: string,
+    rent?: number
+}

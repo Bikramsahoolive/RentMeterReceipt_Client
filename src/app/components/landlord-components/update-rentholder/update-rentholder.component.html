@@ -24,12 +24,12 @@
             <input type="number" [(ngModel)]="renthplderData.rent" name="rent" [disabled]="rentInput">
         </div>
         <div class="input-box">
-            <span class="details"><input type="checkbox" #cunitcheck (change)="toggleInput(cunitcheck.checked,'cunit')" >Initial Meter Unit(Sub Meter)[if any]:</span>
+            <span class="details"><input type="checkbox" #cunitcheck (change)="toggleInput(cunitcheck.checked,'cunit')" >Initial Meter Unit(Sub Meter):</span>
             <input type="number" [(ngModel)]="renthplderData.current_unit" name="current_unit" [disabled]="cunitInput">
         </div>
         <div class="input-box">
-            <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')" >Photo[if any]:</span>
-            <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo" [disabled]="phoneInput">
+            <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')" >Photo:</span>
+            <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo" [disabled]="photoInput">
         </div>
         <div class="input-box">
             <span class="details"><input type="checkbox" #doccheck (change)="toggleInput(doccheck.checked,'doc')" >Rent Deed / Identity Document:</span>
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="button">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Update">
         <!-- <input type="reset" value="Reset"> -->
     </div> 
     </form>
