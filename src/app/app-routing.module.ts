@@ -45,6 +45,7 @@ import { ForgotPasswordComponent } from './components/beforeLoginComponents/forg
 import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
 import { rentholderAuthGuard } from './guard/rentholder-auth.guard';
 import { UpdateRentholderComponent } from './components/landlord-components/update-rentholder/update-rentholder.component';
+import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginComponents/privacy-policy-term-conditions/privacy-policy-term-conditions.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -55,6 +56,7 @@ const routes: Routes = [
   {path:'signup-status',component:SignupStatusComponent},
   {path:'contact',component:ContactComponent},
   {path:'about',component:AboutComponent},
+  {path:'privacy-policy',component:PrivacyPolicyTermConditionsComponent},
   {path:'dashbord-admin',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:AdminDashbordContentComponent,outlet:'outlet1'},

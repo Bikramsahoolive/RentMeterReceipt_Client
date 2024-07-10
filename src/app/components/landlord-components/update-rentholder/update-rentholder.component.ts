@@ -235,10 +235,12 @@ if(this.photoFile===''){
           this.toster.success(res.message,"",{positionClass:'toast-top-center',progressBar:true})
           this.router.navigate(['rent-holder']);
         }else{
-          this.toster.error('error while update data, try again',"Error",{positionClass:'toast-top-center',progressBar:true});
+          this.toster.error(res.message,"Error",{positionClass:'toast-top-center',progressBar:true});
         }
       },error:(err)=>{
         this.toster.error('Something wents wrong',"Error!",{positionClass:'toast-top-center',progressBar:true})
+        this.spinner.hide();
+      },complete:()=>{
         this.spinner.hide();
       }
     });

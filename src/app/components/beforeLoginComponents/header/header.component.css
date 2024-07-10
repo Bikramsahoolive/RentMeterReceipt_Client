@@ -60,18 +60,19 @@ div #logout:hover{
     width: 100%;
     background:rgb(115 115 243);
     /* backdrop-filter: blur(65px); */
+    z-index: 3;
     border-radius:0 0 10px 10px;
     overflow: hidden;
-    transition:  0.5s ease;
     padding-bottom: 5px;
-
+    transition: height 0.3s ease;
 }
 
 .dropdown_menu.open {
-    height: auto;
+    height: 250px;
     z-index:3;
     max-height: 50vh;
     padding: 10px 50px;
+    transition: height 0.3s ease;
 }
 
 .dropdown_menu li {

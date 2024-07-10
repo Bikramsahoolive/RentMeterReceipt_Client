@@ -62,6 +62,7 @@ import { AboutComponent } from './components/beforeLoginComponents/about/about.c
 import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
 import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
 import { UpdateRentholderComponent } from './components/landlord-components/update-rentholder/update-rentholder.component';
+import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginComponents/privacy-policy-term-conditions/privacy-policy-term-conditions.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { UpdateRentholderComponent } from './components/landlord-components/upda
     AboutComponent,
     ForgotPasswordComponent,
     BillDetailsComponent,
-    UpdateRentholderComponent
+    UpdateRentholderComponent,
+    PrivacyPolicyTermConditionsComponent
   ],
   imports: [
     BrowserModule,

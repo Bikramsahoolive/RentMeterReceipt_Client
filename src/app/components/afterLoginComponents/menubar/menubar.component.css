@@ -62,10 +62,13 @@
     .menu{
         position: absolute;
         z-index: 2;
+        left: 0;
+        transition: left 0.3s ease; 
     }
     .menu-open{
         position: absolute;
         left: -255px;
+        transition: left 0.3s ease; 
     }
     /* .dropdown_menu .active{
         color: gray;
@@ -75,8 +78,13 @@
     } */
     #toggle-btn{
         display: block;
-        left: 125px;
+        left: 127px;
         top: 20px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        padding-top: 5px;
     }
     /* .toggle-btn{
         display: block;
