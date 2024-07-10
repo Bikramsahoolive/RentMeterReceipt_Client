@@ -44,6 +44,7 @@ import { AboutComponent } from './components/beforeLoginComponents/about/about.c
 import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
 import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
 import { rentholderAuthGuard } from './guard/rentholder-auth.guard';
+import { UpdateRentholderComponent } from './components/landlord-components/update-rentholder/update-rentholder.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -85,6 +86,8 @@ children:[
 {path:'create-rent-bill',component:CreateSubMeterComponent,canActivate:[authGuard]},
 
 {path:'print-rent-bill/:id',component:PrintRentBillComponent},
+
+{path:'update-rentholder/:id',component:UpdateRentholderComponent,canActivate:[authGuard]},
 
 {path:'bill-payment',component:BillPaymentComponent,canActivate:[authGuard]},
 {path:'fine-addition',component:AdditionFinesComponent,canActivate:[authGuard]},

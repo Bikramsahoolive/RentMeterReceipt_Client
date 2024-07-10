@@ -61,6 +61,7 @@ import { ContactComponent } from './components/beforeLoginComponents/contact/con
 import { AboutComponent } from './components/beforeLoginComponents/about/about.component';
 import { ForgotPasswordComponent } from './components/beforeLoginComponents/forgot-password/forgot-password.component';
 import { BillDetailsComponent } from './components/rentholder-components/bill-details/bill-details.component';
+import { UpdateRentholderComponent } from './components/landlord-components/update-rentholder/update-rentholder.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { BillDetailsComponent } from './components/rentholder-components/bill-de
     ContactComponent,
     AboutComponent,
     ForgotPasswordComponent,
-    BillDetailsComponent
+    BillDetailsComponent,
+    UpdateRentholderComponent
   ],
   imports: [
     BrowserModule,

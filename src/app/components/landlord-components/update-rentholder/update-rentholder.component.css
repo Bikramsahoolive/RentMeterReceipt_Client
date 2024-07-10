@@ -1,0 +1,103 @@
+.content{
+    background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cont{
+    max-width: 800px;
+    width: 100%;
+    padding: 25px 30px;
+    border-radius: 8px;
+
+}
+.cont .titel{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(53, 53, 53);
+    background-color: whitesmoke;
+    padding: 15px;
+    border-radius: 15px;
+}
+.cont form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+    margin: 10px 0 6px 0;
+    width: calc(100% / 2 - 20px);
+    background-color: whitesmoke;
+}
+.user-details .input-box .details{
+    font-weight: 600;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-details .input-box .details input{
+    width: 20px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 5px;
+}
+.file{
+    border: 2px solid black;
+    padding: 8px;
+}
+form input[type="submit"],input[type="reset"]{
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+    width: 47%;
+    color: white;
+}
+form .button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+form input[type="submit"]{
+    width: 100%;
+    background-color: #4242a9;
+    transition: ease 0.2s;
+    outline: none;
+    border: navajowhite;
+    box-shadow: 7px 7px 10px 0 gray;
+    
+}
+form input[type="submit"]:hover{
+    box-shadow: 0px 0px 5px 0 gray;
+}
+form input[type="reset"]{
+    background-color: #972727;
+    border: navajowhite;
+    outline: none;
+    box-shadow: 7px 7px 10px 0 gray;
+}
+
+form input[type="reset"]:hover{
+    box-shadow: 0px 0px 5px 0 gray
+}
+
+
+@media screen and (max-width:600px) {
+    .user-details{
+        flex-direction:column;
+    }
+    form .user-details .input-box{
+        width:100%;
+    }
+}

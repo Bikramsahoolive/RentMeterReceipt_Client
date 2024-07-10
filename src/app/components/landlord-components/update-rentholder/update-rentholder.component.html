@@ -1,0 +1,54 @@
+<div class="content">
+    <div class="cont">
+        <h1 class="titel">Update Rent-Holder</h1>
+    <form #rentHolderData="ngForm" (ngSubmit)="updateData(rentHolderData)">
+        <div class="user-details">
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #namecheck (change)="toggleInput(namecheck.checked,'name')" >Name:</span>
+        <input type="text" [(ngModel)]="renthplderData.name" name="name" [disabled]="nameInput">
+        </div>
+        <div class="input-box">
+            <span class="details" > <input type="checkbox" #membercheck (change)="toggleInput(membercheck.checked,'mcount')" >Members Count:</span>
+            <input type="number" [(ngModel)]="renthplderData.member_count" name="member_count" [disabled]="mcountInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #phonecheck (change)="toggleInput(phonecheck.checked,'phone')" >Phone:</span>
+        <input type="tel" [(ngModel)]="renthplderData.phone" name="phone" [disabled]="phoneInput">
+        </div>
+        <div class="input-box">
+            <span class="details" ><input type="checkbox" #emailcheck (change)="toggleInput(emailcheck.checked,'email')" >Email:</span>
+            <input type="email" [(ngModel)]="renthplderData.email" name="email" [disabled]="emailInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #rentcheck (change)="toggleInput(rentcheck.checked,'rent')" >Monthly Rent(₹):</span>
+            <input type="number" [(ngModel)]="renthplderData.rent" name="rent" [disabled]="rentInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #cunitcheck (change)="toggleInput(cunitcheck.checked,'cunit')" >Initial Meter Unit(Sub Meter)[if any]:</span>
+            <input type="number" [(ngModel)]="renthplderData.current_unit" name="current_unit" [disabled]="cunitInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')" >Photo[if any]:</span>
+            <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo" [disabled]="phoneInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #doccheck (change)="toggleInput(doccheck.checked,'doc')" >Rent Deed / Identity Document:</span>
+            <input type="file" #doc class="file" ngModel (change)="fileInput($event,'document',doc)" name="file" [disabled]="docInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><input type="checkbox" #passcheck (change)="toggleInput(passcheck.checked,'pass')" >Password:</span>
+        <input type="password" ngModel name="password" [disabled]="passwordInput">
+        </div>
+        <div class="input-box">
+            <span class="details"><p style="height: 44px;
+    width: 20px;"></p>Confirm Password:</span>
+        <input type="text" ngModel name="confPass" [disabled]="passwordInput">
+        </div>
+    </div>
+    <div class="button">
+        <input type="submit" value="Submit">
+        <!-- <input type="reset" value="Reset"> -->
+    </div> 
+    </form>
+    </div>
+    </div>
