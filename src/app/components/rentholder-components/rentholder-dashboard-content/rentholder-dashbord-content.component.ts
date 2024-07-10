@@ -32,26 +32,22 @@ export class RentholderDashbordContentComponent {
   totalPaid:number=0;
   totalDue:number=0;
   ngOnInit(){
-    this.spinner.show();
     let getEncData:any = localStorage.getItem('connect.sid');
     let actualData = atob(getEncData);
     let userData = JSON.parse(actualData);
-    
     this.rentholderData= userData;
-
+    this.spinner.show();
     this.landlordServ.getLandlordData(userData.landlord_id).subscribe({
       next:(res:landlordData)=>{
         this.landlordData = res;
-        this.spinner.hide();
           
       },
       error:(err:any)=>{
-        console.log(err);
         this.spinner.hide();
+        console.log(err);
         
       },complete:()=>{
-        
-        
+        this.spinner.hide();
       }
     });
 
@@ -68,10 +64,10 @@ export class RentholderDashbordContentComponent {
         this.totalDue = billAmount - paidAmount;
       },
       error:(err)=>{
+        this.spinner.hide();
         console.log(err.error);
-      },
-      complete:()=>{
-        // this.spinner.hide();
+      },complete:()=>{
+        this.spinner.hide();
       }
     })
 

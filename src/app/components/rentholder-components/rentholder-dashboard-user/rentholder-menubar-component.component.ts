@@ -35,9 +35,10 @@ export class RentholderMenubarComponentComponent {
             this.rentholderPhoto = "../../../assets/profile.jpg";
            }
       },error:(error:any)=>{
+        this.spinner.hide();
         console.log(error);
       }
-    })
+    });
   }
 
 }
