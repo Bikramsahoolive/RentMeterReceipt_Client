@@ -196,7 +196,7 @@ updateLandlord(form:NgForm){
     this.toaster.info('Password not matching','Invalid Password.',{progressBar:true,positionClass:"toast-top-center"});
   }
   }else{
-    this.toaster.info('Mark Update Type','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
+    this.toaster.info('Select Any Update Type.','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
     // form.reset();
     // this.ngOnInit();
   }

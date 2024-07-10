@@ -30,11 +30,11 @@
         <input type="email" [(ngModel)]="landlordData.upi" name="upi"  [disabled]="upiInput" >
     </div>
     <div class="input-box">
-        <span class="details">Photo:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('photo')">(Click to Remove Photo)</small>
+        <span class="details">Photo:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('photo')" *ngIf="landlordData.photo !==''">(Click to Remove Photo)</small>
     <input type="file" class="file" ngModel name="photo" #photo  [disabled]="photoInput" (change)="fileUpload($event,'photo',photo)">
     </div>
     <div class="input-box">
-        <span class="details">Signature:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('signature')">(Click to Remove Sign)</small>
+        <span class="details">Signature:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('signature')" *ngIf="landlordData.signature !==''">(Click to Remove Signature)</small>
         <input type="file" class="file" ngModel name="signature" #signature [disabled]="signInput" (change)="fileUpload($event,'signature',signature)">
     </div>
     <div class="input-box">

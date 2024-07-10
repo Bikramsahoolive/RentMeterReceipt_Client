@@ -43,7 +43,6 @@ export class UpdateRentholderComponent {
     this.rentholderId=urlid||"";
         this.rentholderServe.getRentholderData(urlid).subscribe({
           next:(res:rentholderData)=>{
-            console.log(res);
             this.renthplderData=res;
           },
           error:(err)=>{
@@ -150,8 +149,9 @@ export class UpdateRentholderComponent {
 
   updateData(form:NgForm){
     let data = form.value;
-    console.log(data);
 
+    if(!this.nameInput || !this.mcountInput || !this.phoneInput || !this.emailInput || !this.rentInput || !this.cunitInput || !this.photoInput || !this.docInput || !this.passwordInput){
+      
     const nameRegex = /[\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if(!this.nameInput){
     if( data.name.length > 25 || nameRegex.test(data.name)){
@@ -197,7 +197,7 @@ if(data.current_unit==="" || data.current_unit===null){
  if(!this.photoInput){
 
 if(this.photoFile===''){
-  this.toster.info(`Invalid photo file.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+  this.toster.info(`Select a valid photo file.`,"Invalid Input",{progressBar:true,positionClass:"toast-top-center"});
   return;
 }else{
   data.photo = this.photoFile;
@@ -219,11 +219,13 @@ if(this.photoFile===''){
     }else if(data.confPass!==data.password){
       this.toster.info(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
       return;
+    }else{
+      delete data.confPass;
     }
   }
-
-    delete data.confPass;
-
+    if(data.file){
+      delete data.file;
+    }
     this.spinner.show()
     this.rentholderServe.updateRentholderData(this.rentholderId,data).subscribe({
       next:(res:any)=>{
@@ -239,7 +241,12 @@ if(this.photoFile===''){
         this.toster.error('Something wents wrong',"Error!",{positionClass:'toast-top-center',progressBar:true})
         this.spinner.hide();
       }
-    })
+    });
+
+  }else{
+    this.toster.info('Select Any Update Type.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+  }
+
   }
 
 
