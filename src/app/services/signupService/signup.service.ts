@@ -30,7 +30,10 @@ actionLandlordData(data:any){
 }
 
 sendSubMail(data:any){
-  return this.http.post(`${environment.apiUrl}/email-subscribe`,data,{headers:this.header});
+  return this.http.post(`${environment.apiUrl}/client/subscribe`,data,{headers:this.header});
+}
+sendFeedback(data:any){
+  return this.http.post(`${environment.apiUrl}/client/feedback`,data,{headers:this.header});
 }
 signUpVerify(data:any){
   return this.http.post(`${environment.apiUrl}/signup/verify`,data,{headers:this.header})

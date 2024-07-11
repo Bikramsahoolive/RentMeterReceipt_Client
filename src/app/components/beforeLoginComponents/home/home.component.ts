@@ -40,4 +40,11 @@ export class HomeComponent {
       }
     });
   }
+
+  scrollToDiv(id:string){
+    var targetDiv = document.getElementById(id);
+    if (targetDiv) {
+      targetDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

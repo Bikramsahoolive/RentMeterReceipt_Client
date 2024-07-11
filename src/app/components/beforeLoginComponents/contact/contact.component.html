@@ -10,19 +10,19 @@
       <div id="contact-form-item">
         <div>
           <label for="name">Name</label> <br>
-          <input type="text" placeholder="Your Name"> <br>
+          <input type="text" #name placeholder="Your Name"> <br>
         </div>
         <div>
           <label for="email">Email</label> <br>
-          <input type="email" placeholder="Your Email"> <br>
+          <input type="email" #email placeholder="Your Email"> <br>
         </div>
       </div>
 
       <label for="message">Messages</label> <br>
-      <textarea name="" id="" placeholder="Details your message"></textarea>
+      <textarea #msg placeholder="Details your message"></textarea>
 
       <span id="send-message-btn">
-        <input type="submit" value="Send Message">
+        <input type="submit" (click)="GetMessage(name,email,msg)" value="Send Message">
         <i class="fa-solid fa-rocket"></i>
       </span>
 

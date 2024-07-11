@@ -46,6 +46,7 @@ import { BillDetailsComponent } from './components/rentholder-components/bill-de
 import { rentholderAuthGuard } from './guard/rentholder-auth.guard';
 import { UpdateRentholderComponent } from './components/landlord-components/update-rentholder/update-rentholder.component';
 import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginComponents/privacy-policy-term-conditions/privacy-policy-term-conditions.component';
+import { UnderConstructionComponent } from './components/beforeLoginComponents/under-construction/under-construction.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -57,6 +58,8 @@ const routes: Routes = [
   {path:'contact',component:ContactComponent},
   {path:'about',component:AboutComponent},
   {path:'privacy-policy',component:PrivacyPolicyTermConditionsComponent},
+  {path:'under-construction',component:UnderConstructionComponent},
+
   {path:'dashbord-admin',component:DashbordComponent,canActivate:[authGuard],
 children:[
   {path:'',component:AdminDashbordContentComponent,outlet:'outlet1'},
