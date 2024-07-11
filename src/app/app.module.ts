@@ -64,6 +64,7 @@ import { BillDetailsComponent } from './components/rentholder-components/bill-de
 import { UpdateRentholderComponent } from './components/landlord-components/update-rentholder/update-rentholder.component';
 import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginComponents/privacy-policy-term-conditions/privacy-policy-term-conditions.component';
 import { UnderConstructionComponent } from './components/beforeLoginComponents/under-construction/under-construction.component';
+import { UnsubscribeMailComponent } from './components/beforeLoginComponents/unsubscribe-mail/unsubscribe-mail.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { UnderConstructionComponent } from './components/beforeLoginComponents/u
     BillDetailsComponent,
     UpdateRentholderComponent,
     PrivacyPolicyTermConditionsComponent,
-    UnderConstructionComponent
+    UnderConstructionComponent,
+    UnsubscribeMailComponent
   ],
   imports: [
     BrowserModule,

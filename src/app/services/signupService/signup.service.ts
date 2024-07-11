@@ -32,6 +32,10 @@ actionLandlordData(data:any){
 sendSubMail(data:any){
   return this.http.post(`${environment.apiUrl}/client/subscribe`,data,{headers:this.header});
 }
+
+sendUnsubMail(data:any){
+  return this.http.post(`${environment.apiUrl}/client/unsubscribe`,data,{headers:this.header});
+}
 sendFeedback(data:any){
   return this.http.post(`${environment.apiUrl}/client/feedback`,data,{headers:this.header});
 }

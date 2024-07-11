@@ -19,24 +19,25 @@ export class HomeComponent {
   sendSubMail(emailId:any){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailRegex.test(emailId.value)){
-      this.toster.error('Invalid Email Input','Frontend');
+      this.toster.info('Invalid Email Input',"",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     this.spinner.show();
     this.homeServ.sendSubMail({email:emailId.value}).subscribe({
       next:(res:any)=>{
         if(res.status ==='success'){
+          
           this.toster.success("Your Email Subscribed","",{positionClass:"toast-top-center",progressBar:true});
         }else{
-          this.toster.error('Error occored, try again.',"",{positionClass:"toast-top-center",progressBar:true});
+          this.toster.info(res.message,"",{positionClass:"toast-top-center",progressBar:true});
         }
       },error:(err)=>{
         console.error(err);
         this.toster.error('Something Went wrong.',"",{positionClass:"toast-top-center",progressBar:true});
-        
-      },complete:()=>{
-        emailId.value = '';
         this.spinner.hide();
+      },complete:()=>{
+        this.spinner.hide();
+        emailId.value = '';
       }
     });
   }
@@ -46,5 +47,8 @@ export class HomeComponent {
     if (targetDiv) {
       targetDiv.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
