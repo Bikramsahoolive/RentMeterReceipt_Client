@@ -155,6 +155,9 @@ checkSession(){
   this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast-top-center"});
   localStorage.setItem("connect.sid","null");
   this.router.navigate(['login']);
+  if(this.isLogedIn){
+    this.logout();
+  }
 }
  },(err)=>{
   console.log(err.error);
