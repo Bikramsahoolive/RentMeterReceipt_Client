@@ -40,6 +40,9 @@
     left: 130px;
     cursor: pointer;
     display: none;
+    background-color: whitesmoke;
+    color: blue;
+    box-shadow: 2px 2px 8px 0px black;
 }
 /* .round{
     width: 150px;

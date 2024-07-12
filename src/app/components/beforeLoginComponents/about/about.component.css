@@ -1,7 +1,8 @@
 /* Style for About Us Section */
 #about-us {
     padding: 80px 20px;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
+    background-image: url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
 }
 
 #about-us h2 {
@@ -16,6 +17,7 @@
     line-height: 1.8;
     color: #666;
     margin-bottom: 20px;
+    background-color: whitesmoke;
 }
 
 #about-us .container {

@@ -91,7 +91,11 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
       error:(err)=>{
         this.spinner.hide();
         console.log(err.error);
-        this.toster.error(err.error.message,'Error',{progressBar:true,positionClass:"toast-top-center"});
+        if(!err.error.status){
+          this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+        }else{
+          this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+        }
       }
     })
   }
