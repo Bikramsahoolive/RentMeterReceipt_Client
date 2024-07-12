@@ -65,6 +65,9 @@ div #logout:hover{
     overflow: hidden;
     padding-bottom: 5px;
     transition: height 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 }
 
 .dropdown_menu.open {
