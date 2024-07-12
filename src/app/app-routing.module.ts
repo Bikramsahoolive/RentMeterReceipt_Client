@@ -48,6 +48,7 @@ import { UpdateRentholderComponent } from './components/landlord-components/upda
 import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginComponents/privacy-policy-term-conditions/privacy-policy-term-conditions.component';
 import { UnderConstructionComponent } from './components/beforeLoginComponents/under-construction/under-construction.component';
 import { UnsubscribeMailComponent } from './components/beforeLoginComponents/unsubscribe-mail/unsubscribe-mail.component';
+import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -62,6 +63,7 @@ const routes: Routes = [
   {path:'under-construction',component:UnderConstructionComponent},
   {path:'unsubscribe/:id',component:UnsubscribeMailComponent},
   {path:'unsubscribe',component:UnsubscribeMailComponent},
+  {path:'developer',component:DeveloperDetailsComponent},
 
   {path:'dashbord-admin',component:DashbordComponent,canActivate:[authGuard],
 children:[
