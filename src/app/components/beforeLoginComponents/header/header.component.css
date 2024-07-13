@@ -67,7 +67,7 @@ div #logout:hover{
     transition: height 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .dropdown_menu.open {
