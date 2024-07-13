@@ -99,13 +99,14 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
       }
     })
   }
-  deleteData(id:number)
+  deleteData(id:number,filter:any)
   {
     let confirmDelete = confirm("This Action Is irreversible, Are you sure !");
     if(confirmDelete){
       this.spinner.show();
       this.landlordServ.deleteRentBillData(id).subscribe({
         next:(res:any)=>{
+          filter.value='0';
           this.datalist=[];
           this.toster.success(`${res.message}`,'success');
           this.ngOnInit();

@@ -42,7 +42,10 @@ export class BillPaymentComponent {
     let reDate = this.dateFormater(data.payment_date);
     data.payment_date = reDate;
     let id = data.id;
-
+    if(data.id===null || data.id==="" || data.paid===""){
+      this.toastr.info('Invalid Bill ID and Paid Amount.','',{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
     if(data.paid_amt>this.toPaidAmount || data.paid_amt === 0 || data.paid_amt ===null){
       this.toastr.info('Invalid paid amount','',{positionClass:"toast-top-center",progressBar:true});
       
@@ -78,7 +81,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
         next:(res:any)=>{
           
           if(res.final_amt == res.paid_amt){
-            this.toastr.info('Bill Already Paid','',{positionClass:"toast-top-center",progressBar:true});
+            this.toastr.success('Bill Already Paid','',{positionClass:"toast-top-center",progressBar:true});
           }else{
             this.toPaidAmount = res.final_amt - res.paid_amt;
             this.payableAmount = res.final_amt - res.paid_amt;

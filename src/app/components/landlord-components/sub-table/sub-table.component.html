@@ -60,7 +60,7 @@
             <td data-label="Paid  Amount : ">{{data.paid_amt}}</td>
             <td data-label="Due Date : ">{{data.dueDate}}</td>
             <td data-label="Payment Date : ">{{data.payment_date}}</td>
-            <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon" (click)="deleteData(data.id)" *ngIf="data.paid_amt ===0"></i></td>
+            <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon" (click)="deleteData(data.id,filter)" *ngIf="data.paid_amt ===0"></i></td>
           </tr>
         </tbody>
       </table>
