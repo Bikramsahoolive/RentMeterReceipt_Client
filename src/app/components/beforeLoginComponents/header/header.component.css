@@ -71,7 +71,7 @@ div #logout:hover{
 }
 
 .dropdown_menu.open {
-    height: 250px;
+    height: 220px;
     z-index:3;
     max-height: 50vh;
     padding: 10px 50px;
