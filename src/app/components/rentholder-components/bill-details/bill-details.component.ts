@@ -71,6 +71,7 @@ export class BillDetailsComponent {
   page:number=1
   userService:any;
   isUnpaidFilter:boolean=false;
+  isPaidFilter:boolean=false;
   constructor(private rentholderServe:RentholderServiceService ,private spinner:NgxSpinnerService, private toster:ToastrService){
   }
     userDetails(data:any)
@@ -98,16 +99,18 @@ export class BillDetailsComponent {
     {
   
       if(selector==="0"){
-        if(this.isUnpaidFilter){
+        if(this.isUnpaidFilter || this.isPaidFilter){
           this.isUnpaidFilter = false;
+          this.isPaidFilter = false;
           this.datalist= this.reserveData;
           return;
         }
         this.datalist.reverse();
       }else
       if(selector==="1"){
-        if(this.isUnpaidFilter){
+        if(this.isUnpaidFilter || this.isPaidFilter){
           this.isUnpaidFilter = false;
+          this.isPaidFilter = false;
           this.datalist= this.reserveData;
         }
         this.datalist.reverse();
@@ -117,6 +120,20 @@ export class BillDetailsComponent {
         let usersVal:any = [];
         this.datalist.forEach((element:any)=>{
           if(element.final_amt !== element.paid_amt){
+            usersVal.push(element);
+          }
+        });
+        this.datalist = usersVal;
+      }else
+      if(selector==="3"){
+        if(this.isUnpaidFilter){
+          this.isUnpaidFilter=false;
+          this.datalist=this.reserveData;
+        }
+        this.isPaidFilter= true;
+        let usersVal:any = [];
+        this.datalist.forEach((element:any)=>{
+          if(element.final_amt === element.paid_amt){
             usersVal.push(element);
           }
         });

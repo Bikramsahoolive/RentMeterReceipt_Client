@@ -7,6 +7,7 @@
             <option value="0">New to Old</option>
             <option value="1">Old  to New</option>
             <option value="2">Unpaid Bill</option>
+            <option value="3">Paid Bill</option>
         </select>
     </div>
 </div>
@@ -60,7 +61,13 @@
             <td data-label="Paid  Amount : ">{{data.paid_amt}}</td>
             <td data-label="Due Date : ">{{data.dueDate}}</td>
             <td data-label="Payment Date : ">{{data.payment_date}}</td>
-            <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon" (click)="deleteData(data.id,filter)" *ngIf="data.paid_amt ===0"></i></td>
+            <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon" style="color: rgb(29, 100, 29);" (click)="deleteData(data.id,filter)" *ngIf="data.paid_amt ===0 else elseDelete"  ></i></td>
+            <ng-template #elseDelete>
+              <div  style="display: flex; flex-direction:column;justify-content: center;align-items:center; position: relative;">
+                <i class="fa-regular fa-trash-can delete-icon" style="color: rgb(131, 44, 44); cursor:not-allowed;"(mouseleave)="hiderrorMsg($event)" (mouseover)="showErrorMsg($event)"></i>
+              <small style="position: absolute; right: 50px; background-color: rgb(104, 101, 101); color: wheat; padding:10px; border-radius: 8px;display: none; cursor: not-allowed;width: max-content;">can't delete due to paid, please contact admin.</small>
+              </div>
+            </ng-template>
           </tr>
         </tbody>
       </table>

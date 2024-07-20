@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -72,7 +72,8 @@ totalLength:any;
 page:number=1
 userService:any;
 isUnpaidFilter:boolean=false;
-constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerService, private toster:ToastrService){
+isPaidFilter:boolean=false;
+constructor( private render:Renderer2,private landlordServ:LandlordService ,private spinner:NgxSpinnerService, private toster:ToastrService){
 }
   userDetails(data:any)
   {
@@ -126,25 +127,45 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
   {
 
     if(selector==="0"){
-      if(this.isUnpaidFilter){
+      if(this.isUnpaidFilter || this.isPaidFilter){
         this.isUnpaidFilter = false;
+        this.isPaidFilter=false;
         this.datalist= this.reserveData;
         return;
       }
       this.datalist.reverse();
     }else
     if(selector==="1"){
-      if(this.isUnpaidFilter){
+      if(this.isUnpaidFilter || this.isPaidFilter){
         this.isUnpaidFilter = false;
+        this.isPaidFilter=false;
         this.datalist= this.reserveData;
       }
       this.datalist.reverse();
     }else
     if(selector==="2"){
+      if(this.isPaidFilter){
+        this.isPaidFilter=false;
+        this.datalist=this.reserveData;
+      }
       this.isUnpaidFilter= true;
       let usersVal:any = [];
       this.datalist.forEach((element:any)=>{
         if(element.final_amt !== element.paid_amt){
+          usersVal.push(element);
+        }
+      });
+      this.datalist = usersVal;
+    }else
+    if(selector==="3"){
+      if(this.isUnpaidFilter){
+        this.isUnpaidFilter=false;
+        this.datalist=this.reserveData;
+      }
+      this.isPaidFilter= true;
+      let usersVal:any = [];
+      this.datalist.forEach((element:any)=>{
+        if(element.final_amt === element.paid_amt){
           usersVal.push(element);
         }
       });
@@ -187,5 +208,19 @@ constructor(private landlordServ:LandlordService ,private spinner:NgxSpinnerServ
     .catch(err => {
       console.error('Failed to copy: ', err);
     });
+  }
+  showErrorMsg(event:Event){
+    const clickedElement = event.target as HTMLElement;
+    const nextSibling = clickedElement.nextElementSibling;
+    if(nextSibling){
+      this.render.setStyle(nextSibling,"display",'block');
+    }
+  }
+  hiderrorMsg(event:Event){
+    const clickedElement = event.target as HTMLElement;
+    const nextSibling = clickedElement.nextElementSibling;
+    if(nextSibling){
+      this.render.setStyle(nextSibling,"display",'none');
+    }
   }
 }
