@@ -5,6 +5,8 @@
   /* width: 100%; */
   height: 60px;
   background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+  margin-top: 60px;
+  position: relative;
 }
 .btn a{
     text-decoration: none;
@@ -13,7 +15,7 @@
     padding: 10px 10px;
     position:absolute;
     right: 0;
-    top:80px;
+    top:10px;
     border-radius: 8px 0px 0px 8px;
     box-shadow: 3px 3px 10px 0 gray;
     transition: all 0.2s;

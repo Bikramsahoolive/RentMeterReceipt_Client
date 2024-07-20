@@ -7,6 +7,9 @@ nav{
     background-color: #7373f3;
     padding: 15px 25px;
     box-shadow: 0 0 5px 0 gray;
+    position: fixed;
+    top: 0;
+    z-index:3 ;
 }
 nav h1{
     color:white;
@@ -68,6 +71,7 @@ div #logout:hover{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: fixed;
 }
 
 .dropdown_menu.open {
@@ -75,7 +79,7 @@ div #logout:hover{
     z-index:3;
     max-height: 50vh;
     padding: 10px 50px;
-    transition: height 0.3s ease;
+    /* transition: height 0.3s ease; */
 }
 
 .dropdown_menu li {

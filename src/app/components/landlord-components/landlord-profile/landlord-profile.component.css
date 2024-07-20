@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     background-image: url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+    margin-top: 60px;
 }
 .cont{
     max-width: 800px;

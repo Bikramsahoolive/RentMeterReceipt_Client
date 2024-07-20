@@ -72,7 +72,7 @@ input[type="number"]::-webkit-inner-spin-button {
   .awesome-feature {
     text-align: center;
     padding: 0 50px;
-    margin: 50px 0;
+    margin: 100px 0;
   }
   
   #feature-text h1 {
@@ -429,6 +429,7 @@ input[type="number"]::-webkit-inner-spin-button {
   
     #header-page-title {
       width: 100%;
+      margin-top: 60px;
     }
   
     #header-page-title h1 {
@@ -469,7 +470,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .awesome-feature {
       text-align: center;
       padding: 0 50px;
-      margin: 50px 0 50px 0;
+      margin: 100px 0 50px 0;
     }
   
     #feature-text h1 {

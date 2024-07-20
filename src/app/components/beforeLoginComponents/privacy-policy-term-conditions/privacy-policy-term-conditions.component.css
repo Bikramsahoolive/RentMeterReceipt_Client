@@ -44,6 +44,7 @@
 @media (max-width: 768px) {
     #privacy-policy {
         padding: 40px 5px;
+        margin-top: 60px;
     }
     #privacy-policy h2, #privacy-policy h4 {
         font-size: 24px;

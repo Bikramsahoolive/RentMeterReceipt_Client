@@ -26,6 +26,7 @@ img {
   padding: var(--size-4);
   min-height: 90vh;
   font-family: var(--font-sans);
+  margin-top: 60px;
 }
 .page__cards {
   display: flex;
