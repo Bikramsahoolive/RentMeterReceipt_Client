@@ -430,7 +430,7 @@ input[type="number"]::-webkit-inner-spin-button {
     #header-page-title {
       width: 100%;
       margin-top: 60px;
-      padding: 0 60px;
+      padding: 0 40px;
     }
   
     #header-page-title h1 {

@@ -8,7 +8,10 @@
     font-size: 30px;
     font-weight: 700;
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+#privacy-policy h4{
+    margin-top: 50px;
 }
 
 #privacy-policy p, #privacy-policy ul {
