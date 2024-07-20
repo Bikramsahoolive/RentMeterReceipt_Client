@@ -2,23 +2,23 @@
     <nav class="nav">
         <h1>RentⓝMeter.Receipt</h1>
         <ul>
-            <li *ngIf="authService.isLogin()"><a routerLink="">Home</a></li>
+            <li *ngIf="authService.isLogin()"><a routerLink="" (click)="scrollToTop()">Home</a></li>
 
-            <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin">Dashbord</a></li>
-            <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder">Dashbord</a></li>
+            <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin" (click)="scrollToTop()">Dashbord</a></li>
+            <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder" (click)="scrollToTop()">Dashbord</a></li>
 
-            <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord">Dashbord</a></li>
+            <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord" (click)="scrollToTop()">Dashbord</a></li>
             <!-- <li *ngIf="authService.Landlord()"><a routerLink="main-meter">Main Meter</a></li> -->
-            <li *ngIf="authService.Landlord()"><a routerLink="rent-bill">Rent Bill</a></li>
-            <li *ngIf="authService.Landlord()"><a routerLink="manage">Manage</a></li>
-            <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data">Bill Details</a></li>
-            <div *ngIf="authService.isLogin() else loginForm " ><a (click)="logout()" id="logout">Logout</a></div>
+            <li *ngIf="authService.Landlord()"><a routerLink="rent-bill" (click)="scrollToTop()">Rent Bill</a></li>
+            <li *ngIf="authService.Landlord()"><a routerLink="manage" (click)="scrollToTop()">Manage</a></li>
+            <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data" (click)="scrollToTop()">Bill Details</a></li>
+            <div *ngIf="authService.isLogin() else loginForm " ><a (click)="logout()" id="logout" (click)="scrollToTop()">Logout</a></div>
             <ng-template #loginForm>
-                <li><a routerLink="" (click)="hideMenu(dropdown,tglBtn)">Home</a></li>
-                <li><a routerLink="about" (click)="hideMenu(dropdown,tglBtn)">About</a></li>
-                <li><a routerLink="contact" (click)="hideMenu(dropdown,tglBtn)">Contact Us</a></li>
+                <li><a routerLink="" (click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Home</a></li>
+                <li><a routerLink="about" (click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">About</a></li>
+                <li><a routerLink="contact" (click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Contact Us</a></li>
                 <!-- <li><a routerLink="/signup-status" (click)="hideMenu(dropdown,tglBtn)">Status</a></li> -->
-                <div><a id="logout" routerLink="login" (click)="hideMenu(dropdown,tglBtn)">Login</a></div>
+                <div><a id="logout" routerLink="login" (click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Login</a></div>
             </ng-template>
         </ul>
         <div class="toggle-btn"><i #tglBtn class="fa-solid fa-bars" (click)="dropdownToggle(dropdown,tglBtn)"></i></div>
@@ -30,18 +30,18 @@
         <li><a href="html/manage.php" class="">Manage</a></li>
         <div><a href="/logout.php" class="logout">Logout</a></div>
         ////////////////////////////////////////////////////////////////// -->
-        <li *ngIf="authService.isLogin()"><a routerLink=""(click)="hideMenu(dropdown,tglBtn)">Home</a></li>
-        <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
-        <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
-        <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder"(click)="hideMenu(dropdown,tglBtn)">Dashbord</a></li>
-        <li *ngIf="authService.Landlord()"><a routerLink="rent-bill"(click)="hideMenu(dropdown,tglBtn)">Rent Bill</a></li>
-        <li *ngIf="authService.Landlord()"><a routerLink="manage"(click)="hideMenu(dropdown,tglBtn)">Manage</a></li>
-        <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data"(click)="hideMenu(dropdown,tglBtn)">Bill Details</a></li>
-        <div *ngIf="authService.isLogin() else loginForm " (click)="hideMenu(dropdown,tglBtn)" ><a (click)="logout()" id="logout">Logout</a></div>
+        <li *ngIf="authService.isLogin()"><a routerLink=""(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Home</a></li>
+        <li *ngIf="authService.Admin()"><a routerLink="dashbord-admin"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Dashbord</a></li>
+        <li *ngIf="authService.Landlord()"><a routerLink="dashbord-landlord"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Dashbord</a></li>
+        <li *ngIf="authService.Rentholder()"><a routerLink="dashbord-rentholder"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Dashbord</a></li>
+        <li *ngIf="authService.Landlord()"><a routerLink="rent-bill"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Rent Bill</a></li>
+        <li *ngIf="authService.Landlord()"><a routerLink="manage"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Manage</a></li>
+        <li *ngIf="authService.Rentholder()"><a routerLink="rentholder/bill-data"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Bill Details</a></li>
+        <div *ngIf="authService.isLogin() else loginForm " (click)="hideMenu(dropdown,tglBtn)" ><a (click)="logout()" id="logout" (click)="scrollToTop()">Logout</a></div>
         <ng-template #loginForm>
-            <li><a routerLink=""(click)="hideMenu(dropdown,tglBtn)">Home</a></li>
-            <li><a routerLink="about"(click)="hideMenu(dropdown,tglBtn)">About</a></li>
-            <li><a routerLink="contact"(click)="hideMenu(dropdown,tglBtn)">Contact Us</a></li>
+            <li><a routerLink=""(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Home</a></li>
+            <li><a routerLink="about"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">About</a></li>
+            <li><a routerLink="contact"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Contact Us</a></li>
             <!-- <li><a routerLink="/signup-status"(click)="hideMenu(dropdown,tglBtn)">Status</a></li> -->
             <!-- <div><a class="nav-btn" routerLink="login">Login</a></div> -->
         </ng-template>

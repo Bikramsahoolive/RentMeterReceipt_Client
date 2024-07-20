@@ -21,8 +21,8 @@
                 </select>
             </div>
                 <button>Login</button><br> <br>
-                <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none">Forgot Password</a></span>
-                <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;">Register now</a>
+                <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none" (click)="scrollToTop()">Forgot Password</a></span>
+                <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;" (click)="scrollToTop()">Register now</a>
         </form>
     </div>
 </div>

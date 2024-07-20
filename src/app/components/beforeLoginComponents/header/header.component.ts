@@ -28,4 +28,7 @@ export class HeaderComponent {
   logout(){
     this.authService.logout();
   }
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
