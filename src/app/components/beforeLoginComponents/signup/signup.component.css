@@ -105,11 +105,16 @@ form input[type="submit"]:hover{
 
 
 
-@media screen and (max-width:780px) {
-    .user-details{
-        flex-direction:column;
+@media screen and (max-width:400px) {
+    .cont{
+        width: 90%;
+        padding: 10px;
     }
-    form .user-details .input-box{
-        width:100%;
+}
+
+@media screen and (max-width:360px) {
+    .cont{
+        width: 98%;
+        padding: 5px;
     }
 }
