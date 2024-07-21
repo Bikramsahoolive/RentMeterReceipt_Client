@@ -48,4 +48,34 @@ export class LandlordService {
   deleteLandlordData(id:any){
     return this.http.delete(`${environment.apiUrl}/landlord/user/${id}`,{withCredentials:true,headers:this.header});
   }
+
+
+  createOrder(data:any){
+    return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
+  }
+
+  payWithRazorpay(data:any){
+    const options:any={
+      key:environment.razorpay_ket,
+      amount:data.amount * 100,
+      currency:data.currency,
+      name:data.name,
+      description:data.description,
+      order_id:data.orderId,
+      handler:(resp:any)=>{
+        console.log(resp);
+      },
+      prefill:{
+        email:data.email,
+        contact:data.phone
+      },
+      theme:{
+        color:"#7373f3"
+      }
+    };
+    const rzp = new Razorpay(options);
+    rzp.open();
+  }
+
+
 }

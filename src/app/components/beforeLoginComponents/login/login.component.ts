@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { loginData } from 'src/app/model/data';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
@@ -9,8 +10,15 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private toastr: ToastrService ,private authServ: AuthServiceService){}
+  constructor(private toastr: ToastrService ,private authServ: AuthServiceService,private router:Router){}
+  ngOnInit(){
+ let isLoggedin = localStorage.getItem('connect.sid');
 
+    if(isLoggedin === null || isLoggedin === 'null'){
+    }else{
+      this.router.navigate(['']);
+    }
+  }
   login(auth:loginData){
     auth.phone = String(auth.phone);
     if(auth.phone==='' || auth.password===''){

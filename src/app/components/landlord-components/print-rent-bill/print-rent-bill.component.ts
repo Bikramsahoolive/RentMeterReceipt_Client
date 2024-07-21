@@ -105,9 +105,27 @@ showPayBtn:boolean=false;
     window.print();
   }
   payNow(){
-    let upiBtn=document.createElement('a');
-    upiBtn.href=this.upiLink;
-    upiBtn.click();
-    this.toastr.info("Pay Now feature is coming soon.","Unavailable",{positionClass:"toast-top-center",progressBar:true})
+
+let order={
+  amount: (+this.bill.final_amt)-(+this.bill.paid_amt),
+  currency:'INR',
+  receipt:this.bill.id
+}
+  this.spinner.show();
+  this.landlordServ.createOrder(order).subscribe({
+    next:(res:any)=>{
+      this.spinner.hide();
+      res.name =this.bill.consumer_Name;
+      res.description="test_payment";
+      res.email="test@test.com";
+      res.phone="9998887770";
+      this.landlordServ.payWithRazorpay(res);
+    },error:(err:any)=>{
+      this.spinner.hide();
+      console.error(err.error);
+      
+    }
+  })
+
   }
 }
