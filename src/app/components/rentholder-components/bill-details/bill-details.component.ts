@@ -82,9 +82,9 @@ export class BillDetailsComponent {
       this.spinner.show();
       this.rentholderServe.getAllRentBillData().subscribe({
         next:(res:rentBillData[])=>{
-            res = res.reverse();
-            this.datalist=res;
-            this.reserveData=res;
+            // res = res.reverse();
+            this.datalist=res.reverse();
+            this.reserveData=res.reverse();
            this.spinner.hide();
         },
         error:(err)=>{
@@ -99,6 +99,8 @@ export class BillDetailsComponent {
     {
   
       if(selector==="0"){
+        console.log(this.reserveData);
+        //new to old
         if(this.isUnpaidFilter || this.isPaidFilter){
           this.isUnpaidFilter = false;
           this.isPaidFilter = false;
@@ -106,19 +108,22 @@ export class BillDetailsComponent {
           return;
         }
         this.datalist.reverse();
-      }else
-      if(selector==="1"){
-        if(this.isUnpaidFilter || this.isPaidFilter){
-          this.isUnpaidFilter = false;
-          this.isPaidFilter = false;
-          this.datalist= this.reserveData;
-        }
-        this.datalist.reverse();
-      }else
-      if(selector==="2"){
+      }
+      // else if(selector==="1"){
+      //   console.log(this.reserveData);
+      //   //old to new
+      //   if(this.isUnpaidFilter || this.isPaidFilter){
+      //     this.isUnpaidFilter = false;
+      //     this.isPaidFilter = false;
+      //     this.datalist = this.reserveData;
+      //   }
+      //   this.datalist.reverse();
+      // }
+      else if(selector==="2"){
+        //unpaid
         this.isUnpaidFilter= true;
         let usersVal:any = [];
-        this.datalist.forEach((element:any)=>{
+        this.reserveData.forEach((element:any)=>{
           if(element.final_amt !== element.paid_amt){
             usersVal.push(element);
           }
@@ -126,13 +131,13 @@ export class BillDetailsComponent {
         this.datalist = usersVal;
       }else
       if(selector==="3"){
+        //paid
         if(this.isUnpaidFilter){
           this.isUnpaidFilter=false;
-          this.datalist=this.reserveData;
         }
         this.isPaidFilter= true;
         let usersVal:any = [];
-        this.datalist.forEach((element:any)=>{
+        this.reserveData.forEach((element:any)=>{
           if(element.final_amt === element.paid_amt){
             usersVal.push(element);
           }

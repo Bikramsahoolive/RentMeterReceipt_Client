@@ -66,8 +66,6 @@ export class RentholderDashbordContentComponent {
       error:(err)=>{
         this.spinner.hide();
         console.log(err.error);
-      },complete:()=>{
-        this.spinner.hide();
       }
     })
 
