@@ -84,7 +84,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:rentBillData[])=>{
         this.isTableDataAvailable = true;
-          res = res.reverse();
+        res = res.reverse();
           this.datalist=res;
           this.reserveData=res;
           this.spinner.hide();
@@ -100,6 +100,27 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       }
     })
   }
+
+  reverseData() {
+  this.spinner.show();
+  this.landlordServ.getAllRentBillData().subscribe({
+    next:(res:rentBillData[])=>{
+      this.isTableDataAvailable = true;
+        this.datalist=res;
+        this.spinner.hide();
+    },
+    error:(err)=>{
+      this.spinner.hide();
+      console.log(err.error);
+      if(!err.error.status){
+        this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+      }else{
+        this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+      }
+    }
+  })
+}
+  
   deleteData(id:number,filter:any)
   {
     let confirmDelete = confirm("This Action Is irreversible, Are you sure !");
@@ -127,6 +148,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
   {
 
     if(selector==="0"){
+      //new to old
       if(this.isUnpaidFilter || this.isPaidFilter){
         this.isUnpaidFilter = false;
         this.isPaidFilter=false;
@@ -136,21 +158,27 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       this.datalist.reverse();
     }else
     if(selector==="1"){
+      //old to new
+      console.warn(this.reserveData);
       if(this.isUnpaidFilter || this.isPaidFilter){
         this.isUnpaidFilter = false;
         this.isPaidFilter=false;
-        this.datalist= this.reserveData;
+        this.reverseData();
+        return;
       }
       this.datalist.reverse();
     }else
     if(selector==="2"){
+      //unpaid bills
+      console.log(this.reserveData);
+      
       if(this.isPaidFilter){
         this.isPaidFilter=false;
-        this.datalist=this.reserveData;
+        // this.datalist=this.reserveData;
       }
       this.isUnpaidFilter= true;
       let usersVal:any = [];
-      this.datalist.forEach((element:any)=>{
+      this.reserveData.forEach((element:any)=>{
         if(element.final_amt !== element.paid_amt){
           usersVal.push(element);
         }
@@ -158,13 +186,14 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       this.datalist = usersVal;
     }else
     if(selector==="3"){
+      //paid bills
       if(this.isUnpaidFilter){
         this.isUnpaidFilter=false;
-        this.datalist=this.reserveData;
+        // this.datalist=this.reserveData;
       }
       this.isPaidFilter= true;
       let usersVal:any = [];
-      this.datalist.forEach((element:any)=>{
+      this.reserveData.forEach((element:any)=>{
         if(element.final_amt === element.paid_amt){
           usersVal.push(element);
         }
