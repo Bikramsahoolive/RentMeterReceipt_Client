@@ -13,9 +13,6 @@ export class SignupService {
     // 'api_key':''
     
   })
-  startServer(){
-    return this.http.get(`${environment.apiUrl}/`,{headers:this.header});
- }
 signUp(data:any){
   return this.http.post(`${environment.apiUrl}/signup`,data,{headers:this.header});
 }
@@ -36,6 +33,11 @@ sendSubMail(data:any){
 sendUnsubMail(data:any){
   return this.http.post(`${environment.apiUrl}/client/unsubscribe`,data,{headers:this.header});
 }
+
+checkUnsubMail(data:any){
+  return this.http.post(`${environment.apiUrl}/client/check/unsubscribe`,data,{headers:this.header});
+}
+
 sendFeedback(data:any){
   return this.http.post(`${environment.apiUrl}/client/feedback`,data,{headers:this.header});
 }

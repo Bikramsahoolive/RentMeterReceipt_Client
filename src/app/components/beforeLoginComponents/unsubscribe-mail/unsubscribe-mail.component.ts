@@ -13,6 +13,28 @@ export class UnsubscribeMailComponent {
   constructor(private route:ActivatedRoute,private router:Router,private spinner:NgxSpinnerService,private toaster :ToastrService,private signupServe:SignupService){}
   @ViewChild('emailInput',{ static: false })email!:ElementRef;
   emailid:string='';
+  ngOnInit(){
+    let urlId = this.route.snapshot.paramMap.get('id');
+    let emailId;
+    if(urlId && urlId!==null){
+     emailId = atob(urlId);
+     this.spinner.show();
+     this.signupServe.checkUnsubMail({email:emailId}).subscribe({
+      next:(res:any)=>{
+        this.spinner.hide();
+        if(!res.status){
+          this.router.navigate(['']);
+          this.toaster.error('This email is already unsubscribed.',"",{positionClass:"toast-top-center",progressBar:true});
+        }
+      },error:(err)=>{
+        this.spinner.hide();
+        console.log(err.error);
+        this.toaster.error('something wents wrong.',"Error",{positionClass:"toast-top-center",progressBar:true});
+      }
+    });
+    }
+    
+  }
   ngAfterViewInit() {
     let urlId = this.route.snapshot.paramMap.get('id');
     let emailId;
