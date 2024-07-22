@@ -6,7 +6,7 @@ nav{
     align-items: center;
     background-color: #7373f3;
     padding: 15px 25px;
-    box-shadow: 0 0 5px 0 gray;
+    /* box-shadow: 0 0 5px 0 gray; */
     position: fixed;
     top: 0;
     z-index:3 ;
@@ -58,7 +58,7 @@ div #logout:hover{
 .dropdown_menu {
     position: absolute;
     /* right: 13px; */
-    top: 55px;
+    top: 45px;
     height: 0;
     width: 100%;
     background:rgb(115 115 243);
@@ -72,13 +72,16 @@ div #logout:hover{
     flex-direction: column;
     justify-content: flex-end;
     position: fixed;
+    padding: 10px 30px;
 }
 
 .dropdown_menu.open {
     height: 220px;
     z-index:3;
     max-height: 50vh;
-    padding: 10px 50px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
     /* transition: height 0.3s ease; */
 }
 
@@ -87,7 +90,7 @@ div #logout:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-
+    background-color: #0e254a14;
 }
 .dropdown_menu li a{
     color: rgb(231, 231, 231);

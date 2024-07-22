@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!authServ.isLogin() else elseLogin">
     <div class="login-form">
         <h1>Login</h1>
         <!-- <p>{{adminService.loginMsg()}}</p> -->
@@ -26,3 +26,8 @@
         </form>
     </div>
 </div>
+<ng-template #elseLogin>
+    <div class="container">
+        <span style="padding: 20px 30px; background-color: whitesmoke; border-radius: 10px;">Already loggedin : <a (click)="logout()" style="background-color: #551a8b; padding: 10px 20px; border-radius: 10px; color: white;">Logout</a></span>
+    </div>
+</ng-template>

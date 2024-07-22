@@ -10,14 +10,8 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private toastr: ToastrService ,private authServ: AuthServiceService,private router:Router){}
+  constructor(private toastr: ToastrService ,public authServ: AuthServiceService,private router:Router){}
   ngOnInit(){
- let isLoggedin = localStorage.getItem('connect.sid');
-
-    if(isLoggedin === null || isLoggedin === 'null'){
-    }else{
-      this.router.navigate(['']);
-    }
   }
   login(auth:loginData){
     auth.phone = String(auth.phone);
@@ -45,6 +39,11 @@ export class LoginComponent {
     }
     
   }
+
+  logout(){
+    this.authServ.logout();
+  }
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

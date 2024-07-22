@@ -143,7 +143,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
 
     }
   }
-
+oldToNew:boolean=false;
   dataFilter(selector:string)
   {
 
@@ -152,6 +152,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       if(this.isUnpaidFilter || this.isPaidFilter){
         this.isUnpaidFilter = false;
         this.isPaidFilter=false;
+        this.oldToNew=false;
         this.datalist= this.reserveData;
         return;
       }
@@ -159,7 +160,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     }else
     if(selector==="1"){
       //old to new
-      console.warn(this.reserveData);
+      this.oldToNew=true;
       if(this.isUnpaidFilter || this.isPaidFilter){
         this.isUnpaidFilter = false;
         this.isPaidFilter=false;
@@ -170,11 +171,14 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     }else
     if(selector==="2"){
       //unpaid bills
-      console.log(this.reserveData);
       
       if(this.isPaidFilter){
         this.isPaidFilter=false;
         // this.datalist=this.reserveData;
+      }
+      if(this.oldToNew){
+        this.oldToNew=false;
+        this.reserveData.reverse();
       }
       this.isUnpaidFilter= true;
       let usersVal:any = [];
@@ -190,6 +194,10 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       if(this.isUnpaidFilter){
         this.isUnpaidFilter=false;
         // this.datalist=this.reserveData;
+      }
+      if(this.oldToNew){
+        this.oldToNew=false;
+        this.reserveData.reverse();
       }
       this.isPaidFilter= true;
       let usersVal:any = [];
