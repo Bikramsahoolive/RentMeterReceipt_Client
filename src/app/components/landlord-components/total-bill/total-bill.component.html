@@ -2,32 +2,18 @@
     <div class="data">
     <h1 class="head">Total Bill Collected</h1>
     <div class="data-table">
-    <table class="table">
+    <table class="table" *ngIf="rentholderData[0].id!==''">
         <thead>
           <th>Sl No</th>
           <th>Name</th>
           <th>Bill Paid</th>
         </thead>
         <tbody>
-          <tr>
-            <td data-label="Sl No : ">1</td>
-            <td data-label="Name : ">Itishree Das</td>
-            <td data-label="Bill Paid : ">₹ 50200</td>
+          <tr *ngFor="let user of rentholderData; let i = index">
+            <td data-label="Sl No : ">{{i+1}}</td>
+            <td data-label="Name : ">{{user.name}}</td>
+            <td data-label="Bill Paid : ">₹ {{user.paid_amt}}</td>
           </tr>
-      
-          <tr>
-            <td data-label="Sl No : ">2</td>
-            <td data-label="Name : ">Gita Behera</td>
-            <td data-label="Bill Paid : ">₹ 15420</td>
-          </tr>
-      
-          <tr>
-            <td data-label="Sl No : ">3</td>
-            <td data-label="Name : ">Rita Mahalik</td>
-            <td data-label="Bill Paid : ">₹ 8490</td>
-          </tr>
-      
-          
         </tbody>
       </table>
     </div>
