@@ -122,6 +122,61 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     }
   })
 }
+
+unpaidData() {
+  this.spinner.show();
+  this.landlordServ.getAllRentBillData().subscribe({
+    next:(res:rentBillData[])=>{
+      this.isTableDataAvailable = true;
+      res=res.reverse();
+      let usersVal:any = [];
+      res.forEach((element:any)=>{
+        if(element.final_amt !== element.paid_amt){
+          usersVal.push(element);
+        }
+      });
+      this.datalist = usersVal;
+        this.spinner.hide();
+    },
+    error:(err)=>{
+      this.spinner.hide();
+      console.log(err.error);
+      if(!err.error.status){
+        this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+      }else{
+        this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+      }
+    }
+  })
+}
+
+
+paidData() {
+  this.spinner.show();
+  this.landlordServ.getAllRentBillData().subscribe({
+    next:(res:rentBillData[])=>{
+      this.isTableDataAvailable = true;
+      res=res.reverse();
+      let usersVal:any = [];
+      res.forEach((element:any)=>{
+        if(element.final_amt === element.paid_amt){
+          usersVal.push(element);
+        }
+      });
+      this.datalist = usersVal;
+        this.spinner.hide();
+    },
+    error:(err)=>{
+      this.spinner.hide();
+      console.log(err.error);
+      if(!err.error.status){
+        this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+      }else{
+        this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+      }
+    }
+  })
+}
   
   deleteData(id:number,filter:any)
   {
@@ -146,69 +201,71 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     }
   }
 oldToNew:boolean=false;
-  dataFilter(selector:string)
+ async dataFilter(selector:string)
   {
 
     if(selector==="0"){
       //new to old
-      if(this.isUnpaidFilter || this.isPaidFilter){
-        this.isUnpaidFilter = false;
-        this.isPaidFilter=false;
-        this.oldToNew=false;
-        this.datalist= this.reserveData;
-        return;
-      }
-      this.datalist.reverse();
+      // if(this.isUnpaidFilter || this.isPaidFilter){
+      //   this.isUnpaidFilter = false;
+      //   this.isPaidFilter=false;
+      //   this.oldToNew=false;
+      //   this.datalist= this.reserveData;
+      //   return;
+      // }
+      this.ngOnInit();
     }else
     if(selector==="1"){
       //old to new
-      this.oldToNew=true;
-      if(this.isUnpaidFilter || this.isPaidFilter){
-        this.isUnpaidFilter = false;
-        this.isPaidFilter=false;
-        this.reverseData();
-        return;
-      }
-      this.datalist.reverse();
+      // this.oldToNew=true;
+      // if(this.isUnpaidFilter || this.isPaidFilter){
+      //   this.isUnpaidFilter = false;
+      //   this.isPaidFilter=false;
+      // }
+      this.reverseData();
     }else
     if(selector==="2"){
       //unpaid bills
-      
-      if(this.isPaidFilter){
-        this.isPaidFilter=false;
-        // this.datalist=this.reserveData;
-      }
-      if(this.oldToNew){
-        this.oldToNew=false;
-        this.reserveData.reverse();
-      }
-      this.isUnpaidFilter= true;
-      let usersVal:any = [];
-      this.reserveData.forEach((element:any)=>{
-        if(element.final_amt !== element.paid_amt){
-          usersVal.push(element);
-        }
-      });
-      this.datalist = usersVal;
+      this.unpaidData();
+      // if(this.isPaidFilter){
+      //   this.isPaidFilter=false;
+      //   // this.datalist=this.reserveData;
+      // }
+      // // if(this.oldToNew){
+      // //   this.oldToNew=false;
+      // //   this.reserveData.reverse();
+      // // }
+      // this.isUnpaidFilter= true;
+      // let usersVal:any = [];
+      // this.datalist.forEach((element:any)=>{
+      //   if(element.final_amt !== element.paid_amt){
+      //     usersVal.push(element);
+      //   }
+      // });
+      // this.datalist = usersVal;
     }else
     if(selector==="3"){
       //paid bills
-      if(this.isUnpaidFilter){
-        this.isUnpaidFilter=false;
-        // this.datalist=this.reserveData;
-      }
-      if(this.oldToNew){
-        this.oldToNew=false;
-        this.reserveData.reverse();
-      }
-      this.isPaidFilter= true;
-      let usersVal:any = [];
-      this.reserveData.forEach((element:any)=>{
-        if(element.final_amt === element.paid_amt){
-          usersVal.push(element);
-        }
-      });
-      this.datalist = usersVal;
+
+      this.paidData();
+      // await this.ngOnInit();
+      // if(this.isUnpaidFilter){
+      //   this.isUnpaidFilter=false;
+      //   // this.datalist=this.reserveData;
+      // }
+      // // if(this.oldToNew){
+      // //   this.oldToNew=false;
+      // //   this.reserveData.reverse();
+      // // }
+
+      // this.isPaidFilter= true;
+      // let usersVal:any = [];
+      // this.datalist.forEach((element:any)=>{
+      //   if(element.final_amt === element.paid_amt){
+      //     usersVal.push(element);
+      //   }
+      // });
+      // this.datalist = usersVal;
     }
   }
 

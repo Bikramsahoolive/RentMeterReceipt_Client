@@ -6,8 +6,8 @@
         <select class="selector" #filter name="" id="" (change)="dataFilter(filter.value)">
             <option value="0">Normal</option>
             <!-- <option value="1">Old to New</option> -->
-            <option value="2">Unpaid bill</option>
-            <option value="3">Paid bill</option>
+            <option value="1">Unpaid bill</option>
+            <option value="2">Paid bill</option>
         </select>
     </div>
 </div>
@@ -17,7 +17,7 @@
     <div class="data">
     
     <div class="data-table">
-    <table class="table" *ngIf="datalist[0].id!==''">
+    <table class="table" *ngIf="isTableDataAvailable">
         <thead>
           <th>Bill Date</th>
           <th>Bill ID</th>
