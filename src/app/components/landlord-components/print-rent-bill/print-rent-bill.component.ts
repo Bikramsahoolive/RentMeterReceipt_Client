@@ -29,6 +29,7 @@ bill:rentBillData={
   landlord_name: '',
   paid_amt: 0,
   payment_date: '',
+  payment_method:'',
   perunit: 0,
   previousUnit: 0,
   rent: 0,

@@ -34,6 +34,7 @@ export interface rentBillData {
     landlord_name: string,
     paid_amt: number,
     payment_date: string,
+    payment_method:string,
     perunit: number,
     previousUnit: number,
     rent: number,

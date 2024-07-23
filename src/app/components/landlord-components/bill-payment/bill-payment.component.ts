@@ -50,7 +50,7 @@ export class BillPaymentComponent {
       this.toastr.info('Invalid paid amount','',{positionClass:"toast-top-center",progressBar:true});
       
     }else{
-      delete data.id;
+      data.payment_method = "CASH";
       this.spinner.show();
 this.landlordServe.paymentBillData(data,id).subscribe({
   next:(res:any)=>{
@@ -61,7 +61,11 @@ this.landlordServe.paymentBillData(data,id).subscribe({
   },
   error:(err)=>{
     console.log(err.error);
-    this.toastr.error('Something Wents wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
+    if(err.error.status==='failure'){
+      this.toastr.error(err.error.message,'Error',{positionClass:"toast-top-center",progressBar:true});
+    }else{
+      this.toastr.error('Something Wents wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
+    }
     this.spinner.hide();
   }
 });
@@ -73,12 +77,23 @@ this.landlordServe.paymentBillData(data,id).subscribe({
 
 
   getPaymentAmount(id:any){
+
+    let encData = localStorage.getItem('connect.sid');
+    let userData:any;
+    if(encData){
+     userData = JSON.parse(atob(encData));
+    }
     if(id.value ==="" || (id.value).length<13){
       this.toastr.info('Invalid Bill ID','Error',{positionClass:"toast-top-center",progressBar:true});
     }else{
       this.spinner.show();
       this.landlordServe.getSingleRentBillData(id.value).subscribe({
         next:(res:any)=>{
+          this.spinner.hide();
+          if(res.landlord_id !== userData.id){
+            this.toastr.error('Unauthorized Bill Access.','',{positionClass:"toast-top-center",progressBar:true});
+            return;
+          }
           
           if(res.final_amt == res.paid_amt){
             this.toastr.success('Bill Already Paid','',{positionClass:"toast-top-center",progressBar:true});
@@ -86,7 +101,6 @@ this.landlordServe.paymentBillData(data,id).subscribe({
             this.toPaidAmount = res.final_amt - res.paid_amt;
             this.payableAmount = res.final_amt - res.paid_amt;
           }
-          this.spinner.hide();
         },error:(error)=>{
           console.log(error);
           this.toastr.error('Bill ID is not exist.','Error',{positionClass:"toast-top-center",progressBar:true});

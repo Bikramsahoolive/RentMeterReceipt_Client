@@ -34,8 +34,9 @@
           <!-- <th>fine Amount</th> -->
           <!-- <th>fine Type</th> -->
           <th>Total Due</th>
-          <th>Paid Amount</th>
           <th>Due Date</th>
+          <th>Paid Amount</th>
+          <th>Payment Method</th>
           <th>Payment Date</th>
           <th>Action</th>
           
@@ -58,8 +59,9 @@
             <!-- <td data-label="fine Amount : ">{{data.fine_amt}}</td> -->
             <!-- <td data-label="fine Type : ">{{data.fine_type}}</td> -->
             <td data-label="Total Due : ">{{data.final_amt}}</td>
-            <td data-label="Paid  Amount : ">{{data.paid_amt}}</td>
             <td data-label="Due Date : ">{{data.dueDate}}</td>
+            <td data-label="Paid  Amount : ">{{data.paid_amt}}</td>
+            <td data-label="payment Method : ">{{data.payment_method}}</td>
             <td data-label="Payment Date : ">{{data.payment_date}}</td>
             <td data-label="Action : "><i class="fa-regular fa-trash-can delete-icon" style="color: rgb(29, 100, 29);" (click)="deleteData(data.id,filter)" *ngIf="data.paid_amt ===0 else elseDelete"  ></i></td>
             <ng-template #elseDelete>
