@@ -4,43 +4,43 @@
 <form #rentHolderData="ngForm" (ngSubmit)="getRentHolderData(rentHolderData)">
     <div class="user-details">
     <div class="input-box">
-        <span class="details">Name:</span>
+        <span class="details">* Name:</span>
     <input type="text" ngModel name="name">
     </div>
     <div class="input-box">
-        <span class="details" >Members Count:</span>
+        <span class="details" >* Members Count:</span>
         <input type="number" ngModel name="member_count">
     </div>
     <div class="input-box">
-        <span class="details">Phone:</span>
+        <span class="details">* Phone:</span>
     <input type="tel" ngModel name="phone">
     </div>
     <div class="input-box">
-        <span class="details" >Email:</span>
+        <span class="details" >* Email:</span>
         <input type="email" ngModel name="email">
     </div>
     <div class="input-box">
-        <span class="details">Monthly Rent(₹):</span>
+        <span class="details">* Monthly Rent(₹):</span>
         <input type="number" ngModel name="rent">
     </div>
     <div class="input-box">
-        <span class="details">Initial Meter Unit(Sub Meter)[if any]:</span>
+        <span class="details">Initial Meter Unit(Sub Meter):</span>
         <input type="number" ngModel name="current_unit">
     </div>
     <div class="input-box">
-        <span class="details">Photo[if any]:</span>
+        <span class="details"> Photo <small>(jpg,jpeg,png max-size:200kb)</small>:</span>
         <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo">
     </div>
     <div class="input-box">
-        <span class="details">Rent Deed / Identity Document:</span>
+        <span class="details"> Agreement/ ID <small>(pdf,jpg,jpeg max-size:1Mb)</small>:</span>
         <input type="file" #doc class="file" ngModel (change)="fileInput($event,'document',doc)" name="file">
     </div>
     <div class="input-box">
-        <span class="details">Password:</span>
+        <span class="details">* Password:</span>
     <input type="password" ngModel name="password">
     </div>
     <div class="input-box">
-        <span class="details">Confirm Password:</span>
+        <span class="details">* Confirm Password:</span>
     <input type="text" ngModel name="confPass">
     </div>
 </div>

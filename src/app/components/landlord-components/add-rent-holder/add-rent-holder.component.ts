@@ -22,11 +22,39 @@ export class AddRentHolderComponent {
     if (file){
       let extention = file.name.split(".");
       // console.log(extention[1]);
-      if(extention[1] ==="jpg"|| extention[1]=='pdf' || extention[1]=="jpeg"){
+      if(type==='photo'){
+        if(extention[1] =="jpg"|| extention[1]==='png' || extention[1]==="jpeg"){
+        }else{
+          this.spinner.hide();
+    inputField.value="";
+    this.toster.info('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+          return;
+        }
+        if(file.size>204800){
+          inputField.value="";
+      this.toster.info(`Max 200kb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.spinner.hide();
+          return;
+        }
+      }
 
-      
+      if(type==='document'){
 
-      if(file.size<524576){
+        if(extention[1] ==="jpg"|| extention[1]==='pdf' || extention[1]==="jpeg"){
+         
+        }else{
+          this.spinner.hide();
+          inputField.value="";
+          this.toster.info('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+                return;
+        }
+        if(file.size>1024000){
+          inputField.value="";
+      this.toster.info(`Max 1mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.spinner.hide();
+          return;
+        }
+      }
 
       const reader = new FileReader();
       reader.onload = (e)=>{
@@ -41,16 +69,6 @@ export class AddRentHolderComponent {
         this.spinner.hide();
       }
       reader.readAsDataURL(file);
-    }else{
-      inputField.value="";
-      this.toster.info(`file large than 500kb`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
-      this.spinner.hide();
-    }
-  }else{
-    this.spinner.hide();
-    inputField.value="";
-    this.toster.info('',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
-  }
   }
   }
 
@@ -103,7 +121,7 @@ if(current_unit==="" || current_unit===null){
   data.current_unit = 0;
 }
 
-  if(this.deedFileUrl!==''){
+  // if(this.deedFileUrl!==''){
     if(data.password.length<8 || data.password.length>16 ){
       this.toster.info('password must be 8 to 16 digit.',`Invalid Password`,{progressBar:true,positionClass:"toast-top-center"});
       return;
@@ -136,9 +154,9 @@ if(current_unit==="" || current_unit===null){
     }else{
         this.toster.info(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     }
-    }else{
-      this.toster.info(`Invalid Rent Deed or Document.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
-    }
+    // }else{
+    //   this.toster.info(`Invalid Rent Deed or Document.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+    // }
     
     
     

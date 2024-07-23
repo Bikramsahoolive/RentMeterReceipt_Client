@@ -22,6 +22,7 @@ export interface landlordData {
 export interface rentBillData {
     adjustUnit: number,
     billingDate: string,
+    bill_period:string,
     consumer_Name: string,
     currentUnit: number,
     dueAmount: number,
@@ -42,7 +43,8 @@ export interface rentBillData {
     totalAmount: number,
     totalUnit: number,
     unitAdv: number,
-    water_bill: number
+    water_bill: number,
+    maintenance:number
 }
 
 export interface rentholderData {

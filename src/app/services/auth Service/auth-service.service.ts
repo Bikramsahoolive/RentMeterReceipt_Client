@@ -152,12 +152,24 @@ checkSession(){
     localStorage.setItem("connect.rid",btoa('true'));
 }else{
   localStorage.setItem("connect.rid",btoa('false'));
-  this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast-top-center"});
   localStorage.setItem("connect.sid","null");
+  //////
+  this.isLogedIn = false;
+  this.isAdmin = false;
+  this.isLandlord=false;
+  this.isRentholder=false;
+  //////
+this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast-top-center"});
   this.router.navigate(['login']);
-  if(this.isLogedIn){
-    this.logout();
+
+
+  
+  if(result.message==="session expired."){
+    this.spinner.hide();
   }
+  // if(this.isLogedIn){
+  //   this.logout();
+  // }
 }
  },(err)=>{
   console.log(err.error);

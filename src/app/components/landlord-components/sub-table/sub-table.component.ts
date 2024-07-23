@@ -16,6 +16,7 @@ datalist:rentBillData[]=[
   {
     adjustUnit: 0,
     billingDate: '',
+    bill_period:'',
     consumer_Name: '',
     currentUnit: 0,
     dueAmount: 0,
@@ -36,7 +37,8 @@ datalist:rentBillData[]=[
     totalAmount: 0,
     totalUnit: 0,
     unitAdv: 0,
-    water_bill: 0
+    water_bill: 0,
+    maintenance:0
   }
 ];
 
@@ -44,6 +46,7 @@ reserveData:rentBillData[]=[
   {
     adjustUnit: 0,
     billingDate: '',
+    bill_period:'',
     consumer_Name: '',
     currentUnit: 0,
     dueAmount: 0,
@@ -64,7 +67,8 @@ reserveData:rentBillData[]=[
     totalAmount: 0,
     totalUnit: 0,
     unitAdv: 0,
-    water_bill: 0
+    water_bill: 0,
+    maintenance:0
   }
 ];
 isTableDataAvailable:boolean=false;

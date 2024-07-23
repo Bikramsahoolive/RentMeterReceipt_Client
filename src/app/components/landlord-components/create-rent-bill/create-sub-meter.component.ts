@@ -115,11 +115,17 @@ export class CreateSubMeterComponent {
   }
 
   createRentBill(form:NgForm){
+    let data = form.value;
+
+    if(data.bill_period ===""){
+      this.toster.info(`Choose Bill Period. `,'Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+      return;
+    }
     if(this.name ===""){
       this.toster.info(`Choose Rentholder. `,'Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
       return;
     }
-    let data = form.value;
+    
     if (data.rent_status ===''){
       this.toster.info(`Choose Rent Status. `,'Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
       return;
@@ -134,6 +140,7 @@ export class CreateSubMeterComponent {
     if(data.adjustUnit===null || data.adjustUnit==='')data.adjustUnit=0;
     if(data.dueAmount===null || data.dueAmount==='')data.dueAmount=0;
     if(data.water_bill==="" || data.water_bill===null)data.water_bill=0;
+    if(data.maintenance==="" || data.maintenance===null)data.maintenance=0;
     if(data.electric_status==="pa"){
       data.eBill=0;
       data.totalAmount=0;
@@ -188,8 +195,12 @@ export class CreateSubMeterComponent {
     if(data.water_bill<0){
   this.toster.info('Enter Valid Water Bill Amount.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
   return;
-}
+   }
 
+   if(data.maintenance<0){
+    this.toster.info('Enter Valid Maintenance Charge.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+    return;
+     }
     this.spinner.show();
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{

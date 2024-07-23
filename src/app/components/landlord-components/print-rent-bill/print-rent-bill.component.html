@@ -16,6 +16,10 @@
                 <!-- <div class="data">
                     <span>Bill Period : </span> <Strong>{{}}</Strong>
                 </div> -->
+                <div class="data">
+                    <span> Bill Period : </span> <Strong>{{bill.bill_period}}</Strong>
+                </div>
+
                 <div *ngIf="bill.electric_status !=='am' && bill.electric_status !=='pa'">
                     <div class="data" >
                         <span>Previous Unit : </span> <Strong>{{bill.previousUnit}}</Strong>
@@ -27,18 +31,25 @@
                         <span>Adjust Unit : </span><Strong>{{bill.adjustUnit}}</Strong>
                     </div>
                     <div class="data">
-                        <span> Unit Advance: </span> <Strong>{{bill.unitAdv}}</Strong>
+                        <span> Unit Consumed: </span> <Strong>{{bill.unitAdv}} Unit</Strong>
                     </div>
                 </div>
                 
                 <div class="data">
-                    <span> Electric Bill( + ) : </span> <Strong>₹{{bill.eBill}}</Strong>
+                    <span> Electric Bill( + ) : </span> <Strong *ngIf="bill.eBill!==0 else paidStatus">₹{{bill.eBill}}</Strong>
+                    
                 </div>
                 <div class="data">
-                    <span>Monthly Rent( + ) : </span> <Strong>₹{{bill.rent}}</Strong>
+                    <span>Monthly Rent( + ) : </span> <Strong *ngIf="bill.rent!==0 else paidStatus">₹{{bill.rent}}</Strong>
                 </div>
-                <div class="data">
+                <ng-template #paidStatus>
+                    <strong>Paid</strong>
+                </ng-template>
+                <div class="data" *ngIf="bill.water_bill!==0">
                     <span>Water Bill( + ) : </span> <Strong>₹{{bill.water_bill}}</Strong>
+                </div>
+                <div class="data" *ngIf="bill.maintenance!==0">
+                    <span> Maintenance Charge( + ) : </span> <Strong>₹{{bill.maintenance}}</Strong>
                 </div>
                 <div class="data">
                     <span>Previous Due( + ) : </span> <Strong>₹{{bill.dueAmount}}</Strong>

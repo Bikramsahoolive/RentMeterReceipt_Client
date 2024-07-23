@@ -17,6 +17,7 @@ paramId:any='';
 bill:rentBillData={
   adjustUnit: 0,
   billingDate: '',
+  bill_period:'',
   consumer_Name: '',
   currentUnit: 0,
   dueAmount: 0,
@@ -37,7 +38,8 @@ bill:rentBillData={
   totalAmount: 0,
   totalUnit: 0,
   unitAdv: 0,
-  water_bill: 0
+  water_bill: 0,
+  maintenance:0
 };
 upiLink:any;
 landlordSign:string="../../../../assets/images.png";

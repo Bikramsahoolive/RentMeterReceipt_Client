@@ -7,6 +7,17 @@
         <span class="details">Billing Date:</span>
     <input type="date" [(ngModel)]="dToday" readonly name="billingDate">
     </div>
+
+    <div class="input-box">
+        <span class="details">Bill Period:</span>
+        <select name="bill_period" ngModel >
+            <option value="">Select</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="">Yearly</option>
+        </select>
+    </div>
+
     <div class="input-box">
         <span class="details" >Rent-Holder Name:</span>
         <select name="consumer_Name" ngModel #name (change)="getRent(name.value)">
@@ -30,7 +41,7 @@
 
 
 
-    <div class="input-box" style="width: 100%;">
+    <div class="input-box" >
         <span class="details"> Electric Bill Status:</span>
         <select name="electric_status" [(ngModel)]="ebillStatus" #selectElc [disabled]="isRentholderChoosen" (change)="showElc(selectElc)" >
             <option value="">Select</option>
@@ -89,9 +100,14 @@
         <span class="details">Water Bill Amount(₹)[if any]:</span>
     <input type="number" ngModel name="water_bill">
     </div>
+
+    <div class="input-box">
+        <span class="details">Maintenance Charge(₹)[if any]:</span>
+    <input type="number" ngModel name="maintenance">
+    </div>
    
     <div class="input-box">
-        <span class="details">Previous Due [if any]:</span>
+        <span class="details">Previous Due(₹) [if any]:</span>
     <input type="number" ngModel name="dueAmount">
     </div>
 </div>
