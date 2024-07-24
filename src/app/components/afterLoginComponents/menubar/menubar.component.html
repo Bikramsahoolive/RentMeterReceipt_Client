@@ -1,5 +1,5 @@
 <section class="menu menu-open" #menuBar>
-    <div id="toggle-btn"><i (click)="toggleMenu(menuBar)" class="fa-solid fa-ellipsis-vertical"></i></div>
+    <div id="toggle-btn" (click)="toggleMenu(menuBar)"><i class="fa-solid fa-ellipsis-vertical"></i></div>
     <router-outlet name="outlet2"></router-outlet>
    <!-- <app-dashbord-user></app-dashbord-user><i class="fa-solid fa-toggle-off"></i> -->
 </section>

@@ -67,7 +67,7 @@ export class UnsubscribeMailComponent {
       data.email = this.emailid;
     }else{
       if(this.email.nativeElement.value===""|| !emailRegex.test(this.email.nativeElement.value)){
-        this.toaster.info('Invalid Email Input.',"",{positionClass:'toast-top-center',progressBar:true});
+        this.toaster.error('Invalid Email Input.',"",{positionClass:'toast-top-center',progressBar:true});
         return;
       }
 

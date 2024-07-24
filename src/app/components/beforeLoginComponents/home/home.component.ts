@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,17 +26,30 @@ export class HomeComponent {
     this.homeServ.sendSubMail({email:emailId.value}).subscribe({
       next:(res:any)=>{
         if(res.status ==='success'){
-          
-          this.toster.success("Your Email Subscribed","",{positionClass:"toast-top-center",progressBar:true});
+          this.spinner.hide();
+          const Toast = Swal.mixin({
+            toast: true,
+            position:"top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Subscribed successfully."
+          });
         }else{
-          this.toster.info(res.message,"",{positionClass:"toast-top-center",progressBar:true});
+          this.toster.error(res.message,"",{positionClass:"toast-top-center",progressBar:true});
         }
       },error:(err)=>{
         console.error(err);
         this.toster.error('Something Went wrong.',"",{positionClass:"toast-top-center",progressBar:true});
         this.spinner.hide();
       },complete:()=>{
-        this.spinner.hide();
         emailId.value = '';
       }
     });

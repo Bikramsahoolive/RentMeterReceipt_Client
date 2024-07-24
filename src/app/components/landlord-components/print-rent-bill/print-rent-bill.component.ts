@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import { landlordData, rentBillData } from 'src/app/model/data';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-print-rent-bill',
@@ -12,7 +12,7 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
   styleUrls: ['./print-rent-bill.component.css']
 })
 export class PrintRentBillComponent {
-  constructor( private toastr:ToastrService,private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
+  constructor( private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
 paramId:any='';
 bill:rentBillData={
   adjustUnit: 0,
@@ -110,10 +110,20 @@ showPayBtn:boolean=false;
 
   openUpi(){
     if(this.authServe.Rentholder()){
-    alert("Go to upi payment.");
-    const upiBtn = document.createElement('a');
-    upiBtn.href=this.upiLink;
-    upiBtn.click();
+      Swal.fire({
+        title:"Info",
+        icon:"info",
+        text:"Direct UPI payment through thirdparty website may give some error, Try scan and pay on UPI."
+      })
+      .then((result:any)=>{
+        console.log(result);
+        //isConfirmed
+        //isDenied
+        //value
+        const upiBtn = document.createElement('a');
+        upiBtn.href=this.upiLink;
+        upiBtn.click();
+      });
     }
   }
   payNow(){

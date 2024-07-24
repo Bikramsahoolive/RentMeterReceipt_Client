@@ -3,6 +3,8 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import { rentholderData } from 'src/app/model/data';
+import Swal from 'sweetalert2';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-rent-holder',
@@ -63,26 +65,58 @@ downloadDoc(link:any){
   document.body.removeChild(downloadLink);
 }
 deleteRentHolder(id:any){
-  let confString = prompt("This Action is irreversible and permanently delete all releted data, To confirm please type ['delete rentholder'] bellow.");
-  
-  if(confString ==='delete rentholder'){
-    this.landlordServ.deleteRentHolderData(id).subscribe({
-      next:(res:any)=>{
-        if(res.status){
-          this.users = [];
-          this.getAllRentHolder();
-          this.toaster.success(`Rent Holder Deleted`,'Success',{progressBar:true,positionClass:"toast-top-center"});
-        }
-      },error:(error)=>{
-        console.error(error);
-        this.toaster.error(`Something wents wrong.`,"Error",{progressBar:true,positionClass:"toast-top-center"});
-      }
-    });
-  }else if(confString===null){
-  }else{
-    this.toaster.error("Sorry! wrong command.","",{progressBar:true,positionClass:"toast-top-center"});
-  }
 
-  
+
+  Swal.fire({
+    title:"Warning",
+    icon:"warning",
+    text:"This Action is irreversible and permanently delete all releted data, To confirm please type ['delete rentholder'] bellow.",
+    input:"text",
+    inputAttributes:{
+      autocapitalize:"on"
+    },
+    showCancelButton:true,
+    confirmButtonText:"Delete",
+    showLoaderOnConfirm:true,
+    preConfirm:  async (val) => {
+        
+        if (val!=="delete rentholder") {
+          return Swal.showValidationMessage(`
+            "Wrong Input!"
+          `)
+        }
+        try {
+          const response = await fetch(`${environment.apiUrl}/rentholder/user/${id}`,{
+            method:'DELETE',
+            credentials:'include'
+          })
+        if(response.ok){
+          return "Rentholder Deleted.";
+        }
+        } catch (error) {
+          return Swal.showValidationMessage(`
+            "Error! Try Again."
+          `)
+        }
+        
+    },
+    allowOutsideClick: () => !Swal.isLoading()
+  }).then((result) => {
+    
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Successful",
+        text:result.value
+      })
+      .then(()=>{
+        this.users = [];
+        this.getAllRentHolder();
+      });
+
+  }else{
+    console.log("Canceled.");
+  }
+});
+
 }
 }

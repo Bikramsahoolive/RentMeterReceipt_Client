@@ -4,6 +4,7 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
 import{NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-rent-holder',
   templateUrl: './add-rent-holder.component.html',
@@ -27,12 +28,12 @@ export class AddRentHolderComponent {
         }else{
           this.spinner.hide();
     inputField.value="";
-    this.toster.info('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+    this.toster.error('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
           return;
         }
         if(file.size>204800){
           inputField.value="";
-      this.toster.info(`Max 200kb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Max 200kb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
@@ -45,12 +46,12 @@ export class AddRentHolderComponent {
         }else{
           this.spinner.hide();
           inputField.value="";
-          this.toster.info('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+          this.toster.error('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
                 return;
         }
         if(file.size>1024000){
           inputField.value="";
-      this.toster.info(`Max 1mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Max 1mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
@@ -88,33 +89,33 @@ export class AddRentHolderComponent {
 
     let {name,member_count,current_unit,email,phone,rent,password} = data;
     if(name==="" || member_count==="" || member_count ===null || email==="" || phone==="" || rent ==="" ||rent ===null || password ===""){
-      this.toster.info('Please fill all inputs',"",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Please fill all inputs',"",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
     const nameRegex = /[\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if(name.length > 25 || nameRegex.test(name)){
-      this.toster.info('Enter valid Name max length 25.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter valid Name max length 25.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
 
     if(member_count<1){
-      this.toster.info('Enter vlaid member count.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter vlaid member count.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
     const phoneRegex = /^[06789]/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if(phone.length!==10 || !phoneRegex.test(phone)){
-      this.toster.info('Enter valid 10 digit phone.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter valid 10 digit phone.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
 
     if(email.length>30 || !emailRegex.test(email)){
-      this.toster.info('Enter valid email.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter valid email.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
     if (rent< 1){
-  this.toster.info('Enter valid Monthly Rnt.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+  this.toster.error('Enter valid Monthly Rnt.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
 }  
 if(current_unit==="" || current_unit===null){
@@ -123,7 +124,7 @@ if(current_unit==="" || current_unit===null){
 
   // if(this.deedFileUrl!==''){
     if(data.password.length<8 || data.password.length>16 ){
-      this.toster.info('password must be 8 to 16 digit.',`Invalid Password`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('password must be 8 to 16 digit.',`Invalid Password`,{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
     if(data.confPass===data.password){
@@ -139,8 +140,14 @@ if(current_unit==="" || current_unit===null){
       next:(res:any)=>{
         form.reset();
         if(res.status){
-          this.toster.success(res.message,`Success`,{progressBar:true,positionClass:"toast-top-center"});
-          this.router.navigate(['/rent-holder']);
+
+          Swal.fire({
+            title:"Great!",
+            text:"New Rentholder Added.",
+            icon:"success"
+          }).then((result:any)=>{
+              this.router.navigate(['rent-holder']);
+          });
         }
         this.spinner.hide();
       },
@@ -152,11 +159,8 @@ if(current_unit==="" || current_unit===null){
     }
     });
     }else{
-        this.toster.info(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     }
-    // }else{
-    //   this.toster.info(`Invalid Rent Deed or Document.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
-    // }
     
     
     

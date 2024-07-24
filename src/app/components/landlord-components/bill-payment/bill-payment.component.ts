@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-bill-payment',
@@ -51,13 +52,42 @@ export class BillPaymentComponent {
       
     }else{
       data.payment_method = "CASH";
-      this.spinner.show();
+
+      Swal.fire({
+        title:"Are you sure?",
+        text:`You are paying ₹${data.paid_amt} and won't be able to revert the payment.`,
+        icon:"question",
+        showCloseButton:true,
+        confirmButtonColor: "#7373f3",
+        confirmButtonText: "Pay",
+      }).then((res)=>{
+        if(res.isConfirmed){
+
+
+          this.spinner.show();
 this.landlordServe.paymentBillData(data,id).subscribe({
   next:(res:any)=>{
-    this.toastr.success(res.message,'Success',{positionClass:"toast-top-center",progressBar:true});
-    form.reset();
-    this.currentDate = this.createDate();
-    this.router.navigate([`print-rent-bill/${id}`]);
+    this.spinner.hide();
+    Swal.fire({
+      title: "Payment Done!",
+      text: "Your Rent Bill Paid.",
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonColor: "#7373f3",
+      cancelButtonColor: "#6e7881",
+      confirmButtonText: "Pay Next Bill!",
+      cancelButtonText:"Print"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(["rent-bill-table"]);
+         
+      }else{
+        this.router.navigate([`print-rent-bill/${id}`]);
+      }
+    });
+    // form.reset();
+    // this.currentDate = this.createDate();
+    
   },
   error:(err)=>{
     console.log(err.error);
@@ -69,6 +99,12 @@ this.landlordServe.paymentBillData(data,id).subscribe({
     this.spinner.hide();
   }
 });
+
+
+
+        }
+      })
+
 
     }
     

@@ -40,8 +40,8 @@ div #logout {
     text-decoration: none;
     background-color: rgb(14 37 74);
     color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: 10px 10px;
+    border-radius: 25px;
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -76,7 +76,7 @@ div #logout:hover{
 }
 
 .dropdown_menu.open {
-    height: 220px;
+    height: 250px;
     z-index:3;
     max-height: 50vh;
     padding: 10px 30px;
@@ -91,6 +91,7 @@ div #logout:hover{
     align-items: center;
     justify-content: center;
     background-color: #0e254a14;
+    border-radius: 25px 25px 0px 0px;
 }
 .dropdown_menu li a{
     color: rgb(231, 231, 231);

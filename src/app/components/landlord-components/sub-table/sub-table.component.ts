@@ -4,6 +4,8 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr'
 import { rentBillData } from 'src/app/model/data';
+import Swal from 'sweetalert2';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-sub-table',
@@ -184,25 +186,44 @@ paidData() {
   
   deleteData(id:number,filter:any)
   {
-    let confirmDelete = confirm("This Action Is irreversible, Are you sure !");
-    if(confirmDelete){
-      this.spinner.show();
-      this.landlordServ.deleteRentBillData(id).subscribe({
-        next:(res:any)=>{
-          filter.value='0';
-          this.datalist=[];
-          this.toster.success(`${res.message}`,'success');
-          this.ngOnInit();
-        },
-        error:(err)=>{
-          console.error(err.error);
-          this.toster.error(`${err.error.text}`,'Error');
-        },
-        complete:()=>{this.spinner.hide();}
-      });
-    
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#7373f3",
+      cancelButtonColor: "#6e7881",
+      confirmButtonText: "Yes, delete it!",
+      showLoaderOnConfirm:true,
+      preConfirm: async (val)=>{
+        
+        if(val){
 
-    }
+          try {
+            const response = await fetch(`${environment.apiUrl}/rent-bill/bill/${id}`,{
+              method:'DELETE',
+              credentials:'include'
+            })
+          if(response.ok){
+            Swal.fire({
+              title: "Deleted!",
+              text: "Bill data has been deleted.",
+              icon: "success"
+            }).then(()=>{
+              filter.value='0';
+            this.datalist=[];
+            this.ngOnInit();
+            })
+          }
+          } catch (error) {
+            return Swal.showValidationMessage(`
+              "Error! Try Again."
+            `)
+          }
+        }
+      },
+      allowOutsideClick:() => !Swal.isLoading()
+    });
   }
 oldToNew:boolean=false;
  async dataFilter(selector:string)

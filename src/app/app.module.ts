@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {QRCodeModule} from 'angularx-qrcode';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -126,7 +127,8 @@ import { DeveloperDetailsComponent } from './components/beforeLoginComponents/de
     NgxSpinnerModule,
     NgxPaginationModule,
     QRCodeModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]

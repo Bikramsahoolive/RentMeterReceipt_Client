@@ -5,6 +5,7 @@ import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from 'src/environment';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -66,24 +67,24 @@ siteKey:string= environment.siteKey;
       if (data.password === data.confPass){
         if (data.termNconditions){
           if(this.regNumber===""){
-            this.toastr.info('send OTP first.','',{progressBar:true,positionClass:"toast-top-center"});
+            this.toastr.error('send OTP first.','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
           if(data.otp==="" || data.otp===null ||data.otp.length !== 6){
-            this.toastr.info('','Invalid OTP',{progressBar:true,positionClass:"toast-top-center"});
+            this.toastr.error('','Invalid OTP',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
           const upiRegex = /^[^\s@]+@[^\s@]+$/;
           if(!upiRegex.test(data.upi)){
-            this.toastr.info('','Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
+            this.toastr.error('','Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
           if((data.password).length <8 || (data.password).length >16 ){
-            this.toastr.info('Enter an 8 to 16 digit password.','Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
+            this.toastr.error('Enter an 8 to 16 digit password.','Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
           if(!this.captchaVirification){
-            this.toastr.info('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
+            this.toastr.error('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
 
@@ -99,13 +100,18 @@ siteKey:string= environment.siteKey;
           this.signupService.actionLandlordData(data).subscribe({
             next:(result:any)=>{
               if(result.status==='success'){
-            this.toastr.success("registered.",'Successfully',{progressBar:true,positionClass:"toast-top-center"});
+                this.spinner.hide();
+                Swal.fire({
+                  title:"Congrats!",
+                  text:"Your Landlord Profile Created, Please Login To Continue.",
+                  icon:"success"
+                }).then((result:any)=>{
                 this.regNumber='';
                 this.router.navigate(['login']);
+                });
               }else{
                 this.toastr.error(result.message,'',{progressBar:true,positionClass:"toast-top-center"});
               }
-              this.spinner.hide();
             },
             error:(err)=>{
               this.spinner.hide();
@@ -114,16 +120,16 @@ siteKey:string= environment.siteKey;
           });
           
         }else{
-          this.toastr.info('Accept term & conditions.','',{progressBar:true,positionClass:"toast-top-center"});
+          this.toastr.error('Accept term & conditions.','',{progressBar:true,positionClass:"toast-top-center"});
         }
        
       }else{
-         this.toastr.info('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
+         this.toastr.error('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
 
       }
 
     }else{
-      this.toastr.info('field/fields are empty.','',{progressBar:true,positionClass:"toast-top-center"});
+      this.toastr.error('field/fields are empty.','',{progressBar:true,positionClass:"toast-top-center"});
     }
     
   }
@@ -135,7 +141,7 @@ siteKey:string= environment.siteKey;
       return;
     }
     if(name.value==="" || phone.value===""||email.value===""){
-      this.toastr.info('Fill above inputs.',"",{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Fill above inputs.',"",{positionClass:"toast-top-center",progressBar:true});
       return;
     }
 
@@ -143,20 +149,20 @@ siteKey:string= environment.siteKey;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const nameRegex = /[\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if((name.value).length > 25 || name.value.length <5){
-      this.toastr.info('Length should be 5 to 25',"Invalid Name",{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Length should be 5 to 25',"Invalid Name",{positionClass:"toast-top-center",progressBar:true});
       return;
     }
      if(nameRegex.test(name.value)){
-      this.toastr.info('Number or Special Char not allowed.',"Invalid Name",{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Number or Special Char not allowed.',"Invalid Name",{positionClass:"toast-top-center",progressBar:true});
       return;
     }
 
     if((phone.value).length !==10 || !phoneRegex.test(phone.value)){
-      this.toastr.info('',"Invalid Phone.",{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('',"Invalid Phone.",{positionClass:"toast-top-center",progressBar:true});
       return;
     }
     if((email.value).length >30 ||!emailRegex.test(email.value)){
-      this.toastr.info('',"Invalid Email",{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('',"Invalid Email",{positionClass:"toast-top-center",progressBar:true});
       return;
     }
 
@@ -170,11 +176,17 @@ siteKey:string= environment.siteKey;
       next:(res:any)=>{
         this.spinner.hide()
         if(res.status==='success'){
+          Swal.fire({
+            position:"center",
+            icon:'success',
+            title:"OTP sent",
+            showConfirmButton:false,
+            timer:2000
+          });
           this.isReadonly = true;
           this.sendOtpCount -= 1;
           this.regNumber = res.id;
-          this.toastr.success("OTP Sent successfully","",{positionClass:"toast-top-center",progressBar:true});
-        }
+          }
       },error:(err)=>{
         this.spinner.hide();
         this.toastr.error(err.error.message,"",{positionClass:"toast-top-center",progressBar:true});

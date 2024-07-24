@@ -11,11 +11,6 @@ html,body{
     background-repeat: no-repeat;
     font-family: Arial, Helvetica, sans-serif;
 }
-@media print {
-  body{
-      max-height:100vh ;
-    }
-  }
 /* Copy code
 input[type="number"] {
   -moz-appearance: textfield; 

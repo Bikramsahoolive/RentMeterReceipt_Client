@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forgot-password',
@@ -86,12 +87,12 @@ ngOnInit(){}
   verifyForgotPassword(newPass:any,confPass:any){
 
     if(newPass.value.length<8 || newPass.value.length>16 ){
-      this.toster.info('Enter an 8 to 16 digit password.',"Invalid Password",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter an 8 to 16 digit password.',"Invalid Password",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
 
       if(newPass.value !== confPass.value ){
-        this.toster.info('Password not mach.',"",{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error('Password not mach.',"",{progressBar:true,positionClass:"toast-top-center"});
         return;
       }
         this.spinner.show();
@@ -102,8 +103,14 @@ ngOnInit(){}
       this.authServ.verifyforgotPassword(data).subscribe({
         next:(res:any)=>{
           if(res.status==="success"){
-            this.toster.success(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
-            this.router.navigate(['/login']);
+            this.spinner.hide();
+            Swal.fire({
+              title:"Password Updated!",
+              text:"Your Password Updated, Please Login To Continue.",
+              icon:"success"
+            }).then((result:any)=>{
+            this.router.navigate(['login']);
+            });
           }else if(res.status==="expired"){
             this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             this.router.navigate(['/login']);
@@ -114,8 +121,6 @@ ngOnInit(){}
           this.spinner.hide();  
           console.log(err);
           this.toster.error("something wents wrong try again later.","",{progressBar:true,positionClass:"toast-top-center"});
-        },complete:()=>{
-          this.spinner.hide();
         }
       })
 
@@ -125,7 +130,7 @@ ngOnInit(){}
 
     
       if(phone.value ==="" || userType.value===""){
-        this.toster.info("Please Fill Inputs.",'',{progressBar:true,positionClass:'toast-top-center'});
+        this.toster.error("Please Fill Inputs.",'',{progressBar:true,positionClass:'toast-top-center'});
         return;
       }
 
@@ -133,7 +138,7 @@ ngOnInit(){}
       let validPhone = phoneRegex.test(phone.value);
 
       if(!validPhone){
-          this.toster.info('Enter a valid User ID.',"",{progressBar:true,positionClass:"toast-top-center"});
+          this.toster.error('Enter a valid User ID.',"",{progressBar:true,positionClass:"toast-top-center"});
           return;
       }
 
@@ -149,7 +154,14 @@ ngOnInit(){}
         this.authServ.forgotPassword(userData).subscribe({
           next:(res:any)=>{
             if(res.status ==='success'){
-              this.toster.success("OTP send successfully.","",{progressBar:true,positionClass:"toast-top-center"});
+              this.spinner.hide();
+              Swal.fire({
+                position:"center",
+                icon:'success',
+                title:"OTP sent",
+                showConfirmButton:false,
+                timer:2000
+              });
               this.successMsg =`An otp has been sent to ********${res.email}`;
               this.userData = {
                 id:res.id,
@@ -169,7 +181,6 @@ ngOnInit(){}
             }else{
               this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             }
-            this.spinner.hide();
           },error:(error)=>{
             this.spinner.hide();
             console.log(error);
@@ -197,8 +208,14 @@ ngOnInit(){}
       next:(res:any)=>{
         this.spinner.hide();
         if(res.status==='success'){
+          Swal.fire({
+            position:"center",
+            icon:'success',
+            title:"OTP sent again.",
+            showConfirmButton:false,
+            timer:2000
+          });
           this.resendOtpCount -= 1;
-        this.toster.success(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
         this.resendBtn.nativeElement.classList.add('hide');
         this.input1.nativeElement.focus();
         if(this.resendOtpCount > 0){

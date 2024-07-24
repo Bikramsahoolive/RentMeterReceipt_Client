@@ -19,6 +19,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 210px;
 }
  div a {
     border: 1px solid black;
@@ -36,4 +37,7 @@
 } 
 h1,h3,p{
     padding: 10px 0;
+    width: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
 }

@@ -6,6 +6,8 @@ import { LandlordService } from 'src/app/services/landlordService/landlord.servi
 import {Router} from '@angular/router'
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { landlordData } from 'src/app/model/data';
+import Swal from 'sweetalert2';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-landlord-profile',
@@ -203,22 +205,57 @@ updateLandlord(form:NgForm){
 }
 
 deleteAccountPrompt(id:any){
-  let confString = prompt("This Action is irreversible and permanently delete all releted data, To confirm please type ['delete landlord'] bellow.");
-  if(confString === 'delete landlord'){
-    this.landlordServ.deleteLandlordData(id).subscribe({
-      next:()=>{
-        this.toaster.success(`Your Profile Deleted Successfully.`,"",{progressBar:true,positionClass:"toast-top-center"});
+  // let confString = prompt("This Action is irreversible and permanently delete all releted data, To confirm please type ['delete landlord'] bellow.");
+  Swal.fire({
+    title:"Warning",
+    icon:"warning",
+    text:"This Action is irreversible and permanently delete all releted data, To confirm please type ['delete landlord'] bellow.",
+    input:"text",
+    inputAttributes:{
+      autocapitalize:"on"
+    },
+    showCancelButton:true,
+    confirmButtonText:"Delete",
+    showLoaderOnConfirm:true,
+    preConfirm:  async (val) => {
+        
+        if (val!=="delete landlord") {
+          return Swal.showValidationMessage(`
+            "Wrong Input!"
+          `)
+        }
+
+        try {
+          const response = await fetch(`${environment.apiUrl}/landlord/user/${id}`,{
+            method:'DELETE',
+            credentials:'include'
+          })
+        if(response.ok){
+          return "Landlord Deleted.";
+        }
+        } catch (error) {
+          return Swal.showValidationMessage(`
+            "Error! Try Again."
+          `)
+        }
+        
+    },
+    allowOutsideClick: () => !Swal.isLoading()
+  }).then((result) => {
+    
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Successful",
+        text:result.value
+      })
+      .then(()=>{
         this.authServ.logout();
-      },error:(error)=>{
-        console.error(error);
-        this.toaster.error(`Something wents wrong.`,"",{progressBar:true,positionClass:"toast-top-center"});
-      }
-    });
-  }else if(confString===null){
-    // this.toaster.warning("Delete profile canceled.");
+      })
+
   }else{
-    this.toaster.info("Sorry! wrong input.","",{progressBar:true,positionClass:"toast-top-center"});
+    console.log("Canceled.");
   }
+});
 }
 
 removeBiometric(type:string){

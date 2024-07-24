@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { rentholderData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import { RentholderServiceService } from 'src/app/services/rentholderService/rentholder-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-rentholder',
@@ -264,17 +265,19 @@ if(this.photoFile===''){
     if(data.file){
       delete data.file;
     }
-    console.log(data);
-    return;
     
     this.spinner.show()
     this.rentholderServe.updateRentholderData(this.rentholderId,data).subscribe({
       next:(res:any)=>{
-        console.log(res);
-        
         if(res.status==='success'){
-          this.toster.success(res.message,"",{positionClass:'toast-top-center',progressBar:true})
-          this.router.navigate(['rent-holder']);
+          Swal.fire({
+            title:"Updated!",
+            text:"Rentholder Data Updated.",
+            icon:"success"
+          }).then((result:any)=>{
+              this.router.navigate(['rent-holder']);
+            
+          });       
         }else{
           this.toster.error(res.message,"Error",{positionClass:'toast-top-center',progressBar:true});
         }
