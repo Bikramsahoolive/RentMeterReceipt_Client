@@ -1,8 +1,4 @@
-
-
-
-
-        <div class="container">
+        <div class="container" *ngIf="authServe.isLogin()">
             <button (click)="print()"><i class="fa-solid fa-print"></i></button>
             <div class="bill">
 
@@ -66,7 +62,7 @@
             <div class="foot">
                 <div class=qrcode >
                     
-                    <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
+                    <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'" (click)="openUpi()"></qrcode>
                     <img src="{{paidSign}}" alt="" style="width: 120px;;">
                     <h5 style="text-align: center;width: 110px;z-index: 1;">{{boxVal}}</h5>
                 </div>

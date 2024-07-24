@@ -107,6 +107,15 @@ showPayBtn:boolean=false;
   print(){
     window.print();
   }
+
+  openUpi(){
+    if(this.authServe.Rentholder()){
+    alert("Go to upi payment.");
+    const upiBtn = document.createElement('a');
+    upiBtn.href=this.upiLink;
+    upiBtn.click();
+    }
+  }
   payNow(){
 
 let order={
