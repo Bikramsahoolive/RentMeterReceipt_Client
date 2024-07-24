@@ -25,8 +25,8 @@ export class HomeComponent {
     this.spinner.show();
     this.homeServ.sendSubMail({email:emailId.value}).subscribe({
       next:(res:any)=>{
+        this.spinner.hide();
         if(res.status ==='success'){
-          this.spinner.hide();
           const Toast = Swal.mixin({
             toast: true,
             position:"top",
