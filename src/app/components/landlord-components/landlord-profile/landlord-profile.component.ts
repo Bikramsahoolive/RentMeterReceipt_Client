@@ -211,6 +211,7 @@ deleteAccountPrompt(id:any){
     icon:"warning",
     text:"This Action is irreversible and permanently delete all releted data, To confirm please type ['delete landlord'] bellow.",
     input:"text",
+    position:"top",
     inputAttributes:{
       autocapitalize:"on"
     },

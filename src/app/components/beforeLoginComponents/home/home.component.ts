@@ -43,7 +43,7 @@ export class HomeComponent {
             title: "Subscribed successfully."
           });
         }else{
-          this.toster.error(res.message,"",{positionClass:"toast-top-center",progressBar:true});
+          this.toster.success(res.message,"",{positionClass:"toast-top-center",progressBar:true});
         }
       },error:(err)=>{
         console.error(err);
