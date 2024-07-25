@@ -47,7 +47,7 @@ div #logout {
     text-align: center;
 }
 div #logout:hover{
-    box-shadow: 0 0 5px 0 whitesmoke;
+    box-shadow: 0 0 10px 3px whitesmoke;
     transition: 0.3s;
 
 }

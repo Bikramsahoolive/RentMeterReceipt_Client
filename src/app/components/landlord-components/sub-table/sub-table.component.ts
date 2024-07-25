@@ -6,6 +6,9 @@ import {ToastrService} from 'ngx-toastr'
 import { rentBillData } from 'src/app/model/data';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environment';
+import { utils, writeFileXLSX } from 'xlsx';
+import * as FileSaver from 'file-saver';
+import * as search from '../../../pipes/search.pipe';
 
 @Component({
   selector: 'app-sub-table',
@@ -14,6 +17,7 @@ import { environment } from 'src/environment';
 })
 export class SubTableComponent {
   searchTerm:any='';
+  Reesul:any = search;
 datalist:rentBillData[]=[
   {
     adjustUnit: 0,
@@ -43,36 +47,7 @@ datalist:rentBillData[]=[
     maintenance:0
   }
 ];
-
-reserveData:rentBillData[]=[
-  {
-    adjustUnit: 0,
-    billingDate: '',
-    bill_period:'',
-    consumer_Name: '',
-    currentUnit: 0,
-    dueAmount: 0,
-    dueDate: '',
-    eBill: 0,
-    electric_status: '',
-    final_amt: 0,
-    id: '',
-    landlord_id: '',
-    landlord_name: '',
-    paid_amt: 0,
-    payment_date: '',
-    payment_method:'',
-    perunit: 0,
-    previousUnit: 0,
-    rent: 0,
-    rentholder_id: '',
-    totalAmount: 0,
-    totalUnit: 0,
-    unitAdv: 0,
-    water_bill: 0,
-    maintenance:0
-  }
-];
+filterType:string="";
 isTableDataAvailable:boolean=false;
 userMessage:undefined | string;
 confirm:boolean|undefined;
@@ -91,10 +66,18 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     this.spinner.show();
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:rentBillData[])=>{
+
         this.isTableDataAvailable = true;
+
+        res.forEach((e:any)=>{
+          delete e.landlord_id;
+          delete e.landlord_name;
+          delete e.totalAmount;
+          delete e.totalUnit;
+        });
+
         res = res.reverse();
           this.datalist=res;
-          this.reserveData=res;
           this.spinner.hide();
       },
       error:(err)=>{
@@ -228,69 +211,21 @@ paidData() {
 oldToNew:boolean=false;
  async dataFilter(selector:string)
   {
-
     if(selector==="0"){
-      //new to old
-      // if(this.isUnpaidFilter || this.isPaidFilter){
-      //   this.isUnpaidFilter = false;
-      //   this.isPaidFilter=false;
-      //   this.oldToNew=false;
-      //   this.datalist= this.reserveData;
-      //   return;
-      // }
+      this.filterType = "New to Old Bills";
       this.ngOnInit();
     }else
     if(selector==="1"){
-      //old to new
-      // this.oldToNew=true;
-      // if(this.isUnpaidFilter || this.isPaidFilter){
-      //   this.isUnpaidFilter = false;
-      //   this.isPaidFilter=false;
-      // }
+      this.filterType = "Old to New Bills";
       this.reverseData();
     }else
     if(selector==="2"){
-      //unpaid bills
+      this.filterType = "Unpaid Bills";
       this.unpaidData();
-      // if(this.isPaidFilter){
-      //   this.isPaidFilter=false;
-      //   // this.datalist=this.reserveData;
-      // }
-      // // if(this.oldToNew){
-      // //   this.oldToNew=false;
-      // //   this.reserveData.reverse();
-      // // }
-      // this.isUnpaidFilter= true;
-      // let usersVal:any = [];
-      // this.datalist.forEach((element:any)=>{
-      //   if(element.final_amt !== element.paid_amt){
-      //     usersVal.push(element);
-      //   }
-      // });
-      // this.datalist = usersVal;
     }else
     if(selector==="3"){
-      //paid bills
-
+      this.filterType = "Paid Bills";
       this.paidData();
-      // await this.ngOnInit();
-      // if(this.isUnpaidFilter){
-      //   this.isUnpaidFilter=false;
-      //   // this.datalist=this.reserveData;
-      // }
-      // // if(this.oldToNew){
-      // //   this.oldToNew=false;
-      // //   this.reserveData.reverse();
-      // // }
-
-      // this.isPaidFilter= true;
-      // let usersVal:any = [];
-      // this.datalist.forEach((element:any)=>{
-      //   if(element.final_amt === element.paid_amt){
-      //     usersVal.push(element);
-      //   }
-      // });
-      // this.datalist = usersVal;
     }
   }
 
@@ -343,5 +278,71 @@ oldToNew:boolean=false;
     if(nextSibling){
       this.render.setStyle(nextSibling,"display",'none');
     }
+  }
+
+  downloadXlsFile(){
+    Swal.fire({
+      title:"Export As XLS",
+      text:"Download Your Excel Data.",
+      icon:"question",
+      showCloseButton:true,
+      confirmButtonText:"Download"
+    })
+    .then((res)=>{
+      if(res.isConfirmed){
+        
+        try {
+          
+    let sheetType:string="All Data";
+    let sheetData=this.datalist;
+    if(this.filterType!==""){
+      sheetType = this.filterType;
+    }
+    if(this.searchTerm!==""){
+      let classget = new search.SearchPipe;
+      sheetData = classget.transform(this.datalist,this.searchTerm);
+    }
+    const worksheet = utils.json_to_sheet(sheetData);
+    const workbook = utils.book_new();
+    utils.book_append_sheet(workbook, worksheet,sheetType);
+    let fileName = `Rent_Bill_DataSheet${Math.floor(Math.random()*1000000)}.xlsx`
+    writeFileXLSX(workbook,fileName);
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top",
+      showConfirmButton: false,
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Excel File Exported."
+    });
+          
+        } catch (error) {
+          console.log(error);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon:"error",
+            title: "Error! Please Try Again."
+          }); 
+        }
+      }
+    });
   }
 }

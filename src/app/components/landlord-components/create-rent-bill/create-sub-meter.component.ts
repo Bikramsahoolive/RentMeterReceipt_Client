@@ -32,15 +32,11 @@ export class CreateSubMeterComponent {
   @ViewChild('subMeter') subMeter!: ElementRef;
   @ViewChild('perUnit') perUnit!: ElementRef;
   @ViewChild('elcAmt') elcAmt!: ElementRef;
+  @ViewChild('name') cname!: ElementRef;
+  @ViewChild('billperiod') billperiod!: ElementRef;
   ngOnInit(){
     this.spinner.show();
-    let date= new Date();
-    let year = date.getFullYear();
-    let month =(date.getMonth()+1).toString().padStart(2,'0');
-    let day = date.getDate().toString().padStart(2,'0');
-    this.dToday=`${year}-${month}-${day}`;
-    // console.log(this.dToday);
-
+    this.dToday = this.setCurrentDate();
     this.landlordServ.getAllRentholder().subscribe({
       next:(res:rentholderData[])=>{
           this.users=res;
@@ -58,6 +54,14 @@ export class CreateSubMeterComponent {
         this.spinner.hide();
       }
     })
+  }
+  setCurrentDate(){
+    let date= new Date();
+    let year = date.getFullYear();
+    let month =(date.getMonth()+1).toString().padStart(2,'0');
+    let day = date.getDate().toString().padStart(2,'0');
+    return `${year}-${month}-${day}`;
+    // console.log(this.dToday);
   }
   getRent(id:any){
     if(id ===''){
@@ -209,10 +213,36 @@ export class CreateSubMeterComponent {
           Swal.fire({
             title:"Created!",
             text:"New Rent Bill Created.",
-            icon:"success"
+            icon:"success",
+            confirmButtonText:"Create Another Bill",
+            confirmButtonColor:"#7373f3",
+            showDenyButton:true,
+            denyButtonText:"Print",
+            denyButtonColor:"#6e7881"
           }).then((result:any)=>{
-            form.reset();
-            this.route.navigate([`/print-rent-bill/${res.id}`]);
+            if(result.isConfirmed){
+              form.reset();
+              this.billperiod.nativeElement.value="";
+              this.cname.nativeElement.value="";
+              this.rentval = '';
+              this.previousUnit = '';
+              this.rentStatus = '';
+              this.ebillStatus='';
+              this.isRentholderChoosen=true;
+              this.name ='';
+              this.mainMeter.nativeElement.classList.add('hide');
+              this.subMeter.nativeElement.classList.add('hide');
+              this.perUnit.nativeElement.classList.add('hide');
+              this.elcAmt.nativeElement.classList.add('hide');
+              this.isElcBillPaid=false;
+              setTimeout(()=>{
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.dToday = this.setCurrentDate();
+              },500);
+            }else{
+              this.route.navigate([`/print-rent-bill/${res.id}`]);
+            }
+            
           });
         }
 
