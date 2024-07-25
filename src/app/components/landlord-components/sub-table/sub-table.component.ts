@@ -7,7 +7,6 @@ import { rentBillData } from 'src/app/model/data';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environment';
 import { utils, writeFileXLSX } from 'xlsx';
-import * as FileSaver from 'file-saver';
 import * as search from '../../../pipes/search.pipe';
 
 @Component({
