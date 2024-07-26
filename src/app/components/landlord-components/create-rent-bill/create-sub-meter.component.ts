@@ -118,6 +118,14 @@ export class CreateSubMeterComponent {
 
     
   }
+  isBillPeriod:boolean=true;
+  enableRentholder(){
+    if(this.billperiod.nativeElement.value!==""){
+      this.isBillPeriod=false;
+    }else{
+      this.isBillPeriod=true;
+    }
+  }
 
   createRentBill(form:NgForm){
     let data = form.value;
@@ -249,7 +257,11 @@ export class CreateSubMeterComponent {
       },
       error:(err)=>{
         console.error(err.error);
-        this.toster.error(`${err.error.text}`,'Error',{positionClass:"toast-top-center",progressBar:true});
+        if(!err.error.status){
+          this.toster.error(`${err.error.message}`,'',{positionClass:"toast-top-center",progressBar:true});
+        }else{
+        this.toster.error(`something wents wrong`,'Error',{positionClass:"toast-top-center",progressBar:true});
+        }
         this.spinner.hide();
       },
       complete:()=>{

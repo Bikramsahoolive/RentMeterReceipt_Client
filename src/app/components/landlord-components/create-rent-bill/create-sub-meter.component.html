@@ -10,7 +10,7 @@
 
     <div class="input-box">
         <span class="details">Bill Period:</span>
-        <select name="bill_period" ngModel #billperiod>
+        <select name="bill_period" ngModel #billperiod (change)="enableRentholder()">
             <option value="">Select</option>
             <option value="Monthly">Monthly</option>
             <option value="Quarterly">Quarterly</option>
@@ -20,7 +20,7 @@
 
     <div class="input-box">
         <span class="details" >Rent-Holder Name:</span>
-        <select name="consumer_Name" ngModel #name (change)="getRent(name.value)">
+        <select name="consumer_Name" ngModel #name (change)="getRent(name.value)" [disabled]="isBillPeriod">
             <option value="">Select</option>
             <option *ngFor="let user of users" value={{user.id}}>{{user.name}}</option>
         </select>
