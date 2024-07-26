@@ -73,6 +73,7 @@ deleteRentHolder(id:any){
     text:"This Action is irreversible and permanently delete all releted data, To confirm please type ['delete rentholder'] bellow.",
     input:"text",
     position:"top",
+    inputAutoFocus:false,
     inputAttributes:{
       autocapitalize:"on"
     },
