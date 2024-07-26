@@ -7,6 +7,8 @@ import { rentBillData } from 'src/app/model/data';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environment';
 import { utils, writeFileXLSX } from 'xlsx';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 import * as search from '../../../pipes/search.pipe';
 
 @Component({
@@ -211,11 +213,11 @@ oldToNew:boolean=false;
  async dataFilter(selector:string)
   {
     if(selector==="0"){
-      this.filterType = "New to Old Bills";
+      this.filterType = "All Rent Bills";
       this.ngOnInit();
     }else
     if(selector==="1"){
-      this.filterType = "Old to New Bills";
+      this.filterType = "All Rent Bills (R)";
       this.reverseData();
     }else
     if(selector==="2"){
@@ -292,19 +294,20 @@ oldToNew:boolean=false;
         
         try {
           
-    let sheetType:string="All Data";
+    let sheetType:string="All Rent Bills";
     let sheetData=this.datalist;
     if(this.filterType!==""){
       sheetType = this.filterType;
     }
     if(this.searchTerm!==""){
+      sheetType = "Custom Rent Bills";
       let classget = new search.SearchPipe;
       sheetData = classget.transform(this.datalist,this.searchTerm);
     }
     const worksheet = utils.json_to_sheet(sheetData);
     const workbook = utils.book_new();
     utils.book_append_sheet(workbook, worksheet,sheetType);
-    let fileName = `Rent_Bill_DataSheet${Math.floor(Math.random()*1000000)}.xlsx`
+    let fileName = `Rent_Bill_DataSheet${Math.floor(Math.random()*1000000)}.xlsx`;
     writeFileXLSX(workbook,fileName);
 
     const Toast = Swal.mixin({
@@ -320,7 +323,7 @@ oldToNew:boolean=false;
     });
     Toast.fire({
       icon: "success",
-      title: "Excel File Exported."
+      title: "File Exported as XLS."
     });
           
         } catch (error) {
@@ -343,5 +346,81 @@ oldToNew:boolean=false;
         }
       }
     });
+  }
+
+  downloadPdfFile(){
+    Swal.fire({
+      title:"Export As PDF",
+      text:"Download Your PDF File.",
+      icon:"question",
+      showCloseButton:true,
+      confirmButtonText:"Download"
+    })
+    .then((res)=>{
+      if(res.isConfirmed){
+        try {
+          let sheetType:string="All Rent Bills";
+          let sheetData=this.datalist;
+          if(this.filterType!==""){
+            sheetType = this.filterType;
+          }
+          if(this.searchTerm!==""){
+            sheetType = "Custom Rent Bills";
+            let classget = new search.SearchPipe;
+            sheetData = classget.transform(this.datalist,this.searchTerm);
+          }
+          
+          const doc = new jsPDF({orientation:"landscape",});
+          const title = sheetType;
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const textWidth = doc.getTextWidth(title);
+          const textX = (pageWidth - textWidth)/2;
+
+          doc.text(title,textX,10);
+          const cols = ['Bill ID','Bill Date','Consumer Name','Bill Priod','Previous Unit','Current Unit','Adjust Unit','Unit Advance','Per Unit','e-Bill Amount','Monthly Rent','Water Bill','Maintenance','Previous Due','Total Due','Due Date','Paid Amount','Payment Method','Payment Date']
+          const rows = sheetData.map(e=>[e.id,e.billingDate,e.consumer_Name,e.bill_period,e.previousUnit,e.currentUnit,e.adjustUnit,e.unitAdv,e.perunit,e.eBill,e.rent,e.water_bill,e.maintenance,e.dueAmount,e.final_amt,e.dueDate,e.paid_amt,e.payment_method,e.payment_date]);
+          (doc as any).autoTable({
+            head:[cols],
+            body:rows,
+            startY:15
+          });
+          let fileName = `Rent_Bill_Data${Math.floor(Math.random()*1000000)}.pdf`;
+          doc.save(fileName);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon:"success",
+            title: "File Exported as PDF."
+          }); 
+        } catch (error) {
+          console.log(error);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon:"error",
+            title: "Error! Please Try Again."
+          }); 
+        }
+      }
+    })
+
   }
 }
