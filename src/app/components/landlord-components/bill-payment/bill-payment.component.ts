@@ -51,7 +51,7 @@ export class BillPaymentComponent {
       this.toastr.info('Invalid paid amount','',{positionClass:"toast-top-center",progressBar:true});
       
     }else{
-      data.payment_method = "CASH";
+      data.payment_method = "cash";
 
       Swal.fire({
         title:"Are you sure?",
@@ -75,7 +75,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
       showCancelButton: true,
       confirmButtonColor: "#7373f3",
       cancelButtonColor: "#6e7881",
-      confirmButtonText: "Pay Next Bill!",
+      confirmButtonText: "Pay Next Bill",
       cancelButtonText:"Print"
     }).then((result) => {
       if (result.isConfirmed) {
@@ -94,7 +94,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
     if(err.error.status==='failure'){
       this.toastr.error(err.error.message,'Error',{positionClass:"toast-top-center",progressBar:true});
     }else{
-      this.toastr.error('Something Wents wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Something wents wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
     }
     this.spinner.hide();
   }
@@ -120,7 +120,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
      userData = JSON.parse(atob(encData));
     }
     if(id.value ==="" || (id.value).length<13){
-      this.toastr.info('Invalid Bill ID','Error',{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.info('Invalid Bill ID','',{positionClass:"toast-top-center",progressBar:true});
     }else{
       this.spinner.show();
       this.landlordServe.getSingleRentBillData(id.value).subscribe({
