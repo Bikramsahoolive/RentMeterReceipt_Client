@@ -275,6 +275,7 @@ if(this.photoFile===''){
             text:"Rentholder Data Updated.",
             icon:"success"
           }).then((result:any)=>{
+            window.scrollTo({ top: 0, behavior:'instant' });
               this.router.navigate(['rent-holder']);
             
           });       

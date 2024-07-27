@@ -155,12 +155,20 @@ ngOnInit(){}
           next:(res:any)=>{
             if(res.status ==='success'){
               this.spinner.hide();
-              Swal.fire({
-                position:"center",
-                icon:'success',
-                title:"OTP sent",
-                showConfirmButton:false,
-                timer:2000
+              const Toast = Swal.mixin({
+                toast: true,
+                position:"top",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "success",
+                title: "OTP Sent successfully"
               });
               this.successMsg =`An otp has been sent to ********${res.email}`;
               this.userData = {
@@ -208,12 +216,20 @@ ngOnInit(){}
       next:(res:any)=>{
         this.spinner.hide();
         if(res.status==='success'){
-          Swal.fire({
-            position:"center",
-            icon:'success',
-            title:"OTP sent again.",
-            showConfirmButton:false,
-            timer:2000
+          const Toast = Swal.mixin({
+            toast: true,
+            position:"top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "OTP Sent Again"
           });
           this.resendOtpCount -= 1;
         this.resendBtn.nativeElement.classList.add('hide');

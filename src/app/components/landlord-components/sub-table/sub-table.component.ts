@@ -92,6 +92,16 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       }
     })
   }
+  hidePaginationBtn:boolean=true;
+  hidePagination(){
+    if(this.searchTerm !==""){
+      this.hidePaginationBtn=false;
+    }else{
+      this.hidePaginationBtn=true;
+    }
+    console.log(this.hidePaginationBtn);
+    
+  }
 
   reverseData() {
   this.spinner.show();

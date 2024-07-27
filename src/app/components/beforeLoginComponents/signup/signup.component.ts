@@ -64,7 +64,6 @@ siteKey:string= environment.siteKey;
   signup(form:NgForm){
     const data = form.value;
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
-      if (data.password === data.confPass){
         if (data.termNconditions){
           if(this.regNumber===""){
             this.toastr.error('send OTP first.','',{progressBar:true,positionClass:"toast-top-center"});
@@ -82,6 +81,12 @@ siteKey:string= environment.siteKey;
           if((data.password).length <8 || (data.password).length >16 ){
             this.toastr.error('Enter an 8 to 16 digit password.','Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
             return;
+          }
+
+
+          if (data.password !== data.confPass){
+          this.toastr.error('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
+          return;
           }
           if(!this.captchaVirification){
             this.toastr.error('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
@@ -107,6 +112,7 @@ siteKey:string= environment.siteKey;
                   icon:"success"
                 }).then((result:any)=>{
                 this.regNumber='';
+                window.scrollTo({ top: 0, behavior:'instant' });
                 this.router.navigate(['login']);
                 });
               }else{
@@ -123,10 +129,7 @@ siteKey:string= environment.siteKey;
           this.toastr.error('Accept term & conditions.','',{progressBar:true,positionClass:"toast-top-center"});
         }
        
-      }else{
-         this.toastr.error('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
-
-      }
+      
 
     }else{
       this.toastr.error('field/fields are empty.','',{progressBar:true,positionClass:"toast-top-center"});
@@ -176,12 +179,20 @@ siteKey:string= environment.siteKey;
       next:(res:any)=>{
         this.spinner.hide()
         if(res.status==='success'){
-          Swal.fire({
-            position:"center",
-            icon:'success',
-            title:"OTP sent",
-            showConfirmButton:false,
-            timer:2000
+          const Toast = Swal.mixin({
+            toast: true,
+            position:"top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "OTP Sent successfully"
           });
           this.isReadonly = true;
           this.sendOtpCount -= 1;

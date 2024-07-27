@@ -248,9 +248,11 @@ deleteAccountPrompt(id:any){
     if (result.isConfirmed) {
       Swal.fire({
         title: "Successful",
-        text:result.value
+        text:result.value,
+        icon:"success"
       })
       .then(()=>{
+        window.scrollTo({ top: 0, behavior:'instant' });
         this.authServ.logout();
       })
 

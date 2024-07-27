@@ -1,6 +1,6 @@
 <div class="search">
     <div class="searchbar" #searchBox><i class="fa-solid fa-magnifying-glass search-icon" (click)="openSearch(searchBox,searchInput)"></i>
-        <input type="search" class="hide" #searchInput placeholder="Search" [(ngModel)]="searchTerm"></div>
+        <input type="search" class="hide" #searchInput placeholder="Search" [(ngModel)]="searchTerm" (input)="hidePagination()"></div>
     <div class="filter">
         <i class="fa-solid fa-filter"></i>
         <select class="selector" #filter (change)="dataFilter(filter.value)">
@@ -86,5 +86,5 @@
 </div>
 </section>
 <div class="pagination">
-  <pagination-controls class="paginate" (pageChange)="page=$event"></pagination-controls>
+  <pagination-controls class="paginate" (pageChange)="page=$event" *ngIf="hidePaginationBtn"></pagination-controls>
 </div>
