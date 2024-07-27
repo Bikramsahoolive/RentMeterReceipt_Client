@@ -3,13 +3,9 @@
     <h1 class="titel">Add Rent-Holder</h1>
 <form #rentHolderData="ngForm" (ngSubmit)="getRentHolderData(rentHolderData)">
     <div class="user-details">
-    <div class="input-box">
+    <div class="input-box" style="width: 100%;">
         <span class="details">* Name:</span>
     <input type="text" ngModel name="name">
-    </div>
-    <div class="input-box">
-        <span class="details" >* Members Count:</span>
-        <input type="number" ngModel name="member_count">
     </div>
     <div class="input-box">
         <span class="details">* Phone:</span>
@@ -20,11 +16,19 @@
         <input type="email" ngModel name="email">
     </div>
     <div class="input-box">
+        <span class="details" >* Members Count:</span>
+        <input type="number" ngModel name="member_count">
+    </div>
+    <div class="input-box">
         <span class="details">* Monthly Rent(₹):</span>
         <input type="number" ngModel name="rent">
     </div>
     <div class="input-box">
-        <span class="details">Initial Meter Unit(Sub Meter):</span>
+        <span class="details" > Security Deposit:</span>
+        <input type="number" ngModel name="deposit_amt">
+    </div>
+    <div class="input-box">
+        <span class="details"> Initial Meter Unit(Sub Meter):</span>
         <input type="number" ngModel name="current_unit">
     </div>
     <div class="input-box">

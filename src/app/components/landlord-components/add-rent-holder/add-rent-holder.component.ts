@@ -87,7 +87,7 @@ export class AddRentHolderComponent {
   getRentHolderData(form:NgForm){
     let data=form.value;
 
-    let {name,member_count,current_unit,email,phone,rent,password} = data;
+    let {name,member_count,current_unit,deposit_amt,email,phone,rent,password} = data;
     if(name==="" || member_count==="" || member_count ===null || email==="" || phone==="" || rent ==="" ||rent ===null || password ===""){
       this.toster.error('Please fill all inputs',"",{progressBar:true,positionClass:"toast-top-center"});
       return;
@@ -120,6 +120,10 @@ export class AddRentHolderComponent {
 }  
 if(current_unit==="" || current_unit===null){
   data.current_unit = 0;
+}
+
+if(deposit_amt==="" || deposit_amt===null){
+  data.deposit_amt = 0;
 }
 
   // if(this.deedFileUrl!==''){

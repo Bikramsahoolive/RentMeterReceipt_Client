@@ -252,8 +252,8 @@ deleteAccountPrompt(id:any){
         icon:"success"
       })
       .then(()=>{
+        setTimeout(()=>{this.authServ.logout();},1000);
         window.scrollTo({ top: 0, behavior:'instant' });
-        this.authServ.logout();
       })
 
   }else{
