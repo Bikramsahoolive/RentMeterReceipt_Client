@@ -202,3 +202,12 @@
         height: 65vh;
     }
 }
+
+@media (max-width: 380px){
+    .searchbar input{
+        width: 120px;
+    }
+    .open{
+        width: 175px;
+    }
+}

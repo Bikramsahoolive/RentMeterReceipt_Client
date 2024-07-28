@@ -3,7 +3,7 @@
         <input type="search" class="hide" #searchInput placeholder="Search" [(ngModel)]="searchTerm" (input)="hidePagination()"></div>
     <div class="filter">
         <i class="fa-solid fa-filter"></i>
-        <select class="selector" #filter (change)="dataFilter(filter.value)">
+        <select class="selector" #filter (change)="dataFilter(filter.value)" [disabled]="!hidePaginationBtn">
             <option value="0">New to Old</option>
             <option value="1">Old  to New</option>
             <option value="2">Unpaid Bill</option>

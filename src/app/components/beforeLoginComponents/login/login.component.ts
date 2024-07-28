@@ -16,7 +16,7 @@ export class LoginComponent {
   login(auth:loginData){
     auth.phone = String(auth.phone);
     if(auth.phone==='' || auth.password===''){
-      this.toastr.info('Invalid Input.', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      this.toastr.info('Invalid Login Credentials', '',{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     if(auth.phone.length!==10){
