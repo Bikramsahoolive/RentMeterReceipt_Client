@@ -312,4 +312,14 @@ isElcBillPaid:boolean=false;
 
   }
 
+  validateUnit(cunit:any){
+    if(this.previousUnit>= cunit.value){
+      cunit.style.border = "2px solid red";
+      cunit.style.color = "#da3030";
+      
+    }else{
+      cunit.style.border ="";
+      cunit.style.color = "black";
+    }
+  }
 }

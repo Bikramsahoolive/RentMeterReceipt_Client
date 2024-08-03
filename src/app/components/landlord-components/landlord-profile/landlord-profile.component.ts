@@ -110,8 +110,9 @@ fileUpload(event:any,fileType:string, inputField:any){
     let reader = new FileReader();
 
     let extention = file.name.split(".");
+    extention = extention[extention.length-1];
     // console.log(extention[1]);
-    if(extention[1]=="jpg" || extention[1]==='png' || extention[1]==="jpeg"){
+    if(extention=="jpg" || extention==='png' || extention==="jpeg"){
       
       if(file.size<548487){
 
@@ -263,31 +264,40 @@ deleteAccountPrompt(id:any){
 }
 
 removeBiometric(type:string){
-  let confirmation = confirm(`Are you sure want to remove ${type}.`);
-  if(confirmation){
-    let data;
+  Swal.fire({
+    title:`Remove ${type}`,
+    text:`Are you sure want to remove ${type}.`,
+    icon:"question",
+    showCancelButton:true,
+    confirmButtonText:"Sure"
+  }).then((res)=>{
+
+    if(res.isConfirmed){
+
+      let data;
     if(type ==='photo'){
       data={photo:""}
     }else{
       data={signature:""}
     }
-    
+      this.spinner.show();
     this.landlordServ.updateLandlordData(data,this.landlordId).subscribe({
       next:(res:any)=>{
+        this.spinner.hide();
         if (res.status==='success'){
         this.toaster.success(`${type} removed.`,"",{progressBar:true,positionClass:"toast-top-center"});
         this.route.navigate(['dashbord-landlord']);
       }
       },
       error:(err)=>{
+        this.spinner.hide();
         console.error(err.error);
         this.toaster.error('Something wents wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
-      },
-      complete:()=>{
-        this.spinner.hide();
       }
     });
-  }
+
+    }
+  });
 }
 
 }

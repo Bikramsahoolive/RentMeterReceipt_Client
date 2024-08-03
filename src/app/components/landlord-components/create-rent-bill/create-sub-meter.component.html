@@ -76,7 +76,7 @@
         </div>
         <div class="input-box">
             <span class="details">Current Unit(sub-meter):</span>
-        <input type="number" ngModel name="currentUnit">
+        <input type="number" ngModel name="currentUnit" #cunit (blur)="validateUnit(cunit)">
         </div>
         <div class="input-box hide" #perUnit>
             <span class="details">Per Unit Amount(₹):</span>
