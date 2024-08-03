@@ -33,7 +33,8 @@ export class UpdateRentholderComponent {
     phone: '',
     photo: '',
     rent: 0,
-    userType: ''
+    userType: '',
+    deposit_amt:0
   }
   constructor( private rentholderServe:RentholderServiceService,private router:Router, private route:ActivatedRoute, private addRentService:LandlordService, private spinner:NgxSpinnerService,private toster:ToastrService){}
 

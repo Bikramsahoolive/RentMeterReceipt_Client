@@ -44,6 +44,7 @@ bill:rentBillData={
 upiLink:any;
 landlordSign:string="../../../../assets/images.png";
 boxVal:string='';
+paymentMethod:string='';
 paidSign:string='';
 showPayBtn:boolean=false;
   ngOnInit(){
@@ -78,7 +79,8 @@ showPayBtn:boolean=false;
           });
         }else{
           this.paidSign='../../../../assets/background/paid.png';
-          this.boxVal = `Payment Date : ${ res.payment_date}`;
+          this.boxVal = ` Date : ${ res.payment_date}`;
+          this.paymentMethod = `Mode : ${res.payment_method}`;
           this.bill=res;
           this.landlordServ.getLandlordData(res.landlord_id).subscribe({
             next:(LanlordRes:landlordData)=>{
@@ -127,27 +129,41 @@ showPayBtn:boolean=false;
     }
   }
   payNow(){
+Swal.fire({
+  title:"Payment Gateway",
+  text:"Additional 3% of payment gateway charges applied, Click on proceed to complite the payment.",
+  icon:'info',
+  showConfirmButton:true,
+  confirmButtonText:"Proceed",
+  showCancelButton:true,
+})
+.then((result)=>{
+  if(result.isConfirmed){
+    let amount = (+this.bill.final_amt)-(+this.bill.paid_amt);
+    amount += amount*(3/100);
 
-let order={
-  amount: (+this.bill.final_amt)-(+this.bill.paid_amt),
-  currency:'INR',
-  receipt:this.bill.id
-}
-  this.spinner.show();
-  this.landlordServ.createOrder(order).subscribe({
-    next:(res:any)=>{
-      this.spinner.hide();
-      res.name =this.bill.consumer_Name;
-      res.description="test_payment";
-      res.email="test@test.com";
-      res.phone="9998887770";
-      this.landlordServ.payWithRazorpay(res);
-    },error:(err:any)=>{
-      this.spinner.hide();
-      console.error(err.error);
-      
+    let order={
+      amount: amount,
+      currency:'INR',
+      receipt:this.bill.id
     }
-  })
+      this.spinner.show();
+      this.landlordServ.createOrder(order).subscribe({
+        next:(res:any)=>{
+          this.spinner.hide();
+          res.name =this.bill.consumer_Name;
+          res.description="test_payment";
+          res.email="test@test.com";
+          res.phone="9998887770";
+          this.landlordServ.payWithRazorpay(res);
+        },error:(err:any)=>{
+          this.spinner.hide();
+          console.error(err.error);
+          
+        }
+      });
 
+      }
+    });
   }
 }

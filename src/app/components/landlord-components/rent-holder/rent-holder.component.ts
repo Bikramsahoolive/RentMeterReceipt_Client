@@ -29,7 +29,8 @@ export class RentHolderComponent {
     phone: '',
     photo: '',
     rent: 0,
-    userType: ''
+    userType: '',
+    deposit_amt:0
     }
   ];
   isTableDataAvailable:boolean=false;

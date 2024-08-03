@@ -27,7 +27,8 @@ export class TotalBillComponent {
       phone: '',
       photo: '',
       rent: 0,
-      userType: ''
+      userType: '',
+      deposit_amt:0
       }
   ]
   ngOnInit(){

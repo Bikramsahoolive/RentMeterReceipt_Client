@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { landlordData, rentBillData } from 'src/app/model/data';
+import { landlordData, rentBillData, rentholderData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import { RentholderServiceService } from 'src/app/services/rentholderService/rentholder-service.service';
 
@@ -12,7 +12,7 @@ import { RentholderServiceService } from 'src/app/services/rentholderService/ren
   styleUrls: ['./rentholder-dashbord-content.component.css']
 })
 export class RentholderDashbordContentComponent {
-  constructor(private landlordServ:LandlordService,private rentholderServe:RentholderServiceService,private spinner:NgxSpinnerService,private toastr:ToastrService ){}
+  constructor( private landlordServ:LandlordService,private rentholderServe:RentholderServiceService,private spinner:NgxSpinnerService,private toastr:ToastrService ){}
   landlordData:landlordData={
     id: '',
     dor:'',
@@ -35,19 +35,28 @@ export class RentholderDashbordContentComponent {
     let getEncData:any = localStorage.getItem('connect.sid');
     let actualData = atob(getEncData);
     let userData = JSON.parse(actualData);
-    this.rentholderData= userData;
     this.spinner.show();
-    this.landlordServ.getLandlordData(userData.landlord_id).subscribe({
-      next:(res:landlordData)=>{
-        this.landlordData = res;
+    this.rentholderServe.getRentholderData(userData.id).subscribe({
+      next:(res:rentholderData)=>{
+        this.rentholderData = res;
           
       },
       error:(err:any)=>{
         this.spinner.hide();
         console.log(err);
         
-      },complete:()=>{
+      }
+    });
+
+    this.landlordServ.getLandlordData(userData.landlord_id).subscribe({
+      next:(res:landlordData)=>{
+        this.landlordData = res;
         this.spinner.hide();
+      },
+      error:(err:any)=>{
+        this.spinner.hide();
+        console.log(err);
+        
       }
     });
 

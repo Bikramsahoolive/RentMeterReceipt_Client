@@ -62,7 +62,8 @@ export interface rentholderData {
     phone: string,
     photo: string,
     rent: number,
-    userType: string
+    userType: string,
+    deposit_amt:number
 }
 
 export interface updateRentholderData{

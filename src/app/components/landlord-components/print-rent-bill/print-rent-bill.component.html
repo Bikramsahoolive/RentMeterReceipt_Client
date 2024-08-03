@@ -65,9 +65,10 @@
                     <qrcode [qrdata]="upiLink" [width]="120" [errorCorrectionLevel]="'M'" (click)="openUpi()"></qrcode>
                     <img src="{{paidSign}}" alt="" style="width: 120px;;">
                     <h5 style="text-align: center;width: 110px;z-index: 1;">{{boxVal}}</h5>
+                    <h5 style="text-align: center;width: 110px;z-index: 1;">{{paymentMethod}}</h5>
                 </div>
                 <div class="signature">
-                    <div class="signature-content"><span>Payment Due Date : <Strong style="display: inline-block;">{{bill.dueDate}}</Strong> </span></div>
+                    <div class="signature-content"><span>Due Date : <Strong style="display: inline-block;">{{bill.dueDate}}</Strong> </span></div>
                     <div class="sign">
                         <img src="{{landlordSign}}">
                     <div class="signature-content">Signature of Landlord.</div>
