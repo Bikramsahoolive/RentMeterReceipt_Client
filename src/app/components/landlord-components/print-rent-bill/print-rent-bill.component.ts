@@ -140,8 +140,7 @@ Swal.fire({
 .then((result)=>{
   if(result.isConfirmed){
     let amount = (+this.bill.final_amt)-(+this.bill.paid_amt);
-    amount += amount*(3/100);
-
+    amount += Math.round(amount*(3/100));
     let order={
       amount: amount,
       currency:'INR',

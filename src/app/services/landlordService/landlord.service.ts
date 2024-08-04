@@ -57,7 +57,7 @@ export class LandlordService {
   payWithRazorpay(data:any){
     const options:any={
       key:environment.razorpay_ket,
-      amount:data.amount * 100,
+      amount:data.amount,
       currency:data.currency,
       name:data.name,
       description:data.description,
