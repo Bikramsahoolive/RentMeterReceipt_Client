@@ -312,14 +312,18 @@ isElcBillPaid:boolean=false;
 
   }
 
-  validateUnit(cunit:any){
-    if(this.previousUnit>= cunit.value){
+  clearValidateUnit(cunit:any ,prvunit:any){
+    cunit.style.border ="";
+    cunit.style.color = "black";
+    prvunit.style.border ="";
+    prvunit.style.color = "black";
+  }
+  validateUnit(cunit:any, prvunit:any){
+    if(prvunit.value <= cunit.value){
       cunit.style.border = "2px solid red";
       cunit.style.color = "#da3030";
-      
-    }else{
-      cunit.style.border ="";
-      cunit.style.color = "black";
+      prvunit.style.border = "2px solid red";
+      prvunit.style.color = "#da3030";
     }
   }
 }

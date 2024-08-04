@@ -72,11 +72,11 @@
     <div class="sub-meter hide" #subMeter style="width: 100%;">
         <div class="input-box">
             <span class="details">Prvious Unit(sub-meter):</span>
-        <input type="number" [(ngModel)]="previousUnit" name="previousUnit">
+        <input type="number" [(ngModel)]="previousUnit" name="previousUnit" #prvUnt (blur)="validateUnit(prvUnt,cunit)" (input)="clearValidateUnit(prvUnt,cunit)">
         </div>
         <div class="input-box">
             <span class="details">Current Unit(sub-meter):</span>
-        <input type="number" ngModel name="currentUnit" #cunit (blur)="validateUnit(cunit)">
+        <input type="number" ngModel name="currentUnit" #cunit (blur)="validateUnit(prvUnt,cunit)" (input)="clearValidateUnit(prvUnt,cunit)">
         </div>
         <div class="input-box hide" #perUnit>
             <span class="details">Per Unit Amount(₹):</span>

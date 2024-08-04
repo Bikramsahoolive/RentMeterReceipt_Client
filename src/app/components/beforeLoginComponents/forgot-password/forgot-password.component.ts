@@ -153,8 +153,8 @@ ngOnInit(){}
 
         this.authServ.forgotPassword(userData).subscribe({
           next:(res:any)=>{
+            this.spinner.hide();
             if(res.status ==='success'){
-              this.spinner.hide();
               const Toast = Swal.mixin({
                 toast: true,
                 position:"top",
@@ -194,7 +194,7 @@ ngOnInit(){}
             console.log(error);
             this.toster.error("something wents wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
           }
-        })
+        });
 
   }
   setResendTimmer(){
