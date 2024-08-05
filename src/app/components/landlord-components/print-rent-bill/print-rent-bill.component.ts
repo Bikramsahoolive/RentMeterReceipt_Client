@@ -131,7 +131,7 @@ showPayBtn:boolean=false;
   payNow(){
 Swal.fire({
   title:"Payment Gateway",
-  text:"Additional 3% of payment gateway charges applied, Click on proceed to complite the payment.",
+  text:"Additional 3% of convenience fee applied, Click on proceed to complete the payment.",
   icon:'info',
   showConfirmButton:true,
   confirmButtonText:"Proceed",
@@ -140,11 +140,11 @@ Swal.fire({
 .then((result)=>{
   if(result.isConfirmed){
     let amount = (+this.bill.final_amt)-(+this.bill.paid_amt);
-    amount += Math.round(amount*(3/100));
+
     let order={
       amount: amount,
       currency:'INR',
-      receipt:this.bill.id
+      billid:this.bill.id
     }
       this.spinner.show();
       this.landlordServ.createOrder(order).subscribe({

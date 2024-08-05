@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { landlordData, rentBillData, rentholderData } from 'src/app/model/data';
 import { environment } from 'src/environment';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Injectable({
   providedIn: 'root'
 })
 export class LandlordService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private router : Router,private spinner:NgxSpinnerService) { }
   header= new HttpHeaders({
     'Content-Type':'application/json',
     // 'api_key':''
@@ -60,10 +63,23 @@ export class LandlordService {
       amount:data.amount,
       currency:data.currency,
       name:data.name,
-      description:data.description,
-      order_id:data.orderId,
+      order_id:data.id,
       handler:(resp:any)=>{
-        console.log(resp);
+        // console.log(resp.razorpay_payment_id);
+        let date= new Date();
+        let year = date.getFullYear();
+        let month =(date.getMonth()+1).toString().padStart(2,'0');
+        let day = date.getDate().toString().padStart(2,'0');
+        const payment_date=`${day}-${month}-${year}`;
+        this.spinner.show();
+        this.http.post(`${environment.apiUrl}/rent-bill/capture-payment`,{paymentId :resp.razorpay_payment_id,paymentDate:payment_date},{withCredentials:true,headers:this.header}).subscribe({
+          next:(res:any)=>{
+            console.log(res);
+            this.router.navigate([`print-rent-bill/${data.notes.billId}`]);
+          },error:(err)=>{
+            console.log(err);
+          }
+        })
       },
       prefill:{
         email:data.email,
