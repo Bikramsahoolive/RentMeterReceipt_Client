@@ -61,8 +61,8 @@
     margin: 10px 0 ;
 }
 .qrcode{
-    width: 130px;
-    height: 160px;
+    width: 140px;
+    height: 170px;
     border: 5px double black;
     border-radius: 10px;
     display: flex;

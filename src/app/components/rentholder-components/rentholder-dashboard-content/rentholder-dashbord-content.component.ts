@@ -27,7 +27,24 @@ export class RentholderDashbordContentComponent {
     plan:'',
     rcrCount:0
   };
-  rentholderData:any;
+  rentholderData:rentholderData={
+    current_unit: 0,
+    deedURL: "",
+    doj: "",
+    email: "",
+    id: "",
+    landlord_id: "",
+    landlord_name: "",
+    member_count: 0,
+    name: "",
+    paid_amt: 0,
+    password: "",
+    phone: "",
+    photo: "",
+    rent: 0,
+    userType: "",
+    deposit_amt:0
+  };
   // datalist:any;
   totalPaid:number=0;
   totalDue:number=0;

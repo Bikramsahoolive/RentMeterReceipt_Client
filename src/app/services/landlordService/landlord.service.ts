@@ -56,42 +56,9 @@ export class LandlordService {
   createOrder(data:any){
     return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
   }
-
-  payWithRazorpay(data:any){
-    const options:any={
-      key:environment.razorpay_ket,
-      amount:data.amount,
-      currency:data.currency,
-      name:data.name,
-      order_id:data.id,
-      handler:(resp:any)=>{
-        // console.log(resp.razorpay_payment_id);
-        let date= new Date();
-        let year = date.getFullYear();
-        let month =(date.getMonth()+1).toString().padStart(2,'0');
-        let day = date.getDate().toString().padStart(2,'0');
-        const payment_date=`${day}-${month}-${year}`;
-        this.spinner.show();
-        this.http.post(`${environment.apiUrl}/rent-bill/capture-payment`,{paymentId :resp.razorpay_payment_id,paymentDate:payment_date},{withCredentials:true,headers:this.header}).subscribe({
-          next:(res:any)=>{
-            console.log(res);
-            this.router.navigate([`print-rent-bill/${data.notes.billId}`]);
-          },error:(err)=>{
-            console.log(err);
-          }
-        })
-      },
-      prefill:{
-        email:data.email,
-        contact:data.phone
-      },
-      theme:{
-        color:"#7373f3"
-      }
-    };
-    const rzp = new Razorpay(options);
-    rzp.open();
-  }
+ verifyPayment(paymentId:string,paymentDate:string){
+  return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId,paymentDate},{withCredentials:true,headers:this.header});
+ }
 
 
 }

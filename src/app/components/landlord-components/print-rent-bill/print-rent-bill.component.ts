@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component,NgZone } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import { landlordData, rentBillData } from 'src/app/model/data';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
+import { environment } from 'src/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./print-rent-bill.component.css']
 })
 export class PrintRentBillComponent {
-  constructor( private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
+  constructor(private ngZone:NgZone,private router:Router, private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
 paramId:any='';
 bill:rentBillData={
   adjustUnit: 0,
@@ -154,7 +155,53 @@ Swal.fire({
           res.description="test_payment";
           res.email="test@test.com";
           res.phone="9998887770";
-          this.landlordServ.payWithRazorpay(res);
+          // payWithRazorpay(data:any){
+            const options:any={
+              key:environment.razorpay_ket,
+              amount:res.amount,
+              currency:res.currency,
+              name:res.name,
+              order_id:res.id,
+              handler:(resp:any)=>{
+                // console.log(resp.razorpay_payment_id);
+                let date= new Date();
+                let year = date.getFullYear();
+                let month =(date.getMonth()+1).toString().padStart(2,'0');
+                let day = date.getDate().toString().padStart(2,'0');
+                const payment_date=`${day}-${month}-${year}`;
+                this.spinner.show();
+                this.landlordServ.verifyPayment(resp.razorpay_payment_id,payment_date).subscribe({
+                  next:(responce:any)=>{
+                    this.spinner.hide();
+                    Swal.fire({
+                      title:"Payment Done",
+                      text:"Bill Payment Processed Successful.",
+                      icon:"success",
+                      showConfirmButton:true
+                    })
+                    .then((result)=>{
+                      this.ngZone.run(()=>{
+                        this.router.navigate(["dashbord-rentholder"]);
+                      });
+                    })
+                    
+                  },error:(err)=>{
+                    console.log(err);
+                  }
+                })
+              },
+              prefill:{
+                email:res.email,
+                contact:res.phone
+              },
+              theme:{
+                color:"#7373f3"
+              }
+            };
+            const rzp = new Razorpay(options);
+            rzp.open();
+          // }
+
         },error:(err:any)=>{
           this.spinner.hide();
           console.error(err.error);
