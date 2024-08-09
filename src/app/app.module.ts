@@ -67,6 +67,7 @@ import { UnderConstructionComponent } from './components/beforeLoginComponents/u
 import { UnsubscribeMailComponent } from './components/beforeLoginComponents/unsubscribe-mail/unsubscribe-mail.component';
 import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
 import { PayoutComponent } from './components/landlord-components/payout/payout.component';
+import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { PayoutComponent } from './components/landlord-components/payout/payout.
     UnderConstructionComponent,
     UnsubscribeMailComponent,
     DeveloperDetailsComponent,
-    PayoutComponent
+    PayoutComponent,
+    PaymentProcessComponent
   ],
   imports: [
     BrowserModule,

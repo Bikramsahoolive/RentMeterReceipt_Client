@@ -49,6 +49,7 @@ import { UnderConstructionComponent } from './components/beforeLoginComponents/u
 import { UnsubscribeMailComponent } from './components/beforeLoginComponents/unsubscribe-mail/unsubscribe-mail.component';
 import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
 import { PayoutComponent } from './components/landlord-components/payout/payout.component';
+import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -89,6 +90,7 @@ children:[
 {path:'create-rent-bill',component:CreateSubMeterComponent,canActivate:[authGuard]},
 
 {path:'print-rent-bill/:id',component:PrintRentBillComponent},
+{path:'process-payment/:id',component:PaymentProcessComponent},
 
 {path:'update-rentholder/:id',component:UpdateRentholderComponent,canActivate:[authGuard]},
 

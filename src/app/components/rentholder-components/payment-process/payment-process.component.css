@@ -1,0 +1,38 @@
+.processing{
+    position:absolute;
+    top:50%;
+    left:50%;
+    text-align:center;
+    width:250px;
+    margin:-5px 0 0 -125px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius:4px;
+    line-height:2em;
+  }
+  
+  .processing:before
+  {
+    position: relative;
+    background: #7373f3;
+    -webkit-animation: progress 3s infinite;
+    animation: progress 3s infinite;
+    border-radius:4px;
+    display:block;
+    content:'';
+    height:8px;
+  }
+  
+  @-webkit-keyframes progress
+  {
+    0% {left: 0; width: 25%;}
+    50% {left: 75%; width: 25%;}
+    100% {left: 0; width: 25%;}
+  }
+  
+  @keyframes progress
+  {
+    0% {left: 0; width: 25%;}
+    50% {left: 75%; width: 25%;}
+    100% {left: 0; width: 25%;}
+  }

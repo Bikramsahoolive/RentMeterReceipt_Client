@@ -164,31 +164,7 @@ Swal.fire({
               order_id:res.id,
               handler:(resp:any)=>{
                 // console.log(resp.razorpay_payment_id);
-                let date= new Date();
-                let year = date.getFullYear();
-                let month =(date.getMonth()+1).toString().padStart(2,'0');
-                let day = date.getDate().toString().padStart(2,'0');
-                const payment_date=`${day}-${month}-${year}`;
-                this.spinner.show();
-                this.landlordServ.verifyPayment(resp.razorpay_payment_id,payment_date).subscribe({
-                  next:(responce:any)=>{
-                    this.spinner.hide();
-                    Swal.fire({
-                      title:"Payment Done",
-                      text:"Bill Payment Processed Successful.",
-                      icon:"success",
-                      showConfirmButton:true
-                    })
-                    .then((result)=>{
-                      this.ngZone.run(()=>{
-                        this.router.navigate(["dashbord-rentholder"]);
-                      });
-                    })
-                    
-                  },error:(err)=>{
-                    console.log(err);
-                  }
-                })
+                this.router.navigate([`/process-payment/${resp.razorpay_payment_id}`]);
               },
               prefill:{
                 email:res.email,
