@@ -1,0 +1,77 @@
+.container{
+    width:100%;
+    height: auto;
+    max-height: 90vh;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+    margin-top: 60px;
+}
+.content{
+    width: 90%;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 0 5px 2px gray;
+    padding: 50px 30px;
+    height: 485px;
+    max-width: 450px;
+}
+
+.input-box{
+    margin-top: 20px;
+}
+
+form .head{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 2px solid gray;
+    padding-bottom: 20px;
+    
+}
+form input{
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+}
+form label{
+    font-weight: 600;
+}
+
+form input[type="submit"]{
+    margin: 40px 0;
+    border: none;
+    outline: none;
+}
+
+form input[type="submit"]{
+    background-color: #4949bd;
+    color: white;
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border: navajowhite;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px gray;
+    transition: ease 0.2s;
+    margin-top: 20px;
+}
+
+form input[type="submit"]:hover{
+    box-shadow: 0px 0px 0px 0px black;
+}
+
+form select{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    padding-left: 15px;
+    font-size: 16px;
+    border:2px solid black;
+    border-radius: 5px;
+}

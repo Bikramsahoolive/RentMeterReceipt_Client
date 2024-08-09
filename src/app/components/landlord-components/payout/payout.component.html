@@ -1,0 +1,25 @@
+
+
+<div class="container">
+    <div class="content">
+<form #payout="ngForm" (ngSubmit)="payoutRequest(payout)">
+    <h1 class="head">Payout</h1>
+    <h4 style="text-align: center; margin-top: 20px; color: white; font-style: oblique;background-color: #3e3ea3; border-radius: 6px; padding: 10px;">Total Payout Balance : ₹{{payoutAmt}}/-</h4>
+    <div class="input-box">
+        <label for="load">UPI ID</label>
+        <input type="text" [(ngModel)]="upiId" name="upi" #upi readonly >
+    </div>
+    <div class="input-box">
+        <label for="load">Request Date:</label>
+        <input type="date" [(ngModel)]="cDate" readonly name="request_date" >
+    </div>
+    <div class="input-box">
+        <label for="prv-unit">Payout Amount (₹):</label>
+    <input type="number" ngModel name="payout_amt">
+    </div>
+    
+    <input type="submit" value="Submit">
+</form>
+</div>
+</div>
+

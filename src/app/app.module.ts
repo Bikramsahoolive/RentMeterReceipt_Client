@@ -29,7 +29,6 @@ import { DashbordContentComponent } from './components/landlord-components/landl
 import { MainMeterComponent } from './components/landlord-components/main-meter/main-meter.component';
 import { SubMeterComponent } from './components/landlord-components/sub-meter/sub-meter.component';
 import { ManageComponent } from './components/landlord-components/manage/manage.component';
-import { MainMeterMenuComponent } from './components/landlord-components/main-meter-menu/main-meter-menu.component';
 import { SubMeterMenuComponent } from './components/landlord-components/sub-meter-menu/sub-meter-menu.component';
 import { ManageMenuComponent } from './components/landlord-components/manage-menu/manage-menu.component';
 import { CreateBillComponent } from './components/landlord-components/create-bill/create-bill.component';
@@ -67,6 +66,7 @@ import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginCo
 import { UnderConstructionComponent } from './components/beforeLoginComponents/under-construction/under-construction.component';
 import { UnsubscribeMailComponent } from './components/beforeLoginComponents/unsubscribe-mail/unsubscribe-mail.component';
 import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
+import { PayoutComponent } from './components/landlord-components/payout/payout.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,6 @@ import { DeveloperDetailsComponent } from './components/beforeLoginComponents/de
     MenubarComponent,
     DashbordUserComponent,
     DashbordContentComponent,
-    MainMeterMenuComponent,
     SubMeterMenuComponent,
     ManageMenuComponent,
     CreateBillComponent,
@@ -115,7 +114,8 @@ import { DeveloperDetailsComponent } from './components/beforeLoginComponents/de
     PrivacyPolicyTermConditionsComponent,
     UnderConstructionComponent,
     UnsubscribeMailComponent,
-    DeveloperDetailsComponent
+    DeveloperDetailsComponent,
+    PayoutComponent
   ],
   imports: [
     BrowserModule,

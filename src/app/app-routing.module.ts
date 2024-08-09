@@ -16,7 +16,6 @@ import { DashbordContentComponent } from './components/landlord-components/landl
 import { MainMeterComponent } from './components/landlord-components/main-meter/main-meter.component';
 import { SubMeterComponent } from './components/landlord-components/sub-meter/sub-meter.component';
 import { ManageComponent } from './components/landlord-components/manage/manage.component';
-import { MainMeterMenuComponent } from './components/landlord-components/main-meter-menu/main-meter-menu.component';
 import { SubMeterMenuComponent } from './components/landlord-components/sub-meter-menu/sub-meter-menu.component';
 import { ManageMenuComponent } from './components/landlord-components/manage-menu/manage-menu.component';
 import { CreateBillComponent } from './components/landlord-components/create-bill/create-bill.component';
@@ -49,6 +48,7 @@ import { PrivacyPolicyTermConditionsComponent } from './components/beforeLoginCo
 import { UnderConstructionComponent } from './components/beforeLoginComponents/under-construction/under-construction.component';
 import { UnsubscribeMailComponent } from './components/beforeLoginComponents/unsubscribe-mail/unsubscribe-mail.component';
 import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
+import { PayoutComponent } from './components/landlord-components/payout/payout.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -85,13 +85,6 @@ children:[
   {path:'',component:RentholderMenubarComponentComponent,outlet:'outlet2'}
 ]
 },
-{path:'main-meter',component:DashbordComponent,canActivate:[authGuard],
-children:[
-  {path:'',component:MainMeterComponent,outlet:'outlet1'},
-  {path:'',component:MainMeterMenuComponent,outlet:'outlet2'},
-  
-]
-},
 {path:'create-MainBill',component:CreateBillComponent,canActivate:[authGuard]},
 {path:'create-rent-bill',component:CreateSubMeterComponent,canActivate:[authGuard]},
 
@@ -100,7 +93,7 @@ children:[
 {path:'update-rentholder/:id',component:UpdateRentholderComponent,canActivate:[authGuard]},
 
 {path:'bill-payment',component:BillPaymentComponent,canActivate:[authGuard]},
-{path:'fine-addition',component:AdditionFinesComponent,canActivate:[authGuard]},
+{path:'payout',component:PayoutComponent,canActivate:[authGuard]},
 {path:'rent-holder',component:RentHolderComponent,canActivate:[authGuard]},
 {path:'total-bill',component:TotalBillComponent,canActivate:[authGuard]},
 {path:'bill-due',component:BillDueComponent,canActivate:[authGuard]},

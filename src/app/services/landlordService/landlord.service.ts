@@ -52,6 +52,13 @@ export class LandlordService {
     return this.http.delete(`${environment.apiUrl}/landlord/user/${id}`,{withCredentials:true,headers:this.header});
   }
 
+  landlordPayout(data:any){
+    return this.http.post(`${environment.apiUrl}/landlord/payout`,data,{withCredentials:true,headers:this.header});
+  }
+
+  checklandlordPayout(id:string){
+    return this.http.get(`${environment.apiUrl}/landlord/check-payout/${id}`,{withCredentials:true,headers:this.header});
+  }
 
   createOrder(data:any){
     return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
