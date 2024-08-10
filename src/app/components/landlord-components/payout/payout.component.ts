@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -18,9 +18,10 @@ export class PayoutComponent {
     private landlordServ:LandlordService,
     private router:Router,
      ){}
+     @ViewChild('payoutM')payoutM!:ElementRef;
      payoutAmt:number = 0;
-     upiId:string= "";
      cDate:string= "";
+     landlordData:any;
   ngOnInit(){
     this.cDate = this.setCurrentDate();
     this.spinner.show();
@@ -36,8 +37,8 @@ export class PayoutComponent {
               this.landlordServ.getLandlordData(landlordData.id).subscribe({
                 next:(res:any)=>{
                   this.spinner.hide();
+                  this.landlordData = res;
                   this.payoutAmt = res.payout;
-                  this.upiId = res.upi
                 },
                 error:(err)=>{
                   this.spinner.hide();
@@ -71,6 +72,24 @@ export class PayoutComponent {
         });
 
   }
+  payoutDetails:any;
+  paymentMethod:string=""
+  payoutMethod(method:string){
+    this.paymentMethod = method;
+    this.payoutM.nativeElement.innerHTML="";
+    if(method=="upi"){
+      let upiData = document.createElement('strong');
+      upiData.innerHTML=`UPI ID : ${this.landlordData.upi}`
+      this.payoutM.nativeElement.appendChild(upiData);
+    }else{
+      let upiData = document.createElement('strong');
+      upiData.innerHTML=`Name : ${this.landlordData.name} <br/> 
+      A/c : ${this.landlordData.account_no||"Not Available "} <br/>
+      IFSC : ${this.landlordData.ifsc||"Not Available"}`
+      this.payoutM.nativeElement.appendChild(upiData);
+    }
+
+  }
 
   setCurrentDate(){
     let date= new Date();
@@ -101,11 +120,26 @@ export class PayoutComponent {
       this.toaster.error("Invalid Payout Amount (₹100 - ₹10,000).","",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
+    if(this.paymentMethod===""){
+      this.toaster.error("Please Select a Payout Method.","",{positionClass:'toast-top-center',progressBar:true});
+      return;
+    }
+    if(this.paymentMethod ==='upi')data.upi = this.landlordData.upi;
+
+    if(this.paymentMethod ==='neft' || this.paymentMethod ==='imps' ){
+      if(this.landlordData.account_no){
+        data.account_no = this.landlordData.account_no;
+        data.ifsc = this.landlordData.ifsc;  
+      }else{
+        this.toaster.error("Bank details unavailable, Try UPI","",{positionClass:'toast-top-center',progressBar:true});
+      return;
+      }
+    }
+
     this.spinner.show();
 
     this.landlordServ.landlordPayout(data).subscribe({
       next:(res:any)=>{
-        console.log(res);
         this.spinner.hide();
         if(res.status ==="success"){
         Swal.fire({
@@ -122,6 +156,7 @@ export class PayoutComponent {
         this.spinner.hide;
         console.log(err.error);
         this.toaster.error('Something wents wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
+
       }
     });
     

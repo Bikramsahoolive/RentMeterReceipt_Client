@@ -14,8 +14,9 @@
     border-radius: 8px;
     background-color: white;
     box-shadow: 0 0 5px 2px gray;
-    padding: 50px 30px;
-    height: 485px;
+    padding: 20px 30px;
+    height: auto;
+    max-height: 500px;
     max-width: 450px;
 }
 
