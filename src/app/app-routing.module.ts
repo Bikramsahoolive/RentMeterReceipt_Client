@@ -90,7 +90,7 @@ children:[
 {path:'create-rent-bill',component:CreateSubMeterComponent,canActivate:[authGuard]},
 
 {path:'print-rent-bill/:id',component:PrintRentBillComponent},
-{path:'process-payment/:id',component:PaymentProcessComponent},
+{path:'process-payment/:id',component:PaymentProcessComponent,canActivate:[rentholderAuthGuard]},
 
 {path:'update-rentholder/:id',component:UpdateRentholderComponent,canActivate:[authGuard]},
 
