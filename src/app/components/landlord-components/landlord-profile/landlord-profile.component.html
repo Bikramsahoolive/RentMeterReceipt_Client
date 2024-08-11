@@ -5,6 +5,7 @@
         <div class="update_val">
             
             <span>UPI: <input type="checkbox" #upicheck (change)="toggleInput(upicheck.checked,'upi')" ></span>
+            <span> | A/c: <input type="checkbox" #accheck (change)="toggleInput(accheck.checked,'ac')" ></span>
             <span> | Photo: <input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')"></span>
             <span> | Sign: <input type="checkbox" #sigcheck (change)="toggleInput(sigcheck.checked,'sign')"></span>
             <span> | Password: <input type="checkbox" #passcheck (change)="toggleInput(passcheck.checked,'password')"></span>
@@ -28,6 +29,14 @@
     <div class="input-box">
         <span class="details">UPI ID:</span>
         <input type="email" [(ngModel)]="landlordData.upi" name="upi"  [disabled]="upiInput" >
+    </div>
+    <div class="input-box">
+        <span class="details">A/c no:</span>
+        <input type="number" [(ngModel)]="landlordData.account_no" name="account_no"  [disabled]="acInput" >
+    </div>
+    <div class="input-box">
+        <span class="details">IFSC:</span>
+        <input type="text" [(ngModel)]="landlordData.ifsc" name="ifsc"  [disabled]="acInput" >
     </div>
     <div class="input-box">
         <span class="details">Photo:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('photo')" *ngIf="landlordData.photo !==''">(Click to Remove Photo)</small>

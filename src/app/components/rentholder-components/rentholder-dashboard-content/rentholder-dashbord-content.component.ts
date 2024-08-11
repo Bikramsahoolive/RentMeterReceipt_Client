@@ -25,7 +25,9 @@ export class RentholderDashbordContentComponent {
     password: '',
     userType: '',
     plan:'',
-    rcrCount:0
+    rcrCount:0,
+    account_no:null,
+    ifsc:""
   };
   rentholderData:rentholderData={
     current_unit: 0,

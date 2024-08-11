@@ -16,7 +16,9 @@ export interface landlordData {
     password: string,
     userType: string,
     plan:string,
-    rcrCount:number
+    rcrCount:number,
+    account_no:number|null,
+    ifsc:string
 }
 
 export interface rentBillData {

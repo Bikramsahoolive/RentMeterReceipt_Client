@@ -16,6 +16,7 @@ import { environment } from 'src/environment';
 })
 export class LandlordProfileComponent {
   upiInput:boolean=true;
+  acInput:boolean=true;
   photoInput:boolean=true;
   signInput:boolean=true;
   passwordInput:boolean=true;
@@ -41,7 +42,9 @@ export class LandlordProfileComponent {
     password:"",
     userType:"",
     plan:"",
-    rcrCount:0
+    rcrCount:0,
+    account_no:null,
+    ifsc:""
   };
   landlordPhoto:string="";
   landlordSignature:string="";
@@ -78,6 +81,9 @@ if(box=='upi'){
   }
 }
 
+if(box=='ac'){
+  this.acInput=!val;
+}
 if(box=='photo'){
   this.photoInput=!val;
   // this.updateCheckbox=true;
@@ -140,7 +146,7 @@ fileUpload(event:any,fileType:string, inputField:any){
 
 
 updateLandlord(form:NgForm){
-  if(!this.upiInput || !this.passwordInput || !this.photoInput || !this.signInput){
+  if(!this.upiInput || !this.passwordInput || !this.photoInput || !this.signInput || !this.acInput){
     let data = form.value;
     const upiRegex = /^[^\s@]+@[^\s@]+$/;
     if(!this.upiInput){
