@@ -102,8 +102,8 @@ ngOnInit(){}
 
       this.authServ.verifyforgotPassword(data).subscribe({
         next:(res:any)=>{
+          this.spinner.hide();
           if(res.status==="success"){
-            this.spinner.hide();
             Swal.fire({
               title:"Password Updated!",
               text:"Your Password Updated, Please Login To Continue.",

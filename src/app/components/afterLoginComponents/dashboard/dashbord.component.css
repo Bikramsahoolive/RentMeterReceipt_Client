@@ -4,7 +4,7 @@
     margin-top: 60px;
     overflow-y: scroll;
     background-image: url(../../../../assets/background/design-flower-line-wallpaper-preview.jpg);
-    
+    scrollbar-width:none ;
 }
 
 .main-container{
