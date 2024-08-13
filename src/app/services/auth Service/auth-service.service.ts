@@ -131,6 +131,18 @@ checkLandlordSession(){
   });
 }
 
+checkAdminSession(){
+  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
+    next:(result:any)=>{
+      if(result.isActive){
+        if(result.userType!=='admin'){
+          this.router.navigate(['']);
+        }
+      }
+    }
+  });
+}
+
 
 checkrentHolderSession(){
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({

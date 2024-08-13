@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AdminServiceService } from 'src/app/services/admin-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-landlord-request',
@@ -14,12 +16,12 @@ export class LandlordRequestComponent {
   page:number=1;
   
 
-  constructor(private signupServ:SignupService,private spinner:NgxSpinnerService){}
+  constructor(private adminServ:AdminServiceService,private spinner:NgxSpinnerService){}
   ngOnInit(){
     this.spinner.show();
-    this.signupServ.getSignUpData().subscribe({
+    this.adminServ.getAllPayoutData().subscribe({
       next:(result:any)=>{
-        result = result.reverse();
+        // result = result.reverse();
         this.datalist=result;
         this.spinner.hide();
       },
@@ -52,43 +54,72 @@ export class LandlordRequestComponent {
     });
   }
 
-action(data:any,state:string){
-this.spinner.show()
-if (state==='approved'){
-  data.status=state;
- this.signupServ.actionLandlordData(data).subscribe({
-  next:(res:any)=>{
-    // console.log(res);
-    this.datalist=[];
-    this.ngOnInit();
-    this.spinner.hide();
-  },
-  error:(err)=>{
-    console.log(err.error);
-    this.spinner.hide();
-  }
- })
+// action(data:any,state:string){
+// this.spinner.show()
+// if (state==='approved'){
+//   data.status=state;
+//  this.signupServ.actionLandlordData(data).subscribe({
+//   next:(res:any)=>{
+//     // console.log(res);
+//     this.datalist=[];
+//     this.ngOnInit();
+//     this.spinner.hide();
+//   },
+//   error:(err)=>{
+//     console.log(err.error);
+//     this.spinner.hide();
+//   }
+//  })
   
-}
-if (state==='rejected'){
-  data.status=state;
- this.signupServ.actionLandlordData(data).subscribe({
-  next:(res:any)=>{
-    // console.log(res);
-    this.datalist=[];
-    this.ngOnInit();
-    this.spinner.hide();
-  },
-  error:(err)=>{
-    console.log(err.error);
-    this.spinner.hide();
-  }
- })
-}
+// }
+// if (state==='rejected'){
+//   data.status=state;
+//  this.signupServ.actionLandlordData(data).subscribe({
+//   next:(res:any)=>{
+//     // console.log(res);
+//     this.datalist=[];
+//     this.ngOnInit();
+//     this.spinner.hide();
+//   },
+//   error:(err)=>{
+//     console.log(err.error);
+//     this.spinner.hide();
+//   }
+//  })
+// }
   
+// }
+// filterCall(){
+//   this.ngOnInit();
+// }
+
+confirmPayout(id:string){
+  console.log(id);
+  Swal.fire({
+    title:"Confirm Payout",
+    html:`<label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Payout Date</label>
+<input type="date" id="date" style="padding: 10px 10px; width: 100%; border: 2px solid gray; border-radius: 5px;">
+<label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Transaction ID</label>
+<input type="text" placeholder="Enter Transaction ID" id="transction-id" style="padding: 10px 10px; width: 100%; border: 2px solid gray; border-radius: 5px;">
+<label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Details</label>
+<textarea id="details" style="margin:0; resize: vertical; padding: 5px; border-radius: 3px; height: 40px; width: 100%;"></textarea>`,
+focusConfirm:false,
+showCloseButton:true,
+allowOutsideClick:false,
+preConfirm:()=> {
+  const date = (document.getElementById('date') as HTMLInputElement).value;
+  const transctionId = (document.getElementById('transction-id')as HTMLInputElement).value;
+  const details = (document.getElementById('details')as HTMLInputElement).value;
+
+  if(!date || !transctionId || !details){
+    Swal.showValidationMessage('Invalid Inputs');
+  }
+  return{date,transctionId,details}
 }
-filterCall(){
-  this.ngOnInit();
+  })
+  .then((result)=>{
+    console.log(result.value);
+  })
 }
   
 }

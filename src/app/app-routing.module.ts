@@ -50,6 +50,7 @@ import { UnsubscribeMailComponent } from './components/beforeLoginComponents/uns
 import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
 import { PayoutComponent } from './components/landlord-components/payout/payout.component';
 import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
+import { adminAuthGuard } from './guard/admin-auth.guard';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -66,13 +67,13 @@ const routes: Routes = [
   {path:'unsubscribe',component:UnsubscribeMailComponent},
   {path:'developer',component:DeveloperDetailsComponent},
 
-  {path:'dashbord-admin',component:DashbordComponent,canActivate:[authGuard],
+  {path:'dashbord-admin',component:DashbordComponent,canActivate:[adminAuthGuard],
 children:[
   {path:'',component:AdminDashbordContentComponent,outlet:'outlet1'},
   {path:'',component:AdminDashbordUserComponent,outlet:'outlet2'},
 ]
 },
-{path:'request-landlord',component:LandlordRequestComponent,canActivate:[authGuard]},
+{path:'request-landlord',component:LandlordRequestComponent,canActivate:[adminAuthGuard]},
 
   {path:'dashbord-landlord',component:DashbordComponent,canActivate:[authGuard],
 children:[
