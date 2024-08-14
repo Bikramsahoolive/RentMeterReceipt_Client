@@ -3,6 +3,7 @@ import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environment';
 
 @Component({
   selector: 'app-landlord-request',
@@ -33,7 +34,6 @@ export class LandlordRequestComponent {
   }
 
   openSearch(box:any,input:any){
-    console.log(input);
    
     box.classList.forEach((item:string)=>{
       
@@ -93,33 +93,75 @@ export class LandlordRequestComponent {
 //   this.ngOnInit();
 // }
 
-confirmPayout(id:string){
-  console.log(id);
+confirmPayout(data:any){
   Swal.fire({
     title:"Confirm Payout",
     html:`<label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Payout Date</label>
 <input type="date" id="date" style="padding: 10px 10px; width: 100%; border: 2px solid gray; border-radius: 5px;">
 <label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Transaction ID</label>
 <input type="text" placeholder="Enter Transaction ID" id="transction-id" style="padding: 10px 10px; width: 100%; border: 2px solid gray; border-radius: 5px;">
-<label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Details</label>
-<textarea id="details" style="margin:0; resize: vertical; padding: 5px; border-radius: 3px; height: 40px; width: 100%;"></textarea>`,
+<label style="display: block; width: 100%; text-align: start; padding: 15px 0 0px 0;">Remark</label>
+<textarea id="details" style="margin:0; resize: vertical; padding: 5px; border-radius: 3px; height: 70px; width: 100%;"></textarea>`,
 focusConfirm:false,
 showCloseButton:true,
 allowOutsideClick:false,
-preConfirm:()=> {
+showLoaderOnConfirm:true,
+preConfirm: async()=> {
   const date = (document.getElementById('date') as HTMLInputElement).value;
   const transctionId = (document.getElementById('transction-id')as HTMLInputElement).value;
   const details = (document.getElementById('details')as HTMLInputElement).value;
 
   if(!date || !transctionId || !details){
     Swal.showValidationMessage('Invalid Inputs');
+  }else{
+
+    data.process_date=date;
+    data.payout_transactionId=transctionId;
+    data.payout_details=details;
+    
+  try {
+    const response = await fetch(`${environment.apiUrl}/admin/process/payout`,{
+      method:'POST',
+      credentials:'include',
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(data)
+    })
+  if(response.ok){
+    return 'ok';
+  }else{
+    
+    return Swal.showValidationMessage(`
+      "Error! Try Again."
+    `)
   }
-  return{date,transctionId,details}
+  } catch (error) {
+    console.log(error);
+    return Swal.showValidationMessage(`
+      "Error! Try Again."
+    `)
+  }
+}
 }
   })
   .then((result)=>{
-    console.log(result.value);
-  })
+    
+    if(result.value==='ok'){
+      Swal.fire({
+        title: 'Payout Processed',
+        text: 'Payout Data processed successfully.',
+        icon:'success',
+        timer: 3000,
+        showConfirmButton:false
+    });
+    setTimeout(()=>{
+    this.datalist = [];
+    this.ngOnInit();
+  },3000);
+    }
+
+  });
 }
   
 }

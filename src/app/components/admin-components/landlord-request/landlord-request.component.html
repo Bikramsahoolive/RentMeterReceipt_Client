@@ -27,6 +27,7 @@
           <th>Phone</th>
           <th>Email</th>
           <th>Method</th>
+          <th>Amount</th>
           <th>UPI</th>
           <th>A/C</th>
           <th>IFSC</th>
@@ -41,10 +42,11 @@
             <td data-label="Phone">{{item.phone}}</td>
             <td data-label="Email">{{item.email}}</td>
             <td data-label="Method">{{item.payout_method}}</td>
-            <td data-label="UPI">{{item.upi||'NA'}}</td>
-            <td data-label="A/C">{{item.account_no||'NA'}}</td>
-            <td data-label="IFSC">{{item.ifsc||'NA'}}</td>
-            <td><button class="conf-btn" (click)="confirmPayout(item.id)">Process Payout</button></td>
+            <td data-label="Amount">₹ {{item.payout_amt}}/-</td>
+            <td data-label="UPI">{{item.upi}}</td>
+            <td data-label="A/C">{{item.account_no}}</td>
+            <td data-label="IFSC">{{item.ifsc}}</td>
+            <td><button class="conf-btn" (click)="confirmPayout(item)">Process Payout</button></td>
           </tr>
 
         </tbody>

@@ -124,18 +124,19 @@ export class PayoutComponent {
       this.toaster.error("Please Select a Payout Method.","",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
-    if(this.paymentMethod ==='upi')data.upi = this.landlordData.upi;
+  
 
     if(this.paymentMethod ==='neft' || this.paymentMethod ==='imps' ){
-      if(this.landlordData.account_no){
-        data.account_no = this.landlordData.account_no;
-        data.ifsc = this.landlordData.ifsc;  
-      }else{
+      if(!this.landlordData.account_no || !this.landlordData.ifsc){
         this.toaster.error("Bank details unavailable, Try UPI","",{positionClass:'toast-top-center',progressBar:true});
       return;
       }
     }
 
+    data.account_no = this.landlordData.account_no ||'NA';
+    data.ifsc = this.landlordData.ifsc || 'NA';
+    data.upi = this.landlordData.upi || 'NA';
+    
     this.spinner.show();
 
     this.landlordServ.landlordPayout(data).subscribe({
