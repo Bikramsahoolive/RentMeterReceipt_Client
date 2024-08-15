@@ -56,6 +56,10 @@ export class LandlordService {
     return this.http.post(`${environment.apiUrl}/landlord/payout`,data,{withCredentials:true,headers:this.header});
   }
 
+  getLandlordPayoutProcessed(){
+    return this.http.get(`${environment.apiUrl}/landlord/payout`,{withCredentials:true,headers:this.header});
+  }
+
   checklandlordPayout(id:string){
     return this.http.get(`${environment.apiUrl}/landlord/check-payout/${id}`,{withCredentials:true,headers:this.header});
   }

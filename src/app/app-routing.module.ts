@@ -51,6 +51,7 @@ import { DeveloperDetailsComponent } from './components/beforeLoginComponents/de
 import { PayoutComponent } from './components/landlord-components/payout/payout.component';
 import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
 import { adminAuthGuard } from './guard/admin-auth.guard';
+import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -97,6 +98,7 @@ children:[
 
 {path:'bill-payment',component:BillPaymentComponent,canActivate:[authGuard]},
 {path:'payout',component:PayoutComponent,canActivate:[authGuard]},
+{path:'processed-payout',component:ProcessedPayoutComponent,canActivate:[authGuard]},
 {path:'rent-holder',component:RentHolderComponent,canActivate:[authGuard]},
 {path:'total-bill',component:TotalBillComponent,canActivate:[authGuard]},
 {path:'bill-due',component:BillDueComponent,canActivate:[authGuard]},

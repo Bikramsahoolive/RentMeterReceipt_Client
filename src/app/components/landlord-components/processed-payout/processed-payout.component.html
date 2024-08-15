@@ -1,0 +1,29 @@
+<section class="container">
+    <div class="data">
+    <h1 class="head">Processed Payout</h1>
+    <div class="data-table">
+    <table class="table" *ngIf="processedPayoutData[0].payout_amt !==0 ">
+        <thead>
+          <th>Sl No</th>
+          <th>Request Date</th>
+          <th>Amount</th>
+          <th>Method</th>
+          <th>Process Date</th>
+          <th>Transaction ID</th>
+          <th>Remark</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of processedPayoutData ; let i = index">
+            <td data-label="Sl No : ">{{i+1}}</td>
+            <td data-label="Request Date : ">{{data.request_date}}</td>
+            <td data-label="Amount : ">₹ {{data.payout_amt}}/-</td>
+            <td data-label="Method : ">{{data.payout_method}}</td>
+            <td data-label="Process Date : ">{{data.process_date}}</td>
+            <td data-label="Transaction ID : ">{{data.payout_transactionId}}</td>
+            <td data-label="Remark : ">{{data.payout_details}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+</section>

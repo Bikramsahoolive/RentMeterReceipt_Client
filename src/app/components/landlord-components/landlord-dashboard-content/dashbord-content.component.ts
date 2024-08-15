@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr'
-import { rentBillData, rentholderData } from 'src/app/model/data';
+import { landlordData, rentBillData, rentholderData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 
 @Component({
@@ -19,6 +19,9 @@ export class DashbordContentComponent {
     // rentHolderData:any;
     totalPaidAmt:number=0;
     totalDueAmt:number=0;
+    billCount:number=0;
+    pendingPayout:number=0;
+    processedPayoutAmount:number=0;
   ngOnInit(){
     this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
@@ -47,6 +50,7 @@ export class DashbordContentComponent {
 
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:rentBillData[])=>{
+        this.billCount = res.length;
           let due = 0;
           res.forEach((element:rentBillData) => {
             due = due + Number(element.final_amt);
@@ -60,8 +64,6 @@ export class DashbordContentComponent {
           this.totalPaidAmt = totalPaid;
           this.totalDueAmt=due - totalPaid;
         
-        
-        
       },
       error:(err)=>{
         if(err.error.status !== false){
@@ -71,7 +73,35 @@ export class DashbordContentComponent {
        
         
       }
-    })
+    });
+
+    let getEncData:any = localStorage.getItem('connect.sid');
+    let actualData = atob(getEncData)
+    let userData = JSON.parse(actualData);
+
+    this.landlordServ.getLandlordData(userData.id).subscribe({
+      next:(res:any)=>{
+        this.pendingPayout = res.payout;
+      },error:(error)=>{
+        console.log(error);
+      }
+    });
+
+    this.landlordServ.getLandlordPayoutProcessed().subscribe({
+      next:(res:any)=>{
+        this.spinner.hide();
+        let amount = 0;
+        res.forEach((element:any) => {
+          amount += (+element.payout_amt);
+        });
+        this.processedPayoutAmount = amount;
+        
+      },error:(err)=>{
+        this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+        console.log(err.error);
+        this.spinner.hide();
+      }
+    });
   }
 
 }

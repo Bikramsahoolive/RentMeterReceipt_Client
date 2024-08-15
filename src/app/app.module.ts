@@ -68,6 +68,7 @@ import { UnsubscribeMailComponent } from './components/beforeLoginComponents/uns
 import { DeveloperDetailsComponent } from './components/beforeLoginComponents/developer-details/developer-details.component';
 import { PayoutComponent } from './components/landlord-components/payout/payout.component';
 import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
+import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { PaymentProcessComponent } from './components/rentholder-components/paym
     UnsubscribeMailComponent,
     DeveloperDetailsComponent,
     PayoutComponent,
-    PaymentProcessComponent
+    PaymentProcessComponent,
+    ProcessedPayoutComponent
   ],
   imports: [
     BrowserModule,

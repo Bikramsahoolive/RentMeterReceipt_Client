@@ -1,0 +1,73 @@
+.container{
+  background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  margin-top: 60px;
+}
+.container h1{
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  color: rgb(0, 0, 0);
+}
+
+.container .data{
+  width: 90%;
+  max-width: 1000px;
+  height: 80vh;
+  padding: 20px 0;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+.table{
+  margin-left: 0;
+  min-width:0;
+}
+.table thead {
+display: none;
+}
+
+.table,
+.table tbody,
+.table tr,
+.table td {
+display: block;
+width: 100%;
+color: white;
+}
+.table tr {
+margin-bottom: 50px;
+}
+.table td {
+text-align: right;
+position: relative;
+}
+.table td::before {
+content: attr(data-label);
+position: absolute;
+left: 0;
+width: 50%;
+padding-left: 15px;
+font-size: 15px;
+font-weight: bold;
+text-align: left;
+}
+
+
+.table td,
+.table th {
+  padding: 12px 15px 12px 40%;
+  border: 1px solid #4d4a4a;
+  font-size: 16px;
+  
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #0c2d55;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #122d59;
+}
