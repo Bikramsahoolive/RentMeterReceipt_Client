@@ -2,7 +2,17 @@
     <div class="login-form">
         <h1>Login</h1>
         <!-- <p>{{adminService.loginMsg()}}</p> -->
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" >
+        <div  class="passkey" style="width:100%; height:400px; display:flex;align-items: center;justify-content: center;flex-direction: column;gap: 40px;" *ngIf="showDiv">
+            <h4 class="name">{{passkeyUserData.name}}</h4>
+            <span>{{passkeyUserData.userType}}</span>
+            <!-- <i class="fa-solid fa-fingerprint bio" (click)="authenticatePasskey()"></i> -->
+            <span class="material-symbols-outlined bio" style="font-size: 50px;font-weight: 900;" (click)="authenticatePasskey()">
+                fingerprint
+                </span>
+            <a (click)="loginWithPassword()" style="cursor: pointer; color: #551a8b;">Login With User ID & password</a>
+        </div>
+
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" *ngIf="!showDiv">
             
             <div class="input-field">
                 <input type="number" placeholder="Enter User ID." ngModel #userId name="phone" autofocus required>
@@ -20,6 +30,7 @@
                     <option value="admin">Admin</option>
                 </select>
             </div>
+            <button *ngIf="showBtn" style="margin-top: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button>
                 <button>Login</button><br> <br>
                 <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none" (click)="scrollToTop()">Forgot Password</a></span>
                 <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;" (click)="scrollToTop()">Register now</a>

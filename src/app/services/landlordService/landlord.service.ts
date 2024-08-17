@@ -63,7 +63,15 @@ export class LandlordService {
   checklandlordPayout(id:string){
     return this.http.get(`${environment.apiUrl}/landlord/check-payout/${id}`,{withCredentials:true,headers:this.header});
   }
-
+  generateChallenge(){
+    return this.http.get(`${environment.apiUrl}/landlord/reg-challenge`,{withCredentials:true,headers:this.header});
+  }
+  verifyChallenge(data:any){
+    return this.http.post(`${environment.apiUrl}/landlord/verify-challenge`,data,{withCredentials:true,headers:this.header});
+  }
+  // unregesterLandlordPasskey(id:string){
+  //   return this.http.post(`${environment.apiUrl}/landlord/unregister-passkey/${id}`,{withCredentials:true,headers:this.header});
+  // }
   createOrder(data:any){
     return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
   }

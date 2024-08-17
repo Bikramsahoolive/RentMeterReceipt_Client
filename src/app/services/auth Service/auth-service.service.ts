@@ -252,4 +252,30 @@ this.spinner.show();
   // this.userName=undefined;
 }
 
+landlordRequestAuthOptions(id:string){
+  return this.http.get(`${environment.apiUrl}/landlord/auth-options/${id}`,{headers:this.header});
+}
+landlordLoginWithPasskey(data:any){
+  this.http.post(`${environment.apiUrl}/landlord/login-passkey`,data,{withCredentials:true,headers:this.header})
+  .subscribe({
+    next:(res:any)=>{
+      console.log(res);
+      
+      let localData = JSON.stringify(res);
+        let encData = btoa(localData);
+        localStorage.setItem("connect.sid",encData);
+        localStorage.setItem("connect.rid",btoa(res.isActive));
+        this.isLogedIn = true;
+        this.isLandlord=true;
+        this.router.navigate(['dashbord-landlord']);
+    },
+    error:(err)=>{
+      console.log(err.error);
+      this.spinner.hide();
+      
+    }
+  })
+}
+
+
 }

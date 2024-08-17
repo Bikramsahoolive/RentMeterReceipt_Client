@@ -1,17 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { loginData } from 'src/app/model/data';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
-
+import { startAuthentication } from '@simplewebauthn/browser'
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  constructor(private toastr: ToastrService ,public authServ: AuthServiceService,private router:Router){}
+export class LoginComponent {  
+  constructor(private spinner:NgxSpinnerService, private toastr: ToastrService ,public authServ: AuthServiceService,private router:Router){}
+  
+  showDiv:boolean=false;
+  showBtn:boolean=false;
+  passkeyUserData:any;
   ngOnInit(){
+    const passkeyData = localStorage.getItem('passkey_id')||"";
+    
+    if(passkeyData && passkeyData!==null || passkeyData!==''){
+      this.passkeyUserData = JSON.parse(atob((passkeyData)));
+      
+      this.showBtn = true;
+      this.showDiv=true;
+    }
+
+  }
+  loginWithPassword(){
+    this.showDiv=false;
+  }
+  loginWithPasskey(){
+    this.showDiv=true;
   }
   login(auth:loginData){
     auth.phone = String(auth.phone);
@@ -46,5 +66,25 @@ export class LoginComponent {
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  authenticatePasskey(){
+
+    // const name = localStorage.getItem('Device_Regd_Name');
+    
+      this.spinner.show();
+    this.authServ.landlordRequestAuthOptions(this.passkeyUserData.id).subscribe({
+      next:async(res:any)=>{
+        this.spinner.hide();
+       const publicKey = await startAuthentication(res.option);
+
+        this.authServ.landlordLoginWithPasskey({userId:this.passkeyUserData.id,publicKey:publicKey});
+
+      },
+      error:(err)=>{
+        this.spinner.hide();
+        console.log(err.error);
+      }
+    });
   }
 }

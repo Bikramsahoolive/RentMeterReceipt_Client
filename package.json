@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@simplewebauthn/browser": "^10.0.0",
     "@sweetalert2/ngx-sweetalert2": "^12.4.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",

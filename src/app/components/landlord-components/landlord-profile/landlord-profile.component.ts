@@ -8,6 +8,7 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
 import { landlordData } from 'src/app/model/data';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environment';
+import {startRegistration} from '@simplewebauthn/browser';
 
 @Component({
   selector: 'app-landlord-profile',
@@ -44,7 +45,8 @@ export class LandlordProfileComponent {
     plan:"",
     rcrCount:0,
     account_no:null,
-    ifsc:""
+    ifsc:"",
+    passkey_info:null
   };
   landlordPhoto:string="";
   landlordSignature:string="";
@@ -306,4 +308,48 @@ removeBiometric(type:string){
   });
 }
 
+regPasskey(){
+  this.spinner.show();
+  this.landlordServ.generateChallenge().subscribe({
+    next:async (res:any)=>{
+      this.spinner.hide();
+
+      const authResult = await startRegistration(res.challenge);
+      // console.log(authResult);
+      
+      this.spinner.show();
+      this.landlordServ.verifyChallenge({publicKey:authResult}).subscribe({
+        next:(res:any)=>{
+          this.spinner.hide();
+          if(res.status ==='success'){
+            delete res.status;
+            delete res.message;
+            localStorage.setItem("passkey_id",btoa(JSON.stringify(res)));
+            Swal.fire({
+              title:"Passkey Registered!",
+              text:"Device passKey Registered Successfully.",
+              icon:"success",
+              timer:3000,
+              showConfirmButton:false
+            })
+            setTimeout(()=>{this.route.navigate(['dashbord-landlord'])},3000);
+          }
+          
+        },
+        error:(err)=>{
+          this.spinner.hide();
+          console.log(err.error);
+          this.toaster.error(err.error.message,"Error",{progressBar:true,positionClass:"toast-top-center"});
+        }
+      });
+      
+    },
+    error:(err)=>{
+      this.spinner.hide();
+      console.log(err.error);
+      this.toaster.error(err.error.message,"Error",{progressBar:true,positionClass:"toast-top-center"});
+    }
+  })
+  
+}
 }

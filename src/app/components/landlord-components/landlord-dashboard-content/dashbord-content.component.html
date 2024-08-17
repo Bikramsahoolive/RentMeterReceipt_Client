@@ -2,37 +2,42 @@
     <h1 class="head">Landlord Dashbord</h1>
 <div class="card">
 
-
         <div class="primary-card">
             <h4>Total Rent Holders</h4>
             <h1>{{rentHolderCount}}</h1>
             <a routerLink="/rent-holder">View More</a>
-
         </div>
+
         <div class="green-card">
             <h4>Total Bill Collected</h4>
             <h1 id="amt">₹{{totalPaidAmt}}</h1>
             <a routerLink="/total-bill">View More</a>
         </div>
+
         <div class="danger-card">
             <h4>Total Bill Due</h4>
             <h1 id="due-amt">₹{{totalDueAmt}}</h1>
             <a routerLink="/total-due">View More</a>
         </div>
+
         <div class="gray-card">
             <h4>Total Bill Created</h4>
             <h1>{{billCount}}</h1>
             <a routerLink="/rent-bill-table">View More</a>
         </div>
-            <div class="warning-card">
-                <h4>Pending for Payout</h4>
-                <h1 id="amt">₹{{pendingPayout}}</h1>
-                <a routerLink="/payout">View More</a>
-            </div>
-            <div class="primary-card">
-                <h4>Processed Payout</h4>
-                <h1 id="amt">₹{{processedPayoutAmount}}</h1>
-                <a routerLink="/processed-payout">View More</a>
-            </div>
+
+        <div class="warning-card">
+            <h4>Pending for Payout</h4>
+            <h1 id="amt">₹{{pendingPayout}}</h1>
+            <a routerLink="/payout">View More</a>
+        </div>
+
+        <div class="primary-card">
+            <h4>Processed Payout</h4>
+            <h1 id="amt">₹{{processedPayoutAmount}}</h1>
+            <a routerLink="/processed-payout">View More</a>
+        </div>
+
+        <div style="height:30px; padding: 0; box-shadow: none;"></div>
     </div>
 </div>
