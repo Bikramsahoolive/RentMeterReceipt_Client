@@ -352,4 +352,32 @@ regPasskey(){
   })
   
 }
+
+unregdPasskey(id:string){
+
+  Swal.fire({
+    title:"Unregister Passkey!",
+    text:"Are you sure ? want to unregister passkey for this user.",
+    icon:"question",
+    showCancelButton:true
+  })
+  .then((result)=>{
+    if(result.isConfirmed){
+      this.spinner.show();
+      this.landlordServ.unregesterLandlordPasskey(id).subscribe({
+        next:(res:any)=>{
+          this.spinner.hide();
+          this.toaster.success(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
+          localStorage.removeItem('passkey_id');
+          this.route.navigate(['dashbord-landlord']);
+        },error:(err)=>{
+          console.log(err.error);
+          this.toaster.error('Something wents wrong, try again later.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+          
+        }
+      })
+    }
+  })
+  
+}
 }

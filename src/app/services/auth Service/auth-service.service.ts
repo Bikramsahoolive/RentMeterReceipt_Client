@@ -259,8 +259,6 @@ landlordLoginWithPasskey(data:any){
   this.http.post(`${environment.apiUrl}/landlord/login-passkey`,data,{withCredentials:true,headers:this.header})
   .subscribe({
     next:(res:any)=>{
-      console.log(res);
-      
       let localData = JSON.stringify(res);
         let encData = btoa(localData);
         localStorage.setItem("connect.sid",encData);
@@ -272,7 +270,7 @@ landlordLoginWithPasskey(data:any){
     error:(err)=>{
       console.log(err.error);
       this.spinner.hide();
-      
+      this.toastr.error('Something wents wrong.',"Error",{progressBar:true,positionClass:"toast-top-center"})
     }
   })
 }

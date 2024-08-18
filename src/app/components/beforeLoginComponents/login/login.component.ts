@@ -69,8 +69,6 @@ export class LoginComponent {
   }
 
   authenticatePasskey(){
-
-    // const name = localStorage.getItem('Device_Regd_Name');
     
       this.spinner.show();
     this.authServ.landlordRequestAuthOptions(this.passkeyUserData.id).subscribe({
@@ -78,6 +76,7 @@ export class LoginComponent {
         this.spinner.hide();
        const publicKey = await startAuthentication(res.option);
 
+       this.spinner.show();
         this.authServ.landlordLoginWithPasskey({userId:this.passkeyUserData.id,publicKey:publicKey});
 
       },

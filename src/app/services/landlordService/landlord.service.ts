@@ -69,9 +69,9 @@ export class LandlordService {
   verifyChallenge(data:any){
     return this.http.post(`${environment.apiUrl}/landlord/verify-challenge`,data,{withCredentials:true,headers:this.header});
   }
-  // unregesterLandlordPasskey(id:string){
-  //   return this.http.post(`${environment.apiUrl}/landlord/unregister-passkey/${id}`,{withCredentials:true,headers:this.header});
-  // }
+  unregesterLandlordPasskey(id:string){
+    return this.http.delete(`${environment.apiUrl}/landlord/unregd-passkey/${id}`,{withCredentials:true,headers:this.header});
+  }
   createOrder(data:any){
     return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
   }
