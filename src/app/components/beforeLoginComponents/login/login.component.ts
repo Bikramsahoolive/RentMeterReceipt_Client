@@ -22,6 +22,8 @@ export class LoginComponent {
     if(passkeyData && passkeyData!==null || passkeyData!==''){
       this.passkeyUserData = JSON.parse(atob((passkeyData)));
       
+      let userId = String(this.passkeyUserData.phone).slice(6);
+      this.passkeyUserData.userid = userId;
       this.showBtn = true;
       this.showDiv=true;
     }
