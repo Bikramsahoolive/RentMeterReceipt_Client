@@ -33,7 +33,17 @@
             </div>
             
                 <button>Login</button>
-                <button *ngIf="showBtn" style="margin-top: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button><br> <br>
+                <div class="auth-info" *ngIf="!showBtn">
+                    <div class="passkey-auth" (click)="passkeyAuthInfo()">
+                    <span class="material-symbols-outlined info">
+                        help
+                        </span>
+                
+                <span class="material-symbols-outlined finger-print">
+                    fingerprint
+                    </span>
+                </div></div>
+                <button *ngIf="showBtn" style="margin-top: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button>
                 <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none" (click)="scrollToTop()">Forgot Password</a></span>
                 <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;" (click)="scrollToTop()">Register now</a>
         </form>

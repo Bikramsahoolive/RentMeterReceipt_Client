@@ -5,6 +5,7 @@ import { loginData } from 'src/app/model/data';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { startAuthentication } from '@simplewebauthn/browser'
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -76,6 +77,13 @@ export class LoginComponent {
     this.authServ.landlordRequestAuthOptions(this.passkeyUserData.id).subscribe({
       next:async(res:any)=>{
         this.spinner.hide();
+
+        if(res.status && res.status ==="failure"){
+          localStorage.removeItem('passkey_id');
+          this.toastr.error(res.message,"",{positionClass:'toast-top-center',progressBar:true});
+          this.router.navigate(['']);
+          return;
+        }
        const publicKey = await startAuthentication(res.option);
 
        this.spinner.show();
@@ -87,5 +95,25 @@ export class LoginComponent {
         console.log(err.error);
       }
     });
+  }
+
+  passkeyAuthInfo(){
+    Swal.fire({
+      html:`<h3>Steps to Enable Passkey Authentication (Passwordless)</h3>
+<ol>
+    <li style="text-align:start; padding:5px 0;">Login to RentⓝMeter.Receipt with user ID and Password.</li>
+    <li style="text-align:start;padding:5px 0;">Click on Manage Profile given on the User Menu.</li>
+    <li style="text-align:start;padding:5px 0;">Click on Register Passkey button below.</li>
+    <li style="text-align:start;padding:5px 0;">Authenticate with any method (Eg:.Fingerprint, Face ID, Windows Hello ,Android or ios (password/ Pin/ Pattern), USB Security keys or NFC keys etc...)</li>
+    <li style="text-align:start;padding:5px 0;">After successfully registration you will be authenticate with passkey.</li>
+</ol>
+<strong>
+    Please ensure that you are the only user registered with Fingerprin or Face ID useing on your device,
+    RentⓝMeter.Receipt is not responsible for any Action performed using the other biometic registered on the device.
+</strong>
+`,
+showCloseButton:true,
+showConfirmButton:false
+    })
   }
 }

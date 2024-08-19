@@ -70,10 +70,17 @@
 form .user-details .input-box{
     margin: 10px 0 6px 0;
     width: calc(100% / 2 - 20px);
+    background-color: whitesmoke;
 }
 .user-details .input-box .details{
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-details .input-box .details input{
+    width: 20px;
 }
 .user-details .inputbox .details{
     display: block;
@@ -86,7 +93,7 @@ form .user-details .input-box{
     outline: none;
     padding-left: 15px;
     font-size: 16px;
-    
+    border:2px solid gray;
     border-radius: 5px;
 }
 .file{

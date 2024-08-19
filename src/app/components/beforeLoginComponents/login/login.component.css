@@ -99,3 +99,27 @@ form button:hover{
     box-shadow: 20px 20px 60px #bebebe, -20px -20px 33px #ffffff;
     
 }
+.auth-info{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.passkey-auth{
+    width: max-content;
+    position: relative;
+    cursor:pointer;
+}
+.passkey-auth .finger-print{
+    font-weight: 600;
+    font-size: 30px;
+}
+.passkey-auth .info{
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 15px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}

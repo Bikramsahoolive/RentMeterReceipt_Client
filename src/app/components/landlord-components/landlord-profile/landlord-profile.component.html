@@ -1,57 +1,57 @@
 <div class="content">
 <div class="cont">
     <h1 class="titel">Profile Update</h1>
-    <div class="select">
+    <!-- <div class="select">
         <div class="update_val">
             
-            <span>UPI: <input type="checkbox" #upicheck (change)="toggleInput(upicheck.checked,'upi')" ></span>
-            <span> | A/c: <input type="checkbox" #accheck (change)="toggleInput(accheck.checked,'ac')" ></span>
-            <span> | Photo: <input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')"></span>
-            <span> | Sign: <input type="checkbox" #sigcheck (change)="toggleInput(sigcheck.checked,'sign')"></span>
-            <span> | Password: <input type="checkbox" #passcheck (change)="toggleInput(passcheck.checked,'password')"></span>
+            <span>UPI: </span>
+            <span> | A/c: </span>
+            <span> | Photo: </span>
+            <span> | Sign: </span>
+            <span> | Password: </span>
         
         </div>
-    </div>
+    </div> -->
 <form #landlordUpdate="ngForm" (submit)="updateLandlord(landlordUpdate)">
     <div class="user-details">
     <div class="input-box">
-        <span class="details">Name:</span>
+        <span class="details"><p style="height: 44px; width: 20px;"></p>Name:</span>
     <input type="text" [(ngModel)]="landlordData.name" name="name"  disabled>
     </div>
     <div class="input-box">
-        <span class="details">Phone:</span>
+        <span class="details"><p style="height: 44px; width: 20px;"></p>Phone:</span>
     <input type="number" [(ngModel)]="landlordData.phone" name="phone"  disabled>
     </div>
     <div class="input-box">
-        <span class="details" >Email:</span>
+        <span class="details" ><p style="height: 44px; width: 20px;"></p>Email:</span>
         <input type="email" [(ngModel)]="landlordData.email" name="email" disabled>
     </div>
     <div class="input-box">
-        <span class="details">UPI ID:</span>
+        <span class="details"><input type="checkbox" #upicheck (change)="toggleInput(upicheck.checked,'upi')" > UPI ID:</span>
         <input type="email" [(ngModel)]="landlordData.upi" name="upi"  [disabled]="upiInput" >
     </div>
     <div class="input-box">
-        <span class="details">A/c no:</span>
+        <span class="details"> <input type="checkbox" #accheck (change)="toggleInput(accheck.checked,'ac')" >A/c no:</span>
         <input type="number" [(ngModel)]="landlordData.account_no" name="account_no"  [disabled]="acInput" >
     </div>
     <div class="input-box">
-        <span class="details">IFSC:</span>
+        <span class="details"><p style="height: 44px; width: 20px;"></p>IFSC:</span>
         <input type="text" [(ngModel)]="landlordData.ifsc" name="ifsc"  [disabled]="acInput" >
     </div>
     <div class="input-box">
-        <span class="details">Photo:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('photo')" *ngIf="landlordData.photo !==''">(Click to Remove Photo)</small>
+        <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')">Photo: <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('photo')" *ngIf="landlordData.photo !==''">(Click to Remove Photo)</small></span> 
     <input type="file" class="file" ngModel name="photo" #photo  [disabled]="photoInput" (change)="fileUpload($event,'photo',photo)">
     </div>
     <div class="input-box">
-        <span class="details">Signature:</span> <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('signature')" *ngIf="landlordData.signature !==''">(Click to Remove Signature)</small>
+        <span class="details"><input type="checkbox" #sigcheck (change)="toggleInput(sigcheck.checked,'sign')">Signature: <small style="text-decoration: underline; color: blueviolet; cursor: pointer;margin-left: 10px;" (click)="removeBiometric('signature')" *ngIf="landlordData.signature !==''">(Click to Remove Signature)</small></span>
         <input type="file" class="file" ngModel name="signature" #signature [disabled]="signInput" (change)="fileUpload($event,'signature',signature)">
     </div>
     <div class="input-box">
-        <span class="details">Password:</span>
+        <span class="details"><input type="checkbox" #passcheck (change)="toggleInput(passcheck.checked,'password')">Password:</span>
         <input type="password" ngModel name="password" [disabled]="passwordInput">
     </div>
     <div class="input-box">
-        <span class="details">Confirm Password:</span>
+        <span class="details"><p style="height: 44px; width: 20px;"></p>Confirm Password:</span>
         <input type="text" ngModel name="cPass" [disabled]="passwordInput">
     </div>
     
@@ -64,7 +64,7 @@
 <button class="passkey-btn" (click)="regPasskey()" *ngIf="!landlordData.passkey_info"><i class="fa-solid fa-fingerprint" style="font-size: 30px;"></i> Register Passkey</button>
 <button class="delete-btn passkey-btn" *ngIf="landlordData.passkey_info" (click)="unregdPasskey(landlordData.id)"><span class="material-symbols-outlined" style="font-size: 30px;">
     fingerprint_off
-    </span>Unregister Passkey</button>
+    </span>De-register Passkey</button>
 <button class="delete-btn passkey-btn" (click)="deleteAccountPrompt(landlordData.id)"><i class="fa-solid fa-trash-can" style="font-size: 20px;"></i> Delete Profile</button>
 </div>
 </div>

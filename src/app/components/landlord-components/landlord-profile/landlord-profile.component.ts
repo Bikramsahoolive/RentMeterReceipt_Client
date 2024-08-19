@@ -309,7 +309,19 @@ removeBiometric(type:string){
 }
 
 regPasskey(){
-  this.spinner.show();
+
+  Swal.fire({
+    html:`<h3 style="margin-bottom:50px;">Security Alert!</h3>
+<strong>
+  Please ensure that you are the only user registered with Fingerprin or Face ID useing on your device,
+  RentⓝMeter.Receipt is not responsible for any Action performed using the other biometic registered on the device.
+</strong>
+`,
+showCloseButton:true,
+confirmButtonText:"Proceed"
+  }).then((result)=>{
+    if(result.isConfirmed){
+      this.spinner.show();
   this.landlordServ.generateChallenge().subscribe({
     next:async (res:any)=>{
       this.spinner.hide();
@@ -349,14 +361,16 @@ regPasskey(){
       console.log(err.error);
       this.toaster.error(err.error.message,"Error",{progressBar:true,positionClass:"toast-top-center"});
     }
-  })
+  });
+    }
+  });
   
 }
 
 unregdPasskey(id:string){
 
   Swal.fire({
-    title:"Unregister Passkey!",
+    title:"De-register Passkey",
     text:"Are you sure ? want to unregister passkey for this user.",
     icon:"question",
     showCancelButton:true
