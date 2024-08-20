@@ -1,6 +1,6 @@
 <section class="container">
+  <h1 class="head">Processed Payout</h1>
     <div class="data">
-    <h1 class="head">Processed Payout</h1>
     <div class="data-table">
     <table class="table" *ngIf="processedPayoutData[0].payout_amt !==0 ">
         <thead>
@@ -13,7 +13,7 @@
           <th>Remark</th>
         </thead>
         <tbody>
-          <tr *ngFor="let data of processedPayoutData ; let i = index">
+          <tr *ngFor="let data of processedPayoutData |paginate:{itemsPerPage:10 ,currentPage:page,totalItems:processedPayoutData.length}; let i = index">
             <td data-label="Sl No : ">{{i+1}}</td>
             <td data-label="Request Date : ">{{data.request_date}}</td>
             <td data-label="Amount : ">₹ {{data.payout_amt}}/-</td>
@@ -27,3 +27,6 @@
     </div>
 </div>
 </section>
+<div class="pagination">
+  <pagination-controls class="paginate" (pageChange)="page=$event" *ngIf="hidePaginationBtn"></pagination-controls>
+</div>

@@ -10,7 +10,14 @@
             <span class="material-symbols-outlined bio" style="font-size: 60px;font-weight: 1000;" (click)="authenticatePasskey()">
                 fingerprint
                 </span>
-            <a (click)="loginWithPassword()" style="cursor: pointer; color: #551a8b;">Login With User ID & password</a>
+                <small>(Click here to Login with Passkey)</small>
+                <div style="display: flex; align-items: center;cursor: pointer; color: #551a8b;" (click)="loginWithPassword()">
+                    <a>Login with User ID & Password</a>
+            <span class="material-symbols-outlined">
+                arrow_forward
+                </span>
+                </div>
+            
         </div>
 
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" *ngIf="!showDiv">
@@ -35,15 +42,15 @@
                 <button>Login</button>
                 <div class="auth-info" *ngIf="!showBtn">
                     <div class="passkey-auth" (click)="passkeyAuthInfo()">
-                    <span class="material-symbols-outlined info">
-                        help
-                        </span>
+                        <span class="material-symbols-outlined info">
+                            info
+                            </span>
                 
                 <span class="material-symbols-outlined finger-print">
                     fingerprint
                     </span>
                 </div></div>
-                <button *ngIf="showBtn" style="margin-top: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button>
+                <button *ngIf="showBtn" style="margin: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button>
                 <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none" (click)="scrollToTop()">Forgot Password</a></span>
                 <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;" (click)="scrollToTop()">Register now</a>
         </form>

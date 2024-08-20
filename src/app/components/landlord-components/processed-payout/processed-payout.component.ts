@@ -18,7 +18,9 @@ payout_method:"",
 payout_transactionId:"",
 process_date:"",
 request_date:""
-  }]
+  }];
+page:number=1;
+hidePaginationBtn:boolean=true;
 
   ngOnInit(){
     this.spinner.show();

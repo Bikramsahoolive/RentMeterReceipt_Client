@@ -99,15 +99,15 @@ export class LoginComponent {
 
   passkeyAuthInfo(){
     Swal.fire({
-      html:`<h3>Steps to Enable Passkey Authentication (Passwordless)</h3>
-<ol>
+      html:`<h3 style="margin-bottom:20px;">Steps to Enable Passkey Authentication. (Passwordless)</h3>
+<ol style="margin-bottom:20px;">
     <li style="text-align:start; padding:5px 0;">Login to RentⓝMeter.Receipt with user ID and Password.</li>
     <li style="text-align:start;padding:5px 0;">Click on Manage Profile given on the User Menu.</li>
     <li style="text-align:start;padding:5px 0;">Click on Register Passkey button below.</li>
     <li style="text-align:start;padding:5px 0;">Authenticate with any method (Eg:.Fingerprint, Face ID, Windows Hello ,Android or ios (password/ Pin/ Pattern), USB Security keys or NFC keys etc...)</li>
     <li style="text-align:start;padding:5px 0;">After successfully registration you will be authenticate with passkey.</li>
 </ol>
-<strong>
+<strong style="color:red;">
     Please ensure that you are the only user registered with Fingerprin or Face ID useing on your device,
     RentⓝMeter.Receipt is not responsible for any Action performed using the other biometic registered on the device.
 </strong>

@@ -312,7 +312,7 @@ regPasskey(){
 
   Swal.fire({
     html:`<h3 style="margin-bottom:50px;">Security Alert!</h3>
-<strong>
+<strong style="color:red;">
   Please ensure that you are the only user registered with Fingerprin or Face ID useing on your device,
   RentⓝMeter.Receipt is not responsible for any Action performed using the other biometic registered on the device.
 </strong>
@@ -338,8 +338,8 @@ confirmButtonText:"Proceed"
             delete res.message;
             localStorage.setItem("passkey_id",btoa(JSON.stringify(res)));
             Swal.fire({
-              title:"Passkey Registered!",
-              text:"Device passKey Registered Successfully.",
+              title:"Passkey Registered !",
+              text:"Your Passkey Registered Successfully.",
               icon:"success",
               timer:3000,
               showConfirmButton:false
@@ -371,9 +371,10 @@ unregdPasskey(id:string){
 
   Swal.fire({
     title:"De-register Passkey",
-    text:"Are you sure ? want to unregister passkey for this user.",
+    text:"Are you sure ? want to De-register passkey for this user.",
     icon:"question",
-    showCancelButton:true
+    showCancelButton:true,
+    confirmButtonText:'Sure'
   })
   .then((result)=>{
     if(result.isConfirmed){
