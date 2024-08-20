@@ -313,8 +313,8 @@ regPasskey(){
   Swal.fire({
     html:`<h3 style="margin-bottom:50px;">Security Alert!</h3>
 <strong style="color:red;">
-  Please ensure that you are the only user registered with Fingerprin or Face ID useing on your device,
-  RentⓝMeter.Receipt is not responsible for any Action performed using the other biometic registered on the device.
+    Please ensure that you are the only user registered with Fingerprint or Face ID using on your device,
+    RentⓝMeter.Receipt is not responsible for any action performed using the other user/ biometic registered on the device.
 </strong>
 `,
 showCloseButton:true,

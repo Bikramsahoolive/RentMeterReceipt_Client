@@ -108,8 +108,8 @@ export class LoginComponent {
     <li style="text-align:start;padding:5px 0;">After successfully registration you will be authenticate with passkey.</li>
 </ol>
 <strong style="color:red;">
-    Please ensure that you are the only user registered with Fingerprin or Face ID useing on your device,
-    RentⓝMeter.Receipt is not responsible for any Action performed using the other biometic registered on the device.
+    Please ensure that you are the only user registered with Fingerprint or Face ID using on your device,
+    RentⓝMeter.Receipt is not responsible for any action performed using the other user/ biometic registered on the device.
 </strong>
 `,
 showCloseButton:true,
