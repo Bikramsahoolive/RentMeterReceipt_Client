@@ -66,7 +66,7 @@ siteKey:string= environment.siteKey;
     if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
         if (data.termNconditions){
           if(this.regNumber===""){
-            this.toastr.error('send OTP first.','',{progressBar:true,positionClass:"toast-top-center"});
+            this.toastr.error('OTP not verified.','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
           if(data.otp==="" || data.otp===null ||data.otp.length !== 6){

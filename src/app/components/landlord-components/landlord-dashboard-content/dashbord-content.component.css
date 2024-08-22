@@ -51,19 +51,19 @@
     box-shadow: 3px 2px 20px 0 rgb(248, 248, 248);
 }
 .primary-card{
-    background-color: rgb(24, 111, 151);
+    background-image: linear-gradient(45deg, #c4d3ff, #1d59d2);
 }
 .green-card{
-    background-color: rgb(35, 160, 77);
+    background-image: linear-gradient(45deg, #8cf8b4, rgb(24 123 57))
 }
 .danger-card{
-    background-color: rgb(163, 19, 19);
+    background-image: linear-gradient(45deg, #dfa6a7, rgb(129 16 16));
 }
 .warning-card{
-    background-color: rgb(185, 160, 15);
+    background-image: linear-gradient(45deg, #d8d2a9, rgb(167 144 10));
 }
 .gray-card{
-    background-color: rgb(70, 69, 65);
+    background-image: linear-gradient(45deg, #b8b3b3, rgb(50 50 46));
 }
 
 @media screen and (max-width:1220px) {

@@ -241,7 +241,7 @@ this.spinner.show();
     this.isAdmin = false;
     this.isLandlord=false;
     this.isRentholder=false;
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
     this.spinner.hide();
   })
 

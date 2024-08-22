@@ -318,8 +318,8 @@ isElcBillPaid:boolean=false;
     prvunit.style.border ="";
     prvunit.style.color = "black";
   }
-  validateUnit(cunit:any, prvunit:any){
-    if(prvunit.value <= cunit.value){
+  validateUnit(prvunit:any,cunit:any){
+    if((+prvunit.value) >= (+cunit.value)){
       cunit.style.border = "2px solid red";
       cunit.style.color = "#da3030";
       prvunit.style.border = "2px solid red";

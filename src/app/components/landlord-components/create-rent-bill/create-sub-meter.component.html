@@ -53,7 +53,8 @@
     </div>
 
 
-
+    <div class="input-box" style="width: 100%;"><hr><hr></div>
+    <h3 style="width: 100%; text-align: center;">Electric Bill Details</h3>
 
     <div class="main-meter hide" #mainMeter style="width: 100%;">
         <div class="input-box">
@@ -94,25 +95,43 @@
         <input type="number" ngModel name="eBill">
         </div>
     </div>
-
-
+    <div class="input-box" style="width: 100%;"><hr><hr></div>
+    <!-- <div class="input-box" style="width: 100%;"><hr><hr></div> -->
+    <h3 style="width: 100%; text-align: center;">Other Bill Details</h3>
     <div class="input-box">
         <span class="details">Water Bill Amount(₹)[if any]:</span>
     <input type="number" ngModel name="water_bill">
     </div>
 
     <div class="input-box">
-        <span class="details">Maintenance Charge(₹)[if any]:</span>
+        <span class="details">Maintenance Fee(₹)[if any]:</span>
     <input type="number" ngModel name="maintenance">
     </div>
+<!-- 
+    <div class="input-box">
+        <span class="details">Parking Fee(₹)[if any]:</span>
+    <input type="number" ngModel name="parking">
+    </div>
    
+    <div class="input-box">
+        <span class="details">Property Tax (₹)[if any]:</span>
+    <input type="number" ngModel name="tax">
+    </div>
+
+    <div class="input-box">
+        <span class="details">Other Service Charges(₹)[if any]:</span>
+    <input type="number" ngModel name="service">
+    </div>
+ -->
+
     <div class="input-box">
         <span class="details">Previous Due(₹) [if any]:</span>
     <input type="number" ngModel name="dueAmount">
     </div>
 </div>
+<div class="input-box" style="width: 100%;"><hr><hr></div>
 <div class="button">
-    <input type="submit" value="Submit">
+    <input type="submit" value="Create">
     <!-- <input type="reset" value="Reset"> -->
 </div> 
 </form>
