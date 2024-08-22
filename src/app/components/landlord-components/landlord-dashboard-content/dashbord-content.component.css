@@ -51,19 +51,19 @@
     box-shadow: 3px 2px 20px 0 rgb(248, 248, 248);
 }
 .primary-card{
-    background-image:  linear-gradient(45deg, #547bed, #002b81);
+    background-image: linear-gradient(45deg, #3f66d8, #002b81);
 }
 .green-card{
-    background-image: linear-gradient(45deg, #3cfc83, rgb(6 94 35));
+    background-image: linear-gradient(45deg, #26d064, rgb(6 94 35));
 }
 .danger-card{
-    background-image: linear-gradient(45deg, #ea2c2f, rgb(109 1 1));
+    background-image: linear-gradient(45deg, #c22b2d, rgb(109 1 1));
 }
 .warning-card{
-    background-image: linear-gradient(45deg, #ead43b, rgb(158 136 0));
+    background-image: linear-gradient(45deg, #d0bc38, rgb(138 121 13));
 }
 .gray-card{
-    background-image: linear-gradient(45deg, #989696, rgb(50 50 46));
+    background-image: linear-gradient(45deg, #888282, rgb(50 50 46));
 }
 
 @media screen and (max-width:1220px) {
