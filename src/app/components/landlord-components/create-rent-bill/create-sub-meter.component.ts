@@ -331,4 +331,13 @@ isElcBillPaid:boolean=false;
       prvunit.style.color = "#da3030";
     }
   }
+  otherbillstate = false;
+  toggleOtherbill(otherbill:any){
+    this.otherbillstate = !this.otherbillstate;
+    if(this.otherbillstate){
+      otherbill.classList.add('close');
+    }else{
+      otherbill.classList.remove('close');
+    }
+  }
 }

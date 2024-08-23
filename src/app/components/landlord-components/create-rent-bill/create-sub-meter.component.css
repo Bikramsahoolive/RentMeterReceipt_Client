@@ -19,6 +19,21 @@
     border-radius: 8px;
 
 }
+.other-bill{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 10px;
+    overflow: hidden;
+    transition: height 0.5s ease;
+}
+
+.close{
+    height:auto;
+}
+
+
 .cont .titel{
     font-size: 25px;
     font-weight: 500;

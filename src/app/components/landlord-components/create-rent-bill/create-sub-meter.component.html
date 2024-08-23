@@ -97,7 +97,8 @@
     </div>
     <div class="input-box" style="width: 100%;"><hr><hr></div>
     <!-- <div class="input-box" style="width: 100%;"><hr><hr></div> -->
-    <h3 style="width: 100%; text-align: center;">Other Bill Details</h3>
+    <h3 style="width: 100%; text-align: center; cursor: pointer;" (click)="toggleOtherbill(otherBill)">Other Bill Details</h3>
+    <div class="other-bill" #otherBill>
     <div class="input-box">
         <span class="details">Water Bill Amount(₹)[if any]:</span>
     <input type="number" ngModel name="water_bill">
@@ -127,6 +128,7 @@
         <span class="details">Previous Due(₹) [if any]:</span>
     <input type="number" ngModel name="dueAmount">
     </div>
+</div>
 </div>
 <div class="input-box" style="width: 100%;"><hr><hr></div>
 <div class="button">
