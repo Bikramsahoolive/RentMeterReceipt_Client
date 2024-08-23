@@ -49,20 +49,19 @@ export class TotalDueComponent {
         error:(err)=>{
           this.spinner.hide();
           console.log(err.error);
-          if(!err.error.status){
-            this.toastr.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
-          }else{
-            this.toastr.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+          if(err.error.status !==false){
+            this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
           }
         }
       });
           
           this.spinner.hide();
         },error:(err)=>{
-          this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
           console.log(err.error);
           this.spinner.hide();
-          
+          if(err.error.status !==false){
+            this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+          }
         }
       });
 

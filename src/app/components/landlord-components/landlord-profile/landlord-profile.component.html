@@ -15,16 +15,16 @@
 <form #landlordUpdate="ngForm" (submit)="updateLandlord(landlordUpdate)">
     <div class="user-details">
     <div class="input-box">
-        <span class="details"><p style="height: 44px; width: 20px;"></p>Name:</span>
-    <input type="text" [(ngModel)]="landlordData.name" name="name"  disabled>
+        <span class="details">Name:</span>
+    <input type="text" [(ngModel)]="landlordData.name" name="name"  disabled style="background-color: gray; color: white;">
     </div>
     <div class="input-box">
-        <span class="details"><p style="height: 44px; width: 20px;"></p>Phone:</span>
-    <input type="number" [(ngModel)]="landlordData.phone" name="phone"  disabled>
+        <span class="details">Phone:</span>
+    <input type="number" [(ngModel)]="landlordData.phone" name="phone"  disabled style="background-color: gray; color: white;">
     </div>
     <div class="input-box">
-        <span class="details" ><p style="height: 44px; width: 20px;"></p>Email:</span>
-        <input type="email" [(ngModel)]="landlordData.email" name="email" disabled>
+        <span class="details" >Email:</span>
+        <input type="email" [(ngModel)]="landlordData.email" name="email" disabled style="background-color: gray; color: white;">
     </div>
     <div class="input-box">
         <span class="details"><input type="checkbox" #upicheck (change)="toggleInput(upicheck.checked,'upi')" > UPI ID:</span>

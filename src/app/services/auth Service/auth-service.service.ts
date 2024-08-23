@@ -123,7 +123,7 @@ checkLandlordSession(){
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
     next:(result:any)=>{
       if(result.isActive){
-        if(result.userType!=='landlord'){
+        if(result.userType!=='Landlord'){
           this.router.navigate(['']);
         }
       }
@@ -135,7 +135,7 @@ checkAdminSession(){
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
     next:(result:any)=>{
       if(result.isActive){
-        if(result.userType!=='admin'){
+        if(result.userType!=='Admin'){
           this.router.navigate(['']);
         }
       }
@@ -148,7 +148,7 @@ checkrentHolderSession(){
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:this.header}).subscribe({
     next:(result:any)=>{
       if(result.isActive){
-        if(result.userType!=='rentholder'){
+        if(result.userType!=='Rentholder'){
           this.router.navigate(['']);
         }
       }
@@ -197,11 +197,11 @@ this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast
     if (result.isActive){
       this.isLogedIn = true;
 
-      if(result.userType==='admin'){
+      if(result.userType==='Admin'){
         this.isAdmin=result.isActive;
-      }else if(result.userType==='landlord'){
+      }else if(result.userType==='Landlord'){
         this.isLandlord=result.isActive;
-      }else if(result.userType==='rentholder'){
+      }else if(result.userType==='Rentholder'){
           this.isRentholder=result.isActive;
       }
     }else{

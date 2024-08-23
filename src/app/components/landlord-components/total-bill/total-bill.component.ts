@@ -38,10 +38,11 @@ export class TotalBillComponent {
           this.rentholderData = res;
           this.spinner.hide();
         },error:(err)=>{
-          this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
           console.log(err.error);
           this.spinner.hide();
-          
+          if(err.error.status !==false){
+            this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+          }
         }
       });
     
