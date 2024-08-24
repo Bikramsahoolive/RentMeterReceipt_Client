@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import{ FormsModule} from '@angular/forms'
@@ -69,6 +69,7 @@ import { DeveloperDetailsComponent } from './components/beforeLoginComponents/de
 import { PayoutComponent } from './components/landlord-components/payout/payout.component';
 import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
 import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,13 @@ import { ProcessedPayoutComponent } from './components/landlord-components/proce
     NgxPaginationModule,
     QRCodeModule,
     NgxCaptchaModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
