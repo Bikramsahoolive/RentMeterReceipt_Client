@@ -26,11 +26,11 @@
     justify-content: space-between;
     height: 10px;
     overflow: hidden;
-    transition: height 0.5s ease;
+    transition: height 0.6s;
 }
 
-.close{
-    height:auto;
+.open{
+    height:250px;
 }
 
 
@@ -45,7 +45,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    /* margin: 20px 0 12px 0; */
     color: rgb(0, 0, 0);
 }
 .hide{
@@ -126,5 +125,8 @@ form input[type="reset"]:hover{
     }
     form .user-details .input-box{
         width:100%;
+    }
+    .open{
+        height: 500px;
     }
 }

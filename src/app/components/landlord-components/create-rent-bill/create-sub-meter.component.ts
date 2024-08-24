@@ -224,8 +224,8 @@ export class CreateSubMeterComponent {
       next:(res:any)=>{
         if(res.status){
           Swal.fire({
-            title:"Created!",
-            text:"New Rent Bill Created.",
+            title:"Bill Created!",
+            text:"New Rentbill Created.",
             icon:"success",
             confirmButtonText:"Create Another Bill",
             confirmButtonColor:"#7373f3",
@@ -332,12 +332,14 @@ isElcBillPaid:boolean=false;
     }
   }
   otherbillstate = false;
-  toggleOtherbill(otherbill:any){
+  toggleOtherbill(otherbill:any,arrow:any){
     this.otherbillstate = !this.otherbillstate;
     if(this.otherbillstate){
-      otherbill.classList.add('close');
+      otherbill.classList.add('open');
+      arrow.classList = 'fa-solid fa-caret-up';
     }else{
-      otherbill.classList.remove('close');
+      otherbill.classList.remove('open');
+      arrow.classList = 'fa-solid fa-caret-down';
     }
   }
 }

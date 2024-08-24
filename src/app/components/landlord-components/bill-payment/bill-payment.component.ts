@@ -55,7 +55,7 @@ export class BillPaymentComponent {
 
       Swal.fire({
         title:"Are you sure?",
-        text:`You are paying ₹${data.paid_amt} and won't be able to revert the payment.`,
+        text:` Are you received ₹${data.paid_amt} from rentholder and won't be able to revert the action.`,
         icon:"question",
         showCloseButton:true,
         confirmButtonColor: "#7373f3",

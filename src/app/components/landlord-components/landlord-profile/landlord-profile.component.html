@@ -15,15 +15,15 @@
 <form #landlordUpdate="ngForm" (submit)="updateLandlord(landlordUpdate)">
     <div class="user-details">
     <div class="input-box">
-        <span class="details">Name:</span>
+        <span class="details"><p style="height: 44px; width:0;"></p>Name:</span>
     <input type="text" [(ngModel)]="landlordData.name" name="name"  disabled style="background-color: gray; color: white;">
     </div>
     <div class="input-box">
-        <span class="details">Phone:</span>
+        <span class="details"><p style="height: 44px; width:0;"></p>Phone:</span>
     <input type="number" [(ngModel)]="landlordData.phone" name="phone"  disabled style="background-color: gray; color: white;">
     </div>
     <div class="input-box">
-        <span class="details" >Email:</span>
+        <span class="details" ><p style="height: 44px; width:0;"></p>Email:</span>
         <input type="email" [(ngModel)]="landlordData.email" name="email" disabled style="background-color: gray; color: white;">
     </div>
     <div class="input-box">
@@ -35,7 +35,7 @@
         <input type="number" [(ngModel)]="landlordData.account_no" name="account_no"  [disabled]="acInput" >
     </div>
     <div class="input-box">
-        <span class="details"><p style="height: 44px; width: 20px;"></p>IFSC:</span>
+        <span class="details"><p style="height: 44px; width:0;"></p>IFSC:</span>
         <input type="text" [(ngModel)]="landlordData.ifsc" name="ifsc"  [disabled]="acInput" >
     </div>
     <div class="input-box">
@@ -51,7 +51,7 @@
         <input type="password" ngModel name="password" [disabled]="passwordInput">
     </div>
     <div class="input-box">
-        <span class="details"><p style="height: 44px; width: 20px;"></p>Confirm Password:</span>
+        <span class="details"><p style="height: 44px; width: 0;"></p>Confirm Password:</span>
         <input type="text" ngModel name="cPass" [disabled]="passwordInput">
     </div>
     

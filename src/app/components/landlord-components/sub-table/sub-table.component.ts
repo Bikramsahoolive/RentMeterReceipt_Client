@@ -99,8 +99,6 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     }else{
       this.hidePaginationBtn=true;
     }
-    console.log(this.hidePaginationBtn);
-    
   }
 
   reverseData() {

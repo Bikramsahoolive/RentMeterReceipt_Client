@@ -97,7 +97,7 @@
     </div>
     <div class="input-box" style="width: 100%;"><hr><hr></div>
     <!-- <div class="input-box" style="width: 100%;"><hr><hr></div> -->
-    <h3 style="width: 100%; text-align: center; cursor: pointer;" (click)="toggleOtherbill(otherBill)">Other Bill Details</h3>
+    <h3 style="width: 100%; text-align: center; cursor: pointer;" (click)="toggleOtherbill(otherBill,arrow)">Other Bill Details <i #arrow class="fa-solid fa-caret-down"></i></h3>
     <div class="other-bill" #otherBill>
     <div class="input-box">
         <span class="details">Water Bill Amount(₹)[if any]:</span>
@@ -132,7 +132,7 @@
 </div>
 <div class="input-box" style="width: 100%;"><hr><hr></div>
 <div class="button">
-    <input type="submit" value="Create">
+    <input type="submit" value="Create Bill">
     <!-- <input type="reset" value="Reset"> -->
 </div> 
 </form>
