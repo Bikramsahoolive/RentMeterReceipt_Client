@@ -99,6 +99,12 @@
     <!-- <div class="input-box" style="width: 100%;"><hr><hr></div> -->
     <h3 style="width: 100%; text-align: center; cursor: pointer;" (click)="toggleOtherbill(otherBill,arrow)">Other Bill Details <i #arrow class="fa-solid fa-caret-down"></i></h3>
     <div class="other-bill" #otherBill>
+    
+    <div class="input-box">
+        <span class="details">Previous Due(₹) [if any]:</span>
+        <input type="number" ngModel name="dueAmount">
+    </div>
+    
     <div class="input-box">
         <span class="details">Water Bill Amount(₹)[if any]:</span>
     <input type="number" ngModel name="water_bill">
@@ -109,24 +115,19 @@
     <input type="number" ngModel name="maintenance">
     </div>
 
-    <div class="input-box">
+    <!-- <div class="input-box">
         <span class="details">Property Tax (₹)[if any]:</span>
     <input type="number" ngModel name="property_tax">
-    </div>
+    </div> -->
 
-    <div class="input-box">
+    <!-- <div class="input-box">
         <span class="details">Parking Fee(₹)[if any]:</span>
     <input type="number" ngModel name="parking">
-    </div>
+    </div> -->
 
     <div class="input-box">
         <span class="details">Other Service Charges(₹)[if any]:</span>
     <input type="number" ngModel name="service">
-    </div>
-
-    <div class="input-box">
-        <span class="details">Previous Due(₹) [if any]:</span>
-    <input type="number" ngModel name="dueAmount">
     </div>
 </div>
 </div>

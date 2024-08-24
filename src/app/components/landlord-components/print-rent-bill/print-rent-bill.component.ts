@@ -40,7 +40,8 @@ bill:rentBillData={
   totalUnit: 0,
   unitAdv: 0,
   water_bill: 0,
-  maintenance:0
+  maintenance:0,
+  service:0
 };
 upiLink:any;
 landlordSign:string="../../../../assets/images.png";

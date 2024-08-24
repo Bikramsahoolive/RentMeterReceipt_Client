@@ -155,8 +155,8 @@ export class CreateSubMeterComponent {
     if(data.water_bill==="" || data.water_bill===null)data.water_bill=0;
     if(data.maintenance==="" || data.maintenance===null)data.maintenance=0;
 
-    if(data.parking==="" || data.parking===null)data.parking=0;
-    if(data.property_tax==="" || data.property_tax===null)data.property_tax=0;
+    // if(data.parking==="" || data.parking===null)data.parking=0;
+    // if(data.property_tax==="" || data.property_tax===null)data.property_tax=0;
     if(data.service==="" || data.service===null)data.service=0;
 
     if(data.electric_status==="pa"){
@@ -219,6 +219,11 @@ export class CreateSubMeterComponent {
     this.toster.error('Enter Valid Maintenance Charge.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
     return;
      }
+
+     if(data.service<0){
+      this.toster.error('Enter Valid other service Charge.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
+      return;
+       }
     this.spinner.show();
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{

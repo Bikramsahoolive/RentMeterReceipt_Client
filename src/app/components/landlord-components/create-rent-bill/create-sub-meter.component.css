@@ -30,7 +30,7 @@
 }
 
 .open{
-    height:250px;
+    height:166px;
 }
 
 
@@ -127,6 +127,6 @@ form input[type="reset"]:hover{
         width:100%;
     }
     .open{
-        height: 500px;
+        height: 333px;
     }
 }

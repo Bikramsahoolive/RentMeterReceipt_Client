@@ -31,6 +31,7 @@
 .container .data-table{
     height: 80vh;
     overflow: scroll;
+    scrollbar-width: none;
 }
 .container h1{
     text-align: center;
@@ -69,7 +70,7 @@
 }
 @media (min-width: 768px) {
   .responsive-table__row {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {

@@ -47,7 +47,10 @@
                 <div class="data" *ngIf="bill.maintenance!==0">
                     <span> Maintenance Charge( + ) : </span> <Strong>₹{{bill.maintenance}}</Strong>
                 </div>
-                <div class="data">
+                <div class="data" *ngIf="bill.service!==0">
+                    <span> Service Charge( + ) : </span> <Strong>₹{{bill.service}}</Strong>
+                </div>
+                <div class="data" *ngIf="bill.dueAmount!==0">
                     <span>Previous Due( + ) : </span> <Strong>₹{{bill.dueAmount}}</Strong>
                 </div>
                 <div class="data" *ngIf="bill.paid_amt!=0">
