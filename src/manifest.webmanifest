@@ -2,7 +2,7 @@
   "name": "RentⓝMeter.Receipt",
   "short_name": "RNMR",
   "theme_color": "#7373f3",
-  "background_color": "#7373f3",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
