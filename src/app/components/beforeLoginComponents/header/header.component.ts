@@ -21,7 +21,7 @@ export class HeaderComponent {
      
         const platform = /Android/i.test(navigator.userAgent)
         
-        if( !platform && this.showPopup && !window.matchMedia('(display-mode: standalone)').matches){
+        if( platform && this.showPopup && !window.matchMedia('(display-mode: standalone)').matches){
           Swal.fire({
             html:'<strong>Open RentⓝMeter.Receipt in App ?</strong>',
             position:'top',
