@@ -2,10 +2,10 @@
   "name": "RentⓝMeter.Receipt",
   "short_name": "RNMR",
   "theme_color": "#7373f3",
-  "background_color": "#ffffff",
+  "background_color": "#7373f3",
   "display": "standalone",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "/login",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
