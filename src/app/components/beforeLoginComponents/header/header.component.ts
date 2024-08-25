@@ -21,7 +21,7 @@ export class HeaderComponent {
      
         const platform = /Android/i.test(navigator.userAgent)
         
-        if( platform && this.showPopup && !window.matchMedia('(display-mode: standalone)').matches){
+        if( !platform && this.showPopup && !window.matchMedia('(display-mode: standalone)').matches){
           Swal.fire({
             html:'<strong>RentⓝMeter.Receipt App Available!</strong>',
             position:'top',
@@ -33,7 +33,7 @@ export class HeaderComponent {
           .then((res)=>{
             if(res.isConfirmed){
               let tag = document.createElement('a');
-              tag.href = 'https://rnmr.vercel.app';
+              tag.href = '/';
               tag.target = '_blank';
               tag.click();
               
@@ -42,7 +42,7 @@ export class HeaderComponent {
         }
         }
 
-        setTimeout(openApp,10000);
+        setTimeout(openApp,5000);
       
     
 
