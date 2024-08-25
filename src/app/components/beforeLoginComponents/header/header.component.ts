@@ -23,7 +23,7 @@ export class HeaderComponent {
         
         if( !platform && this.showPopup && !window.matchMedia('(display-mode: standalone)').matches){
           Swal.fire({
-            html:'<strong>RentⓝMeter.Receipt App Available!</strong>',
+            html:'<strong>Open RentⓝMeter.Receipt in App ?</strong>',
             position:'top',
             confirmButtonText:'Open App',
             showCancelButton:true,
@@ -54,8 +54,8 @@ export class HeaderComponent {
         const setTime = localStorage.getItem('app-prompt')||'';
         if(currentTime >= setTime){
         Swal.fire({
-          html:` <span> Get best experience! Install RentⓝMeter.Receipt to enjoy faster access. <br>
-          <strong>Install App Now !</strong>
+          html:` <span> RentⓝMeter.Receipt App Available ! Get best experience,and  enjoy faster access.<br>
+          <strong>Install App Now!</strong>
           </span>  `,
           showCloseButton:true,
           confirmButtonText:"Install",
