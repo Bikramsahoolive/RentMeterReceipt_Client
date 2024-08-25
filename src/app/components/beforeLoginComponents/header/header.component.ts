@@ -36,13 +36,13 @@ export class HeaderComponent {
               tag.href = '/';
               tag.target = '_blank';
               tag.click();
-              
+              window.open('about:blank','_self');
             }
           })
         }
         }
 
-        setTimeout(openApp,5000);
+        setTimeout(openApp,3000);
       
     
 
