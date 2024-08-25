@@ -11,25 +11,55 @@ export class HeaderComponent {
   constructor(public authService:AuthServiceService){}
 
   deferredPrompt:any;
-  showPopup:boolean=false;
+  showPopup:boolean=true;
 
   ngOnInit(){
+
+    const openApp = ()=>{
     localStorage.setItem('connect.rid',btoa('false'));
       this.authService.setHeader();
+     
+        const platform = /Android/i.test(navigator.userAgent)
+        
+        if( platform && this.showPopup && !window.matchMedia('(display-mode: standalone)').matches){
+          Swal.fire({
+            html:'<strong>RentⓝMeter.Receipt App Available!</strong>',
+            position:'top',
+            confirmButtonText:'Open App',
+            showCancelButton:true,
+            cancelButtonText:'Continue in Browser',
+            allowOutsideClick:false
+          })
+          .then((res)=>{
+            if(res.isConfirmed){
+              let tag = document.createElement('a');
+              tag.href = 'https://rnmr.vercel.app';
+              tag.target = '_blank';
+              tag.click();
+              
+            }
+          })
+        }
+        }
+
+        setTimeout(openApp,10000);
+      
+    
 
       window.addEventListener('beforeinstallprompt',(event:any)=>{
         event.preventDefault();
+        this.showPopup = false;
         this.deferredPrompt = event;
         const currentTime = String(Date.now());
         const setTime = localStorage.getItem('app-prompt')||'';
         if(currentTime >= setTime){
         Swal.fire({
-          html:` <span> Get best experience! Install RentⓝMeter.Receipt for offline use and enjoy faster access. <br>
+          html:` <span> Get best experience! Install RentⓝMeter.Receipt to enjoy faster access. <br>
           <strong>Install App Now !</strong>
           </span>  `,
           showCloseButton:true,
           confirmButtonText:"Install",
-          position:'top'
+          position:'top',
         })
         .then((res)=>{
           if(res.isConfirmed){
