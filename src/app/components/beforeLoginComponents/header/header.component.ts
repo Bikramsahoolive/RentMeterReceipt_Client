@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
+import { NetworkStatusService } from 'src/app/services/network-status-service/network-status.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,7 +9,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(public authService:AuthServiceService){}
+  @ViewChild('internetStatus')internetStatus!:ElementRef;
+  @ViewChild('internetIcon')internetIcon!:ElementRef;
+  @ViewChild('internetMsg')internetMsg!:ElementRef;
+
+  constructor(public authService:AuthServiceService , private networkStatus:NetworkStatusService){
+    
+  }
 
   deferredPrompt:any;
   showPopup:boolean=true;
@@ -85,7 +92,31 @@ export class HeaderComponent {
           })
         }
         }
-        setTimeout(openApp,2000);
+        setTimeout(openApp,3000);
+
+        
+
+
+
+        this.networkStatus.onlineStatus.subscribe(isOnline=>{
+          if(isOnline===true){
+    
+            this.internetStatus.nativeElement.style.backgroundColor = "#0c791eba";
+            this.internetIcon.nativeElement.innerHTML = 'wifi';
+            this.internetMsg.nativeElement.innerHTML = "Back to online";
+            setTimeout(()=>{
+              this.internetStatus.nativeElement.classList.remove('internet-show');
+            },3000)
+          }else{
+            
+            this.internetStatus.nativeElement.style.backgroundColor = "rgb(121 12 12 / 56%)";
+            this.internetStatus.nativeElement.classList.add('internet-show');
+            this.internetIcon.nativeElement.innerHTML = 'wifi_off';
+            this.internetMsg.nativeElement.innerHTML = "No internet connection";
+            
+          }
+          
+        })
  }
   dropdownToggle(dropdown:any,tglBtn:any)
   {

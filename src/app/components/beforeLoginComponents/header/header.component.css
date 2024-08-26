@@ -125,7 +125,22 @@ div #logout:hover{
 .active{
     color: rgb(129, 169, 238);
 }
-
+.internet-status{
+    width: 100%;
+    background-color: #0c791ea1;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: fixed;
+    top: -60px;
+    padding: 15px 20px;
+    transition: all 0.8s ease;
+    z-index: 1;
+}
+.internet-show{
+    top:58px;
+}
 @media screen and (max-width:900px) {
     .dropdown_menu .active{
         color: gray;
