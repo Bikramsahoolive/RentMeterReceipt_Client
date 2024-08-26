@@ -13,8 +13,28 @@ export class HeaderComponent {
   @ViewChild('internetIcon')internetIcon!:ElementRef;
   @ViewChild('internetMsg')internetMsg!:ElementRef;
 
-  constructor(public authService:AuthServiceService , private networkStatus:NetworkStatusService){
-    
+  constructor(public authService:AuthServiceService , private networkStatus:NetworkStatusService){}
+
+  ngAfterViewInit(){
+    this.networkStatus.onlineStatus.subscribe(isOnline=>{
+      if(isOnline===true){
+
+        this.internetStatus.nativeElement.style.backgroundColor = "#0c791eba";
+        this.internetIcon.nativeElement.innerHTML = 'wifi';
+        this.internetMsg.nativeElement.innerHTML = "Back to online";
+        setTimeout(()=>{
+          this.internetStatus.nativeElement.classList.remove('internet-show');
+        },3000)
+      }else{
+        
+        this.internetStatus.nativeElement.style.backgroundColor = "rgb(121 12 12 / 68%";
+        this.internetStatus.nativeElement.classList.add('internet-show');
+        this.internetIcon.nativeElement.innerHTML = 'wifi_off';
+        this.internetMsg.nativeElement.innerHTML = "No internet connection";
+        
+      }
+      
+    })
   }
 
   deferredPrompt:any;
@@ -98,25 +118,7 @@ export class HeaderComponent {
 
 
 
-        this.networkStatus.onlineStatus.subscribe(isOnline=>{
-          if(isOnline===true){
-    
-            this.internetStatus.nativeElement.style.backgroundColor = "#0c791eba";
-            this.internetIcon.nativeElement.innerHTML = 'wifi';
-            this.internetMsg.nativeElement.innerHTML = "Back to online";
-            setTimeout(()=>{
-              this.internetStatus.nativeElement.classList.remove('internet-show');
-            },3000)
-          }else{
-            
-            this.internetStatus.nativeElement.style.backgroundColor = "rgb(121 12 12 / 56%)";
-            this.internetStatus.nativeElement.classList.add('internet-show');
-            this.internetIcon.nativeElement.innerHTML = 'wifi_off';
-            this.internetMsg.nativeElement.innerHTML = "No internet connection";
-            
-          }
-          
-        })
+        
  }
   dropdownToggle(dropdown:any,tglBtn:any)
   {
