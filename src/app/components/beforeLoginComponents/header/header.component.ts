@@ -10,18 +10,55 @@ import Swal from 'sweetalert2';
 export class HeaderComponent {
   constructor(public authService:AuthServiceService){}
 
-  // deferredPrompt:any;
+  deferredPrompt:any;
   showPopup:boolean=true;
 
   ngOnInit(){
+    
+    window.addEventListener('beforeinstallprompt',(event:any)=>{
+      event.preventDefault();
+      this.showPopup = false;
+      this.deferredPrompt = event;
+      const currentTime = String(Date.now());
+      const setTime = localStorage.getItem('app-prompt')||'';
+      if(currentTime >= setTime){
 
-      window.addEventListener('beforeinstallprompt',(event:any)=>{
-        event.preventDefault();
-        this.showPopup = false;
-  });
+        setTimeout(()=>{
+
+          Swal.fire({
+            html:` <span> RentⓝMeter.Receipt in App Available ! Get best experience,and  enjoy faster access.<br><br>
+            <strong>Install App Now</strong>
+            </span>  `,
+            showCloseButton:true,
+            confirmButtonText:"Install",
+            position:'top',
+            allowOutsideClick:false
+          })
+          .then((res)=>{
+            if(res.isConfirmed){
+              this.deferredPrompt.prompt();
+              localStorage.removeItem('app-prompt');
+              this.deferredPrompt.userChoice.then((choiceResult:any)=>{
+                if(choiceResult.outcome ==='accepted'){
+                  console.log("app installed");
+                  
+                }else{
+              const timeer = String(Date.now()+86400000);
+              localStorage.setItem('app-prompt',timeer);
+                }
+              });
+            }else{
+              const timeer = String(Date.now()+86400000);
+              localStorage.setItem('app-prompt',timeer);
+            }
+          });
+
+        },60000);
+      
+    }
+});
 
   const openApp = ()=>{
-    console.log(this.showPopup);
     
     localStorage.setItem('connect.rid',btoa('false'));
       this.authService.setHeader();
@@ -48,7 +85,7 @@ export class HeaderComponent {
           })
         }
         }
-        setTimeout(openApp,1000);
+        setTimeout(openApp,2000);
  }
   dropdownToggle(dropdown:any,tglBtn:any)
   {
