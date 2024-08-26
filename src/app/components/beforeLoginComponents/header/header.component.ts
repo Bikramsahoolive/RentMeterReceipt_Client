@@ -10,12 +10,19 @@ import Swal from 'sweetalert2';
 export class HeaderComponent {
   constructor(public authService:AuthServiceService){}
 
-  deferredPrompt:any;
+  // deferredPrompt:any;
   showPopup:boolean=true;
 
   ngOnInit(){
 
-    const openApp = ()=>{
+      window.addEventListener('beforeinstallprompt',(event:any)=>{
+        event.preventDefault();
+        this.showPopup = false;
+  });
+
+  const openApp = ()=>{
+    console.log(this.showPopup);
+    
     localStorage.setItem('connect.rid',btoa('false'));
       this.authService.setHeader();
      
@@ -41,45 +48,7 @@ export class HeaderComponent {
           })
         }
         }
-
-        setTimeout(openApp,3000);
-      
-    
-
-      window.addEventListener('beforeinstallprompt',(event:any)=>{
-        event.preventDefault();
-        this.showPopup = false;
-        this.deferredPrompt = event;
-        const currentTime = String(Date.now());
-        const setTime = localStorage.getItem('app-prompt')||'';
-        if(currentTime >= setTime){
-        Swal.fire({
-          html:` <span> RentⓝMeter.Receipt App Available ! Get best experience,and  enjoy faster access.<br>
-          <strong>Install App Now!</strong>
-          </span>  `,
-          showCloseButton:true,
-          confirmButtonText:"Install",
-          position:'top',
-        })
-        .then((res)=>{
-          if(res.isConfirmed){
-            this.deferredPrompt.prompt();
-            localStorage.removeItem('app-prompt');
-            this.deferredPrompt.userChoice.then((choiceResult:any)=>{
-              if(choiceResult.outcome ==='accepted'){
-                console.log("app installed");
-              }else{
-            const timeer = String(Date.now()+86400000);
-            localStorage.setItem('app-prompt',timeer);
-              }
-            })
-          }else{
-            const timeer = String(Date.now()+86400000);
-            localStorage.setItem('app-prompt',timeer);
-          }
-        })
-      }
-  })
+        setTimeout(openApp,1000);
  }
   dropdownToggle(dropdown:any,tglBtn:any)
   {
