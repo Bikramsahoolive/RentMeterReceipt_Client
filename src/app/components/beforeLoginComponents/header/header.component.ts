@@ -17,16 +17,17 @@ export class HeaderComponent {
 
   ngAfterViewInit(){
     this.networkStatus.onlineStatus.subscribe(isOnline=>{
+      let timmer;
       if(isOnline===true){
 
         this.internetStatus.nativeElement.style.backgroundColor = "#0c791eba";
         this.internetIcon.nativeElement.innerHTML = 'wifi';
         this.internetMsg.nativeElement.innerHTML = "Back to online";
-        setTimeout(()=>{
+        timmer = setTimeout(()=>{
           this.internetStatus.nativeElement.classList.remove('internet-show');
-        },3000)
+        },3000);
       }else{
-        
+        clearTimeout(timmer);
         this.internetStatus.nativeElement.style.backgroundColor = "rgb(121 12 12 / 68%";
         this.internetStatus.nativeElement.classList.add('internet-show');
         this.internetIcon.nativeElement.innerHTML = 'wifi_off';
