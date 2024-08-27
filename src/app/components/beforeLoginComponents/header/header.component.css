@@ -9,7 +9,7 @@ nav{
     /* box-shadow: 0 0 5px 0 gray; */
     position: fixed;
     top: 0;
-    z-index:3 ;
+    z-index:4;
 }
 nav h1{
     color:white;
@@ -63,7 +63,7 @@ div #logout:hover{
     width: 100%;
     background:rgb(115 115 243);
     /* backdrop-filter: blur(65px); */
-    z-index: 2;
+    z-index: 3;
     border-radius:0 0 10px 10px;
     overflow: hidden;
     padding-bottom: 5px;
@@ -131,15 +131,16 @@ div #logout:hover{
     color: white;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
     position: fixed;
-    top: -60px;
+    bottom: -60px;
     padding: 15px 20px;
     transition: all 0.8s ease;
     z-index: 1;
 }
 .internet-show{
-    top:58px;
+    bottom:-1px;
 }
 @media screen and (max-width:900px) {
     .dropdown_menu .active{

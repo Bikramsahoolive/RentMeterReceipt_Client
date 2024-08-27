@@ -1,3 +1,7 @@
+<div class="internet-status" #internetStatus>
+    <span class="material-symbols-outlined" #internetIcon></span>
+    <strong #internetMsg></strong>
+</div>
 <header>
     <nav class="nav">
         <h1>RentⓝMeter.Receipt</h1>
@@ -44,12 +48,6 @@
             <li><a routerLink="contact"(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Contact Us</a></li>
             <!-- <li><a routerLink="/signup-status"(click)="hideMenu(dropdown,tglBtn)">Status</a></li> -->
         </ng-template>
-    </div>
-    <div class="internet-status" #internetStatus>
-        <span class="material-symbols-outlined" #internetIcon>
-           
-            </span>
-        <strong #internetMsg></strong>
-    </div>
+    </div> 
 </header>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" >Connecting... </p></ngx-spinner>
