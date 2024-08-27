@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { timeout } from 'rxjs';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { NetworkStatusService } from 'src/app/services/network-status-service/network-status.service';
 import Swal from 'sweetalert2';
@@ -16,24 +17,27 @@ export class HeaderComponent {
   constructor(public authService:AuthServiceService , private networkStatus:NetworkStatusService){}
 
   ngAfterViewInit(){
+    let timmer:any;
     this.networkStatus.onlineStatus.subscribe(isOnline=>{
-      let timmer;
       if(isOnline===true){
-
         this.internetStatus.nativeElement.style.backgroundColor = "#0c791eba";
         this.internetIcon.nativeElement.innerHTML = 'wifi';
         this.internetMsg.nativeElement.innerHTML = "Back to online";
         timmer = setTimeout(()=>{
           this.internetStatus.nativeElement.classList.remove('internet-show');
-        },3000);
+          timmer=undefined;
+        },8000);
       }else{
-        clearTimeout(timmer);
-        this.internetStatus.nativeElement.style.backgroundColor = "rgb(121 12 12 / 68%";
+        if(timmer!==undefined){
+          clearTimeout(timmer);
+        console.log('timeout cleared');
+        }
+        this.internetStatus.nativeElement.style.backgroundColor = "rgb(167 0 0 / 70%)";
         this.internetStatus.nativeElement.classList.add('internet-show');
         this.internetIcon.nativeElement.innerHTML = 'wifi_off';
         this.internetMsg.nativeElement.innerHTML = "No internet connection";
-        
       }
+      
       
     })
   }

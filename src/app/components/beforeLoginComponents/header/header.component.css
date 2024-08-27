@@ -72,17 +72,14 @@ div #logout:hover{
     flex-direction: column;
     justify-content: flex-end;
     position: fixed;
-    padding: 10px 30px;
+    padding: 13px 30px;
 }
 
 .dropdown_menu.open {
     height: 250px;
     z-index:3;
     max-height: 50vh;
-    padding: 10px 30px;
-    display: flex;
     justify-content: space-between;
-    /* transition: height 0.3s ease; */
 }
 
 .dropdown_menu li {
