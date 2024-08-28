@@ -32,11 +32,11 @@
         <input type="number" ngModel name="current_unit">
     </div>
     <div class="input-box">
-        <span class="details"> Photo <small>(jpg,jpeg,png max-size:200kb)</small>:</span>
+        <span class="details"> Photo <small>(jpg,jpeg,png max-size:5MB)</small>:</span>
         <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo">
     </div>
     <div class="input-box">
-        <span class="details"> Agreement/ ID <small>(pdf,jpg,jpeg max-size:1Mb)</small>:</span>
+        <span class="details"> Agreement/ ID <small>(pdf,jpg,jpeg max-size:5MB)</small>:</span>
         <input type="file" #doc class="file" ngModel (change)="fileInput($event,'document',doc)" name="file">
     </div>
     <div class="input-box">

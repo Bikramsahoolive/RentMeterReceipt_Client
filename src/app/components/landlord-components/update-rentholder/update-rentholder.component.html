@@ -28,11 +28,11 @@
             <input type="number" [(ngModel)]="renthplderData.current_unit" name="current_unit" [disabled]="cunitInput">
         </div>
         <div class="input-box">
-            <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')" >Photo <small>(jpg,jpeg,png max-size:200kb)</small>:</span>
+            <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')" >Photo <small>(jpg,jpeg,png max-size:5MB)</small>:</span>
             <input type="file" #photo class="file" ngModel (change)="fileInput($event,'photo',photo)" name="photo" [disabled]="photoInput">
         </div>
         <div class="input-box">
-            <span class="details"><input type="checkbox" #doccheck (change)="toggleInput(doccheck.checked,'doc')" >Agreement/ ID <small>(pdf,jpg,jpeg max-size:1Mb)</small>:</span>
+            <span class="details"><input type="checkbox" #doccheck (change)="toggleInput(doccheck.checked,'doc')" >Agreement/ ID <small>(pdf,jpg,jpeg max-size:5MB)</small>:</span>
             <input type="file" #doc class="file" ngModel (change)="fileInput($event,'document',doc)" name="file" [disabled]="docInput">
         </div>
         <div class="input-box">
