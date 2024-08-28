@@ -122,7 +122,7 @@ fileUpload(event:any,fileType:string, inputField:any){
     // console.log(extention[1]);
     if(extention=="jpg" || extention==='png' || extention==="jpeg"){
       
-      if(file.size<548487){
+      if(file.size<5242880){
 
        
     reader.onload=(e)=>{
@@ -134,12 +134,12 @@ fileUpload(event:any,fileType:string, inputField:any){
 
       }else{
         inputField.value="";
-        this.toaster.info('Invalid File size ,only less than 500kb.','Error',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error('Invalid File size ,only less than 5MB.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
 
     }else{
       inputField.value="";
-      this.toaster.info('Invalid File type ,only jpg, jpeg, png allowed.','Error',{progressBar:true,positionClass:"toast-top-center"});
+      this.toaster.error('Invalid File type ,only jpg, jpeg or png allowed.','Error',{progressBar:true,positionClass:"toast-top-center"});
     }
     
     reader.readAsDataURL(file);
@@ -153,14 +153,14 @@ updateLandlord(form:NgForm){
     const upiRegex = /^[^\s@]+@[^\s@]+$/;
     if(!this.upiInput){
       if(data.upi==="" || !upiRegex.test(data.upi)){
-        this.toaster.info("Enter a valid UPI ID.",'Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error("Enter a valid UPI ID.",'Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
         return;
       }
     }
 
     if(!this.photoInput){
       if(this.landlordPhoto===""){
-        this.toaster.info("Select a valid photo File.",'Invalid Photo',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error("Select a valid photo File.",'Invalid Photo',{progressBar:true,positionClass:"toast-top-center"});
         return;
       }else{
         data.photo=this.landlordPhoto;
@@ -169,7 +169,7 @@ updateLandlord(form:NgForm){
 
     if(!this.signInput){
       if(this.landlordSignature===""){
-        this.toaster.info("Select a valid Signature File.",'Invalid Signature',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error("Select a valid Signature File.",'Invalid Signature',{progressBar:true,positionClass:"toast-top-center"});
         return;
       }else{
         data.signature=this.landlordSignature;
@@ -178,7 +178,7 @@ updateLandlord(form:NgForm){
 
     if(!this.passwordInput){
       if( data.password==="" || data.password.length < 8 || data.password.length > 16){
-        this.toaster.info("Enter a valid 8 to 16 digit password.",'Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error("Enter a valid 8 to 16 digit password.",'Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
         return;
       }
     }
@@ -204,10 +204,10 @@ updateLandlord(form:NgForm){
     });
     
   }else{
-    this.toaster.info('Password not matching','Invalid Password.',{progressBar:true,positionClass:"toast-top-center"});
+    this.toaster.error('Password not matching','Invalid Password.',{progressBar:true,positionClass:"toast-top-center"});
   }
   }else{
-    this.toaster.info('Select Any Update Type.','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
+    this.toaster.error('Select Any Update Type.','Invalid input.',{progressBar:true,positionClass:"toast-top-center"});
     // form.reset();
     // this.ngOnInit();
   }
@@ -284,9 +284,9 @@ removeBiometric(type:string){
 
       let data;
     if(type ==='photo'){
-      data={photo:""}
+      data={photo:'null'}
     }else{
-      data={signature:""}
+      data={signature:'null'}
     }
       this.spinner.show();
     this.landlordServ.updateLandlordData(data,this.landlordId).subscribe({
