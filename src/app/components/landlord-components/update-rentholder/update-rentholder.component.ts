@@ -73,9 +73,9 @@ export class UpdateRentholderComponent {
     this.toster.info('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
           return;
         }
-        if(file.size>204800){
+        if(file.size>5242880){
           inputField.value="";
-      this.toster.info(`Max 200kb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.info(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
@@ -91,9 +91,9 @@ export class UpdateRentholderComponent {
           this.toster.info('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
                 return;
         }
-        if(file.size>1024000){
+        if(file.size>5242880){
           inputField.value="";
-      this.toster.info(`Max 1mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.info(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }

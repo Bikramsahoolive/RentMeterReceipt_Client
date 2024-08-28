@@ -31,9 +31,9 @@ export class AddRentHolderComponent {
     this.toster.error('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
           return;
         }
-        if(file.size>204800){
+        if(file.size>5242880){
           inputField.value="";
-      this.toster.error(`Max 200kb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
@@ -49,9 +49,9 @@ export class AddRentHolderComponent {
           this.toster.error('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
                 return;
         }
-        if(file.size>1024000){
+        if(file.size>5242880){
           inputField.value="";
-      this.toster.error(`Max 1mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
