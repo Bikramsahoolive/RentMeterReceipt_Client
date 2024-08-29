@@ -43,7 +43,7 @@ bill:rentBillData={
   maintenance:0,
   service:0
 };
-upiLink:any;
+upiLink:string="";
 landlordSign:string="../../../../assets/images.png";
 boxVal:string='';
 paymentMethod:string='';
@@ -62,13 +62,19 @@ showPayBtn:boolean=false;
             next:(LanlordRes:landlordData)=>{
               if(res.id){
                 
-              this.upiLink=`upi://pay?pa=${LanlordRes.upi}&pn=${LanlordRes.name}&am=${remainingAmt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
+                if(LanlordRes.upi)
+                  {
+                    this.upiLink=`upi://pay?pa=${LanlordRes.upi}&pn=${LanlordRes.name}&am=${remainingAmt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
+                    this.boxVal ='Scan To Pay!';
+                  }else{
+                    this.boxVal ='UPI ID Unavailable!';
+                  }
               if(!LanlordRes.signature || LanlordRes.signature===""){
                 this.landlordSign = "../../../../assets/images.png";
               }else{
               this.landlordSign=LanlordRes.signature;
               }
-              this.boxVal ='Scan To Pay!';
+              
               }
             },
             error:(err)=>{
