@@ -7,7 +7,7 @@
 }
 .cont{
     max-width: 800px;
-    width: 100%;
+    width: 95%;
     padding: 25px 30px;
     border-radius: 8px;
     background-color: #ffffff8a;
@@ -24,9 +24,9 @@
     padding-bottom: 20px;
 }
 .cont form .user-details{
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-between; */
     margin: 20px 0 12px 0;
 }
 .passkey-btn{
@@ -69,7 +69,7 @@
 }
 form .user-details .input-box{
     margin: 10px 0 6px 0;
-    width: calc(100% / 2 - 20px);
+    /* width: calc(100% / 2 - 20px); */
     background-color: whitesmoke;
 }
 .user-details .input-box .details{

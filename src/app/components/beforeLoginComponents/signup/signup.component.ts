@@ -63,7 +63,7 @@ siteKey:string= environment.siteKey;
   // }
   signup(form:NgForm){
     const data = form.value;
-    if (data.name!=="" && data.phone!=="" && data.email!=="" && data.upi!=="" && data. password!==""){
+    if (data.name!=="" && data.phone!=="" && data.email!==""  && data. password!==""){
         if (data.termNconditions){
           if(this.regNumber===""){
             this.toastr.error('OTP not verified.','',{progressBar:true,positionClass:"toast-top-center"});
@@ -73,11 +73,11 @@ siteKey:string= environment.siteKey;
             this.toastr.error('','Invalid OTP',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
-          const upiRegex = /^[^\s@]+@[^\s@]+$/;
-          if(!upiRegex.test(data.upi)){
-            this.toastr.error('','Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
-            return;
-          }
+          // const upiRegex = /^[^\s@]+@[^\s@]+$/;
+          // if(!upiRegex.test(data.upi)){
+          //   this.toastr.error('','Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
+          //   return;
+          // }
           if((data.password).length <8 || (data.password).length >16 ){
             this.toastr.error('Enter an 8 to 16 digit password.','Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
             return;
@@ -95,7 +95,7 @@ siteKey:string= environment.siteKey;
 
           this.spinner.show();
           data.id = this.regNumber;
-
+          data.upi = '';
           let date= new Date();
           let year = date.getFullYear();
           let month =(date.getMonth()+1).toString().padStart(2,'0');

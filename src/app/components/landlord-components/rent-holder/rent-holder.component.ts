@@ -108,8 +108,9 @@ deleteRentHolder(id:any){
     
     if (result.isConfirmed) {
       Swal.fire({
-        title: "Successful",
-        text:result.value
+        title: "scccess !",
+        text:result.value,
+        icon:'success'
       })
       .then(()=>{
         this.users = [];

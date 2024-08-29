@@ -152,9 +152,11 @@ updateLandlord(form:NgForm){
     let data = form.value;
     const upiRegex = /^[^\s@]+@[^\s@]+$/;
     if(!this.upiInput){
-      if(data.upi==="" || !upiRegex.test(data.upi)){
-        this.toaster.error("Enter a valid UPI ID.",'Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
-        return;
+      if(data.upi!=="" ){
+        if(!upiRegex.test(data.upi)){
+          this.toaster.error("Enter a valid UPI ID.",'Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
+          return;
+        }
       }
     }
 

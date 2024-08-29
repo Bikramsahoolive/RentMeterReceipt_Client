@@ -79,12 +79,12 @@ export class PayoutComponent {
     this.payoutM.nativeElement.innerHTML="";
     if(method=="upi"){
       let upiData = document.createElement('strong');
-      upiData.innerHTML=`UPI ID : ${this.landlordData.upi}`
+      upiData.innerHTML=`UPI ID : ${this.landlordData.upi||"Not Available"}`
       this.payoutM.nativeElement.appendChild(upiData);
     }else{
       let upiData = document.createElement('strong');
       upiData.innerHTML=`Name : ${this.landlordData.name} <br/> 
-      A/c : ${this.landlordData.account_no||"Not Available "} <br/>
+      A/c no : ${this.landlordData.account_no||"Not Available "} <br/>
       IFSC : ${this.landlordData.ifsc||"Not Available"}`
       this.payoutM.nativeElement.appendChild(upiData);
     }
@@ -128,11 +128,17 @@ export class PayoutComponent {
 
     if(this.paymentMethod ==='neft' || this.paymentMethod ==='imps' ){
       if(!this.landlordData.account_no || !this.landlordData.ifsc){
-        this.toaster.error("Bank details unavailable, Try UPI","",{positionClass:'toast-top-center',progressBar:true});
+        this.toaster.error("Bank details unavailable, Please Provide","",{positionClass:'toast-top-center',progressBar:true});
       return;
       }
     }
 
+    if(this.paymentMethod ==='upi'){
+      if(!this.landlordData.upi){
+        this.toaster.error("UPI ID unavailable, Please provide","",{positionClass:'toast-top-center',progressBar:true});
+      return;
+    }
+  }
     data.account_no = this.landlordData.account_no ||'NA';
     data.ifsc = this.landlordData.ifsc || 'NA';
     data.upi = this.landlordData.upi || 'NA';

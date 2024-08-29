@@ -59,10 +59,10 @@ export class HeaderComponent {
 
           Swal.fire({
             html:` <span> RentⓝMeter.Receipt in App Available ! Get best experience,and  enjoy faster access.<br><br>
-            <strong>Install App Now</strong>
+            <strong>Install RNMR App Now!</strong>
             </span>  `,
             showCloseButton:true,
-            confirmButtonText:"Install",
+            confirmButtonText:"Download App",
             position:'top',
             allowOutsideClick:false
           })
