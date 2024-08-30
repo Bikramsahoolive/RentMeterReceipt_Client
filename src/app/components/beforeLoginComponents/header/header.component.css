@@ -58,7 +58,7 @@ div #logout:hover{
 .dropdown_menu {
     position: absolute;
     /* right: 13px; */
-    top: 25px;
+    top: 20px;
     height: 0;
     width: 100%;
     background:rgb(115 115 243);
@@ -75,7 +75,7 @@ div #logout:hover{
 }
 
 .dropdown_menu.open {
-    height: 260px;
+    height: auto;
     z-index:3;
     max-height: 50vh;
     justify-content: space-between;
