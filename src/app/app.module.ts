@@ -70,6 +70,7 @@ import { PayoutComponent } from './components/landlord-components/payout/payout.
 import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
 import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { RefundPolicyComponent } from './components/beforeLoginComponents/refund-policy/refund-policy.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     DeveloperDetailsComponent,
     PayoutComponent,
     PaymentProcessComponent,
-    ProcessedPayoutComponent
+    ProcessedPayoutComponent,
+    RefundPolicyComponent
   ],
   imports: [
     BrowserModule,

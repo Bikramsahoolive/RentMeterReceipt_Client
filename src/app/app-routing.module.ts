@@ -52,6 +52,7 @@ import { PayoutComponent } from './components/landlord-components/payout/payout.
 import { PaymentProcessComponent } from './components/rentholder-components/payment-process/payment-process.component';
 import { adminAuthGuard } from './guard/admin-auth.guard';
 import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
+import { RefundPolicyComponent } from './components/beforeLoginComponents/refund-policy/refund-policy.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -63,6 +64,7 @@ const routes: Routes = [
   {path:'contact',component:ContactComponent},
   {path:'about',component:AboutComponent},
   {path:'privacy-policy',component:PrivacyPolicyTermConditionsComponent},
+  {path:'refund-policy',component:RefundPolicyComponent},
   {path:'under-construction',component:UnderConstructionComponent},
   {path:'unsubscribe/:id',component:UnsubscribeMailComponent},
   {path:'unsubscribe',component:UnsubscribeMailComponent},

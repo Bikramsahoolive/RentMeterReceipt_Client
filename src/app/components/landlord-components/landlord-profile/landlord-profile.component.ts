@@ -263,6 +263,7 @@ deleteAccountPrompt(id:any){
         icon:"success"
       })
       .then(()=>{
+        localStorage.removeItem('');
         setTimeout(()=>{this.authServ.logout();},1000);
         window.scrollTo({ top: 0, behavior:'instant' });
       })
