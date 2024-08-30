@@ -71,11 +71,11 @@ div #logout:hover{
     flex-direction: column;
     justify-content: flex-end;
     position: fixed;
-    padding: 35px 30px 5px 30px;
+    padding: 40px 30px 5px 30px;
 }
 
 .dropdown_menu.open {
-    height: 250px;
+    height: 260px;
     z-index:3;
     max-height: 50vh;
     justify-content: space-between;
