@@ -71,7 +71,7 @@ div #logout:hover{
     flex-direction: column;
     justify-content: flex-end;
     position: fixed;
-    padding: 40px 30px 5px 30px;
+    padding: 40px 30px 10px 30px;
 }
 
 .dropdown_menu.open {
