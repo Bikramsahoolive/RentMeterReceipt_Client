@@ -26,7 +26,7 @@ export class HeaderComponent {
         timmer = setTimeout(()=>{
           this.internetStatus.nativeElement.classList.remove('internet-show');
           timmer=undefined;
-        },8000);
+        },4000);
       }else{
         if(timmer!==undefined){
           clearTimeout(timmer);
