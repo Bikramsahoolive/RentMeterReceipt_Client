@@ -76,8 +76,9 @@
         <input type="number" [(ngModel)]="previousUnit" name="previousUnit" #prvUnt (blur)="validateUnit(prvUnt,cunit)" (input)="clearValidateUnit(prvUnt,cunit)">
         </div>
         <div class="input-box">
-            <span class="details">Current Unit(sub-meter):</span>
+            <span class="details">Current Unit(sub-meter):</span><span>Unit Adv: {{unitAdvance}}</span>
         <input type="number" ngModel name="currentUnit" #cunit (blur)="validateUnit(prvUnt,cunit)" (input)="clearValidateUnit(prvUnt,cunit)">
+        
         </div>
         <div class="input-box hide" #perUnit>
             <span class="details">Per Unit Amount(₹):</span>
@@ -101,7 +102,7 @@
     <div class="other-bill" #otherBill>
     
     <div class="input-box">
-        <span class="details">Previous Due(₹) [if any]:</span>
+        <span class="details">Previous Adv/Due(₹)[if any]:</span>
         <input type="number" ngModel name="dueAmount">
     </div>
     

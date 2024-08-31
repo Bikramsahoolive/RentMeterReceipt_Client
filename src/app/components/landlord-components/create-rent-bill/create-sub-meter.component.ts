@@ -321,12 +321,13 @@ isElcBillPaid:boolean=false;
     }
 
   }
-
-  clearValidateUnit(cunit:any ,prvunit:any){
+  unitAdvance:number=0;
+  clearValidateUnit(prvunit:any ,cunit:any){
     cunit.style.border ="";
     cunit.style.color = "black";
     prvunit.style.border ="";
     prvunit.style.color = "black";
+    this.unitAdvance = (+cunit.value)-(+prvunit.value);
   }
   validateUnit(prvunit:any,cunit:any){
     if((+prvunit.value) >= (+cunit.value)){
