@@ -31,6 +31,7 @@ export interface rentBillData {
     dueAmount: number,
     dueDate: string,
     eBill: number,
+    split_ebill:string,
     electric_status: string,
     final_amt: number,
     id: string,

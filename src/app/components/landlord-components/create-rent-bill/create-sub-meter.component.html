@@ -88,6 +88,17 @@
             <span class="details">Adjust Unit[if any]:</span>
         <input type="number" ngModel name="adjustUnit">
         </div>
+        <div class="input-box" >
+            <span class="details">Split Electric Bill:</span>
+            <select name="split_ebill" ngModel>
+                <option value="">No Split</option>
+                <option value="0.5">1/2</option>
+                <option value="0.33334">1/3</option>
+                <option value="0.66667">2/3</option>
+                <option value="0.25">1/4</option>
+                <option value="0.75">3/4</option>
+            </select>
+        </div>
     </div>
     
     <div class="elc-amt hide" style="width: 100%;" #elcAmt>

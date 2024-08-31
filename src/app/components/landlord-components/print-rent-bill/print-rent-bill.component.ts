@@ -24,6 +24,7 @@ bill:rentBillData={
   dueAmount: 0,
   dueDate: '',
   eBill: 0,
+  split_ebill:'',
   electric_status: '',
   final_amt: 0,
   id: '',

@@ -35,6 +35,16 @@
                     <span> Electric Bill( + ) : </span> <Strong *ngIf="bill.eBill!==0 else paidStatus">₹{{bill.eBill}}</Strong>
                     
                 </div>
+                <div class="data" [ngSwitch]="bill.split_ebill" *ngIf="bill.split_ebill!==''">
+                    <span> Split Electric Bill : </span>
+                     <Strong *ngSwitchCase="'0.5'" >{{'1/2'}}</Strong>
+                     <Strong *ngSwitchCase="'0.33334'" >{{'1/3'}}</Strong>
+                     <Strong *ngSwitchCase="'0.66667'" >{{'2/3'}}</Strong>
+                     <Strong *ngSwitchCase="'0.25'" >{{'1/4'}}</Strong>
+                     <Strong *ngSwitchCase="'0.75'" >{{'3/4'}}</Strong>
+                    
+                </div>
+
                 <div class="data">
                     <span>Monthly Rent( + ) : </span> <Strong *ngIf="bill.rent!==0 else paidStatus">₹{{bill.rent}}</Strong>
                 </div>

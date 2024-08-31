@@ -134,7 +134,7 @@ div #logout:hover{
     bottom: -60px;
     padding: 15px 20px;
     transition: all 0.8s ease;
-    z-index: 1;
+    z-index: 5;
 }
 .internet-show{
     bottom:-1px;
