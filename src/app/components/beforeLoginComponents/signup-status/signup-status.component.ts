@@ -53,7 +53,7 @@ export class SignupStatusComponent {
       
       
     }else{
-      this.toastr.info("Invalid Input.","",{positionClass:"toast-top-center",progressBar:true})
+      this.toastr.error("Invalid Input.","",{positionClass:"toast-top-center",progressBar:true})
 
     }
     

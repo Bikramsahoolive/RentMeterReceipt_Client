@@ -115,7 +115,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       this.spinner.hide();
       console.log(err.error);
       if(!err.error.status){
-        this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
       }else{
         this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
@@ -142,7 +142,7 @@ unpaidData() {
       this.spinner.hide();
       console.log(err.error);
       if(!err.error.status){
-        this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
       }else{
         this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
@@ -170,7 +170,7 @@ paidData() {
       this.spinner.hide();
       console.log(err.error);
       if(!err.error.status){
-        this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
       }else{
         this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }

@@ -70,12 +70,12 @@ export class UpdateRentholderComponent {
         }else{
           this.spinner.hide();
     inputField.value="";
-    this.toster.info('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+    this.toster.error('Only JPG, JPEG, PNG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
           return;
         }
         if(file.size>5242880){
           inputField.value="";
-      this.toster.info(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
@@ -88,12 +88,12 @@ export class UpdateRentholderComponent {
         }else{
           this.spinner.hide();
           inputField.value="";
-          this.toster.info('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+          this.toster.error('ONLY PDF, JPG, JPEG alowed.',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
                 return;
         }
         if(file.size>5242880){
           inputField.value="";
-      this.toster.info(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Max 5mb allowed.`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
       this.spinner.hide();
           return;
         }
@@ -123,13 +123,13 @@ export class UpdateRentholderComponent {
       reader.readAsDataURL(file);
     // }else{
     //   inputField.value="";
-    //   this.toster.info(`file large than 500kb`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
+    //   this.toster.error(`file large than 500kb`,`Invalid file size.`,{progressBar:true,positionClass:"toast-top-center"});
     //   this.spinner.hide();
     // }
   // }else{
   //   this.spinner.hide();
   //   inputField.value="";
-  //   this.toster.info('',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
+  //   this.toster.error('',`Invalid file type.`,{progressBar:true,positionClass:"toast-top-center"});
   // }
   }
   }
@@ -195,13 +195,13 @@ export class UpdateRentholderComponent {
     const nameRegex = /[\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if(!this.nameInput){
     if( data.name.length > 25 || nameRegex.test(data.name)){
-      this.toster.info('Enter valid Name max length 25.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter valid Name max length 25.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
   }
     if(!this.mcountInput){
     if( data.member_count<1){
-      this.toster.info('Enter vlaid member count.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter vlaid member count.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
   }
@@ -210,26 +210,26 @@ export class UpdateRentholderComponent {
 
     if(!this.phoneInput){
     if(data.phone.length!==10 || !phoneRegex.test(data.phone)){
-      this.toster.info('Enter valid 10 digit phone.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter valid 10 digit phone.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
   }
   if(!this.emailInput){
     if(data.email.length>30 || !emailRegex.test(data.email)){
-      this.toster.info('Enter valid email.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('Enter valid email.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
     }
   }
   if(!this.rentInput){
     if (data.rent< 1){
-  this.toster.info('Enter valid Monthly Rnt.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+  this.toster.error('Enter valid Monthly Rnt.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
       return;
 }  
  }
 
  if(!this.cunitInput){
 if(data.current_unit==="" || data.current_unit===null){
-  this.toster.info(`Invalid Initial Unit.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+  this.toster.error(`Invalid Initial Unit.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
   return;
 }
  }
@@ -237,7 +237,7 @@ if(data.current_unit==="" || data.current_unit===null){
  if(!this.photoInput){
 
 if(this.photoFile===''){
-  this.toster.info(`Select a valid photo file.`,"Invalid Input",{progressBar:true,positionClass:"toast-top-center"});
+  this.toster.error(`Select a valid photo file.`,"Invalid Input",{progressBar:true,positionClass:"toast-top-center"});
   return;
 }else{
   data.photo = this.photoFile;
@@ -246,7 +246,7 @@ if(this.photoFile===''){
 
  if(!this.docInput){
   if(this.deedFileUrl===''){
-    this.toster.info(`Invalid Rent Deed or Document.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+    this.toster.error(`Invalid Rent Deed or Document.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
     return;
   }else{
     data.deedURL=this.deedFileUrl;
@@ -254,10 +254,10 @@ if(this.photoFile===''){
 }
   if(!this.passwordInput){
     if(data.password.length<8 || data.password.length>16 ){
-      this.toster.info('password must be 8 to 16 digit.',`Invalid Password`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error('password must be 8 to 16 digit.',`Invalid Password`,{progressBar:true,positionClass:"toast-top-center"});
       return;
     }else if(data.confPass!==data.password){
-      this.toster.info(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error(`Password not match.`,`Error`,{progressBar:true,positionClass:"toast-top-center"});
       return;
     }else{
       delete data.confPass;
@@ -292,7 +292,7 @@ if(this.photoFile===''){
     });
 
   }else{
-    this.toster.info('Select Any Update Type.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
+    this.toster.error('Select Any Update Type.',"Invalid Input.",{progressBar:true,positionClass:"toast-top-center"});
   }
 
   }

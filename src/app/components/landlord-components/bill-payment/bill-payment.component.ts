@@ -44,11 +44,11 @@ export class BillPaymentComponent {
     data.payment_date = reDate;
     let id = data.id;
     if(data.id===null || data.id==="" || data.paid===""){
-      this.toastr.info('Invalid Bill ID and Paid Amount.','',{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Invalid Bill ID and Paid Amount.','',{positionClass:"toast-top-center",progressBar:true});
       return;
     }
     if(data.paid_amt>this.toPaidAmount || data.paid_amt === 0 || data.paid_amt ===null){
-      this.toastr.info('Invalid paid amount','',{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Invalid paid amount','',{positionClass:"toast-top-center",progressBar:true});
       
     }else{
       data.payment_method = "cash";
@@ -120,7 +120,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
      userData = JSON.parse(atob(encData));
     }
     if(id.value ==="" || (id.value).length<13){
-      this.toastr.info('Invalid Bill ID','',{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Invalid Bill ID','',{positionClass:"toast-top-center",progressBar:true});
     }else{
       this.spinner.show();
       this.landlordServe.getSingleRentBillData(id.value).subscribe({

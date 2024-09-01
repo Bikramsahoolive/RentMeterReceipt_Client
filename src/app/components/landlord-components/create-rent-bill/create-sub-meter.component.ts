@@ -229,7 +229,7 @@ export class CreateSubMeterComponent {
       next:(res:any)=>{
         if(res.status){
           Swal.fire({
-            title:"Bill Created!",
+            title:"Success!",
             text:"New Rentbill Created.",
             icon:"success",
             confirmButtonText:"Create Another Bill",
@@ -268,7 +268,7 @@ export class CreateSubMeterComponent {
       error:(err)=>{
         console.error(err.error);
         if(!err.error.status){
-          this.toster.error(`${err.error.text}`,'',{positionClass:"toast-top-center",progressBar:true});
+          this.toster.error(`${err.error.message}`,'',{positionClass:"toast-top-center",progressBar:true});
         }else{
         this.toster.error(`something wents wrong`,'Error',{positionClass:"toast-top-center",progressBar:true});
         }

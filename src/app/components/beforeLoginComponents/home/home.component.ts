@@ -19,7 +19,7 @@ export class HomeComponent {
   sendSubMail(emailId:any){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailRegex.test(emailId.value)){
-      this.toster.info('Invalid Email Input',"",{positionClass:'toast-top-center',progressBar:true});
+      this.toster.error('Invalid Email Input',"",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     this.spinner.show();

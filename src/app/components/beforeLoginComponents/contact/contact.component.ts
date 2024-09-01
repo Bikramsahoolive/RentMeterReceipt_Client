@@ -14,12 +14,12 @@ export class ContactComponent {
   GetMessage(name:any,email:any,message:any){
     console.log(name.value,email.value,message.value);
     if(name.value=="" || email.value=="" || message.value==""){
-      this.toastr.info("Fill all inputs.","Invalid Input",{positionClass:'toast-top-center',progressBar:true});
+      this.toastr.error("Fill all inputs.","Invalid Input",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailRegex.test(email.value)){
-      this.toastr.info("Enter a valid email.","Invalid Email",{positionClass:'toast-top-center',progressBar:true});
+      this.toastr.error("Enter a valid email.","Invalid Email",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     let data={
