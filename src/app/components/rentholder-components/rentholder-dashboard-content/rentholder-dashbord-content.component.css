@@ -1,7 +1,7 @@
 .container{
     background-image:url('../../../../assets/background/design-flower-line-wallpaper-preview.jpg');
     width: 100%;
-    height: 90vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -38,7 +38,7 @@
 @media screen and (max-width:1200px) {
     .content{
         max-width: 510px;
-        height: 610px;
+        height: 630px;
         flex-direction: column;
         min-width:230px;
     }
