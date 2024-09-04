@@ -7,7 +7,7 @@ footer {
     gap: 20px;
   }
   
-  #footer-name h2 {
+  #footer-name h3 {
     color: #5445f5;
     margin-bottom: 10px;
   }
@@ -47,7 +47,7 @@ footer {
       width: 100%;
     }
   
-    #footer-name h2 {
+    #footer-name h3 {
       color: #5445f5;
       margin-bottom: 10px;
     }
