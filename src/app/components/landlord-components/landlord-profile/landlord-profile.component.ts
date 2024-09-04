@@ -244,7 +244,7 @@ deleteAccountPrompt(id:any){
             credentials:'include'
           })
         if(response.ok){
-          return "Landlord Deleted.";
+          return "Landlord Profile Deleted.";
         }
         } catch (error) {
           return Swal.showValidationMessage(`
@@ -258,7 +258,6 @@ deleteAccountPrompt(id:any){
     
     if (result.isConfirmed) {
       Swal.fire({
-        title: "Successful",
         text:result.value,
         icon:"success"
       })
@@ -374,10 +373,11 @@ unregdPasskey(id:string){
 
   Swal.fire({
     title:"De-register Passkey",
-    text:"Are you sure ? want to De-register passkey for this user.",
+    text:"Want to De-register passkey for this user.",
     icon:"question",
     showCancelButton:true,
-    confirmButtonText:'Sure'
+    confirmButtonText:'Yes',
+    cancelButtonText:'No'
   })
   .then((result)=>{
     if(result.isConfirmed){

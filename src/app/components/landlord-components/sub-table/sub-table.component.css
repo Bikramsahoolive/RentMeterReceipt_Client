@@ -39,6 +39,7 @@
     transition: width 0.7s;
     background-color: whitesmoke;
     z-index: 1;
+    left: 5px;
 }
 .open{
     width: 310px;
