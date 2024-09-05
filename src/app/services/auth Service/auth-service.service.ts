@@ -288,7 +288,7 @@ rentholderLoginWithPasskey(data:any){
         localStorage.setItem("connect.sid",encData);
         localStorage.setItem("connect.rid",btoa(res.isActive));
         this.isLogedIn = true;
-        this.isLandlord=true;
+        this.isRentholder=true;
         this.router.navigate(['dashbord-rentholder']);
     },
     error:(err)=>{
