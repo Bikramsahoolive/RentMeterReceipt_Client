@@ -9,4 +9,8 @@
     <p>Phone: {{phone}}</p>
     <p>Designation: Rentholder</p>
     <a (click)="updatePassword()">Update Password</a>
+    <button class="passkey-btn" (click)="regPasskey()" *ngIf="!passkey_info"><i class="fa-solid fa-fingerprint" style="font-size: 30px;"></i> Register Passkey</button>
+<button class="delete-btn passkey-btn" *ngIf="passkey_info" (click)="unregdPasskey(rentholderId)"><span class="material-symbols-outlined" style="font-size: 30px;">
+    fingerprint_off
+    </span>De-register Passkey</button>
     </div>

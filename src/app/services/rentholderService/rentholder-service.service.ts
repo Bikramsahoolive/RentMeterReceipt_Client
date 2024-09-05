@@ -29,4 +29,14 @@ export class RentholderServiceService {
   updateRentholderData(id:string,data:updateRentholderData){
     return this.http.put(`${environment.apiUrl}/rentholder/user/${id}`,data,{withCredentials:true,headers:this.header});
   }
+
+  generateChallenge(){
+    return this.http.get(`${environment.apiUrl}/rentholder/reg-challenge`,{withCredentials:true,headers:this.header});
+  }
+  verifyChallenge(data:any){
+    return this.http.post(`${environment.apiUrl}/rentholder/verify-challenge`,data,{withCredentials:true,headers:this.header});
+  }
+  unregesterLandlordPasskey(id:string){
+    return this.http.delete(`${environment.apiUrl}/rentholder/unregd-passkey/${id}`,{withCredentials:true,headers:this.header});
+  }
 }

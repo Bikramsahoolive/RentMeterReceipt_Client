@@ -5,6 +5,7 @@ import { rentholderData } from 'src/app/model/data';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { RentholderServiceService } from 'src/app/services/rentholderService/rentholder-service.service';
 import { environment } from 'src/environment';
+import {startRegistration} from '@simplewebauthn/browser';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,10 +14,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./rentholder-menubar-component.component.css']
 })
 export class RentholderMenubarComponentComponent {
-  rentholderId:string="";
-  name:any='';
-  email:any='';
-  phone:any='';
+  rentholderId:string='';
+  name:string='';
+  email:string='';
+  phone:string='';
+  passkey_info:boolean=false;
   rentholderPhoto:string="../../../assets/profile.jpg";
   constructor(
     private rentHolderServe:RentholderServiceService,
@@ -34,7 +36,11 @@ export class RentholderMenubarComponentComponent {
     this.phone = userData.phone;
 
     this.rentHolderServe.getRentholderData(userData.id).subscribe({
-      next:(res:rentholderData)=>{
+      next:(res:any)=>{
+        if(res.passkey_info){
+          this.passkey_info = true;
+        }
+         
         if(res.photo && res.photo!==""){
             this.rentholderPhoto = res.photo;
            }else{
@@ -134,6 +140,95 @@ export class RentholderMenubarComponentComponent {
           
       },
     });
+  }
+  regPasskey(){
+
+    Swal.fire({
+      html:`<h3 style="margin-bottom:50px;">Security Alert!</h3>
+  <strong style="color:red;">
+      Please ensure that you are the only user registered with Fingerprint or Face ID using on your device,
+      RentⓝMeter.Receipt is not responsible for any action performed using the other user/ biometic registered on the device.
+  </strong>
+  `,
+  showCloseButton:true,
+  confirmButtonText:"Proceed"
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this.spinner.show();
+    this.rentHolderServe.generateChallenge().subscribe({
+      next:async (res:any)=>{
+        this.spinner.hide();
+  
+        const authResult = await startRegistration(res.challenge);
+        // console.log(authResult);
+        
+        this.spinner.show();
+        this.rentHolderServe.verifyChallenge({publicKey:authResult}).subscribe({
+          next:(res:any)=>{
+            this.spinner.hide();
+            if(res.status ==='success'){
+              delete res.status;
+              delete res.message;
+              localStorage.setItem("passkey_id",btoa(JSON.stringify(res)));
+              this.passkey_info = true;
+              Swal.fire({
+                title:"Passkey Registered !",
+                text:"Your Passkey Registered Successfully.",
+                icon:"success",
+                timer:3000,
+                showConfirmButton:false
+              });
+              // setTimeout(()=>{this.route.navigate(['dashbord-rentholder'])},3000);
+            }
+            
+          },
+          error:(err)=>{
+            this.spinner.hide();
+            console.log(err.error);
+            this.toster.error(err.error.message,"Error",{progressBar:true,positionClass:"toast-top-center"});
+          }
+        });
+        
+      },
+      error:(err)=>{
+        this.spinner.hide();
+        console.log(err.error);
+        this.toster.error(err.error.message,"Error",{progressBar:true,positionClass:"toast-top-center"});
+      }
+    });
+      }
+    });
+    
+  }
+  unregdPasskey(id:string){
+
+    Swal.fire({
+      title:"De-register Passkey",
+      text:"Want to De-register passkey for this user.",
+      icon:"question",
+      showCancelButton:true,
+      confirmButtonText:'Yes',
+      cancelButtonText:'No'
+    })
+    .then((result)=>{
+      if(result.isConfirmed){
+        this.spinner.show();
+        this.rentHolderServe.unregesterLandlordPasskey(id).subscribe({
+          next:(res:any)=>{
+            this.spinner.hide();
+            this.toster.success(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
+            localStorage.removeItem('passkey_id');
+            this.passkey_info = false;
+            // this.r.navigate(['dashbord-landlord']);
+          },error:(err)=>{
+            console.log(err.error);
+            this.toster.error('Something wents wrong, try again later.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+            
+          }
+        })
+      }
+    })
+    
   }
 
 }

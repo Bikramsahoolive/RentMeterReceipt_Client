@@ -74,6 +74,7 @@ export class LoginComponent {
   authenticatePasskey(){
     
       this.spinner.show();
+      if(this.passkeyUserData.userType ==='Landlord'){
     this.authServ.landlordRequestAuthOptions(this.passkeyUserData.id).subscribe({
       next:async(res:any)=>{
         this.spinner.hide();
@@ -95,6 +96,30 @@ export class LoginComponent {
         console.log(err.error);
       }
     });
+  }else if(this.passkeyUserData.userType ==='Rentholder'){
+    this.authServ.rentholderRequestAuthOptions(this.passkeyUserData.id).subscribe({
+      next:async(res:any)=>{
+        this.spinner.hide();
+
+        if(res.status && res.status ==="failure"){
+          localStorage.removeItem('passkey_id');
+          this.toastr.error(res.message,"",{positionClass:'toast-top-center',progressBar:true});
+          this.router.navigate(['']);
+          return;
+        }
+       const publicKey = await startAuthentication(res.option);
+
+       this.spinner.show();
+        this.authServ.rentholderLoginWithPasskey({userId:this.passkeyUserData.id,publicKey:publicKey});
+
+      },
+      error:(err)=>{
+        this.spinner.hide();
+        console.log(err.error);
+      }
+    });
+  }
+
   }
 
   passkeyAuthInfo(){

@@ -276,4 +276,27 @@ landlordLoginWithPasskey(data:any){
 }
 
 
+rentholderRequestAuthOptions(id:string){
+  return this.http.get(`${environment.apiUrl}/rentholder/auth-options/${id}`,{headers:this.header});
+}
+rentholderLoginWithPasskey(data:any){
+  this.http.post(`${environment.apiUrl}/rentholder/login-passkey`,data,{withCredentials:true,headers:this.header})
+  .subscribe({
+    next:(res:any)=>{
+      let localData = JSON.stringify(res);
+        let encData = btoa(localData);
+        localStorage.setItem("connect.sid",encData);
+        localStorage.setItem("connect.rid",btoa(res.isActive));
+        this.isLogedIn = true;
+        this.isLandlord=true;
+        this.router.navigate(['dashbord-rentholder']);
+    },
+    error:(err)=>{
+      console.log(err.error);
+      this.spinner.hide();
+      this.toastr.error('Something wents wrong.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+    }
+  });
+}
+
 }
