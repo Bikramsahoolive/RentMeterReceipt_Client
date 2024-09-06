@@ -165,7 +165,7 @@ Swal.fire({
           res.phone="9998887770";
           // payWithRazorpay(data:any){
             const options:any={
-              key:environment.razorpay_ket,
+              key:environment.razorpay_key,
               amount:res.amount,
               currency:res.currency,
               name:res.name,
