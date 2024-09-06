@@ -75,8 +75,8 @@ export class LandlordService {
   createOrder(data:any){
     return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
   }
- verifyPayment(paymentId:string,paymentDate:string){
-  return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId,paymentDate},{withCredentials:true,headers:this.header});
+ verifyPayment(paymentId:string){
+  return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId},{withCredentials:true,headers:this.header});
  }
 
 
