@@ -42,7 +42,8 @@ export class BillDetailsComponent {
       unitAdv: 0,
       water_bill: 0,
       maintenance:0,
-      service:0
+      service:0,
+      transaction_id:''
     }
   ];
   reserveData:rentBillData[]=[
@@ -73,7 +74,8 @@ export class BillDetailsComponent {
       unitAdv: 0,
       water_bill: 0,
       maintenance:0,
-      service:0
+      service:0,
+      transaction_id:''
     }
   ];
   userMessage:undefined | string;

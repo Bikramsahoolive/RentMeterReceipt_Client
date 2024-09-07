@@ -47,7 +47,8 @@ datalist:rentBillData[]=[
     unitAdv: 0,
     water_bill: 0,
     maintenance:0,
-    service:0
+    service:0,
+    transaction_id:''
   }
 ];
 filterType:string="";

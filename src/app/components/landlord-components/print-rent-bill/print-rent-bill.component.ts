@@ -42,7 +42,8 @@ bill:rentBillData={
   unitAdv: 0,
   water_bill: 0,
   maintenance:0,
-  service:0
+  service:0,
+  transaction_id:''
 };
 upiLink:string="";
 landlordSign:string="../../../../assets/images.png";
@@ -160,10 +161,6 @@ Swal.fire({
         next:(res:any)=>{
           this.spinner.hide();
           res.name =this.bill.consumer_Name;
-          res.description="test_payment";
-          res.email="test@test.com";
-          res.phone="9998887770";
-          // payWithRazorpay(data:any){
             const options:any={
               key:environment.razorpay_key,
               amount:res.amount,

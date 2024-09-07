@@ -73,7 +73,7 @@ export class LandlordService {
     return this.http.delete(`${environment.apiUrl}/landlord/unregd-passkey/${id}`,{withCredentials:true,headers:this.header});
   }
   createOrder(data:any){
-    return this.http.post(`${environment.apiUrl}/create-order`,data,{withCredentials:true,headers:this.header});
+    return this.http.post(`${environment.apiUrl}/rent-bill/create-order`,data,{withCredentials:true,headers:this.header});
   }
  verifyPayment(paymentId:string){
   return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId},{withCredentials:true,headers:this.header});

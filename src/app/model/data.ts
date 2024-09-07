@@ -49,7 +49,8 @@ export interface rentBillData {
     unitAdv: number,
     water_bill: number,
     maintenance:number,
-    service:number
+    service:number,
+    transaction_id:string
 }
 
 export interface rentholderData {
