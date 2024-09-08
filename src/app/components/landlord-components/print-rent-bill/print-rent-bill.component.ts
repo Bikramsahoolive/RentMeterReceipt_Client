@@ -81,7 +81,7 @@ showPayBtn:boolean=false;
             },
             error:(err)=>{
               console.log(err.error);
-              
+              this.spinner.hide();
             },
             complete:()=>{
               this.spinner.hide();
@@ -100,7 +100,7 @@ showPayBtn:boolean=false;
             },
             error:(err)=>{
               console.log(err.error);
-              
+              this.spinner.hide();
             },
             complete:()=>{
               this.spinner.hide();
@@ -111,6 +111,7 @@ showPayBtn:boolean=false;
       },
       error:(err)=>{
         console.log(err.error);
+        this.spinner.hide();
       }
     });
     
