@@ -1,7 +1,8 @@
 export interface loginData {
     phone: string,
     password: string,
-    userType?: string
+    userType?: string,
+    fcm_token?:string
 }
 
 export interface landlordData {

@@ -46,6 +46,10 @@ export class LoginComponent {
       this.toastr.error('Invalid User ID.', 'Error!',{positionClass:'toast-top-center',progressBar:true});
       return;
     }
+    const fcmToken = localStorage.getItem('fcm_token');
+    if(fcmToken!==null){
+      auth.fcm_token = fcmToken;
+    }
     
     if (auth.userType==="landlord"){
       // delete auth.userType;

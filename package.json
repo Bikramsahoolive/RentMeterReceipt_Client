@@ -21,6 +21,7 @@
     "@angular/service-worker": "^16.2.0",
     "@simplewebauthn/browser": "^10.0.0",
     "@sweetalert2/ngx-sweetalert2": "^12.4.0",
+    "firebase": "^10.13.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
     "ngx-captcha": "^13.0.0",
