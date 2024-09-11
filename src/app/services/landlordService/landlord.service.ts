@@ -11,72 +11,172 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LandlordService {
 
   constructor(private http : HttpClient, private router : Router,private spinner:NgxSpinnerService) { }
-  header= new HttpHeaders({
-    'Content-Type':'application/json',
-    // 'api_key':''
-  })
+  // header= new HttpHeaders({
+  //   'Content-Type':'application/json',
+  //   // 'api_key':''
+  // })
   addRentHolder(data:any){
-   return this.http.post(`${environment.apiUrl}/rentholder`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+   return this.http.post(`${environment.apiUrl}/rentholder`,data,{withCredentials:true,headers:header});
   }
   getAllRentholder(){
-    return this.http.get<[rentholderData]>(`${environment.apiUrl}/rentholder/landlord`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get<[rentholderData]>(`${environment.apiUrl}/rentholder/landlord`,{withCredentials:true,headers:header});
   }
   createRentBill(data:any){
-    return this.http.post(`${environment.apiUrl}/rent-bill`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.post(`${environment.apiUrl}/rent-bill`,data,{withCredentials:true,headers:header});
   }
   getAllRentBillData(){
-    return this.http.get<[rentBillData]>(`${environment.apiUrl}/rent-bill/landlord`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get<[rentBillData]>(`${environment.apiUrl}/rent-bill/landlord`,{withCredentials:true,headers:header});
   }
   deleteRentBillData(id:any){
-    return this.http.delete(`${environment.apiUrl}/rent-bill/bill/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.delete(`${environment.apiUrl}/rent-bill/bill/${id}`,{withCredentials:true,headers:header});
   }
   getSingleRentBillData(id:any){
-    return this.http.get<rentBillData>(`${environment.apiUrl}/rent-bill/bill/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get<rentBillData>(`${environment.apiUrl}/rent-bill/bill/${id}`,{withCredentials:true,headers:header});
   }
   getLandlordData(id:any){
-    return this.http.get<landlordData>(`${environment.apiUrl}/landlord/user/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get<landlordData>(`${environment.apiUrl}/landlord/user/${id}`,{withCredentials:true,headers:header});
   }
   deleteRentHolderData(id:any){
-    return this.http.delete(`${environment.apiUrl}/rentholder/user/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.delete(`${environment.apiUrl}/rentholder/user/${id}`,{withCredentials:true,headers:header});
   }
   updateLandlordData(data:any,id:any ){
-    return this.http.put(`${environment.apiUrl}/landlord/user/${id}`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.put(`${environment.apiUrl}/landlord/user/${id}`,data,{withCredentials:true,headers:header});
   }
   fineAdditionData(data:any,id:any){
-    return this.http.post(`${environment.apiUrl}/rent-bill/bill/${id}`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.post(`${environment.apiUrl}/rent-bill/bill/${id}`,data,{withCredentials:true,headers:header});
   }
   paymentBillData(data:any,id:any){
-    return this.http.put(`${environment.apiUrl}/rent-bill/bill/${id}`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.put(`${environment.apiUrl}/rent-bill/bill/${id}`,data,{withCredentials:true,headers:header});
   }
   deleteLandlordData(id:any){
-    return this.http.delete(`${environment.apiUrl}/landlord/user/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.delete(`${environment.apiUrl}/landlord/user/${id}`,{withCredentials:true,headers:header});
   }
 
   landlordPayout(data:any){
-    return this.http.post(`${environment.apiUrl}/landlord/payout`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.post(`${environment.apiUrl}/landlord/payout`,data,{withCredentials:true,headers:header});
   }
 
   getLandlordPayoutProcessed(){
-    return this.http.get(`${environment.apiUrl}/landlord/payout`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get(`${environment.apiUrl}/landlord/payout`,{withCredentials:true,headers:header});
   }
 
   checklandlordPayout(id:string){
-    return this.http.get(`${environment.apiUrl}/landlord/check-payout/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get(`${environment.apiUrl}/landlord/check-payout/${id}`,{withCredentials:true,headers:header});
   }
   generateChallenge(){
-    return this.http.get(`${environment.apiUrl}/landlord/reg-challenge`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get(`${environment.apiUrl}/landlord/reg-challenge`,{withCredentials:true,headers:header});
   }
   verifyChallenge(data:any){
-    return this.http.post(`${environment.apiUrl}/landlord/verify-challenge`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.post(`${environment.apiUrl}/landlord/verify-challenge`,data,{withCredentials:true,headers:header});
   }
   unregesterLandlordPasskey(id:string){
-    return this.http.delete(`${environment.apiUrl}/landlord/unregd-passkey/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.delete(`${environment.apiUrl}/landlord/unregd-passkey/${id}`,{withCredentials:true,headers:header});
   }
   createOrder(data:any){
-    return this.http.post(`${environment.apiUrl}/rent-bill/create-order`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.post(`${environment.apiUrl}/rent-bill/create-order`,data,{withCredentials:true,headers:header});
   }
  verifyPayment(paymentId:string){
-  return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId},{withCredentials:true,headers:this.header});
+  const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+  return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId},{withCredentials:true,headers:header});
  }
 
 

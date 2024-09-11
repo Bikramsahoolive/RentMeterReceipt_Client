@@ -195,9 +195,14 @@ paidData() {
         if(val){
 
           try {
+            const token = localStorage.getItem('auth-token')||'';
             const response = await fetch(`${environment.apiUrl}/rent-bill/bill/${id}`,{
               method:'DELETE',
-              credentials:'include'
+              // credentials:'include'
+              headers:{
+                'Content-Type':'application/json',
+                 'auth-token':token
+              }
             })
           if(response.ok){
             Swal.fire({

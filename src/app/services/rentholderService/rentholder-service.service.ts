@@ -14,29 +14,59 @@ export class RentholderServiceService {
 
   ) { }
 
-  header= new HttpHeaders({
-    'Content-Type':'application/json',
-    // 'api_key':''
-  })
+  // header= new HttpHeaders({
+  //   'Content-Type':'application/json',
+  //   // 'api_key':''
+  // })
 
   getRentholderData(id:any){
-    return this.http.get<rentholderData>(`${environment.apiUrl}/rentholder/user/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get<rentholderData>(`${environment.apiUrl}/rentholder/user/${id}`,{withCredentials:true,headers:header});
   }
 
   getAllRentBillData(){
-    return this.http.get<[rentBillData]>(`${environment.apiUrl}/rent-bill/rentholder`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get<[rentBillData]>(`${environment.apiUrl}/rent-bill/rentholder`,{withCredentials:true,headers:header});
   }
   updateRentholderData(id:string,data:updateRentholderData){
-    return this.http.put(`${environment.apiUrl}/rentholder/user/${id}`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.put(`${environment.apiUrl}/rentholder/user/${id}`,data,{withCredentials:true,headers:header});
   }
 
   generateChallenge(){
-    return this.http.get(`${environment.apiUrl}/rentholder/reg-challenge`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get(`${environment.apiUrl}/rentholder/reg-challenge`,{withCredentials:true,headers:header});
   }
   verifyChallenge(data:any){
-    return this.http.post(`${environment.apiUrl}/rentholder/verify-challenge`,data,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.post(`${environment.apiUrl}/rentholder/verify-challenge`,data,{withCredentials:true,headers:header});
   }
   unregesterLandlordPasskey(id:string){
-    return this.http.delete(`${environment.apiUrl}/rentholder/unregd-passkey/${id}`,{withCredentials:true,headers:this.header});
+    const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.delete(`${environment.apiUrl}/rentholder/unregd-passkey/${id}`,{withCredentials:true,headers:header});
   }
 }
