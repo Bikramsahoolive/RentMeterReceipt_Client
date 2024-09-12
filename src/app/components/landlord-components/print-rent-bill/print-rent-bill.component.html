@@ -23,18 +23,14 @@
                     <div class="data">
                         <span>Current Unit : </span> <Strong>{{bill.currentUnit}}</Strong>
                     </div>
-                    <div class="data">
+                    <div class="data" *ngIf="bill.adjustUnit!==0">
                         <span>Adjust Unit : </span><Strong>{{bill.adjustUnit}}</Strong>
                     </div>
                     <div class="data">
                         <span> Unit Consumed: </span> <Strong>{{bill.unitAdv}} unit/s</Strong>
                     </div>
                 </div>
-                
-                <div class="data">
-                    <span> Electric Bill( + ) : </span> <Strong *ngIf="bill.eBill!==0 else paidStatus">₹{{bill.eBill}}</Strong>
-                    
-                </div>
+
                 <div class="data" [ngSwitch]="bill.split_ebill" *ngIf="bill.split_ebill!==''">
                     <span> Split Electric Bill : </span>
                      <Strong *ngSwitchCase="'0.5'" >{{'1/2'}}</Strong>
@@ -42,6 +38,11 @@
                      <Strong *ngSwitchCase="'0.66667'" >{{'2/3'}}</Strong>
                      <Strong *ngSwitchCase="'0.25'" >{{'1/4'}}</Strong>
                      <Strong *ngSwitchCase="'0.75'" >{{'3/4'}}</Strong>
+                    
+                </div>
+                
+                <div class="data">
+                    <span> Electric Bill( + ) : </span> <Strong *ngIf="bill.eBill!==0 else paidStatus">₹ {{bill.eBill}}</Strong>
                     
                 </div>
 
@@ -52,19 +53,19 @@
                     <strong>Paid</strong>
                 </ng-template>
                 <div class="data" *ngIf="bill.water_bill!==0">
-                    <span>Water Bill( + ) : </span> <Strong>₹{{bill.water_bill}}</Strong>
+                    <span>Water Bill( + ) : </span> <Strong>₹ {{bill.water_bill}}</Strong>
                 </div>
                 <div class="data" *ngIf="bill.maintenance!==0">
-                    <span> Maintenance Charge( + ) : </span> <Strong>₹{{bill.maintenance}}</Strong>
+                    <span> Maintenance Charge( + ) : </span> <Strong>₹ {{bill.maintenance}}</Strong>
                 </div>
                 <div class="data" *ngIf="bill.service!==0">
-                    <span> Service Charge( + ) : </span> <Strong>₹{{bill.service}}</Strong>
+                    <span> Service Charge( + ) : </span> <Strong>₹ {{bill.service}}</Strong>
                 </div>
                 <div class="data" *ngIf="bill.dueAmount!==0">
-                    <span>Previous Due( + ) : </span> <Strong>₹{{bill.dueAmount}}</Strong>
+                    <span>Previous Due( + ) : </span> <Strong>₹ {{bill.dueAmount}}</Strong>
                 </div>
                 <div class="data" *ngIf="bill.paid_amt!=0">
-                    <span>Paid Amount( - ) : </span> <Strong>₹{{bill.paid_amt}}</Strong>
+                    <span>Paid Amount( - ) : </span> <Strong>₹ {{bill.paid_amt}}</Strong>
                 </div>
                 <div class="data" *ngIf="bill.transaction_id!='NA'">
                     <span>Transaction ID : </span> <Strong>{{bill.transaction_id}}</Strong>
@@ -72,7 +73,7 @@
             </div>
 
             <div class="total-bill">
-                <h3>Total Due on {{bill.consumer_Name}} : ₹{{bill.final_amt-bill.paid_amt}} /-</h3>
+                <h3>Total Due on {{bill.consumer_Name}} : ₹ {{bill.final_amt-bill.paid_amt}} /-</h3>
             </div>
             
             <div class="foot">
@@ -89,7 +90,7 @@
                         <img src="{{landlordSign}}">
                     <div class="signature-content">Signature of Landlord.</div>
                     </div>
-                    <div class="signature-content"><small>* Get 1% rebate on electric bill for online payments on rnmr.vercel.app before the due date.</small></div>
+                    <div class="signature-content"><small><i class="fa-solid fa-circle-info"></i> Get a 1% rebate on your electric bill by paying online at https://rnmr.vercel.app on or before the due date.</small></div>
                     <!-- <div class="signature-content"><small>*please verify payee data before UPI payment.</small></div> -->
                 </div>
             </div>
