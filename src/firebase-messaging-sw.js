@@ -18,10 +18,26 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon:'https://static.vecteezy.com/system/resources/thumbnails/028/114/987/small_2x/bill-3d-rendering-isometric-icon-png.png',
-    image:'https://static.vecteezy.com/system/resources/thumbnails/028/114/987/small_2x/bill-3d-rendering-isometric-icon-png.png',
     renotify:true
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close(); // Close the notification after click
+
+  // Check which action was clicked
+  if (event.action === 'open_action') {
+    // Handle the "Open" button click
+    clients.openWindow('https://rnmr.vercel.app/login'); // Open the URL in a new tab
+  } else if (event.action === 'dismiss_action') {
+    // Handle the "Dismiss" button click
+    console.log('Dismiss action clicked');
+    event.notification.close();
+  } else {
+    // Handle any default click
+    clients.openWindow('https://rnmr.vercel.app');
+  }
+});
+
