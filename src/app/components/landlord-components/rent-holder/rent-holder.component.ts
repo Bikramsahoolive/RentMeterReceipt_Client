@@ -89,9 +89,13 @@ deleteRentHolder(id:any){
           `)
         }
         try {
+          const token = localStorage.getItem('auth-token')||'';
           const response = await fetch(`${environment.apiUrl}/rentholder/user/${id}`,{
             method:'DELETE',
-            credentials:'include'
+            headers:{
+              'Content-Type':'application/json',
+               'auth-token':token
+            }
           })
         if(response.ok){
           return "Rentholder Deleted.";

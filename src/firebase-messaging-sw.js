@@ -18,6 +18,9 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
+    icon:'https://static.vecteezy.com/system/resources/thumbnails/028/114/987/small_2x/bill-3d-rendering-isometric-icon-png.png',
+    image:'https://static.vecteezy.com/system/resources/thumbnails/028/114/987/small_2x/bill-3d-rendering-isometric-icon-png.png',
+    renotify:true
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
