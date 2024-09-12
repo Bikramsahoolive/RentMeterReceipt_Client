@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MessagingService } from './services/messaging-service/messaging.service';
-import { SwUpdate } from '@angular/service-worker';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,8 +7,7 @@ import { SwUpdate } from '@angular/service-worker';
 })
 export class AppComponent {
   title = 'RNMR';
-  constructor(private messagingService: MessagingService,private updates:SwUpdate) {
-    this.updates.activateUpdate().then(()=>document.location.reload());
+  constructor(private messagingService: MessagingService){
   }
 
   ngOnInit() {
