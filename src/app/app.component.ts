@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { MessagingService } from './services/messaging-service/messaging.service';
-import { SwUpdate } from '@angular/service-worker';
-import Swal from 'sweetalert2';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,16 +7,7 @@ import Swal from 'sweetalert2';
 })
 export class AppComponent {
   title = 'RNMR';
-  constructor(private updates: SwUpdate, private messagingService: MessagingService) {
-    this.updates.versionUpdates.subscribe(event => {
-      Swal.fire({
-        text:'A New Version Was Found.',
-        confirmButtonText:'Update'
-      }).then(()=>{
-        window.location.reload();
-      });
-    });
-  }
+  constructor(private messagingService: MessagingService) {}
 
   ngOnInit() {
     this.messagingService.requestPermission();
