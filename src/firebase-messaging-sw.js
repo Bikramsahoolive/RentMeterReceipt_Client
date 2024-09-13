@@ -18,7 +18,6 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    badge:'https://www.pngitem.com/pimgs/m/121-1213451_letter-n-in-circle-hd-png-download.png',
     renotify:true
   };
 
