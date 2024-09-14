@@ -224,6 +224,7 @@ export class CreateSubMeterComponent {
       this.toster.error('Enter Valid other service Charge.','Invalid Bill Data.',{positionClass:"toast-top-center",progressBar:true});
       return;
        }
+       if(data.split_ebill==null || data.split_ebill==undefined)data.split_ebill='';
     this.spinner.show();
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
