@@ -85,7 +85,7 @@ export class HeaderComponent {
             }
           });
 
-        },60000);
+        },6000);
       
     }
 });

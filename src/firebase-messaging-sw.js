@@ -25,19 +25,13 @@ messaging.onBackgroundMessage((payload) => {
 });
 
 self.addEventListener('notificationclick', function(event) {
-  event.notification.close(); // Close the notification after click
-
-  // Check which action was clicked
-  if (event.action === 'open_action') {
-    // Handle the "Open" button click
-    clients.openWindow('https://rnmr.vercel.app/login'); // Open the URL in a new tab
-  } else if (event.action === 'dismiss_action') {
-    // Handle the "Dismiss" button click
-    console.log('Dismiss action clicked');
+  event.notification.close();
+  if (event.action =='open_action') {
+    clients.openWindow('https://rnmr.vercel.app/login');
+  } else if (event.action =='dismiss_action') {
     event.notification.close();
   } else {
-    // Handle any default click
-    clients.openWindow('https://rnmr.vercel.app');
+    // clients.openWindow('https://rnmr.vercel.app');
   }
 });
 
