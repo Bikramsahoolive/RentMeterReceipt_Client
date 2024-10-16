@@ -1,5 +1,5 @@
         <div class="container" *ngIf="authServe.isLogin()">
-            <button (click)="print()"><i class="fa-solid fa-print"></i></button>
+            <button class="button" (click)="print()"><i class="fa-solid fa-print"></i></button>
             <div class="bill">
 
             <h1>RentⓝMeter.Receipt</h1>
@@ -95,5 +95,6 @@
                 </div>
             </div>
         </div>
-            <button *ngIf="showPayBtn && authServe.Rentholder()" (click)="payNow()">Pay Now</button>
+            <button class="button" *ngIf="showPayBtn && authServe.Rentholder()" (click)="payNow()">Pay Now</button>
+            <a class="button" [routerLink]="['/bill-payment']"[queryParams]="{id:bill.id}" *ngIf="showPayBtn && authServe.Landlord()">Paid</a>
         </div>

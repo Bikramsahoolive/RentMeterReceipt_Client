@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth Service/auth-service.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  let router =inject(Router);
+  // let router =inject(Router);
   let authServ = inject(AuthServiceService);
 
   authServ.checkSession();
@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   let data:any =  localStorage.getItem('connect.rid');
   data = atob(data);
-   if(data !==false){
+   if(data !=='false'){
       return true;
   }
   return false;

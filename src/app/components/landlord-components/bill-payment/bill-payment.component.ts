@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
@@ -12,12 +12,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./bill-payment.component.css']
 })
 export class BillPaymentComponent {
-  constructor(private router:Router,private landlordServe :LandlordService,private spinner:NgxSpinnerService,private toastr:ToastrService){}
+  constructor(private route:ActivatedRoute,private router:Router,private landlordServe :LandlordService,private spinner:NgxSpinnerService,private toastr:ToastrService){}
   currentDate:any;
   toPaidAmount:number=0;
   payableAmount:any;
+  billid:any;
   ngOnInit(){
     this.currentDate = this.createDate();
+     this.route.queryParams.subscribe((params:any)=>{
+      if(params.id){
+      this.billid = params.id;
+      this.getPaymentAmount({value:params.id});
+      }
+     })
   }
 
   createDate(){

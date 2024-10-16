@@ -17,7 +17,7 @@ export class MessagingService {
     getToken(this.messaging, { vapidKey: environment.vapKey})
       .then((currentToken) => {
         if (currentToken) {
-          console.log('Token received:', currentToken);
+          // console.log('Token received:', currentToken);
           localStorage.setItem('fcm_token',currentToken);
         } else {
           console.error('No registration token available.');

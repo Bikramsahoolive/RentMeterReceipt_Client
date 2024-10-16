@@ -94,7 +94,7 @@
     align-items: center;
     justify-content: center;
 }
-button{
+.button{
     margin: 20px 0;
     padding: 10px 25px;
     background-color: #7373f3;
@@ -103,6 +103,7 @@ button{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
 }
 @media screen and (max-width:420px) {
     .bill{

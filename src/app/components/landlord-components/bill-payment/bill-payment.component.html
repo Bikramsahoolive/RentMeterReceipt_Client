@@ -4,7 +4,7 @@
     <h1 class="head">Bill Payment (Offline)</h1>
     <div class="input-box">
         <label for="load">Bill ID:</label>
-        <input type="number" ngModel name="id" #billId (blur)="getPaymentAmount(billId)">
+        <input type="number" [(ngModel)]="billid" name="id" #billId (blur)="getPaymentAmount(billId)">
     </div>
     <div class="input-box">
         <label for="load">Payment Date:</label>
