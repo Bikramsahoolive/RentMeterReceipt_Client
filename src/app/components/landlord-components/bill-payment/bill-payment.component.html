@@ -2,6 +2,7 @@
     <div class="content">
 <form #billPay="ngForm" (submit)="billPayment(billPay)">
     <h1 class="head">Bill Payment (Offline)</h1>
+    <strong style="text-align: center;display: block;">{{rname}}</strong>
     <div class="input-box">
         <label for="load">Bill ID:</label>
         <input type="number" [(ngModel)]="billid" name="id" #billId (blur)="getPaymentAmount(billId)">

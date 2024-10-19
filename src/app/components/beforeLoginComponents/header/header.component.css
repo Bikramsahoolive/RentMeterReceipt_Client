@@ -173,4 +173,7 @@ div #logout:hover{
     header{
         display: none;
     }
+    .internet-status{
+        display: none;
+    }
 }

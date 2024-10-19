@@ -17,6 +17,7 @@ export class BillPaymentComponent {
   toPaidAmount:number=0;
   payableAmount:any;
   billid:any;
+  rname:string="";
   ngOnInit(){
     this.currentDate = this.createDate();
      this.route.queryParams.subscribe((params:any)=>{
@@ -141,6 +142,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
           if(res.final_amt == res.paid_amt){
             this.toastr.success('Bill Already Paid','',{positionClass:"toast-top-center",progressBar:true});
           }else{
+            this.rname = `${res.consumer_Name} | ${res.billingDate}`;
             this.toPaidAmount = res.final_amt - res.paid_amt;
             this.payableAmount = res.final_amt - res.paid_amt;
           }
