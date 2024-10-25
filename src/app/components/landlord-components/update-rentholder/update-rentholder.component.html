@@ -24,8 +24,8 @@
             <input type="number" [(ngModel)]="renthplderData.rent" name="rent" [disabled]="rentInput">
         </div>
         <div class="input-box">
-            <span class="details"><input type="checkbox" #cunitcheck (change)="toggleInput(cunitcheck.checked,'cunit')" >Initial Meter Unit(Sub Meter):</span>
-            <input type="number" [(ngModel)]="renthplderData.current_unit" name="current_unit" [disabled]="cunitInput">
+            <span class="details"><input type="checkbox" #cunitcheck (change)="toggleInput(cunitcheck.checked,'cunit')" >Security Deposit:</span>
+            <input type="number" [(ngModel)]="renthplderData.deposit_amt" name="deposit_amt" [disabled]="cunitInput">
         </div>
         <div class="input-box">
             <span class="details"><input type="checkbox" #photocheck (change)="toggleInput(photocheck.checked,'photo')" >Photo <small>(jpg,jpeg,png max-size:5MB)</small>:</span>

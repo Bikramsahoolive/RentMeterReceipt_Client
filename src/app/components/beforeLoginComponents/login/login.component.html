@@ -2,7 +2,7 @@
     <div class="login-form">
         <h1>Login</h1>
         <!-- <p>{{adminService.loginMsg()}}</p> -->
-        <div  class="passkey" style="width:100%; height:400px; display:flex;align-items: center;justify-content: center;flex-direction: column; gap: 20px;" *ngIf="showDiv">
+        <div  class="passkey" style="width:100%; height:400px; display:flex;align-items: center;justify-content: center;flex-direction: column; gap: 10px;" *ngIf="showDiv">
             <h4 class="name">{{passkeyUserData.name}}</h4>
             <strong style="color: green;">( ******{{passkeyUserData.userid}} )</strong>
             <span>User Type : <strong>{{passkeyUserData.userType}}</strong></span>
@@ -11,12 +11,14 @@
                 fingerprint
                 </span>
                 <small>(Click here to Login with Passkey)</small>
-                <div style="display: flex; align-items: center;cursor: pointer; color: #551a8b;" (click)="loginWithPassword()">
-                    <a>Login with User ID & Password</a>
-            <span class="material-symbols-outlined">
-                arrow_forward
-                </span>
-                </div>
+                <!-- <div style="display: flex; align-items: center;cursor: pointer; color: #551a8b;"> -->
+                    <button class="button" (click)="loginWithPassword()">Login with Password 
+                        <!-- <span class="material-symbols-outlined">
+                            arrow_forward
+                            </span> -->
+                    </button>
+           
+                <!-- </div> -->
             
         </div>
 
@@ -39,7 +41,7 @@
                 </select>
             </div>
             
-                <button>Login</button>
+                <button class="button">Login</button>
                 <div class="auth-info" *ngIf="!showBtn">
                     <div class="passkey-auth" (click)="passkeyAuthInfo()">
                         <span class="material-symbols-outlined info">
@@ -50,7 +52,7 @@
                     fingerprint
                     </span>
                 </div></div>
-                <button *ngIf="showBtn" style="margin: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button>
+                <button class="button" *ngIf="showBtn" style="margin: 10px;" type="button" (click)="loginWithPasskey()">Login with PassKey</button>
                 <span  style="display: block;margin-bottom: 10px;"><a routerLink="/forgot-password" style="cursor: pointer; color:#551a8b; text-decoration:none" (click)="scrollToTop()">Forgot Password</a></span>
                 <span>Are you a landlord ? </span><a routerLink="/signup" style="text-decoration: none;" (click)="scrollToTop()">Register now</a>
         </form>
