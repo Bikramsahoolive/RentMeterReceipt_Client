@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class PrintRentBillComponent {
   constructor(private ngZone:NgZone,private router:Router, private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
 paramId:any='';
+
 bill:rentBillData={
   adjustUnit: 0,
   billingDate: '',
@@ -43,7 +44,12 @@ bill:rentBillData={
   water_bill: 0,
   maintenance:0,
   service:0,
-  transaction_id:''
+  transaction_id:'',
+  pendingBills:[{
+    id:'',
+    billingDate:'',
+    amount:0
+  }]
 };
 upiLink:string="";
 landlordSign:string="../../../../assets/images.png";

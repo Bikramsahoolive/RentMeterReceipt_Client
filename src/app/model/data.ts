@@ -51,7 +51,12 @@ export interface rentBillData {
     water_bill: number,
     maintenance:number,
     service:number,
-    transaction_id:string
+    transaction_id:string,
+    pendingBills:[{
+        id:string,
+        billingDate:string,
+        amount:number
+    }]
 }
 
 export interface rentholderData {
