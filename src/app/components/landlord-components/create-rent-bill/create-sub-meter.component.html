@@ -1,6 +1,12 @@
 <div class="content">
     <div class="cont">
     <h1 class="titel">Create Rent-Bill</h1>
+    <span style="display: block;
+    text-align: center;
+    border: 5px solid gray;
+    border-radius: 10px;">
+    <strong style="display: block;"> Remaining Bills : {{'9/10'}}</strong><small>* Auto renew next month.</small>
+</span>
 <form #rentbill="ngForm" (submit)="createRentBill(rentbill)">
     <div class="user-details">
     <div class="input-box">
