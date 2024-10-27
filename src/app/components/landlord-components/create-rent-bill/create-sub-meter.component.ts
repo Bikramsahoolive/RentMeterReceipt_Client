@@ -27,6 +27,7 @@ export class CreateSubMeterComponent {
   previousUnit:any;
   rentStatus:string='';
   ebillStatus:string='';
+  billcount:number=0;
   isRentholderChoosen:boolean = true;
   @ViewChild('mainMeter') mainMeter!: ElementRef;
   @ViewChild('subMeter') subMeter!: ElementRef;
@@ -53,7 +54,20 @@ export class CreateSubMeterComponent {
       complete:()=>{
         this.spinner.hide();
       }
-    })
+    });
+    this.getBillCount();
+  }
+  getBillCount(){
+    const token = localStorage.getItem('connect.sid')||"";
+    const user = JSON.parse(atob(token));
+    this.landlordServ.getLandlordData(user.id).subscribe({
+      next:(res:any)=>{
+        this.billcount = res.billCount;
+      },error:(err)=>{
+        console.log(err.error);
+        this.toster.error('Something wents wrong.');
+      }
+    });
   }
   setCurrentDate(){
     let date= new Date();
@@ -229,6 +243,7 @@ export class CreateSubMeterComponent {
     this.landlordServ.createRentBill(data).subscribe({
       next:(res:any)=>{
         if(res.status){
+          this.getBillCount();
           Swal.fire({
             title:"Success!",
             text:"New Rentbill Created.",

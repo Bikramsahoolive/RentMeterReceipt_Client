@@ -5,7 +5,7 @@
     text-align: center;
     border: 5px solid gray;
     border-radius: 10px;">
-    <strong style="display: block;"> Remaining Bills : {{'9/10'}}</strong><small>* Auto renew next month.</small>
+    <strong style="display: block;"> Remaining Bills : {{billcount}}</strong><small>* Auto renew next month.</small>
 </span>
 <form #rentbill="ngForm" (submit)="createRentBill(rentbill)">
     <div class="user-details">
