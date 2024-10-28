@@ -17,6 +17,31 @@ export class AddRentHolderComponent {
   deedFileUrl:string='';
   photoFile:string='';
 
+  totalRentholderCount:number=0;
+  rentholderCanRegister:number=0;
+
+  ngOnInit(){
+    this.getRentholderCountData();
+  }
+
+  getRentholderCountData(){
+    const token = localStorage.getItem('connect.sid')||'';
+    const user = JSON.parse(atob(token));
+    this.addRentService.getLandlordData(user.id).subscribe({
+      next:(res:any)=>{
+        this.totalRentholderCount=res.rcrCount;
+        
+
+        this.addRentService.getAllRentholder().subscribe({
+          next:(resp:any)=>{
+            this.rentholderCanRegister=res.rcrCount - resp.length;
+            
+          }
+        });
+      }
+    });
+  }
+
   fileInput(event:any,type:string,inputField:any){
     this.spinner.show();
     const file = event.target.files[0];

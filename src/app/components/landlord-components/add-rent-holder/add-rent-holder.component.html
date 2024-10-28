@@ -1,10 +1,10 @@
 <div class="content">
 <div class="cont">
-    <h1 class="titel">Add Rent-Holder</h1>
+    <h1 class="titel">Add Rentholder</h1>
     <strong style="display: block;
     text-align: center;
     border: 5px solid gray;
-    border-radius: 10px;">Rentholder can register : {{'5/10'}}</strong>
+    border-radius: 10px;">Rentholder can register : {{rentholderCanRegister}} / {{totalRentholderCount}}</strong>
 <form #rentHolderData="ngForm" (ngSubmit)="getRentHolderData(rentHolderData)">
     <div class="user-details">
     <div class="input-box" style="width: 100%;">
