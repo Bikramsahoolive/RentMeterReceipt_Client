@@ -103,10 +103,11 @@ export class RentholderMenubarComponentComponent {
 
                
                 try {
+                  let token = localStorage.getItem('auth-token')||"";
                   const response = await fetch(`${environment.apiUrl}/rentholder/user/${this.rentholderId}`,{
                     method:'PUT',
                     credentials:'include',
-                    headers:{"Content-Type":"application/json"},
+                    headers:{"Content-Type":"application/json","auth-token":token},
                     body:JSON.stringify({password:val})
                   });
                 if(response.ok){
@@ -129,8 +130,8 @@ export class RentholderMenubarComponentComponent {
                 icon:"success"
               })
               .then(()=>{
-                setTimeout(()=>{this.authServ.logout();},1000);
-                window.scrollTo({ top: 0, behavior:'instant' });
+                // setTimeout(()=>{this.authServ.logout();},1000);
+                // window.scrollTo({ top: 0, behavior:'instant' });
               })
         
           }else{
