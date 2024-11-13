@@ -127,28 +127,28 @@ showPayBtn:boolean=false;
     window.print();
   }
 
-  openUpi(){
-    if(this.authServe.Rentholder()){
-      Swal.fire({
-        title:"Info",
-        icon:"info",
-        text:"Direct UPI payment through thirdparty website may give some error, Try scan and pay on UPI."
-      })
-      .then((result:any)=>{
-        console.log(result);
-        //isConfirmed
-        //isDenied
-        //value
-        const upiBtn = document.createElement('a');
-        upiBtn.href=this.upiLink;
-        upiBtn.click();
-      });
-    }
-  }
+  // openUpi(){
+  //   if(this.authServe.Rentholder()){
+  //     Swal.fire({
+  //       title:"Info",
+  //       icon:"info",
+  //       text:"Direct UPI payment through thirdparty website may give some error, Try scan and pay on UPI."
+  //     })
+  //     .then((result:any)=>{
+  //       console.log(result);
+  //       //isConfirmed
+  //       //isDenied
+  //       //value
+  //       const upiBtn = document.createElement('a');
+  //       upiBtn.href=this.upiLink;
+  //       upiBtn.click();
+  //     });
+  //   }
+  // }
   payNow(){
 Swal.fire({
   title:"Payment Gateway",
-  text:"Additional 3% of convenience fee applied, Click on proceed to complete the payment.",
+  text:"Additional 3% of convenience fee will applied after DUE DATE. Click on proceed to complete the payment.",
   icon:'info',
   showConfirmButton:true,
   confirmButtonText:"Proceed",
