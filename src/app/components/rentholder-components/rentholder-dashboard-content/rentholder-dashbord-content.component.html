@@ -2,6 +2,32 @@
   <h1 class="titel">Rentholder Dashboard</h1>
 
   <div class="content">
+    
+    <!-- Rent Details  -->
+    <div class="rentholder-details" style="width: auto;min-width: 250px; background-color: darkgray;padding: 10px 20px;border-radius: 10px">
+      <h3>Rent Details</h3>
+    <hr>
+    <hr>
+    <br>
+    <span><strong>Rent Amount:</strong>₹{{rentholderData.rent}}/-</span><br>
+    <span><strong>Security Deposit:</strong>₹{{rentholderData.deposit_amt}}/-</span><br>
+    <!-- <span><strong>Initial Meter Unit:</strong>{{rentholderData.current_unit}} Unit/s</span><br> -->
+    <span><strong>Member Count:</strong>{{rentholderData.member_count}} Person/s</span><br>
+    <!-- <span><strong>Rent Document:</strong><a href="">Download</a></span><br> -->
+    </div>
+
+    <!-- Bill Details -->
+    <div class="bill-details" style="width: auto;min-width: 250px; background-color: darkgray;padding: 10px 20px;border-radius: 10px">
+      <h3>Bill Details</h3>
+    <hr>
+    <hr>
+    <br>
+    <span><strong>Total Bill Created:</strong><a routerLink="/rentholder/bill-data" style="color: #0000ee;text-decoration: none;">{{totalBillCount}}</a></span><br>
+    <span><strong>Total Bill Paid:</strong>₹{{totalPaid}}/-</span><br>
+    <span><strong>Total Due:</strong>₹{{totalDue}}/-</span>
+    </div>
+
+    <!-- Landlord Details -->
     <div class="landlord-details" style="width: auto; min-width: 250px; background-color: darkgray;padding: 10px 20px;border-radius: 10px">
       <h3>Landlord Details</h3>
     <hr>
@@ -10,25 +36,6 @@
     <span><strong>Name:</strong>{{landlordData.name}}</span><br>
     <span><strong>Phone:</strong><a href="tel:+91{{landlordData.phone}}" style="text-decoration: none;">{{landlordData.phone}}</a></span><br>
     <span><strong>Email:</strong><a href="mailto:{{landlordData.email}}" style="text-decoration: none;">{{landlordData.email}}</a></span><br>
-    </div>
-    <div class="rentholder-details" style="width: auto;min-width: 250px; background-color: darkgray;padding: 10px 20px;border-radius: 10px">
-      <h3>Rent Details</h3>
-    <hr>
-    <hr>
-    <br>
-    <span><strong>Rent Amount:</strong>₹{{rentholderData.rent}}/-</span><br>
-    <span><strong>Security Deposit:</strong>₹{{rentholderData.deposit_amt}}/-</span><br>
-    <span><strong>Initial Meter Unit:</strong>{{rentholderData.current_unit}} Unit/s</span><br>
-    <span><strong>Member Count:</strong>{{rentholderData.member_count}} Person/s</span><br>
-    <!-- <span><strong>Rent Document:</strong><a href="">Download</a></span><br> -->
-    </div>
-    <div class="bill-details" style="width: auto;min-width: 250px; background-color: darkgray;padding: 10px 20px;border-radius: 10px">
-      <h3>Bill Details</h3>
-    <hr>
-    <hr>
-    <br>
-    <span><strong>Total Bill Paid:</strong>₹{{totalPaid}}/-</span><br>
-    <span><strong>Total Due:</strong>₹{{totalDue}}/-</span>
     </div>
   </div>
   <div>.</div>

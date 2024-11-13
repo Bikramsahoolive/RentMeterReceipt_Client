@@ -51,6 +51,7 @@ export class RentholderDashbordContentComponent {
   // datalist:any;
   totalPaid:number=0;
   totalDue:number=0;
+  totalBillCount:number=0;
   ngOnInit(){
     let getEncData:any = localStorage.getItem('connect.sid');
     let actualData = atob(getEncData);
@@ -82,7 +83,7 @@ export class RentholderDashbordContentComponent {
 
     this.rentholderServe.getAllRentBillData().subscribe({
       next:(res:rentBillData[])=>{
-
+        this.totalBillCount=res.length;
         let paidAmount=0;
         let billAmount = 0;
         res.forEach((e:rentBillData)=>{

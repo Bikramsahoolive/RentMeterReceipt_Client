@@ -18,6 +18,7 @@ export class RentholderMenubarComponentComponent {
   name:string='';
   email:string='';
   phone:string='';
+  joinDate:string='';
   passkey_info:boolean=false;
   rentholderPhoto:string="../../../assets/profile.jpg";
   constructor(
@@ -37,6 +38,7 @@ export class RentholderMenubarComponentComponent {
 
     this.rentHolderServe.getRentholderData(userData.id).subscribe({
       next:(res:any)=>{
+        this.joinDate=res.doj;
         if(res.passkey_info){
           this.passkey_info = true;
         }
