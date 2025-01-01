@@ -1,0 +1,57 @@
+<div class="search">
+    <div class="searchbar" #searchBox><i class="fa-solid fa-magnifying-glass search-icon" (click)="openSearch(searchBox,searchInput)"></i>
+        <input type="search" class="hide" #searchInput placeholder="Search" [(ngModel)]="searchTerm" (input)="hidePagination()"></div>
+    <div class="filter">
+        <i class="fa-solid fa-filter"></i>
+        <select class="selector" #filter (change)="dataFilter(filter.value)" [disabled]="!hidePaginationBtn">
+            <option value="0">New to Old</option>
+            <option value="1">Old  to New</option>
+        </select>
+    </div>
+</div>
+<section class="container">
+    <div class="content">
+        <h1 class="head">Payment History <br><small style="color: gray;">(Effective from 01/01/2025)</small></h1>
+        <div class="file-btn" style="position: relative; width: 100%;height: 25px;" *ngIf="isTableDataAvailable">
+          <div style="position: absolute;right: 0; display: flex; gap: 15px;">
+            <!-- <i class="fa-regular fa-file-excel" style=" font-size: 20px; cursor: pointer;" (click)="downloadXlsFile()"></i> -->
+            <i class="fa-solid fa-file-pdf" style=" font-size: 20px; cursor: pointer;" (click)="downloadPdfFile()"></i>
+          </div>
+        </div>
+    <div class="data">
+    
+    <div class="data-table">
+    <table class="table" *ngIf="isTableDataAvailable">
+        <thead>
+          <th>Bill ID</th>
+          <th>Consumer Name</th>
+          <th>Billing Date</th>
+          <th>Bill Amount</th>
+          <th>Paid Amount</th>
+          <th>Payment Method</th>
+          <th>Payment Date</th>
+          <th>Transaction ID</th>
+          <th>Remaining Amount</th>
+          
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of datalist | search:searchTerm |paginate:{itemsPerPage:50 ,currentPage:page,totalItems:datalist.length};" [ngSwitch]="data.split_ebill">
+            <td data-label="Bill ID : "><a routerLink="/print-rent-bill/{{data.billId}}">{{data.billId}}</a> <i class="fa-regular fa-copy " #copyBtn style="margin-left: 20px;cursor: pointer; " (click)="copyBillId(copyBtn,data.billId)"></i></td>
+            <td data-label="Consumer Name : ">{{data.consumerName}}</td>
+            <td data-label="Bill Date : ">{{data.billDate}}</td>
+            <td data-label="Bill Amount : ">{{data.billAmount}}</td>
+            <td data-label="Paid Amount : ">{{data.paidAmount}}</td>
+            <td data-label="payment Method : ">{{data.paymentMethod}}</td>
+            <td data-label="Payment Date : ">{{data.paymentDate}}</td>
+            <td data-label="Transaction ID : ">{{data.transactionId}}</td>
+            <td data-label="Remaining Amount : ">{{data.remainingAmount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
+</section>
+<div class="pagination">
+  <pagination-controls class="paginate" (pageChange)="page=$event" *ngIf="hidePaginationBtn"></pagination-controls>
+</div>

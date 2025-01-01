@@ -71,6 +71,7 @@ import { PaymentProcessComponent } from './components/rentholder-components/paym
 import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RefundPolicyComponent } from './components/beforeLoginComponents/refund-policy/refund-policy.component';
+import { LandlordPaymentHistoryComponent } from './components/landlord-components/landlord-payment-history/landlord-payment-history.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { RefundPolicyComponent } from './components/beforeLoginComponents/refund
     PayoutComponent,
     PaymentProcessComponent,
     ProcessedPayoutComponent,
-    RefundPolicyComponent
+    RefundPolicyComponent,
+    LandlordPaymentHistoryComponent
   ],
   imports: [
     BrowserModule,

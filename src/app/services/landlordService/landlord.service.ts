@@ -179,5 +179,14 @@ export class LandlordService {
   return this.http.post(`${environment.apiUrl}/rent-bill/verify-payment`,{paymentId},{withCredentials:true,headers:header});
  }
 
+ getLandlordRentPaymentData(){
+  const token = localStorage.getItem('auth-token')||'';
+  const header = new HttpHeaders({
+    'Content-Type':'application/json',
+    'auth-token':token
+  });
+  return this.http.get(`${environment.apiUrl}/landlord/rentBill/paymentData`,{withCredentials:true,headers:header});
+}
+
 
 }

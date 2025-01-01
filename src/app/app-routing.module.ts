@@ -53,7 +53,7 @@ import { PaymentProcessComponent } from './components/rentholder-components/paym
 import { adminAuthGuard } from './guard/admin-auth.guard';
 import { ProcessedPayoutComponent } from './components/landlord-components/processed-payout/processed-payout.component';
 import { RefundPolicyComponent } from './components/beforeLoginComponents/refund-policy/refund-policy.component';
-
+import { LandlordPaymentHistoryComponent } from './components/landlord-components/landlord-payment-history/landlord-payment-history.component';
 const routes: Routes = [
   {path:'',component:HomeComponent},
   // {path:'home',component:HomeComponent},
@@ -69,6 +69,7 @@ const routes: Routes = [
   {path:'unsubscribe/:id',component:UnsubscribeMailComponent},
   {path:'unsubscribe',component:UnsubscribeMailComponent},
   {path:'developer',component:DeveloperDetailsComponent},
+  {path:'landlord/payment-history',component:LandlordPaymentHistoryComponent,canActivate:[authGuard]},
 
   {path:'dashbord-admin',component:DashbordComponent,canActivate:[adminAuthGuard],
 children:[
