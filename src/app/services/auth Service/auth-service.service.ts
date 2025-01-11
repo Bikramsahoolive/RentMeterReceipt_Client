@@ -337,4 +337,8 @@ rentholderLoginWithPasskey(data:any){
   });
 }
 
+serverStatus(){
+  return this.http.get(`${environment.apiUrl}`,{headers:this.header});
+}
+
 }
