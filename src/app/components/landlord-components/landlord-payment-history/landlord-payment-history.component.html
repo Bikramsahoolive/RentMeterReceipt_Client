@@ -28,10 +28,11 @@
           <th>Billing Date</th>
           <th>Bill Amount</th>
           <th>Paid Amount</th>
+          <th>Balance</th>
           <th>Payment Method</th>
           <th>Payment Date</th>
           <th>Transaction ID</th>
-          <th>Remaining Amount</th>
+          <th>Payment ID</th>
           
         </thead>
         <tbody>
@@ -41,10 +42,11 @@
             <td data-label="Bill Date : ">{{data.billDate}}</td>
             <td data-label="Bill Amount : ">{{data.billAmount}}</td>
             <td data-label="Paid Amount : ">{{data.paidAmount}}</td>
+            <td data-label="Balance : ">{{data.remainingAmount}}</td>
             <td data-label="payment Method : ">{{data.paymentMethod}}</td>
             <td data-label="Payment Date : ">{{data.paymentDate}}</td>
             <td data-label="Transaction ID : ">{{data.transactionId}}</td>
-            <td data-label="Remaining Amount : ">{{data.remainingAmount}}</td>
+            <td data-label="Payment ID : ">{{data.id}}</td>
           </tr>
         </tbody>
       </table>

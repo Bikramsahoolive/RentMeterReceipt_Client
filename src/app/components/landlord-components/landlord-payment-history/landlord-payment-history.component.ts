@@ -36,7 +36,6 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
     this.spinner.show();
     this.landlordServ.getLandlordRentPaymentData().subscribe({
       next:(res:any)=>{
-        console.log(res);
         
 
         this.isTableDataAvailable = true;
@@ -44,7 +43,6 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
         res.forEach((e:any)=>{
           delete e.landlordId;
           delete e.landlordName;
-          delete e.id;
           delete e.rentholderId;
         });
 
@@ -238,8 +236,8 @@ oldToNew:boolean=false;
           const textX = (pageWidth - textWidth)/2;
 
           doc.text(title,textX,10);
-          const cols = ['Bill ID','Consumer Name','Bill Date','Bill Amount','Paid Amount','Payment Method','Payment Date','Txn Id','Remaining Amount']
-          const rows = sheetData.map((e: { billId: any; consumerName: any; billDate: any; billAmount: any; paidAmount: any; paymentMethod: any; paymentDate: any; transactionId: any; remainingAmount: any; })=>[e.billId,e.consumerName,e.billDate,e.billAmount,e.paidAmount,e.paymentMethod,e.paymentDate,e.transactionId,e.remainingAmount]);
+          const cols = ['Bill ID','Name','Bill Date','Bill Amount','Paid Amount','Balance','Method','Payment Date','Txn Id','Payment ID']
+          const rows = sheetData.map((e: { billId: any; consumerName: any; billDate: any; billAmount: any; paidAmount: any;remainingAmount:any; paymentMethod: any; paymentDate: any; transactionId: any; id: any; })=>[e.billId,e.consumerName,e.billDate,e.billAmount,e.paidAmount,e.remainingAmount,e.paymentMethod,e.paymentDate,e.transactionId,e.id]);
           (doc as any).autoTable({
             head:[cols],
             body:rows,

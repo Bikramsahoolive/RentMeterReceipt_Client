@@ -59,16 +59,16 @@ export class HeaderComponent {
             // Prevent closing by immediately reopening the toast
             Toast.fire({
               icon: "warning",
-              title: "Connecting to Server...",
+              title: "Hang on! Waking server...",
             });
           },
         });
         Toast.fire({
           icon: "warning",
-          title: "Connecting to Server..."
+          title: "Hang on! Waking Server..."
         });
     
-    
+    // return
         this.authService.serverStatus().subscribe({
           next:(res:any)=>{
             if(res.status && res.status !=="OK"){
@@ -86,13 +86,13 @@ export class HeaderComponent {
                   // Prevent closing by immediately reopening the toast
                   Toast1.fire({
                     icon: "error",
-                    title: "Server is down, Try later."
+                    title: "Please Refresh to try again"
                   });
                 },
               });
               Toast1.fire({
                 icon: "error",
-                title: "Server is down, Try later."
+                title: "Server is temporarily down"
               });
             }else{
               Toast.close();
@@ -100,7 +100,7 @@ export class HeaderComponent {
                 toast: true,
                 position: "top",
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 3000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.onmouseenter = Swal.stopTimer;
@@ -130,13 +130,13 @@ export class HeaderComponent {
                   // Prevent closing by immediately reopening the toast
                   Toast1.fire({
                     icon: "error",
-                    title: "Server is down, Try later."
+                    title: "Please Refresh to try again"
                   });
                 },
               });
               Toast1.fire({
                 icon: "error",
-                title: "Server is down, Try later."
+                title: "Server is temporarily down"
               });
           }
         });
