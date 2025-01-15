@@ -19,6 +19,18 @@ export class BillPaymentComponent {
   billid:any;
   rname:string="";
   ngOnInit(){
+    navigator.clipboard.readText().then((text)=>{
+      if(text.length!==13){
+        this.toastr.error('Invalid Bill ID','',{positionClass:"toast-top-center",progressBar:true});
+        return;
+      }
+      this.billid = text;
+      this.getPaymentAmount({value:text});
+    }).catch((err)=>{
+      console.log(err);
+    })
+    
+
     this.currentDate = this.createDate();
      this.route.queryParams.subscribe((params:any)=>{
       if(params.id){
