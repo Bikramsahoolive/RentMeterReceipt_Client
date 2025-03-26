@@ -7,9 +7,10 @@
             <strong style="color: green;">( ******{{passkeyUserData.userid}} )</strong>
             <span>User Type : <strong>{{passkeyUserData.userType}}</strong></span>
             <!-- <i class="fa-solid fa-fingerprint bio" (click)="authenticatePasskey()"></i> -->
-            <span class="material-symbols-outlined bio" style="font-size: 60px;font-weight: 1000;" (click)="authenticatePasskey()">
+            <!-- <span class="material-symbols-outlined bio" style="font-size: 60px;font-weight: 1000;" (click)="authenticatePasskey()">
                 fingerprint
-                </span>
+                </span> -->
+                <img src="../../../../assets/fingerprint_40dp_RGB(158 181 203)_FILL0_wght400_GRAD0_opsz40.svg" class="finger-print-logo" alt="fingerprint" (click)="authenticatePasskey()">
                 <small>(Click here to Login with Passkey)</small>
                 <!-- <div style="display: flex; align-items: center;cursor: pointer; color: #551a8b;"> -->
                     <button class="button" (click)="loginWithPassword()">Login with Password 

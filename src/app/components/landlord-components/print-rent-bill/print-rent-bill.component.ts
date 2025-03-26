@@ -58,8 +58,17 @@ paymentMethod:string='';
 paidSign:string='';
 showPayBtn:boolean=false;
   ngOnInit(){
+    let urlid = this.route.snapshot.paramMap.get('id');
+    this.getBillData(urlid);
+  }
+  
+
+  getBillData(urlid:any){
     this.spinner.show();
-      let urlid = this.route.snapshot.paramMap.get('id');
+      this.upiLink ='';
+      this.boxVal='';
+      this.paidSign='';
+      this.paymentMethod='';
     this.landlordServ.getSingleRentBillData(urlid).subscribe({
       next:(res:rentBillData)=>{
         let remainingAmt = Number(res.final_amt ) - Number(res.paid_amt);

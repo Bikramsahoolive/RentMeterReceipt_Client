@@ -20,6 +20,15 @@
     text-align: center;
     box-shadow:0 0 5px 2px gray;
 }
+.finger-print-logo{
+    width: 80px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #3a3838;
+    color: rgb(192 225 255 / 74%);
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 .login-form h1{
     border-bottom: 2px double gray;

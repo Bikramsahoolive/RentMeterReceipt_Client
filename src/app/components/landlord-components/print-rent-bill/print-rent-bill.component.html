@@ -78,7 +78,7 @@
                 <div class="content" *ngIf="bill.pendingBills.length>0">
                     <h4 style="text-decoration: underline; margin-bottom: 5px; text-align: center;">Pending Bills</h4>
                     <div class="data" *ngFor="let pBill of bill.pendingBills">
-                        <span>{{pBill?.id}} | {{pBill?.billingDate}} :  </span><strong>₹{{pBill?.amount}}</strong>
+                        <span> <a routerLink="/print-rent-bill/{{pBill.id}}" style="text-decoration: none;" (click)="getBillData(pBill.id)">{{pBill?.id}}</a> | {{pBill?.billingDate}} :  </span><strong>₹{{pBill?.amount}}</strong>
                     </div>
                 </div>
             
