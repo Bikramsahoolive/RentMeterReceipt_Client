@@ -65,6 +65,35 @@
 .gray-card{
     background-image: linear-gradient(45deg, #888282, rgb(50 50 46));
 }
+.chart{
+    display:flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 20px 5px;
+    align-items: center;
+    justify-content: center;
+}
+.chart1{
+    width: 70%;
+    background-color: rgba(245, 245, 245, 0.78);
+    border-radius: 8px;
+    height: auto;
+}
+.chart2{
+    width: 30%;
+    background-color: rgba(245, 245, 245, 0.711);
+    border-radius: 8px;
+    height: auto;
+}
+
+@media screen and (max-width:1300px) {
+    .chart1{
+        width: 100%;
+    }
+    .chart2{
+        width: 100%;
+    }
+}
 
 @media screen and (max-width:1220px) {
     .card{
