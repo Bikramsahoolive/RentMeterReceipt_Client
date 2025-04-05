@@ -3,7 +3,8 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr'
 import { landlordData, rentBillData, rentholderData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
-
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 @Component({
   selector: 'app-dashbord-content',
   templateUrl: './dashbord-content.component.html',
@@ -22,7 +23,58 @@ export class DashbordContentComponent {
     billCount:number=0;
     pendingPayout:number=0;
     processedPayoutAmount:number=0;
+    public chart1: any;
+    public chart2: any;
+
+    data1 = {
+      labels: [
+        'Billed Amount',
+        'Collected Amount',
+        'Pending Amount'
+      ],
+      datasets: [{
+        label: 'Bill and Collection',
+        data: [50, 40, 10],
+        backgroundColor: [
+           'rgb(255, 48, 93)',
+           'rgb(54, 162, 235)', 
+           'rgb(235, 142, 54)', 
+        ],
+        hoverOffset: 4
+      }]
+    };
+    config1: any = {
+      type: 'doughnut',
+      data: this.data1,
+    }
+
+ data2 = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  datasets: [
+    {
+      label: 'Billed Amount',
+      data: [50, 30, 70, 90, 40, 60, 80, 100, 55, 25, 45, 60],  // All positive values
+      borderColor: 'red', 
+      backgroundColor: 'rgba(255, 99, 133, 0.8)',  // Using rgba for transparency
+    },
+    {
+      label: 'Collected Amount',
+      data: [20, 40, 60, 80, 50, 30, 90, 110, 70, 60, 100, 75],  // All positive values
+      borderColor: 'blue',  // Using a direct color value
+      backgroundColor: 'rgba(54, 163, 235, 0.83)',  // Using rgba for transparency
+    }
+  ]
+};
+
+ config2:any = {
+  type: 'bar',
+  data: this.data2,
+};
+
   ngOnInit(){
+        this.chart1 = new Chart('barChart', this.config1)
+        this.chart2 = new Chart('circleChart', this.config2)
+
     this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
       next:(res:rentholderData[])=>{ 
