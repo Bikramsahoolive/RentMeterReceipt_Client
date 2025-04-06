@@ -58,9 +58,16 @@
     padding: 10px;
     cursor: pointer;
   }
-  @media screen and (max-width:740px) {
+
+  @media screen and (max-width:750px) {
+    .table{
+      width: max-content;
+    }
+  }
+
+  @media screen and (max-width:450px) {
     .container .data-table{
-display: block;
+      display: block;
     }
     
   }

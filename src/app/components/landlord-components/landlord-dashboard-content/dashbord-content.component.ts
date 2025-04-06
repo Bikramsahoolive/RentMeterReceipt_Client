@@ -53,13 +53,13 @@ export class DashbordContentComponent {
   datasets: [
     {
       label: 'Billed Amount',
-      data: [50, 30, 70, 90, 40, 60, 80, 100, 55, 25, 45, 60],  // All positive values
+      data: [50, 40, 70, 80, 70, 60, 80, 100, 55, 25, 145, 60],  // All positive values
       borderColor: 'red', 
       backgroundColor: 'rgba(255, 99, 133, 0.8)',  // Using rgba for transparency
     },
     {
       label: 'Collected Amount',
-      data: [20, 40, 60, 80, 50, 30, 90, 110, 70, 60, 100, 75],  // All positive values
+      data: [20, 30, 60, 80, 50, 30, 50, 100, 40, 16, 100, 57],  // All positive values
       borderColor: 'blue',  // Using a direct color value
       backgroundColor: 'rgba(54, 163, 235, 0.83)',  // Using rgba for transparency
     }
