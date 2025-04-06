@@ -1,21 +1,32 @@
 <section class="container">
+  <div class="content" style="width: 95%; display: flex;justify-content: center;">
     <div class="data">
     <h1 class="head">Total Bill Due</h1>
+    <div class="data">
     <div class="data-table">
     <table class="table" *ngIf="rentholderData[0].id!==''">
         <thead>
           <th>Sl No</th>
           <th>Name</th>
           <th>Bill Due</th>
+          <th>Action</th>
         </thead>
         <tbody>
           <tr *ngFor="let user of rentholderData; let i = index">
             <td data-label="Sl No : ">{{i+1}}</td>
             <td data-label="Name : ">{{user.name}}</td>
             <td data-label="Bill Due : ">₹ {{user.bill_amt-user.paid_amt}}</td>
+            <td data-label="Action : ">
+              <div *ngIf="user.bill_amt-user.paid_amt>0" style="display: flex; gap: 20px;justify-content: center;">
+                <div class="circle" (click)="sendMail(user.email)"><i class="fa-solid fa-envelope"></i></div>
+              <div class="circle" (click)="makePhoneCall(user.phone)"><i class="fa-solid fa-phone"></i></div>
+              </div>
+            </td>
           </tr>    
         </tbody>
       </table>
     </div>
+  </div>
+</div>
 </div>
 </section>

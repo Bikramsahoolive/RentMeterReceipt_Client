@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { create } from 'qrcode';
 import { rentBillData, rentholderData } from 'src/app/model/data';
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-total-due',
@@ -26,8 +27,10 @@ export class TotalDueComponent {
       this.landloreServe.getAllRentholder().subscribe({
         next:(res:rentholderData[])=>{
           // this.rentholderData = res;
+          console.log(res);
+          
           res.forEach((e:any)=>{
-            let obj = {id:e.id,name:e.name,paid_amt:e.paid_amt};
+            let obj = {id:e.id,name:e.name,paid_amt:e.paid_amt,phone:e.phone,email:e.email};
             finalArray.push(obj);
           });
 
@@ -60,10 +63,34 @@ export class TotalDueComponent {
           console.log(err.error);
           this.spinner.hide();
           if(err.error.status !==false){
-            this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+            // this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
           }
         }
       });
 
+  }
+
+  makePhoneCall(num:string){
+    const call = document.createElement('a');
+    call.href = `tel:+91${num}`;
+    call.click();
+  }
+
+  sendMail(mailId:string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: `Email send to ${mailId}`
+    });
   }
 }
