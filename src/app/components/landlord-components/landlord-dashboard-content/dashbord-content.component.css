@@ -73,6 +73,7 @@
     background-color: rgba(245, 245, 245, 0.78);
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 .chart1{
     width: 70%;

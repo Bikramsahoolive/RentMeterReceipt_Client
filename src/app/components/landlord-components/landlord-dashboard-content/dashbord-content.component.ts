@@ -92,7 +92,7 @@ export class DashbordContentComponent {
       },error:(err)=>{
         console.error(err.error);
         if(err.error.status !== false){
-          this.toastr.error('Something wents wrong.','Error');
+          // this.toastr.error('Something went wrong.','Error');
         }
         this.spinner.hide();
       },complete:()=>{
@@ -119,7 +119,7 @@ export class DashbordContentComponent {
       },
       error:(err)=>{
         if(err.error.status !== false){
-          this.toastr.error('something wents wrong','Error!');
+          // this.toastr.error('something went wrong','Error!');
         }
         console.log(err.error);
        
@@ -149,7 +149,7 @@ export class DashbordContentComponent {
         this.processedPayoutAmount = amount;
         
       },error:(err)=>{
-        this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+        // this.toastr.error('something went wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
         console.log(err.error);
         this.spinner.hide();
       }
