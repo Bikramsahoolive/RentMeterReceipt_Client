@@ -1,6 +1,10 @@
         <div class="container" *ngIf="authServe.isLogin()">
-            <button class="button" (click)="print()"><i class="fa-solid fa-print"></i></button>
-            <div class="bill">
+            <div style="display: flex; gap: 20px;">
+                <button class="button" (click)="print()"><i class="fa-solid fa-print"></i></button>
+            <button class="button" (click)="captureAsJPG(bill.id)"><i class="fa-solid fa-file-arrow-down"></i></button>
+            </div>
+
+            <div class="bill" #captureBill>
 
             <h1>RentⓝMeter.Receipt</h1>
          <div class="ebill">

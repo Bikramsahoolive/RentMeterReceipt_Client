@@ -1,4 +1,4 @@
-import { Component,NgZone } from '@angular/core';
+import { Component,ElementRef,NgZone, ViewChild } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import { landlordData, rentBillData } from 'src/app/model/data';
@@ -6,7 +6,7 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
 import { LandlordService } from 'src/app/services/landlordService/landlord.service';
 import { environment } from 'src/environment';
 import Swal from 'sweetalert2';
-
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-print-rent-bill',
   templateUrl: './print-rent-bill.component.html',
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class PrintRentBillComponent {
   constructor(private ngZone:NgZone,private router:Router, private route:ActivatedRoute, private landlordServ:LandlordService, private spinner:NgxSpinnerService, public authServe:AuthServiceService){}
 paramId:any='';
-
+@ViewChild('captureBill') captureThis!: ElementRef;
 bill:rentBillData={
   adjustUnit: 0,
   billingDate: '',
@@ -207,6 +207,18 @@ Swal.fire({
       });
 
       }
+    });
+  }
+
+  captureAsJPG(id:any) {
+    const element = this.captureThis.nativeElement;
+
+    html2canvas(element).then((canvas) => {
+      const imageData = canvas.toDataURL('image/jpeg', 1.0); // JPG format
+      const link = document.createElement('a');
+      link.href = imageData;
+      link.download = `Bill-${id}.jpg`;
+      link.click();
     });
   }
 }
