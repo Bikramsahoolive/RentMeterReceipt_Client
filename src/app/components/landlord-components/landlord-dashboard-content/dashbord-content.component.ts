@@ -25,6 +25,7 @@ export class DashbordContentComponent {
     processedPayoutAmount:number=0;
     public chart1: any;
     public chart2: any;
+    public chart3: any;
 
     data1 = {
       labels: [
@@ -36,8 +37,8 @@ export class DashbordContentComponent {
         label: 'Bill and Collection',
         data: [50, 40, 10],
         backgroundColor: [
-           'rgb(255, 48, 93)',
-           'rgb(54, 162, 235)', 
+           '#4040c4',
+           '#7373f3', 
            'rgb(235, 142, 54)', 
         ],
         hoverOffset: 4
@@ -53,15 +54,15 @@ export class DashbordContentComponent {
   datasets: [
     {
       label: 'Billed Amount',
-      data: [50, 40, 70, 80, 70, 60, 80, 100, 55, 25, 145, 60],  // All positive values
+      data: [50, 40, 70, 80, 70, 60, 80, 100, 55, 25, 145, 0],  // All positive values
       borderColor: 'red', 
-      backgroundColor: 'rgba(255, 99, 133, 0.8)',  // Using rgba for transparency
+      backgroundColor: '#4040c4',  // Using rgba for transparency
     },
     {
       label: 'Collected Amount',
-      data: [20, 30, 60, 80, 50, 30, 50, 100, 40, 16, 100, 57],  // All positive values
+      data: [20, 30, 60, 80, 50, 30, 50, 100, 40, 16, 100, 0],  // All positive values
       borderColor: 'blue',  // Using a direct color value
-      backgroundColor: 'rgba(54, 163, 235, 0.83)',  // Using rgba for transparency
+      backgroundColor: '#7373f3',  // Using rgba for transparency
     }
   ]
 };
@@ -71,9 +72,26 @@ export class DashbordContentComponent {
   data: this.data2,
 };
 
+
+
+data3={
+  labels: ['Online', 'Offline'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [20,80],
+      backgroundColor: ['#4040c4','#7373f3'],
+    }
+  ]
+}
+config3:any = {
+  type: 'pie',
+  data: this.data3,
+};
   ngOnInit(){
         this.chart1 = new Chart('barChart', this.config1)
         this.chart2 = new Chart('circleChart', this.config2)
+        this.chart3 = new Chart('pieChart', this.config3)
 
     this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
