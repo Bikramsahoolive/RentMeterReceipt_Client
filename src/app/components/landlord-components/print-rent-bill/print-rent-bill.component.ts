@@ -221,4 +221,7 @@ Swal.fire({
       link.click();
     });
   }
+  goBack(){
+    history.back();
+  }
 }
