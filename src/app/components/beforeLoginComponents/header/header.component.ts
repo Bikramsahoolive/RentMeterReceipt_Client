@@ -13,6 +13,7 @@ export class HeaderComponent {
   @ViewChild('internetStatus')internetStatus!:ElementRef;
   @ViewChild('internetIcon')internetIcon!:ElementRef;
   @ViewChild('internetMsg')internetMsg!:ElementRef;
+  @ViewChild('dropBackground')dropBackground!:ElementRef;
 
   constructor(public authService:AuthServiceService , private networkStatus:NetworkStatusService){}
 
@@ -226,10 +227,16 @@ export class HeaderComponent {
     tglBtn.classList = isOpen
             ? 'fa-solid fa-xmark'
             : 'fa-solid fa-bars'
+            if(isOpen){
+              this.dropBackground.nativeElement.style.display = "unset";
+            }else{
+              this.dropBackground.nativeElement.style.display = "none";
+            }
   }
   hideMenu(dropdown:any,tglBtn:any){
     dropdown.classList='dropdown_menu';
     tglBtn.classList ='fa-solid fa-bars';
+    this.dropBackground.nativeElement.style.display = "none";
   }
   logout(){
     this.authService.logout();
