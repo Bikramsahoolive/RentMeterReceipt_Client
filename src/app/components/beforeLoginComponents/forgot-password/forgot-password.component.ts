@@ -1,4 +1,4 @@
-import { Component,ViewChild,ElementRef } from '@angular/core';
+import { Component,ViewChild,ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -19,11 +19,11 @@ ngOnInit(){}
 
 
   @ViewChild('input1') input1!: ElementRef;
-  @ViewChild('input2') input2!: ElementRef;
-  @ViewChild('input3') input3!: ElementRef;
-  @ViewChild('input4') input4!: ElementRef;
-  @ViewChild('input5') input5!: ElementRef;
-  @ViewChild('input6') input6!: ElementRef;
+  // @ViewChild('input2') input2!: ElementRef;
+  // @ViewChild('input3') input3!: ElementRef;
+  // @ViewChild('input4') input4!: ElementRef;
+  // @ViewChild('input5') input5!: ElementRef;
+  // @ViewChild('input6') input6!: ElementRef;
 
 
   @ViewChild('resendtime')resendtime!:ElementRef;
@@ -41,50 +41,54 @@ ngOnInit(){}
   finalOtp:string ='';
 
 
-  onInput(event: any, index: number) {
-    let value = event.target.value;
+  // onInput(event: any, index: number) {
+  //   let value = event.target.value;
    
-    this.code = this.code.substring(0, index - 1) + value + this.code.substring(index);
+  //   this.code = this.code.substring(0, index - 1) + value + this.code.substring(index);
 
     
-    if (value && index < 6) {
-      this.setFocus(index + 1);
-    } else if (!value && index > 1) {
-      this.setFocus(index - 1);
-    }
+  //   if (value && index < 6) {
+  //     this.setFocus(index + 1);
+  //   } else if (!value && index > 1) {
+  //     this.setFocus(index - 1);
+  //   }
 
-    if (this.code.length === 6) {
-      this.finalOtp = this.code;
-    }
-  }
+  //   if (this.code.length === 6) {
+  //     this.finalOtp = this.code;
+  //   }
+  // }
 
-  setFocus(index: number) {
-    switch (index) {
-      case 1:
-        this.input1.nativeElement.focus();
-        break;
-      case 2:
-        this.input2.nativeElement.focus();
-        break;
-      case 3:
-        this.input3.nativeElement.focus();
-        break;
-      case 4:
-        this.input4.nativeElement.focus();
-        break;
-      case 5:
-        this.input5.nativeElement.focus();
-        break;
-      case 6:
-        this.input6.nativeElement.focus();
-        break;
-      default:
-        break;
-    }
-  }
+  // setFocus(index: number) {
+  //   switch (index) {
+  //     case 1:
+  //       this.input1.nativeElement.focus();
+  //       break;
+  //     case 2:
+  //       this.input2.nativeElement.focus();
+  //       break;
+  //     case 3:
+  //       this.input3.nativeElement.focus();
+  //       break;
+  //     case 4:
+  //       this.input4.nativeElement.focus();
+  //       break;
+  //     case 5:
+  //       this.input5.nativeElement.focus();
+  //       break;
+  //     case 6:
+  //       this.input6.nativeElement.focus();
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
 
   verifyForgotPassword(newPass:any,confPass:any){
+    if(!this.finalOtp){
+      this.toster.error('Enter 6 digit OTP.','Invalid OTP',{progressBar:true,positionClass:"toast-top-center"});
+      return;
+    }
 
     if(newPass.value.length<8 || newPass.value.length>16 ){
       this.toster.error('Enter an 8 to 16 digit password.',"Invalid Password",{progressBar:true,positionClass:"toast-top-center"});
@@ -249,6 +253,45 @@ ngOnInit(){}
       this.spinner.hide();
     }
     })
+  }
+  verifyOtp({otp1,otp2,otp3,otp4,otp5,otp6}:any){
+      let otp = `${otp1}${otp2}${otp3}${otp4}${otp5}${otp6}`;
+      if(otp.length===6){
+        this.finalOtp=otp;
+      }else{
+        this.finalOtp='';
+      }
+      
+  }
+  @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef<HTMLInputElement>>;
+  ngAfterViewInit(): void {
+    this.otpInputs.forEach((input, index) => {
+      const el = input.nativeElement;
+
+      // Input event to limit the input to one character
+      el.addEventListener('input', (e: any) => {
+        if (e.target.value.length > 1) {
+          e.target.value = e.target.value.slice(0, 1);
+        }
+        if (e.target.value.length === 1) {
+          if (index < this.otpInputs.length - 1) {
+            this.otpInputs.toArray()[index + 1].nativeElement.focus();
+          }
+        }
+      });
+
+      // Keydown event to handle Backspace and 'e' key
+      el.addEventListener('keydown', (e: any) => {
+        if (e.key === 'Backspace' && !e.target.value) {
+          if (index > 0) {
+            this.otpInputs.toArray()[index - 1].nativeElement.focus();
+          }
+        }
+        if (e.key === 'e') {
+          e.preventDefault();
+        }
+      });
+    });
   }
 
 }
