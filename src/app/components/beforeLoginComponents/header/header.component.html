@@ -27,7 +27,7 @@
         </ul>
         <div class="toggle-btn"><i #tglBtn class="fa-solid fa-bars" (click)="dropdownToggle(dropdown,tglBtn)"></i></div>
     </nav>
-    <div class="fullscreen" style="width: 100%; height: 100vh;position: fixed; display: none;" #dropBackground (click)="hideMenu(dropdown,tglBtn)">
+    <div class="fullscreen" style="width: 100%; height: 100vh;position: fixed; display: none; z-index: 100;" #dropBackground (click)="hideMenu(dropdown,tglBtn)">
    </div>
         <div class="dropdown_menu " #dropdown>
         <li *ngIf="authService.isLogin()"><a routerLink=""(click)="hideMenu(dropdown,tglBtn)" (click)="scrollToTop()">Home</a></li>

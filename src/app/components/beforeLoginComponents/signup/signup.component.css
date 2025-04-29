@@ -20,8 +20,8 @@
 .cont{
     max-width: 500px;
     width: 90%;
-    height:auto;
-    max-height: 145vh;
+    /* height:auto; */
+    /* max-height: 145vh; */
     padding: 25px 30px;
     border-radius: 8px;
     box-shadow: 0 0 5px 2px gray;
