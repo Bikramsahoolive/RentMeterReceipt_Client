@@ -29,9 +29,9 @@ export class DashbordContentComponent {
 
     data1 = {
       labels: [
-        'Billed Amount',
-        'Collected Amount',
-        'Pending Amount'
+        'Billed Amt',
+        'Collected Amt',
+        'Pending Amt'
       ],
       datasets: [{
         label: 'Bill and Collection',
@@ -47,19 +47,28 @@ export class DashbordContentComponent {
     config1: any = {
       type: 'doughnut',
       data: this.data1,
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Total Bill Report'
+          },
+        },
+        responsive: true
+      }
     }
 
  data2 = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   datasets: [
     {
-      label: 'Billed Amount',
+      label: 'Billed Amt',
       data: [50, 40, 70, 80, 70, 60, 80, 100, 55, 25, 145, 0],  // All positive values
       borderColor: 'red', 
       backgroundColor: '#4040c4',  // Using rgba for transparency
     },
     {
-      label: 'Collected Amount',
+      label: 'Collected Amt',
       data: [20, 30, 60, 80, 50, 30, 50, 100, 40, 16, 100, 0],  // All positive values
       borderColor: 'blue',  // Using a direct color value
       backgroundColor: '#7373f3',  // Using rgba for transparency
@@ -70,28 +79,45 @@ export class DashbordContentComponent {
  config2:any = {
   type: 'bar',
   data: this.data2,
-};
-
-
-
-data3={
-  labels: ['Online', 'Offline'],
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [20,80],
-      backgroundColor: ['#4040c4','#7373f3'],
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Yearly Bill Report'
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        // stacked: true,
+      },
+      y: {
+        // stacked: true
+      }
     }
-  ]
-}
-config3:any = {
-  type: 'pie',
-  data: this.data3,
+  }
 };
+
+
+
+// data3={
+//   labels: ['Online', 'Offline'],
+//   datasets: [
+//     {
+//       label: 'Dataset 1',
+//       data: [20,80],
+//       backgroundColor: ['#4040c4','#7373f3'],
+//     }
+//   ]
+// }
+// config3:any = {
+//   type: 'pie',
+//   data: this.data3,
+// };
   ngOnInit(){
         this.chart1 = new Chart('barChart', this.config1)
         this.chart2 = new Chart('circleChart', this.config2)
-        this.chart3 = new Chart('pieChart', this.config3)
+        // this.chart3 = new Chart('pieChart', this.config3)
 
     this.spinner.show();
     this.landlordServ.getAllRentholder().subscribe({
