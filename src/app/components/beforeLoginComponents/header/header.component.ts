@@ -66,7 +66,7 @@ export class HeaderComponent {
         });
         Toast.fire({
           icon: "warning",
-          title: "Hang on! Waking Server..."
+          title: "Hang on! Waking Server up..."
         });
     
     // return
@@ -101,6 +101,7 @@ export class HeaderComponent {
                 toast: true,
                 position: "top",
                 showConfirmButton: false,
+                showCloseButton:true,
                 timer: 3000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
