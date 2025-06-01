@@ -24,7 +24,7 @@ img {
   display: grid;
   place-content: center;
   padding: var(--size-4);
-  min-height: 90vh;
+  min-height: 92vh;
   font-family: var(--font-sans);
   margin-top: 60px;
 }

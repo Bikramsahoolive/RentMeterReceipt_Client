@@ -8,9 +8,10 @@ html,body{
     width: 100%;
     height: 90%;
     min-height: 92vh;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     font-family: Arial, Helvetica, sans-serif;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    background-image: url('assets/background/design-flower-line-wallpaper-preview.jpg');
 }
 /* Copy code
 input[type="number"] {
@@ -47,6 +48,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 1.1rem;
     color: rgb(167, 161, 161);
     margin-bottom: 40px;
+    background-color: whitesmoke;
   }
   
   #header-subscribe-form input {
@@ -77,6 +79,11 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 100px 0;
   }
   
+  #feature-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
   #feature-text h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -85,8 +92,9 @@ input[type="number"]::-webkit-inner-spin-button {
   #feature-text p {
     font-size: 0.9rem;
     color: gray;
+    background-color: whitesmoke;
+    width: max-content;
   }
-  
   #creativity-features {
     padding: 0 50px;
     display: grid;
@@ -324,6 +332,7 @@ input[type="number"]::-webkit-inner-spin-button {
       background-color: rgb(244, 247, 250);
       position: relative;
       overflow-x: hidden;
+      scrollbar-width: none;
     }
   
     /* .nav {
