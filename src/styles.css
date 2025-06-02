@@ -79,11 +79,11 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 100px 0;
   }
   
-  #feature-text {
+  /* #feature-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
   #feature-text h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -92,8 +92,6 @@ input[type="number"]::-webkit-inner-spin-button {
   #feature-text p {
     font-size: 0.9rem;
     color: gray;
-    background-color: whitesmoke;
-    width: max-content;
   }
   #creativity-features {
     padding: 0 50px;
