@@ -29,8 +29,10 @@
                 <input type="number" placeholder="Enter User ID." ngModel #userId name="phone" autofocus required>
             </div>
             
-            <div class="input-field">
-                <input type="password" placeholder="Enter Password." ngModel name="password"required>
+            <div class="input-field" style="position: relative;">
+                <input [type]="showPassword?'text':'password'" placeholder="Enter Password." ngModel name="password"required>
+                <i class="fa-regular fa-eye eye" *ngIf="!showPassword" (click)="togglePasswordType()"></i>
+                <i class="fa-regular fa-eye-slash eye" *ngIf="showPassword" (click)="togglePasswordType()"></i>
                 
             </div>
             <div class="input-field">

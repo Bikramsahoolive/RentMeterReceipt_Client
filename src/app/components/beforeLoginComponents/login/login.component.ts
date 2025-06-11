@@ -20,6 +20,7 @@ export class LoginComponent {
   passkeyUserData:any;
   captchaVirification:boolean=false;
   siteKey:string= environment.siteKey;
+  showPassword:boolean=false;
   ngOnInit(){
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
@@ -49,6 +50,9 @@ export class LoginComponent {
   }
   loginWithPasskey(){
     this.showDiv=true;
+  }
+  togglePasswordType(){
+    this.showPassword = !this.showPassword;
   }
   login(auth:loginData){
     auth.phone = String(auth.phone);
