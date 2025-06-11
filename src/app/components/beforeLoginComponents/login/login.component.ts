@@ -6,6 +6,7 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
 import { startAuthentication } from '@simplewebauthn/browser'
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,8 @@ export class LoginComponent {
   showDiv:boolean=false;
   showBtn:boolean=false;
   passkeyUserData:any;
+  captchaVirification:boolean=false;
+  siteKey:string= environment.siteKey;
   ngOnInit(){
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
@@ -29,6 +32,17 @@ export class LoginComponent {
       this.showDiv=true;
     }
 
+  }
+    successCaptcha(e:any){
+    this.captchaVirification = true;
+    
+  }
+  expireCaptcha(){
+    this.captchaVirification = false;
+    
+  }
+  resetCaptcha(){
+    this.captchaVirification = false;
   }
   loginWithPassword(){
     this.showDiv=false;
@@ -50,6 +64,14 @@ export class LoginComponent {
     if(fcmToken!==null){
       auth.fcm_token = fcmToken;
     }
+    if(auth.userType===""){
+      this.toastr.error('Select Usertype. ', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+    return;
+    }
+        if(!this.captchaVirification){
+      this.toastr.error('Invalid Captcha', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      return;
+    }
     
     if (auth.userType==="landlord"){
       // delete auth.userType;
@@ -61,8 +83,6 @@ export class LoginComponent {
     }else if(auth.userType==="rentholder"){
       // delete auth.userType;
       this.authServ.rentholderLogin(auth);
-    }else{
-      this.toastr.error('Select Usertype. ', 'Error!',{positionClass:'toast-top-center',progressBar:true});
     }
     
   }

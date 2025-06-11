@@ -41,7 +41,15 @@
                     <option value="admin">Admin</option>
                 </select>
             </div>
-            
+            <div class="captcha" style="margin-top: 15px; width: 100%;display: flex; justify-content: center;">
+        <ngx-recaptcha2 #captchaElem
+            [siteKey]="siteKey"
+            (success)="successCaptcha($event)"
+            (expire)="expireCaptcha()"
+            (reset)="resetCaptcha()"
+            >
+          </ngx-recaptcha2>
+    </div>
                 <button class="button">Login</button>
                 <div class="auth-info" *ngIf="!showBtn">
                     <div class="passkey-auth" (click)="passkeyAuthInfo()">
