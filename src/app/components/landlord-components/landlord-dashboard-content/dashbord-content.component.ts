@@ -15,7 +15,12 @@ export class DashbordContentComponent {
     private spinner:NgxSpinnerService,
     private toastr:ToastrService,
     private landlordServ:LandlordService
-    ){}
+    ){
+      const currentYear = new Date().getFullYear();
+      for(let i = currentYear; i>= 2024; i--){
+        this.years.push(i);
+      }
+    }
     rentHolderCount:number=0;
     // rentHolderData:any;
     totalPaidAmt:number=0;
@@ -23,6 +28,7 @@ export class DashbordContentComponent {
     billCount:number=0;
     pendingPayout:number=0;
     processedPayoutAmount:number=0;
+    years:number[]=[];
     public chart1: any;
     public chart2: any;
     public chart3: any;
@@ -63,13 +69,13 @@ export class DashbordContentComponent {
   datasets: [
     {
       label: 'Billed Amt',
-      data: [50, 40, 70, 80, 70, 60, 80, 100, 55, 25, 145, 0],  // All positive values
+      data: [50, 40, 70, 80, 70, 60, 0, 0, 0, 0, 0, 0],  // All positive values
       borderColor: 'red', 
       backgroundColor: '#4040c4',  // Using rgba for transparency
     },
     {
       label: 'Collected Amt',
-      data: [20, 30, 60, 80, 50, 30, 50, 100, 40, 16, 100, 0],  // All positive values
+      data: [20, 30, 60, 80, 50, 30, 0, 0, 0, 0, 0, 0],  // All positive values
       borderColor: 'blue',  // Using a direct color value
       backgroundColor: '#7373f3',  // Using rgba for transparency
     }
@@ -198,6 +204,11 @@ export class DashbordContentComponent {
         this.spinner.hide();
       }
     });
+  }
+
+  getChartYear(year:any){
+    // console.log(this.years[year.value]);
+    
   }
 
 }
