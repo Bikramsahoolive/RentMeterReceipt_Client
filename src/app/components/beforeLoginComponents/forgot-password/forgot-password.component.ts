@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
+import { environment } from 'src/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,11 +20,6 @@ ngOnInit(){}
 
 
   @ViewChild('input1') input1!: ElementRef;
-  // @ViewChild('input2') input2!: ElementRef;
-  // @ViewChild('input3') input3!: ElementRef;
-  // @ViewChild('input4') input4!: ElementRef;
-  // @ViewChild('input5') input5!: ElementRef;
-  // @ViewChild('input6') input6!: ElementRef;
 
 
   @ViewChild('resendtime')resendtime!:ElementRef;
@@ -39,49 +35,19 @@ ngOnInit(){}
   currentInput: number = 1;
   code: string = '';
   finalOtp:string ='';
-
-
-  // onInput(event: any, index: number) {
-  //   let value = event.target.value;
-   
-  //   this.code = this.code.substring(0, index - 1) + value + this.code.substring(index);
-
+  captchaVirification:boolean=false;
+  siteKey:string= environment.siteKey;
+  successCaptcha(e:any){
+    this.captchaVirification = true;
     
-  //   if (value && index < 6) {
-  //     this.setFocus(index + 1);
-  //   } else if (!value && index > 1) {
-  //     this.setFocus(index - 1);
-  //   }
-
-  //   if (this.code.length === 6) {
-  //     this.finalOtp = this.code;
-  //   }
-  // }
-
-  // setFocus(index: number) {
-  //   switch (index) {
-  //     case 1:
-  //       this.input1.nativeElement.focus();
-  //       break;
-  //     case 2:
-  //       this.input2.nativeElement.focus();
-  //       break;
-  //     case 3:
-  //       this.input3.nativeElement.focus();
-  //       break;
-  //     case 4:
-  //       this.input4.nativeElement.focus();
-  //       break;
-  //     case 5:
-  //       this.input5.nativeElement.focus();
-  //       break;
-  //     case 6:
-  //       this.input6.nativeElement.focus();
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
+  }
+  expireCaptcha(){
+    this.captchaVirification = false;
+    
+  }
+  resetCaptcha(){
+    this.captchaVirification = false;
+  }
 
 
   verifyForgotPassword(newPass:any,confPass:any){
@@ -146,6 +112,11 @@ ngOnInit(){}
           return;
       }
 
+      if(!this.captchaVirification){
+        this.toster.error('Invalid Captcha',"",{progressBar:true,positionClass:"toast-top-center"});
+          return;
+      }
+
       let userData={
         phone:phone.value,
         userType:userType.value
@@ -159,6 +130,7 @@ ngOnInit(){}
           next:(res:any)=>{
             this.spinner.hide();
             if(res.status ==='success'){
+              this.captchaVirification = false;
               const Toast = Swal.mixin({
                 toast: true,
                 position:"top",

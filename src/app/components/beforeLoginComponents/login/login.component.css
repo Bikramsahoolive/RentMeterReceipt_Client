@@ -150,6 +150,7 @@ form input:focus {
 }
 
 .eye {
+    color: #929191;
     position: absolute;
     right: 20px;
     top: 10px;
