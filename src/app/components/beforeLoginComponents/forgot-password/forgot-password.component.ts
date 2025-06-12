@@ -113,7 +113,7 @@ ngOnInit(){}
       }
 
       if(!this.captchaVirification){
-        this.toster.error('Invalid Captcha',"",{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error('Captcha not verified',"",{progressBar:true,positionClass:"toast-top-center"});
           return;
       }
 

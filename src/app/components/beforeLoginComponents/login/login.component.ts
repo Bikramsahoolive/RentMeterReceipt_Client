@@ -61,7 +61,7 @@ export class LoginComponent {
       return;
     }
     if(auth.phone.length!==10){
-      this.toastr.error('Invalid User ID.', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      this.toastr.error('Invalid User ID.', '',{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     const fcmToken = localStorage.getItem('fcm_token');
@@ -69,11 +69,11 @@ export class LoginComponent {
       auth.fcm_token = fcmToken;
     }
     if(auth.userType===""){
-      this.toastr.error('Select Usertype. ', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      this.toastr.error('Select Usertype. ', '',{positionClass:'toast-top-center',progressBar:true});
     return;
     }
         if(!this.captchaVirification){
-      this.toastr.error('Invalid Captcha', 'Error!',{positionClass:'toast-top-center',progressBar:true});
+      this.toastr.error('Captcha not verified', '',{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     
