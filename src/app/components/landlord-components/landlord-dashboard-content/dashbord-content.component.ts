@@ -28,6 +28,7 @@ export class DashbordContentComponent {
     billCount:number=0;
     pendingPayout:number=0;
     processedPayoutAmount:number=0;
+    yearlyChart={months:[],billedAmount:[],paidAmount:[]}
     years:number[]=[];
     public chart1: any;
     public chart2: any;
@@ -64,45 +65,7 @@ export class DashbordContentComponent {
       }
     }
 
- data2 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  datasets: [
-    {
-      label: 'Billed Amt',
-      data: [50, 40, 70, 80, 70, 60, 0, 0, 0, 0, 0, 0],  // All positive values
-      borderColor: 'red', 
-      backgroundColor: '#4040c4',  // Using rgba for transparency
-    },
-    {
-      label: 'Collected Amt',
-      data: [20, 30, 60, 80, 50, 30, 0, 0, 0, 0, 0, 0],  // All positive values
-      borderColor: 'blue',  // Using a direct color value
-      backgroundColor: '#7373f3',  // Using rgba for transparency
-    }
-  ]
-};
-
- config2:any = {
-  type: 'bar',
-  data: this.data2,
-  options: {
-    plugins: {
-      title: {
-        display: true,
-        text: 'Yearly Bill Report'
-      },
-    },
-    responsive: true,
-    scales: {
-      x: {
-        // stacked: true,
-      },
-      y: {
-        // stacked: true
-      }
-    }
-  }
-};
+ 
 
 
 
@@ -122,7 +85,7 @@ export class DashbordContentComponent {
 // };
   ngOnInit(){
         this.chart1 = new Chart('barChart', this.config1)
-        this.chart2 = new Chart('circleChart', this.config2)
+        // this.chart2 = new Chart('circleChart', this.config2)
         // this.chart3 = new Chart('pieChart', this.config3)
 
     this.spinner.show();
@@ -204,11 +167,64 @@ export class DashbordContentComponent {
         this.spinner.hide();
       }
     });
+    this.getChartYear({value:0});
   }
 
   getChartYear(year:any){
-    // console.log(this.years[year.value]);
-    
+    this.landlordServ.getYearlyChartData(this.years[year.value]).subscribe({
+      next:(res:any)=>{
+        this.yearlyChart.months = res?.months;
+        this.yearlyChart.billedAmount = res?.billedAmount;
+        this.yearlyChart.paidAmount = res?.paidAmount;
+
+       let data2 = {
+  labels:  this.yearlyChart.months,//['January', 'February', 'March', 'April', 'May', 'June'],
+  datasets: [
+    {
+      label: 'Billed Amt',
+      data: this.yearlyChart.billedAmount,//[50, 40, 70, 80, 70, 60],  // All positive values
+      borderColor: 'red', 
+      backgroundColor: '#4040c4',  // Using rgba for transparency
+    },
+    {
+      label: 'Collected Amt',
+      data:this.yearlyChart.paidAmount, //[20, 30, 60, 80, 50, 30],  // All positive values
+      borderColor: 'blue',  // Using a direct color value
+      backgroundColor: '#7373f3',  // Using rgba for transparency
+    }
+  ]
+};
+
+ let config2:any = {
+  type: 'bar',
+  data: data2,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Yearly Bill Report'
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        // stacked: true,
+      },
+      y: {
+        // stacked: true
+      }
+    }
+  }
+};
+        if (this.chart2) {
+          this.chart2.destroy();
+      }
+        this.chart2 = new Chart('circleChart', config2);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
 }
