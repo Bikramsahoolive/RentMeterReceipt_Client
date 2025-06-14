@@ -17,9 +17,10 @@ export class DashbordContentComponent {
     private landlordServ:LandlordService
     ){
       const currentYear = new Date().getFullYear();
-      for(let i = currentYear; i>= 2024; i--){
+      for(let i = 2024; i<= currentYear; i++){
         this.years.push(i);
       }
+      this.selectedYear = this.years.length-1
     }
     rentHolderCount:number=0;
     // rentHolderData:any;
@@ -30,40 +31,12 @@ export class DashbordContentComponent {
     processedPayoutAmount:number=0;
     yearlyChart={months:[],billedAmount:[],paidAmount:[]}
     years:number[]=[];
+    selectedYear:any;
     public chart1: any;
     public chart2: any;
-    public chart3: any;
+    // public chart3: any;
 
-    data1 = {
-      labels: [
-        'Billed Amt',
-        'Collected Amt',
-        'Pending Amt'
-      ],
-      datasets: [{
-        label: 'Bill and Collection',
-        data: [50, 40, 10],
-        backgroundColor: [
-           '#4040c4',
-           '#7373f3', 
-           'rgb(235, 142, 54)', 
-        ],
-        hoverOffset: 4
-      }]
-    };
-    config1: any = {
-      type: 'doughnut',
-      data: this.data1,
-      options: {
-        plugins: {
-          title: {
-            display: true,
-            text: 'Total Bill Report'
-          },
-        },
-        responsive: true
-      }
-    }
+    
 
  
 
@@ -84,7 +57,7 @@ export class DashbordContentComponent {
 //   data: this.data3,
 // };
   ngOnInit(){
-        this.chart1 = new Chart('barChart', this.config1)
+        // this.chart1 = new Chart('barChart', this.config1)
         // this.chart2 = new Chart('circleChart', this.config2)
         // this.chart3 = new Chart('pieChart', this.config3)
 
@@ -167,12 +140,15 @@ export class DashbordContentComponent {
         this.spinner.hide();
       }
     });
-    this.getChartYear({value:0});
+    this.getChartYear({value:this.years.length-1});
+    this.getTotalChart();
   }
 
   getChartYear(year:any){
+    this.spinner.show();
     this.landlordServ.getYearlyChartData(this.years[year.value]).subscribe({
       next:(res:any)=>{
+        this.spinner.hide();
         this.yearlyChart.months = res?.months;
         this.yearlyChart.billedAmount = res?.billedAmount;
         this.yearlyChart.paidAmount = res?.paidAmount;
@@ -183,13 +159,13 @@ export class DashbordContentComponent {
     {
       label: 'Billed Amt',
       data: this.yearlyChart.billedAmount,//[50, 40, 70, 80, 70, 60],  // All positive values
-      borderColor: 'red', 
+      // borderColor: 'black', 
       backgroundColor: '#4040c4',  // Using rgba for transparency
     },
     {
       label: 'Collected Amt',
       data:this.yearlyChart.paidAmount, //[20, 30, 60, 80, 50, 30],  // All positive values
-      borderColor: 'blue',  // Using a direct color value
+      // borderColor: 'black',  // Using a direct color value
       backgroundColor: '#7373f3',  // Using rgba for transparency
     }
   ]
@@ -205,7 +181,8 @@ export class DashbordContentComponent {
         text: 'Yearly Bill Report'
       },
     },
-    responsive: true,
+    // responsive: false,
+     maintainAspectRatio: false,
     scales: {
       x: {
         // stacked: true,
@@ -222,7 +199,54 @@ export class DashbordContentComponent {
         this.chart2 = new Chart('circleChart', config2);
       },
       error:(err)=>{
+        this.spinner.hide();
         console.log(err);
+      }
+    })
+  }
+
+  getTotalChart(){
+    this.landlordServ.getTotalChartData().subscribe({
+      next:(res:any)=>{
+        console.log(res);
+
+         const data1 = {
+      labels: [
+        `Billed : ${res?.billedData?.percent}%`,
+        `Collected : ${res?.paidData?.percent}%`,
+        `Pending : ${res?.pendingData?.percent}%`
+      ],
+      datasets: [{
+        label: 'Amount',
+        data: [res?.billedData?.billedAmount,res?.paidData?.paidAmount,res?.pendingData?.pendingAmount],
+        backgroundColor: [
+           '#4040c4',
+           '#7373f3', 
+           'rgb(235, 142, 54)', 
+        ],
+        hoverOffset: 4
+      }]
+    };
+    const config1: any = {
+      type: 'doughnut',
+      data: data1,
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Total Bill Report'
+          },
+        },
+        responsive: true
+      }
+    }
+
+    this.chart1 = new Chart('barChart', config1)
+        
+      },
+      error:(err)=>{
+        console.log(err);
+        
       }
     })
   }

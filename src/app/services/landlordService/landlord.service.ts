@@ -197,5 +197,14 @@ getYearlyChartData(year:number){
     return this.http.get(`${environment.apiUrl}/landlord/yearlyChartData/${year}`,{withCredentials:true,headers:header});
 }
 
+getTotalChartData(){
+   const token = localStorage.getItem('auth-token')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'auth-token':token
+    });
+    return this.http.get(`${environment.apiUrl}/landlord/totalChartData`,{withCredentials:true,headers:header});
+}
+
 
 }
