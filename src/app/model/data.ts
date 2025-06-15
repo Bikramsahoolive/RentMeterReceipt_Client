@@ -2,7 +2,8 @@ export interface loginData {
     phone: string,
     password: string,
     userType?: string,
-    fcm_token?:string
+    fcm_token?:string,
+    recaptcha:string
 }
 
 export interface landlordData {

@@ -16,7 +16,7 @@ siteKey:string= environment.siteKey;
   constructor(private router : Router, private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
     // this.siteKey =;
   }
-  captchaVirification:boolean=false;
+  recaptchaToken="";
   dToday:string="";
   regNumber:string="";
   isReadonly:boolean=false;
@@ -29,16 +29,16 @@ siteKey:string= environment.siteKey;
     this.dToday=`${day}-${month}-${year}`;
   }
 
-  successCaptcha(e:any){
-    this.captchaVirification = true;
+  successCaptcha(token:string){
+    this.recaptchaToken = token;
     
   }
   expireCaptcha(){
-    this.captchaVirification = false;
+    this.recaptchaToken = "";
     
   }
   resetCaptcha(){
-    this.captchaVirification = false;
+    this.recaptchaToken = "";
   }
   // fileInput(event:any,type:any){
   //   this.spinner.show();
@@ -88,8 +88,8 @@ siteKey:string= environment.siteKey;
           this.toastr.error('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
           return;
           }
-          if(!this.captchaVirification){
-            this.toastr.error('Captcha not verified','',{progressBar:true,positionClass:"toast-top-center"});
+          if(!this.recaptchaToken){
+            this.toastr.error('Verify reCAPTCHA','',{progressBar:true,positionClass:"toast-top-center"});
             return;
           }
 
@@ -101,7 +101,7 @@ siteKey:string= environment.siteKey;
           let month =(date.getMonth()+1).toString().padStart(2,'0');
           let day = date.getDate().toString().padStart(2,'0');
           data.dor=`${year}-${month}-${day}`;
-          
+          data.recaptcha = this.recaptchaToken;
           this.signupService.actionLandlordData(data).subscribe({
             next:(result:any)=>{
               if(result.status==='success'){

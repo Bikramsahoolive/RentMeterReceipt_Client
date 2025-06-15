@@ -18,9 +18,9 @@ export class LoginComponent {
   showDiv:boolean=false;
   showBtn:boolean=false;
   passkeyUserData:any;
-  captchaVirification:boolean=false;
   siteKey:string= environment.siteKey;
   showPassword:boolean=false;
+  recaptchaToken="";
   ngOnInit(){
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
@@ -34,16 +34,15 @@ export class LoginComponent {
     }
 
   }
-    successCaptcha(e:any){
-    this.captchaVirification = true;
-    
+    successCaptcha(token:any){
+    this.recaptchaToken = token;
   }
   expireCaptcha(){
-    this.captchaVirification = false;
+    this.recaptchaToken = "";
     
   }
   resetCaptcha(){
-    this.captchaVirification = false;
+    this.recaptchaToken = "";
   }
   loginWithPassword(){
     this.showDiv=false;
@@ -72,10 +71,12 @@ export class LoginComponent {
       this.toastr.error('Select Usertype. ', '',{positionClass:'toast-top-center',progressBar:true});
     return;
     }
-        if(!this.captchaVirification){
-      this.toastr.error('Captcha not verified', '',{positionClass:'toast-top-center',progressBar:true});
+        if(!this.recaptchaToken){
+      this.toastr.error('Verify reCAPTCHA', '',{positionClass:'toast-top-center',progressBar:true});
       return;
     }
+
+    auth.recaptcha = this.recaptchaToken;
     
     if (auth.userType==="landlord"){
       // delete auth.userType;

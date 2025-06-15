@@ -35,18 +35,18 @@ ngOnInit(){}
   currentInput: number = 1;
   code: string = '';
   finalOtp:string ='';
-  captchaVirification:boolean=false;
+  recaptchaToken="";
   siteKey:string= environment.siteKey;
-  successCaptcha(e:any){
-    this.captchaVirification = true;
+  successCaptcha(token:string){
+   this.recaptchaToken = token;
     
   }
   expireCaptcha(){
-    this.captchaVirification = false;
+    this.recaptchaToken = "";
     
   }
   resetCaptcha(){
-    this.captchaVirification = false;
+    this.recaptchaToken = "false";
   }
 
 
@@ -112,14 +112,16 @@ ngOnInit(){}
           return;
       }
 
-      if(!this.captchaVirification){
-        this.toster.error('Captcha not verified',"",{progressBar:true,positionClass:"toast-top-center"});
+      if(!this.recaptchaToken){
+        this.toster.error('Verify reCAPTCHA',"",{progressBar:true,positionClass:"toast-top-center"});
           return;
       }
 
+
       let userData={
         phone:phone.value,
-        userType:userType.value
+        userType:userType.value,
+        recaptcha:this.recaptchaToken
       };
       phone.value = "";
       userType.value = "";
@@ -130,7 +132,6 @@ ngOnInit(){}
           next:(res:any)=>{
             this.spinner.hide();
             if(res.status ==='success'){
-              this.captchaVirification = false;
               const Toast = Swal.mixin({
                 toast: true,
                 position:"top",
