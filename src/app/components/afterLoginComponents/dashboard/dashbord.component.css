@@ -5,13 +5,14 @@
     overflow-y: scroll;
     background-image: url(../../../../assets/background/design-flower-line-wallpaper-preview.jpg);
     scrollbar-width:none ;
+    margin-left: 300px;
 }
 
 .main-container{
     display: flex;
 }
 
-@media screen and (max-width:812px) {
+@media screen and (max-width:920px) {
    .container{
     margin-left: 40px;
    }
