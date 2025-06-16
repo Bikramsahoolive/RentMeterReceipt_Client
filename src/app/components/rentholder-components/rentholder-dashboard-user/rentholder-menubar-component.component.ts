@@ -105,11 +105,11 @@ export class RentholderMenubarComponentComponent {
 
                
                 try {
-                  let token = localStorage.getItem('auth-token')||"";
+                  let token = localStorage.getItem('authorization')||"";
                   const response = await fetch(`${environment.apiUrl}/rentholder/user/${this.rentholderId}`,{
                     method:'PUT',
                     credentials:'include',
-                    headers:{"Content-Type":"application/json","auth-token":token},
+                    headers:{"Content-Type":"application/json","authorization":token},
                     body:JSON.stringify({password:val})
                   });
                 if(response.ok){

@@ -89,12 +89,12 @@ deleteRentHolder(id:any){
           `)
         }
         try {
-          const token = localStorage.getItem('auth-token')||'';
+          const token = localStorage.getItem('authorization')||'';
           const response = await fetch(`${environment.apiUrl}/rentholder/user/${id}`,{
             method:'DELETE',
             headers:{
               'Content-Type':'application/json',
-               'auth-token':token
+               'authorization':token
             }
           })
         if(response.ok){

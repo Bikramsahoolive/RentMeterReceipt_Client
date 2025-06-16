@@ -120,11 +120,14 @@ preConfirm: async()=> {
     data.payout_details=details;
     
   try {
+    const token = localStorage.getItem('authorization')||"";
     const response = await fetch(`${environment.apiUrl}/admin/process/payout`,{
       method:'POST',
       credentials:'include',
+      
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "authorization":token
       },
       body:JSON.stringify(data)
     })

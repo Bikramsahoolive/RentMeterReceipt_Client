@@ -15,10 +15,10 @@ export class AdminServiceService {
   // })
   
   getAllPayoutData(){
-    const token = localStorage.getItem('auth-token')||'';
+    const token = localStorage.getItem('authorization')||'';
     const header = new HttpHeaders({
       'Content-Type':'application/json',
-      'auth-token':token
+      'authorization':token
     });
     return this.http.get(`${environment.apiUrl}/admin/get/payout`,{withCredentials:true,headers:header});
   }

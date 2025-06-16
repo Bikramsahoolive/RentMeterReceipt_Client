@@ -17,7 +17,7 @@ export class AuthServiceService {
 
    header = new HttpHeaders({
     'Content-Type':'application/json',
-    // 'auth-token':''
+    // 'authorization':''
   });
   
 
@@ -28,7 +28,7 @@ export class AuthServiceService {
     next:(res:any)=>{
       let localData = JSON.stringify(res);
       let encData =btoa(localData);
-    localStorage.setItem('auth-token',res.authToken);
+    localStorage.setItem('authorization',res.authToken);
     localStorage.setItem("connect.sid",encData);
     localStorage.setItem("connect.rid",btoa(res.isActive));
     this.isLogedIn = true;
@@ -57,7 +57,7 @@ landlordLogin(data:any){
       // if(res.status){
         let localData = JSON.stringify(res);
         let encData =btoa(localData);
-        localStorage.setItem('auth-token',res.authToken);
+        localStorage.setItem('authorization',res.authToken);
         localStorage.setItem("connect.sid",encData);
         localStorage.setItem("connect.rid",btoa(res.isActive));
         this.isLogedIn = true;
@@ -88,7 +88,7 @@ rentholderLogin(data:any){
       // if(res.status){
         let localData = JSON.stringify(res);
         let encData =btoa(localData);
-        localStorage.setItem('auth-token',res.authToken);
+        localStorage.setItem('authorization',res.authToken);
         localStorage.setItem("connect.sid",encData);
         localStorage.setItem("connect.rid",btoa(res.isActive));
         this.isLogedIn = true;
@@ -124,10 +124,10 @@ verifyforgotPassword(data:any){
 
 
 checkLandlordSession(){
-  const token = localStorage.getItem('auth-token')||'';
+  const token = localStorage.getItem('authorization')||'';
   const header = new HttpHeaders({
     'Content-Type':'application/json',
-    'auth-token':token
+    'authorization':token
   });
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe({
     next:(result:any)=>{
@@ -141,10 +141,10 @@ checkLandlordSession(){
 }
 
 checkAdminSession(){
-  const token = localStorage.getItem('auth-token')||'';
+  const token = localStorage.getItem('authorization')||'';
     const header = new HttpHeaders({
       'Content-Type':'application/json',
-      'auth-token':token
+      'authorization':token
     });
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe({
     next:(result:any)=>{
@@ -159,10 +159,10 @@ checkAdminSession(){
 
 
 checkrentHolderSession(){
-  const token = localStorage.getItem('auth-token')||'';
+  const token = localStorage.getItem('authorization')||'';
     const header = new HttpHeaders({
       'Content-Type':'application/json',
-      'auth-token':token
+      'authorization':token
     });
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe({
     next:(result:any)=>{
@@ -178,10 +178,10 @@ checkrentHolderSession(){
 
 
 checkSession(){
-  const token = localStorage.getItem('auth-token')||'';
+  const token = localStorage.getItem('authorization')||'';
   const header = new HttpHeaders({
     'Content-Type':'application/json',
-    'auth-token':token
+    'authorization':token
   });
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe((result:any)=>{
     if (result.isActive){
@@ -189,7 +189,7 @@ checkSession(){
 }else{
   localStorage.setItem("connect.rid",btoa('false'));
   localStorage.setItem("connect.sid","null");
-  localStorage.removeItem('auth-token');
+  localStorage.removeItem('authorization');
   //////
   this.isLogedIn = false;
   this.isAdmin = false;
@@ -217,10 +217,10 @@ this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast
  }
 
  setHeader(){
-  const token = localStorage.getItem('auth-token')||'';
+  const token = localStorage.getItem('authorization')||'';
   const header = new HttpHeaders({
     'Content-Type':'application/json',
-    'auth-token':token
+    'authorization':token
   });
   this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe({
     next:(result:any)=>{
@@ -264,15 +264,15 @@ this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast
 
  logout(){
 this.spinner.show();
-const token = localStorage.getItem('auth-token')||'';
+const token = localStorage.getItem('authorization')||'';
 const header = new HttpHeaders({
   'Content-Type':'application/json',
-  'auth-token':token
+  'authorization':token
 });
   this.http.post(`${environment.apiUrl}/logout`,{},{withCredentials:true,headers:header}).subscribe((result:any)=>{
     localStorage.setItem("connect.rid",btoa('false'));
     localStorage.setItem("connect.sid","null");
-    localStorage.removeItem('auth-token');
+    localStorage.removeItem('authorization');
     this.isLogedIn = false;
     this.isAdmin = false;
     this.isLandlord=false;
@@ -297,7 +297,7 @@ landlordLoginWithPasskey(data:any){
     next:(res:any)=>{
       let localData = JSON.stringify(res);
         let encData = btoa(localData);
-        localStorage.setItem('auth-token',res.authToken);
+        localStorage.setItem('authorization',res.authToken);
         localStorage.setItem("connect.sid",encData);
         localStorage.setItem("connect.rid",btoa(res.isActive));
         this.isLogedIn = true;
@@ -322,7 +322,7 @@ rentholderLoginWithPasskey(data:any){
     next:(res:any)=>{
       let localData = JSON.stringify(res);
         let encData = btoa(localData);
-        localStorage.setItem('auth-token',res.authToken);
+        localStorage.setItem('authorization',res.authToken);
         localStorage.setItem("connect.sid",encData);
         localStorage.setItem("connect.rid",btoa(res.isActive));
         this.isLogedIn = true;

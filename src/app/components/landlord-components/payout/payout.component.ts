@@ -116,8 +116,8 @@ export class PayoutComponent {
       this.toaster.error("Exceed total payout balance.","Invalid Payout Amount",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
-    if(data.payout_amt < 100 || data.payout_amt > 30000){
-      this.toaster.error("Invalid Payout Amount (₹100 - ₹30,000).","",{positionClass:'toast-top-center',progressBar:true});
+    if(data.payout_amt < 100 || data.payout_amt > 50000){
+      this.toaster.error("Invalid Payout Amount (₹100 - ₹50,000).","",{positionClass:'toast-top-center',progressBar:true});
       return;
     }
     if(this.paymentMethod===""){
