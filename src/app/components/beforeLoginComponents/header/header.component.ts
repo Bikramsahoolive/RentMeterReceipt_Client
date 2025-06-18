@@ -45,9 +45,9 @@ export class HeaderComponent {
 
   deferredPrompt:any;
   showPopup:boolean=true;
-
+Toast:any;
   ngOnInit(){
-    const Toast = Swal.mixin({
+     this.Toast = Swal.mixin({
           toast: true,
           position: "top",
           showConfirmButton: false,
@@ -58,90 +58,17 @@ export class HeaderComponent {
           }, 
           willClose:(toast) => {
             // Prevent closing by immediately reopening the toast
-            Toast.fire({
+            this.Toast.fire({
               icon: "warning",
               title: "Hang on! Waking server...",
             });
           },
         });
-        Toast.fire({
+        this.Toast.fire({
           icon: "warning",
           title: "Hang on! Waking Server up..."
         });
-    
-    // return
-        this.authService.serverStatus().subscribe({
-          next:(res:any)=>{
-            if(res.status && res.status !=="OK"){
-              Toast.close();
-              const Toast1 = Swal.mixin({
-                toast: true,
-                position: "top",
-                showConfirmButton: false,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.onmouseenter = Swal.stopTimer;
-                  toast.onmouseleave = Swal.resumeTimer;
-                },
-                willClose:(toast) => {
-                  // Prevent closing by immediately reopening the toast
-                  Toast1.fire({
-                    icon: "error",
-                    title: "Please Refresh to try again"
-                  });
-                },
-              });
-              Toast1.fire({
-                icon: "error",
-                title: "Server is temporarily down"
-              });
-            }else{
-              Toast.close();
-              const Toast2 = Swal.mixin({
-                toast: true,
-                position: "top",
-                showConfirmButton: false,
-                showCloseButton:true,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.onmouseenter = Swal.stopTimer;
-                  toast.onmouseleave = Swal.resumeTimer;
-                }
-              });
-              Toast2.fire({
-                icon: "success",
-                title: "Server is up and running..."
-              });
-            }
-          },
-          error:(err:any)=>{
-            console.log(err.error);
-            Toast.close();
-              const Toast1 = Swal.mixin({
-                toast: true,
-                position: "top",
-                showConfirmButton: false,
-                // timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.onmouseenter = Swal.stopTimer;
-                  toast.onmouseleave = Swal.resumeTimer;
-                },
-                willClose:(toast) => {
-                  // Prevent closing by immediately reopening the toast
-                  Toast1.fire({
-                    icon: "error",
-                    title: "Please Refresh to try again"
-                  });
-                },
-              });
-              Toast1.fire({
-                icon: "error",
-                title: "Server is temporarily down"
-              });
-          }
-        });
+    this.checkServer();
     window.addEventListener('beforeinstallprompt',(event:any)=>{
       event.preventDefault();
       this.showPopup = false;
@@ -244,5 +171,103 @@ export class HeaderComponent {
   }
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  checkServer(){
+
+        this.authService.serverStatus().subscribe({
+          next:(res:any)=>{
+            if(res.status && res.status !=="OK"){
+              if(this.isRechecked){
+                this.Toast.close();
+                const Toast1 = Swal.mixin({
+                toast: true,
+                position: "top",
+                showConfirmButton: false,
+                // timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                },
+                willClose:(toast) => {
+                  // Prevent closing by immediately reopening the toast
+                  Toast1.fire({
+                    icon: "error",
+                    title: "Server is temporarily down!"
+                  });
+                },
+              });
+              Toast1.fire({
+                icon: "error",
+                title: "Server is temporarily down!"
+              });
+              }
+              
+              this.reCheckServer();
+            }else{
+              clearInterval(this.intervalTimmer);
+              this.isRechecked = true;
+              this.Toast.close();
+              const Toast2 = Swal.mixin({
+                toast: true,
+                position: "top",
+                showConfirmButton: false,
+                // showCloseButton:true,
+                // timer: 3000,
+                // timerProgressBar: true,
+                // didOpen: (toast) => {
+                //   toast.onmouseenter = Swal.stopTimer;
+                //   toast.onmouseleave = Swal.resumeTimer;
+                // }
+              });
+              Toast2.fire({
+                icon: "success",
+                title: "Server is up and running..."
+              });
+
+              setTimeout(()=>Toast2.close(),7000);
+            }
+          },
+          error:(err:any)=>{
+            console.log(err.error);
+            if(this.isRechecked){
+              this.Toast.close();
+              const Toast1 = Swal.mixin({
+                toast: true,
+                position: "top",
+                showConfirmButton: false,
+                // timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                },
+                willClose:(toast) => {
+                  // Prevent closing by immediately reopening the toast
+                  Toast1.fire({
+                    icon: "error",
+                    title: "Server is temporarily down!"
+                  });
+                },
+              });
+              Toast1.fire({
+                icon: "error",
+                title: "Server is temporarily down!"
+              });
+            }
+              
+              this.reCheckServer();
+
+          }
+        });
+  }
+
+  isRechecked=true;
+intervalTimmer:any;
+  reCheckServer(){
+    if(this.isRechecked){
+      this.isRechecked = false;
+      this.intervalTimmer = setInterval(()=>this.checkServer(),5000);
+    }
   }
 }
