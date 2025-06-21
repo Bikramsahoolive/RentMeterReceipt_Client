@@ -75,10 +75,13 @@
                 <div class="data" *ngIf="bill.transaction_id!='NA'">
                     <span>Transaction ID : </span> <Strong>{{bill.transaction_id}}</Strong>
                 </div>
+                <div class="data">
+                    <span>Current Bill Due Amount : </span> <Strong>₹ {{bill.final_amt-bill.paid_amt}}</Strong>
+                </div>
             </div>
 
             <div class="total-bill">
-                <h3>Total Due on {{bill.consumer_Name}} : ₹ {{bill.final_amt-bill.paid_amt}} /-</h3>
+                <h3>Total Due on {{bill.consumer_Name}} : ₹ {{remainingAmount}} /-</h3>
             </div>
                 <div class="content" *ngIf="bill.pendingBills.length>0">
                     <h4 style="text-decoration: underline; margin-bottom: 5px; text-align: center;">Pending Bills</h4>

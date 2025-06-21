@@ -51,6 +51,7 @@ bill:rentBillData={
     amount:0
   }]
 };
+remainingAmount:number=0;
 upiLink:string="";
 landlordSign:string="../../../../assets/images.png";
 boxVal:string='';
@@ -71,8 +72,11 @@ showPayBtn:boolean=false;
       this.paymentMethod='';
     this.landlordServ.getSingleRentBillData(urlid).subscribe({
       next:(res:rentBillData)=>{
-        let remainingAmt = Number(res.final_amt ) - Number(res.paid_amt);
-        if(remainingAmt != 0){
+        res.pendingBills.forEach((element:any) => {
+          this.remainingAmount += element.amount;
+        })
+        this.remainingAmount +=Number(res.final_amt ) - Number(res.paid_amt);
+        if(this.remainingAmount !== 0){
           this.showPayBtn = true;
           this.bill=res;
           this.landlordServ.getLandlordData(res.landlord_id).subscribe({
@@ -81,7 +85,7 @@ showPayBtn:boolean=false;
                 
                 if(LanlordRes.upi)
                   {
-                    this.upiLink=`upi://pay?pa=${LanlordRes.upi}&pn=${LanlordRes.name}&am=${remainingAmt}.00&cu=INR&tn=RNMR:${this.bill.id}`;
+                    this.upiLink=`upi://pay?pa=${LanlordRes.upi}&pn=${LanlordRes.name}&am=${this.remainingAmount}.00&cu=INR&tn=RNMR:${this.bill.id}`;
                     this.boxVal ='Scan To Pay!';
                   }else{
                     this.boxVal ='UPI ID Unavailable!';
