@@ -149,8 +149,8 @@ siteKey:string= environment.siteKey;
 
   sendOtp(name:any,phone:any,email:any){
     if(this.sendOtpCount < 1){
-      this.toastr.error('Maximum OTP Reached.',"",{positionClass:"toast-top-center",progressBar:true});
-      this.router.navigate(['/home']);
+      this.toastr.error('Maximum OTP Limit Reached.',"",{positionClass:"toast-top-center",progressBar:true});
+      this.router.navigate(['']);
       return;
     }
     if(name.value==="" || phone.value===""||email.value===""){

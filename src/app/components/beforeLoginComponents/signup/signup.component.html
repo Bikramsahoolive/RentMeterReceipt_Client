@@ -47,8 +47,8 @@
     </div>
 </div>
 <div class="button">
-    <span style="margin: 0 0 20px 20px;"><input type="checkbox" ngModel name="termNconditions"> I agree to the <a routerLink="/privacy-policy" target="_blank">term & conditions.</a></span>
-    <div class="captcha">
+    <span style="margin-bottom:20px ;"><input type="checkbox" style=" cursor:pointer" ngModel id="termNconditions" name="termNconditions"> <label for="termNconditions" style=" cursor:pointer"> I Agree To The </label> <a routerLink="/privacy-policy" target="_blank">Terms & Conditions.</a></span>
+    <div class="captcha" style="display: flex; justify-content: center;">
         <ngx-recaptcha2 #captchaElem
             [siteKey]="siteKey"
             (success)="successCaptcha($event)"
