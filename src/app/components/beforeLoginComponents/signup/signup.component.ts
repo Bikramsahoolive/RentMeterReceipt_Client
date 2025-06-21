@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Toast, ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from 'src/environment';
@@ -27,6 +27,16 @@ siteKey:string= environment.siteKey;
     let month =(date.getMonth()+1).toString().padStart(2,'0');
     let day = date.getDate().toString().padStart(2,'0');
     this.dToday=`${day}-${month}-${year}`;
+  }
+
+  showPassword1:boolean=false;
+  togglePasswordType1(){
+    this.showPassword1 = !this.showPassword1;
+  }
+
+  showPassword2:boolean=false;
+  togglePasswordType2(){
+    this.showPassword2 = !this.showPassword2;
   }
 
   successCaptcha(token:string){
@@ -174,7 +184,15 @@ siteKey:string= environment.siteKey;
       phone:phone.value,
       email:email.value
     };
-    this.spinner.show();
+    Swal.fire({
+      icon: 'info',
+      title: 'Confirm Registration Data',
+      text:'Name, Email And Phone Can not changed after registration , Please Confirm Data.',
+      showCancelButton:true,
+      confirmButtonText:'Proceed'
+    }).then((res)=>{
+      if(res.isConfirmed){
+        this.spinner.show();
     this.signupService.signUpVerify(data).subscribe({
       next:(res:any)=>{
         this.spinner.hide()
@@ -218,6 +236,8 @@ siteKey:string= environment.siteKey;
           });
       }
     });
+      }
+    })
   }
 
 }

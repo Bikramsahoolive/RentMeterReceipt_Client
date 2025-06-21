@@ -49,6 +49,15 @@ ngOnInit(){}
     this.recaptchaToken = "false";
   }
 
+  showPassword1:boolean=false;
+  togglePasswordType1(){
+    this.showPassword1 = !this.showPassword1;
+  }
+
+  showPassword2:boolean=false;
+  togglePasswordType2(){
+    this.showPassword2 = !this.showPassword2;
+  }
 
   verifyForgotPassword(newPass:any,confPass:any){
     if(!this.finalOtp){

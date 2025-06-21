@@ -33,13 +33,17 @@
         <span class="details">Signature:</span>
         <input type="file" class="file" ngModel name="signature" (change)="fileInput($event,'sign')">
     </div> -->
-    <div class="input-box">
+    <div class="input-box" style="position: relative;">
         <!-- <span class="details">Password:</span> -->
-    <input type="password" ngModel name="password" required placeholder="Enter Password">
+    <input [type]="showPassword1?'text':'password'" ngModel name="password" required placeholder="Enter Password">
+    <i class="fa-regular fa-eye eye" *ngIf="!showPassword1" (click)="togglePasswordType1()"></i>
+    <i class="fa-regular fa-eye-slash eye" *ngIf="showPassword1" (click)="togglePasswordType1()"></i>
     </div>
-    <div class="input-box">
+    <div class="input-box" style="position: relative;">
         <!-- <span class="details">Confirm Password:</span> -->
-        <input type="text" ngModel name="confPass" required placeholder="Confirm Password">
+        <input [type]="showPassword2?'text':'password'" ngModel name="confPass" required placeholder="Confirm Password">
+        <i class="fa-regular fa-eye eye" *ngIf="!showPassword2" (click)="togglePasswordType2()"></i>
+        <i class="fa-regular fa-eye-slash eye" *ngIf="showPassword2" (click)="togglePasswordType2()"></i>
     </div>
 </div>
 <div class="button">
