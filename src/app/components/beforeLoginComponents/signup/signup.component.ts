@@ -200,7 +200,22 @@ siteKey:string= environment.siteKey;
           }
       },error:(err)=>{
         this.spinner.hide();
-        this.toastr.error(err.error.message,"",{positionClass:"toast-top-center",progressBar:true});
+        // this.toastr.error(err.error.message,"",{positionClass:"toast-top-center",progressBar:true});
+        const Toast = Swal.mixin({
+            toast: true,
+            position:"top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: err.error.message
+          });
       }
     });
   }
