@@ -41,7 +41,7 @@ export class TotalBillComponent {
           console.log(err.error);
           this.spinner.hide();
           if(err.error.status !==false){
-            this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+            this.toastr.error('something went wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
           }
         }
       });

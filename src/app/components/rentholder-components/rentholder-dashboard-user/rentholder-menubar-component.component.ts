@@ -225,7 +225,7 @@ export class RentholderMenubarComponentComponent {
             // this.r.navigate(['dashbord-landlord']);
           },error:(err)=>{
             console.log(err.error);
-            this.toster.error('Something wents wrong, try again later.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+            this.toster.error('Something went wrong, try again later.',"Error",{progressBar:true,positionClass:"toast-top-center"})
             
           }
         })

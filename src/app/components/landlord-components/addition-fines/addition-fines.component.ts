@@ -23,7 +23,7 @@ export class AdditionFinesComponent {
       },
       error:(err)=>{
         console.log(err.error);
-        this.toastr.error('Something wents wrong.','Error');
+        this.toastr.error('Something went wrong.','Error');
         this.spinner.hide();
 
       }

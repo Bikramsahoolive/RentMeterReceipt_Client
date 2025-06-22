@@ -29,7 +29,7 @@ export class UnsubscribeMailComponent {
       },error:(err)=>{
         this.spinner.hide();
         console.log(err.error);
-        this.toaster.error('something wents wrong.',"Error",{positionClass:"toast-top-center",progressBar:true});
+        this.toaster.error('something went wrong.',"Error",{positionClass:"toast-top-center",progressBar:true});
       }
     });
     }
@@ -86,7 +86,7 @@ export class UnsubscribeMailComponent {
       },error:(err)=>{
         this.spinner.hide();
         console.log(err.error);
-        this.toaster.error('Something wents wrong.',"",{positionClass:'toast-top-center',progressBar:true});
+        this.toaster.error('Something went wrong.',"",{positionClass:'toast-top-center',progressBar:true});
       }
     });
     

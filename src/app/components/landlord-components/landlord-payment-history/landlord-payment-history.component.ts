@@ -56,7 +56,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
         if(!err.error.status){
           this.toster.info(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
         }else{
-          this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+          this.toster.error('something went wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
         }
       }
     })
@@ -84,7 +84,7 @@ constructor( private render:Renderer2,private landlordServ:LandlordService ,priv
       if(!err.error.status){
         this.toster.error(err.error.message,'',{progressBar:true,positionClass:"toast-top-center"});
       }else{
-        this.toster.error('something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error('something went wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
     }
   })

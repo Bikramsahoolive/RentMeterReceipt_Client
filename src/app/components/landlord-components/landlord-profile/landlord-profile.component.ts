@@ -63,7 +63,7 @@ export class LandlordProfileComponent {
           },
           error:(err)=>{
             console.log(err.error);
-            this.toaster.error('Something wents wrong.','Error');
+            this.toaster.error('Something went wrong.','Error');
           },
           complete:()=>{
             this.spinner.hide();
@@ -198,7 +198,7 @@ updateLandlord(form:NgForm){
       },
       error:(err)=>{
         console.error(err.error);
-        this.toaster.error('Something wents wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error('Something went wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
       },
       complete:()=>{
         this.spinner.hide();
@@ -302,7 +302,7 @@ removeBiometric(type:string){
       error:(err)=>{
         this.spinner.hide();
         console.error(err.error);
-        this.toaster.error('Something wents wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
+        this.toaster.error('Something went wrong!','Error',{progressBar:true,positionClass:"toast-top-center"});
       }
     });
 
@@ -390,7 +390,7 @@ unregdPasskey(id:string){
           this.route.navigate(['dashbord-landlord']);
         },error:(err)=>{
           console.log(err.error);
-          this.toaster.error('Something wents wrong, try again later.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+          this.toaster.error('Something went wrong, try again later.',"Error",{progressBar:true,positionClass:"toast-top-center"})
           
         }
       })

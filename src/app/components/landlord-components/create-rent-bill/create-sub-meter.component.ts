@@ -46,7 +46,7 @@ export class CreateSubMeterComponent {
       },
       error:(err)=>{
         if(err.error.status!==false){
-          this.toster.error(`Something wents wrong.`,"Error",{positionClass:"toast-top-center",progressBar:true});
+          this.toster.error(`Something went wrong.`,"Error",{positionClass:"toast-top-center",progressBar:true});
         }
         console.log(err.error);
         this.spinner.hide();
@@ -65,7 +65,7 @@ export class CreateSubMeterComponent {
         this.billcount = res.billCount;
       },error:(err)=>{
         console.log(err.error);
-        this.toster.error('Something wents wrong.');
+        this.toster.error('Something went wrong.');
       }
     });
   }
@@ -122,7 +122,7 @@ export class CreateSubMeterComponent {
         console.log(err.error);
         this.isRentholderChoosen=false;
         if(err.error.status !==false){
-          this.toster.error(`Something wents wrong`,"Error",{positionClass:"toast-top-center",progressBar:true});
+          this.toster.error(`Something went wrong`,"Error",{positionClass:"toast-top-center",progressBar:true});
         }
       },
       complete:()=>{
@@ -286,7 +286,7 @@ export class CreateSubMeterComponent {
         if(!err.error.status){
           this.toster.error(`${err.error.message}`,'',{positionClass:"toast-top-center",progressBar:true});
         }else{
-        this.toster.error(`something wents wrong`,'Error',{positionClass:"toast-top-center",progressBar:true});
+        this.toster.error(`something went wrong`,'Error',{positionClass:"toast-top-center",progressBar:true});
         }
         this.spinner.hide();
       },

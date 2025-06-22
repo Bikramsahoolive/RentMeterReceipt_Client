@@ -4,16 +4,16 @@ import {Router} from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environment';
-
+import * as bcrypt from 'bcryptjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
   constructor(private http:HttpClient, private router:Router,private spinner :NgxSpinnerService,private toastr:ToastrService ) { }
-  private isLogedIn:boolean=false;
-  private isAdmin:boolean=false;
-  private isLandlord:boolean=false;
-  private isRentholder:boolean=false;
+  public isLogedIn:boolean=false;
+  public isAdmin:boolean=false;
+  public isLandlord:boolean=false;
+  public isRentholder:boolean=false;
 
    header = new HttpHeaders({
     'Content-Type':'application/json',
@@ -23,89 +23,15 @@ export class AuthServiceService {
 
   adminLogin(data:any)
   {
-    this.spinner.show();
-    this.http.post(`${environment.apiUrl}/admin/login`,data,{withCredentials:true,headers:this.header}).subscribe({
-    next:(res:any)=>{
-      let localData = JSON.stringify(res);
-      let encData =btoa(localData);
-    localStorage.setItem('authorization',res.authToken);
-    localStorage.setItem("connect.sid",encData);
-    localStorage.setItem("connect.rid",btoa(res.isActive));
-    this.isLogedIn = true;
-    this.isAdmin=true;
-    this.router.navigate(['dashbord-admin']);
-    this.spinner.hide();
-    },
-    error:(err:any)=>{
-      console.log(err.error);
-      this.toastr.error(err.error.text, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
-      this.spinner.hide();
-    }
-  })
-
+    return this.http.post(`${environment.apiUrl}/admin/login`,data,{withCredentials:true,headers:this.header});
   }
 
 landlordLogin(data:any){
-
-  this.spinner.show();
-
-  this.http.post(`${environment.apiUrl}/landlord/login`,data,{withCredentials:true,headers:this.header}).subscribe({
-    next:(res:any)=>{
-        // console.log(res);
-        // console.log(res.authToken);
-        
-      // if(res.status){
-        let localData = JSON.stringify(res);
-        let encData =btoa(localData);
-        localStorage.setItem('authorization',res.authToken);
-        localStorage.setItem("connect.sid",encData);
-        localStorage.setItem("connect.rid",btoa(res.isActive));
-        this.isLogedIn = true;
-        this.isLandlord=true;
-        this.router.navigate(['dashbord-landlord']);  
-        
-      // }
-           
-
-    },
-     error:(err:any)=>{
-      console.log(err.error);
-      this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
-      this.spinner.hide();
-
-    }
-  })
+  return this.http.post(`${environment.apiUrl}/landlord/login`,data,{withCredentials:true,headers:this.header});
 }
 
 rentholderLogin(data:any){
-
-  this.spinner.show();
-
-  this.http.post(`${environment.apiUrl}/rentholder/login`,data,{withCredentials:true,headers:this.header}).subscribe({
-    next:(res:any)=>{
-        // console.log(res);
-        
-      // if(res.status){
-        let localData = JSON.stringify(res);
-        let encData =btoa(localData);
-        localStorage.setItem('authorization',res.authToken);
-        localStorage.setItem("connect.sid",encData);
-        localStorage.setItem("connect.rid",btoa(res.isActive));
-        this.isLogedIn = true;
-        this.isRentholder=true;
-        this.router.navigate(['dashbord-rentholder']);  
-        
-      // }
-           
-
-    },
-     error:(err:any)=>{
-      console.log(err);
-      this.toastr.error(err.error,'Error!',{progressBar:true,positionClass:"toast-top-center"});
-      this.spinner.hide();
-
-    }
-  })
+  return this.http.post(`${environment.apiUrl}/rentholder/login`,data,{withCredentials:true,headers:this.header});
 }
 
 
@@ -210,7 +136,7 @@ this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast
 }
  },(err)=>{
   console.log(err.error);
-  this.toastr.error('Somthing wents wrong','Error!',{progressBar:true,positionClass:"toast-top-center"});
+  this.toastr.error('Somthing went wrong','Error!',{progressBar:true,positionClass:"toast-top-center"});
  }
 );
  
@@ -307,7 +233,7 @@ landlordLoginWithPasskey(data:any){
     error:(err)=>{
       console.log(err.error);
       this.spinner.hide();
-      this.toastr.error('Something wents wrong.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+      this.toastr.error('Something went wrong.',"Error",{progressBar:true,positionClass:"toast-top-center"})
     }
   })
 }
@@ -332,7 +258,7 @@ rentholderLoginWithPasskey(data:any){
     error:(err)=>{
       console.log(err.error);
       this.spinner.hide();
-      this.toastr.error('Something wents wrong.',"Error",{progressBar:true,positionClass:"toast-top-center"})
+      this.toastr.error('Something went wrong.',"Error",{progressBar:true,positionClass:"toast-top-center"})
     }
   });
 }
@@ -340,5 +266,10 @@ rentholderLoginWithPasskey(data:any){
 serverStatus(){
   return this.http.get(`${environment.apiUrl}`,{headers:this.header});
 }
+encPassword(password:string){
+const salt = bcrypt.genSaltSync(10);
+const hash = bcrypt.hashSync(password, salt);
 
+return hash;
+}
 }

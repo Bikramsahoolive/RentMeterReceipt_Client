@@ -49,7 +49,7 @@ getAllRentHolder(){
     error:(err)=>{
       console.log(err.error);
       if(err.error.status!==false){
-        this.toster.error('Something wents wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
+        this.toster.error('Something went wrong.','Error',{progressBar:true,positionClass:"toast-top-center"});
       }else{
         this.toster.info('Rent holder not registered yet.','',{progressBar:true,positionClass:"toast-top-center"});
       }

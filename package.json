@@ -1,6 +1,6 @@
 {
   "name": "rnmr",
-  "version": "0.0.0",
+  "version": "2.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -21,6 +21,7 @@
     "@angular/service-worker": "^16.2.0",
     "@simplewebauthn/browser": "^10.0.0",
     "@sweetalert2/ngx-sweetalert2": "^12.4.0",
+    "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.8",
     "firebase": "^10.13.1",
     "html2canvas": "^1.4.1",

@@ -31,7 +31,7 @@ hidePaginationBtn:boolean=true;
         this.processedPayoutData = res.reverse(); 
         
       },error:(err)=>{
-        this.toastr.error('something wents wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
+        this.toastr.error('something went wrong',"Error",{positionClass:'toast-top-center',progressBar:true});
         console.log(err.error);
         this.spinner.hide();
       }

@@ -49,7 +49,7 @@ export class UpdateRentholderComponent {
           },
           error:(err)=>{
             console.log(err.error);
-            this.toster.error('Something wents wrong.','Error');
+            this.toster.error('Something went wrong.','Error');
           },
           complete:()=>{
             this.spinner.hide();
@@ -284,7 +284,7 @@ if(this.photoFile===''){
           this.toster.error(res.message,"Error",{positionClass:'toast-top-center',progressBar:true});
         }
       },error:(err)=>{
-        this.toster.error('Something wents wrong',"Error!",{positionClass:'toast-top-center',progressBar:true})
+        this.toster.error('Something went wrong',"Error!",{positionClass:'toast-top-center',progressBar:true})
         this.spinner.hide();
       },complete:()=>{
         this.spinner.hide();

@@ -43,7 +43,7 @@ export class PayoutComponent {
                 error:(err)=>{
                   this.spinner.hide();
                   console.log(err.error);
-                  this.toaster.error('Something wents wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
+                  this.toaster.error('Something went wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
                 }
               });
       
@@ -66,7 +66,7 @@ export class PayoutComponent {
           error:(err)=>{
             this.spinner.hide();
                   console.log(err.error);
-                  this.toaster.error('Something wents wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
+                  this.toaster.error('Something went wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
             
           }
         });
@@ -162,7 +162,7 @@ export class PayoutComponent {
       error:(err)=>{
         this.spinner.hide;
         console.log(err.error);
-        this.toaster.error('Something wents wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
+        this.toaster.error('Something went wrong.','Error',{positionClass:'toast-top-center',progressBar:true});
 
       }
     });

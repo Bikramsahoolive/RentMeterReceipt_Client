@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from 'src/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ReCaptcha2Component } from 'ngx-captcha';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,6 +17,7 @@ siteKey:string= environment.siteKey;
   constructor(private router : Router, private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
     // this.siteKey =;
   }
+  @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
   recaptchaToken="";
   dToday:string="";
   regNumber:string="";
@@ -49,6 +51,10 @@ siteKey:string= environment.siteKey;
   }
   resetCaptcha(){
     this.recaptchaToken = "";
+  }
+  renewCaptcha() {
+    this.recaptchaToken = "";
+    this.captchaElem.resetCaptcha();
   }
   // fileInput(event:any,type:any){
   //   this.spinner.show();
@@ -114,6 +120,7 @@ siteKey:string= environment.siteKey;
           data.recaptcha = this.recaptchaToken;
           this.signupService.actionLandlordData(data).subscribe({
             next:(result:any)=>{
+              this.renewCaptcha();
               if(result.status==='success'){
                 this.spinner.hide();
                 Swal.fire({
@@ -130,6 +137,7 @@ siteKey:string= environment.siteKey;
               }
             },
             error:(err)=>{
+              this.renewCaptcha();
               this.spinner.hide();
               this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
             }

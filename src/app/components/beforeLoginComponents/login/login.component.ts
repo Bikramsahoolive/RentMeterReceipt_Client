@@ -7,6 +7,7 @@ import { startAuthentication } from '@simplewebauthn/browser'
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environment';
+import { ReCaptcha2Component } from 'ngx-captcha';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,6 +22,7 @@ export class LoginComponent {
   siteKey:string= environment.siteKey;
   showPassword:boolean=false;
   recaptchaToken="";
+  @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
   ngOnInit(){
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
@@ -43,6 +45,10 @@ export class LoginComponent {
   }
   resetCaptcha(){
     this.recaptchaToken = "";
+  }
+  renewCaptcha() {
+    this.recaptchaToken = "";
+    this.captchaElem.resetCaptcha();
   }
   loginWithPassword(){
     this.showDiv=false;
@@ -75,19 +81,91 @@ export class LoginComponent {
       this.toastr.error('Verify reCAPTCHA', '',{positionClass:'toast-top-center',progressBar:true});
       return;
     }
-
+    // auth.password = this.authServ.encPassword(auth.password);
     auth.recaptcha = this.recaptchaToken;
-    
+    this.spinner.show();
     if (auth.userType==="landlord"){
       // delete auth.userType;
-      this.authServ.landlordLogin(auth);
+      this.authServ.landlordLogin(auth).subscribe({
+        next:(res:any)=>{
+          this.renewCaptcha();
+            // console.log(res);
+            // console.log(res.authToken);
+            
+          // if(res.status){
+            let localData = JSON.stringify(res);
+            let encData =btoa(localData);
+            localStorage.setItem('authorization',res.authToken);
+            localStorage.setItem("connect.sid",encData);
+            localStorage.setItem("connect.rid",btoa(res.isActive));
+            this.authServ.isLogedIn = true;
+            this.authServ.isLandlord=true;
+            this.router.navigate(['dashbord-landlord']);  
+            
+          // }
+               
+    
+        },
+         error:(err:any)=>{
+          this.renewCaptcha();
+          console.log(err.error);
+          this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          this.spinner.hide();
+    
+        }
+      })
       
     }else if (auth.userType==="admin"){
       // delete auth.userType;
-      this.authServ.adminLogin(auth);
+      this.authServ.adminLogin(auth).subscribe({
+        next:(res:any)=>{
+          this.renewCaptcha();
+          let localData = JSON.stringify(res);
+          let encData =btoa(localData);
+        localStorage.setItem('authorization',res.authToken);
+        localStorage.setItem("connect.sid",encData);
+        localStorage.setItem("connect.rid",btoa(res.isActive));
+        this.authServ.isLogedIn = true;
+        this.authServ.isAdmin=true;
+        this.router.navigate(['dashbord-admin']);
+        this.spinner.hide();
+        },
+        error:(err:any)=>{
+          this.renewCaptcha();
+          console.log(err.error);
+          this.toastr.error(err.error.text, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          this.spinner.hide();
+        }
+      });
     }else if(auth.userType==="rentholder"){
       // delete auth.userType;
-      this.authServ.rentholderLogin(auth);
+      this.authServ.rentholderLogin(auth).subscribe({
+        next:(res:any)=>{
+          this.renewCaptcha();
+            // console.log(res);
+            
+          // if(res.status){
+            let localData = JSON.stringify(res);
+            let encData =btoa(localData);
+            localStorage.setItem('authorization',res.authToken);
+            localStorage.setItem("connect.sid",encData);
+            localStorage.setItem("connect.rid",btoa(res.isActive));
+            this.authServ.isLogedIn = true;
+            this.authServ.isRentholder=true;
+            this.router.navigate(['dashbord-rentholder']);  
+            
+          // }
+               
+    
+        },
+         error:(err:any)=>{
+          this.renewCaptcha();
+          console.log(err);
+          this.toastr.error(err.error,'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          this.spinner.hide();
+    
+        }
+      })
     }
     
   }

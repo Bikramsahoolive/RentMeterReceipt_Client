@@ -15,11 +15,11 @@
     <div class="input-box" style="width: 100%;">
         <!-- <span class="details" >Email:</span> -->
         <input type="email" #email ngModel name="email" [readOnly]="isReadonly" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email">
-        <input (click)="sendOtp(cname,phone,email)" class="otp-btn" style="padding: 10px 20px; background-color: blueviolet; border: none; border-radius: 0 0 15px 15px; color: white;cursor: pointer;" type="button" value="Send OTP">
+        <input (click)="sendOtp(cname,phone,email)" class="otp-btn" style="padding: 10px 20px; background-color: #7373f3; border: none; border-radius: 0 0 15px 15px; color: white;cursor: pointer;" type="button" value="Send OTP">
     </div>
     <div class="input-box">
         <!-- <span class="details">Enter OTP:</span> -->
-        <input type="text" ngModel name="otp" maxlength="6" required placeholder="Enter OTP">
+        <input type="number" ngModel name="otp" maxlength="6" required placeholder="Enter OTP">
     </div>
     <!-- <div class="input-box"> -->
         <!-- <span class="details">UPI ID (Eg: Gpay Business):</span> -->

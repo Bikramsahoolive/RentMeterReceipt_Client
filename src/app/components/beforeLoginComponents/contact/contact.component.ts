@@ -41,7 +41,7 @@ export class ContactComponent {
         this.spinner.hide();
       },error:(err)=>{
         console.log(err.error);
-        this.toastr.error("Something wents wrong.","Error!",{positionClass:'toast-top-center',progressBar:true});
+        this.toastr.error("Something went wrong.","Error!",{positionClass:'toast-top-center',progressBar:true});
         this.spinner.hide();
         
       }

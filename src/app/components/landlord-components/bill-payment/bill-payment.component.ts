@@ -114,7 +114,7 @@ this.landlordServe.paymentBillData(data,id).subscribe({
     if(err.error.status==='failure'){
       this.toastr.error(err.error.message,'Error',{positionClass:"toast-top-center",progressBar:true});
     }else{
-      this.toastr.error('Something wents wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
+      this.toastr.error('Something went wrong.','Error',{positionClass:"toast-top-center",progressBar:true});
     }
     this.spinner.hide();
   }

@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/services/auth Service/auth-service.service';
 import { environment } from 'src/environment';
 import Swal from 'sweetalert2';
-
+import { ReCaptcha2Component } from 'ngx-captcha';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -26,6 +26,8 @@ ngOnInit(){}
   @ViewChild('resendstring')resendstring!:ElementRef;
   @ViewChild('resendBtn')resendBtn!:ElementRef;
   @ViewChild('otpExpString')otpExpString!:ElementRef;
+
+  @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
 
   successMsg:string='';
   userData:any;
@@ -48,7 +50,10 @@ ngOnInit(){}
   resetCaptcha(){
     this.recaptchaToken = "false";
   }
-
+  renewCaptcha() {
+    this.recaptchaToken = "";
+    this.captchaElem.resetCaptcha();
+  }
   showPassword1:boolean=false;
   togglePasswordType1(){
     this.showPassword1 = !this.showPassword1;
@@ -99,7 +104,7 @@ ngOnInit(){}
         },error:(err)=>{
           this.spinner.hide();  
           console.log(err);
-          this.toster.error("something wents wrong try again later.","",{progressBar:true,positionClass:"toast-top-center"});
+          this.toster.error("something went wrong try again later.","",{progressBar:true,positionClass:"toast-top-center"});
         }
       })
 
@@ -139,6 +144,7 @@ ngOnInit(){}
 
         this.authServ.forgotPassword(userData).subscribe({
           next:(res:any)=>{
+            this.renewCaptcha();
             this.spinner.hide();
             if(res.status ==='success'){
               const Toast = Swal.mixin({
@@ -176,9 +182,10 @@ ngOnInit(){}
               this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
             }
           },error:(error)=>{
+            this.renewCaptcha();
             this.spinner.hide();
             console.log(error);
-            this.toster.error("something wents wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
+            this.toster.error("something went wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
           }
         });
 
@@ -230,7 +237,7 @@ ngOnInit(){}
         this.toster.error(res.messages,"",{progressBar:true,positionClass:"toast-top-center"});
       }
     },error:(err)=>{
-      this.toster.error("something wents wrong.","",{progressBar:true,positionClass:"toast-top-center"});
+      this.toster.error("something went wrong.","",{progressBar:true,positionClass:"toast-top-center"});
       console.log(err);
       this.spinner.hide();
     }
