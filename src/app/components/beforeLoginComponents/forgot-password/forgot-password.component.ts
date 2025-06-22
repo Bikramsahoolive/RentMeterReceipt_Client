@@ -95,16 +95,44 @@ ngOnInit(){}
             }).then((result:any)=>{
             this.router.navigate(['login']);
             });
-          }else if(res.status==="expired"){
-            this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
-            this.router.navigate(['/login']);
           }else{
-            this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
+            // this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
+            const Toast = Swal.mixin({
+              toast: true,
+              position:"top",
+              showConfirmButton: false,
+              timer: 5000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: res.message
+            });
+  
           }
         },error:(err)=>{
           this.spinner.hide();  
           console.log(err);
-          this.toster.error("something went wrong try again later.","",{progressBar:true,positionClass:"toast-top-center"});
+          // this.toster.error("something went wrong try again later.","",{progressBar:true,positionClass:"toast-top-center"});
+          const Toast = Swal.mixin({
+            toast: true,
+            position:"top",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: "something went wrong try again."
+          });
         }
       })
 
@@ -179,13 +207,43 @@ ngOnInit(){}
               this.resendBtn.nativeElement.classList.add('hide');
              },600000);
             }else{
-              this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
+              // this.toster.error(res.message,"",{progressBar:true,positionClass:"toast-top-center"});
+              const Toast = Swal.mixin({
+                toast: true,
+                position:"top",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "error",
+                title: res.message
+              });
             }
           },error:(error)=>{
             this.renewCaptcha();
             this.spinner.hide();
             console.log(error);
-            this.toster.error("something went wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
+            // this.toster.error("something went wrong please try again later.","",{progressBar:true,positionClass:"toast-top-center"});
+            const Toast = Swal.mixin({
+              toast: true,
+              position:"top",
+              showConfirmButton: false,
+              timer: 5000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: "something went wrong please try again later."
+            });
           }
         });
 
@@ -234,10 +292,40 @@ ngOnInit(){}
           this.setResendTimmer();
         } 
       }else{
-        this.toster.error(res.messages,"",{progressBar:true,positionClass:"toast-top-center"});
+        // this.toster.error(res.messages,"",{progressBar:true,positionClass:"toast-top-center"});
+        const Toast = Swal.mixin({
+          toast: true,
+          position:"top",
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: res.message
+        });
       }
     },error:(err)=>{
-      this.toster.error("something went wrong.","",{progressBar:true,positionClass:"toast-top-center"});
+      // this.toster.error("something went wrong.","",{progressBar:true,positionClass:"toast-top-center"});
+      const Toast = Swal.mixin({
+        toast: true,
+        position:"top",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "error",
+        title: "something went wrong."
+      });
       console.log(err);
       this.spinner.hide();
     }

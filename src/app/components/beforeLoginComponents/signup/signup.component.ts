@@ -133,13 +133,43 @@ siteKey:string= environment.siteKey;
                 this.router.navigate(['login']);
                 });
               }else{
-                this.toastr.error(result.message,'',{progressBar:true,positionClass:"toast-top-center"});
+                // this.toastr.error(result.message,'',{progressBar:true,positionClass:"toast-top-center"});
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position:"top",
+                  showConfirmButton: false,
+                  timer: 5000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                  }
+                });
+                Toast.fire({
+                  icon: "error",
+                  title: result.message
+                });
               }
             },
             error:(err)=>{
               this.renewCaptcha();
               this.spinner.hide();
-              this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+              // this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+              const Toast = Swal.mixin({
+                toast: true,
+                position:"top",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "error",
+                title: err.error.message
+              });
             }
           });
           

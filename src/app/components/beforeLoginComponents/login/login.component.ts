@@ -23,6 +23,19 @@ export class LoginComponent {
   showPassword:boolean=false;
   recaptchaToken="";
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
+
+
+   Toast = Swal.mixin({
+    toast: true,
+    position:"top",
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
   ngOnInit(){
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
@@ -109,7 +122,11 @@ export class LoginComponent {
          error:(err:any)=>{
           this.renewCaptcha();
           console.log(err.error);
-          this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          // this.toastr.error(err.error.message, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          this.Toast.fire({
+            icon: "error",
+            title: err.error.message
+          });
           this.spinner.hide();
     
         }
@@ -133,7 +150,11 @@ export class LoginComponent {
         error:(err:any)=>{
           this.renewCaptcha();
           console.log(err.error);
-          this.toastr.error(err.error.text, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          // this.toastr.error(err.error.text, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          this.Toast.fire({
+            icon: "error",
+            title: err.error.text
+          });
           this.spinner.hide();
         }
       });
@@ -161,7 +182,11 @@ export class LoginComponent {
          error:(err:any)=>{
           this.renewCaptcha();
           console.log(err);
-          this.toastr.error(err.error,'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          // this.toastr.error(err.error,'Error!',{progressBar:true,positionClass:"toast-top-center"});
+          this.Toast.fire({
+            icon: "error",
+            title: err.error
+          });
           this.spinner.hide();
     
         }
