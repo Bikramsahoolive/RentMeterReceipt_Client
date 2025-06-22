@@ -6,15 +6,15 @@
     <div class="user-details">
     <div class="input-box">
         <!-- <span class="details">Name:</span> -->
-    <input type="text" #cname ngModel name="name" [readOnly]="isReadonly" required placeholder="Enter Name" autofocus >
+    <input type="text" #cname ngModel name="name" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Name" autofocus >
     </div>
     <div class="input-box">
         <!-- <span class="details">Phone:</span> -->
-    <input type="tel" #phone ngModel name="phone" [readOnly]="isReadonly" required placeholder="Enter Phone">
+    <input type="tel" #phone ngModel name="phone" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Phone">
     </div>
     <div class="input-box" style="width: 100%;">
         <!-- <span class="details" >Email:</span> -->
-        <input type="email" #email ngModel name="email" [readOnly]="isReadonly" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email">
+        <input type="email" #email ngModel name="email" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email">
         <input (click)="sendOtp(cname,phone,email)" class="otp-btn" style="padding: 10px 20px; background-color: #7373f3; border: none; border-radius: 0 0 15px 15px; color: white;cursor: pointer;" type="button" value="Send OTP">
     </div>
     <div class="input-box">

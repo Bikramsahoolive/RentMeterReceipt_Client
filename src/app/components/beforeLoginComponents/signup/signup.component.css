@@ -121,6 +121,11 @@ form input[type="submit"]:hover{
     background-color: white;
 }
 
+.disable-input{
+    background-color: #8080803b;
+    cursor: auto;
+}
+
 
 @media screen and (max-width:400px) {
     .cont{
