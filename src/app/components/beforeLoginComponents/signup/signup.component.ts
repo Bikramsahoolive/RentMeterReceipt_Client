@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { SignupService } from 'src/app/services/signupService/signup.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from 'src/environment';
@@ -14,8 +14,9 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 })
 export class SignupComponent {
 siteKey:string= environment.siteKey;
-  constructor(private router : Router, private toastr: ToastrService ,private signupService:SignupService, private spinner:NgxSpinnerService){
-    // this.siteKey =;
+signupForm:any = FormGroup
+  constructor(private router : Router, private toastr: ToastrService , private fb:FormBuilder,private signupService:SignupService, private spinner:NgxSpinnerService){
+    this.createFormInstance()
   }
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
   recaptchaToken="";
@@ -23,12 +24,36 @@ siteKey:string= environment.siteKey;
   regNumber:string="";
   isReadonly:boolean=false;
   sendOtpCount:number=2;
+  cnfPass=false;
   ngOnInit(){
     let date= new Date();
     let year = date.getFullYear();
     let month =(date.getMonth()+1).toString().padStart(2,'0');
     let day = date.getDate().toString().padStart(2,'0');
     this.dToday=`${day}-${month}-${year}`;
+  }
+
+  checkPass(){
+    console.log(this.signupForm.value.confPass);
+    
+    if(this.signupForm.value.confPass.length >0 && this.signupForm.value.password !== this.signupForm.value.confPass){
+      this.cnfPass=true;
+    }else{
+      this.cnfPass=false;
+    }
+  }
+
+  createFormInstance(){
+    this.signupForm= this.fb.group({
+      name:['',Validators.compose([Validators.required,Validators.minLength(3),Validators.maxLength(25)])],
+      phone:['',Validators.compose([Validators.required,Validators.pattern(/^[6-9]\d{9}$/) ])],
+      email:['',Validators.compose([Validators.required,Validators.email])],
+      otp:['',Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(6)])],
+      password:['',Validators.compose([Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/)])],
+      confPass:['', Validators.compose([Validators.required])],
+      termNconditions:[false]
+    }
+  )
   }
 
   showPassword1:boolean=false;
@@ -77,29 +102,16 @@ siteKey:string= environment.siteKey;
   // }
     
   // }
-  signup(form:NgForm){
-    const data = form.value;
-    if (data.name!=="" && data.phone!=="" && data.email!==""  && data. password!==""){
+  signup(){
+    this.signupForm.markAllAsTouched();
+    const data = this.signupForm.value;
+    
+    if(this.signupForm.valid){
+      if(this.regNumber===""){
+        this.toastr.error('OTP Not Sent.','',{progressBar:true,positionClass:"toast-top-center"});
+        return;
+      }
         if (data.termNconditions){
-          if(this.regNumber===""){
-            this.toastr.error('OTP not verified.','',{progressBar:true,positionClass:"toast-top-center"});
-            return;
-          }
-          if(data.otp==="" || data.otp===null ||data.otp.length !== 6){
-            this.toastr.error('','Invalid OTP',{progressBar:true,positionClass:"toast-top-center"});
-            return;
-          }
-          // const upiRegex = /^[^\s@]+@[^\s@]+$/;
-          // if(!upiRegex.test(data.upi)){
-          //   this.toastr.error('','Invalid UPI ID',{progressBar:true,positionClass:"toast-top-center"});
-          //   return;
-          // }
-          if((data.password).length <8 || (data.password).length >16 ){
-            this.toastr.error('Enter an 8 to 16 digit password.','Invalid Password',{progressBar:true,positionClass:"toast-top-center"});
-            return;
-          }
-
-
           if (data.password !== data.confPass){
           this.toastr.error('Password not match.','',{progressBar:true,positionClass:"toast-top-center"});
           return;
@@ -111,7 +123,7 @@ siteKey:string= environment.siteKey;
 
           this.spinner.show();
           data.id = this.regNumber;
-          data.upi = '';
+          // data.upi = '';
           let date= new Date();
           let year = date.getFullYear();
           let month =(date.getMonth()+1).toString().padStart(2,'0');
@@ -133,7 +145,6 @@ siteKey:string= environment.siteKey;
                 this.router.navigate(['login']);
                 });
               }else{
-                // this.toastr.error(result.message,'',{progressBar:true,positionClass:"toast-top-center"});
                 const Toast = Swal.mixin({
                   toast: true,
                   position:"top",
@@ -154,7 +165,6 @@ siteKey:string= environment.siteKey;
             error:(err)=>{
               this.renewCaptcha();
               this.spinner.hide();
-              // this.toastr.error(`${err.error.message}`, 'Error!',{progressBar:true,positionClass:"toast-top-center"});
               const Toast = Swal.mixin({
                 toast: true,
                 position:"top",
@@ -177,11 +187,10 @@ siteKey:string= environment.siteKey;
           this.toastr.error('Accept term & conditions.','',{progressBar:true,positionClass:"toast-top-center"});
         }
        
-      
-
-    }else{
-      this.toastr.error('field/fields are empty.','',{progressBar:true,positionClass:"toast-top-center"});
-    }
+        
+  }else{
+    this.toastr.error('Invalid Inputs.','',{progressBar:true,positionClass:"toast-top-center"});
+  }
     
   }
 

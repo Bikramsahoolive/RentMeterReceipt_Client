@@ -34,7 +34,7 @@
 }
 
 .login-form h1 {
-    border-bottom: 2px double gray;
+    border-bottom: 3px solid gray;
     font-weight: 700;
     padding-bottom: 10px;
 }

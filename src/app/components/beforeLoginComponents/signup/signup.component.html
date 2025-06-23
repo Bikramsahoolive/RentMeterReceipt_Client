@@ -1,53 +1,68 @@
 <div class="content">
     <div class="cont">
-    <h1 class="titel">Registration</h1>
+    <h1 class="titel">Sign Up</h1>
     
-<form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+<form [formGroup]="signupForm" (ngSubmit)="signup()">
     <div class="user-details">
     <div class="input-box">
-        <!-- <span class="details">Name:</span> -->
-    <input type="text" #cname ngModel name="name" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Name" autofocus >
+    <input type="text" #cname formControlName="name" name="name" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Name" >
+        <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)" class="error-message" >
+            <span *ngIf="signupForm.get('name')?.errors['required']">Name is required</span>
+            <span *ngIf="signupForm.get('name')?.errors['minlength']">Name must be 3 characters</span>
+            <span *ngIf="signupForm.get('name')?.errors['maxlength']">Name must be 25 characters</span>
+        </div>
     </div>
     <div class="input-box">
-        <!-- <span class="details">Phone:</span> -->
-    <input type="tel" #phone ngModel name="phone" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Phone">
+    <input type="number" #phone formControlName="phone" name="phone" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Phone">   
+    <div *ngIf="signupForm.get('phone')?.invalid && (signupForm.get('phone')?.touched || signupForm.get('phone')?.dirty)" class="error-message" >
+        <span *ngIf="signupForm.get('phone')?.errors['required']">phone is required</span>
+        <span *ngIf="signupForm.get('phone')?.errors['pattern']">Invalid Mobile number</span>
+    </div>
     </div>
     <div class="input-box" style="width: 100%;">
-        <!-- <span class="details" >Email:</span> -->
-        <input type="email" #email ngModel name="email" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email">
+        <input type="email" #email formControlName="email"  name="email" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required style="border-radius: 10px 10px 0 0;" placeholder="Enter Email"> 
         <input (click)="sendOtp(cname,phone,email)" class="otp-btn" style="padding: 10px 20px; background-color: #7373f3; border: none; border-radius: 0 0 15px 15px; color: white;cursor: pointer;" type="button" value="Send OTP">
+        <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)" class="error-message" > 
+            <span *ngIf="signupForm.get('email')?.errors['required']">Email is required</span>
+            <span *ngIf="signupForm.get('email')?.errors['email']">Invalid Email id</span>
+        </div>
     </div>
     <div class="input-box">
-        <!-- <span class="details">Enter OTP:</span> -->
-        <input type="number" ngModel name="otp" maxlength="6" required placeholder="Enter OTP">
+        <input type="text" pattern="\d*"  name="otp" formControlName="otp" placeholder="Enter OTP">
+        <div class="error-message" *ngIf="signupForm.get('otp')?.errors && (signupForm.get('otp')?.touched || signupForm.get('otp')?.dirty)">
+            <span *ngIf="signupForm.get('otp')?.errors['required']">OTP is required</span>
+            <span *ngIf="signupForm.get('otp')?.errors['minlength']">OTP must be 6 digits</span>
+            <span *ngIf="signupForm.get('otp')?.errors['maxlength']">OTP must be 6 digits</span>
+          </div>
     </div>
-    <!-- <div class="input-box"> -->
-        <!-- <span class="details">UPI ID (Eg: Gpay Business):</span> -->
-        <!-- <input type="email" ngModel name="upi" required placeholder="Enter UPI ID Business">
-    </div> -->
-    <!-- <div class="input-box">
-        <span class="details">Photo:</span>
-    <input type="file" class="file" ngModel name="photo" (change)="fileInput($event,'photo')">
-    </div>
-    <div class="input-box">
-        <span class="details">Signature:</span>
-        <input type="file" class="file" ngModel name="signature" (change)="fileInput($event,'sign')">
-    </div> -->
     <div class="input-box" style="position: relative;">
-        <!-- <span class="details">Password:</span> -->
-    <input [type]="showPassword1?'text':'password'" ngModel name="password" required placeholder="Enter Password">
+    <input [type]="showPassword1?'text':'password'" formControlName="password"  name="password" required placeholder="Enter Password">
     <i class="fa-regular fa-eye eye" *ngIf="!showPassword1" (click)="togglePasswordType1()"></i>
     <i class="fa-regular fa-eye-slash eye" *ngIf="showPassword1" (click)="togglePasswordType1()"></i>
+        <div class="error-message" *ngIf="signupForm.get('password')?.errors && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
+            <span *ngIf="signupForm.get('password')?.errors['required']">Password is required</span>
+            <span *ngIf="signupForm.get('password')?.errors['pattern']">
+                Password must be a 8-16 characters and include at least one capital letter ,small letter, numbers between and special character
+            </span>
+        </div>    
     </div>
     <div class="input-box" style="position: relative;">
-        <!-- <span class="details">Confirm Password:</span> -->
-        <input [type]="showPassword2?'text':'password'" ngModel name="confPass" required placeholder="Confirm Password">
+        <input [type]="showPassword2?'text':'password'" formControlName="confPass" (keyup)="checkPass()"  name="confPass" required placeholder="Confirm Password">
         <i class="fa-regular fa-eye eye" *ngIf="!showPassword2" (click)="togglePasswordType2()"></i>
         <i class="fa-regular fa-eye-slash eye" *ngIf="showPassword2" (click)="togglePasswordType2()"></i>
+        <div class="error-message" *ngIf="signupForm?.controls?.['confPass']?.errors && (signupForm.get('confPass')?.touched || signupForm.get('confPass')?.dirty)">
+            <span *ngIf="signupForm.get('confPass')?.errors['required']">Confirm Password is required</span>
+            <span *ngIf="signupForm.get('confPass')?.errors['matchingPasswords']" class="invalid-msgs">Password
+                and Confirm Password must be match</span>
+          </div>
+          <div class="error-message" *ngIf="cnfPass==true">
+            <span class="invalid-msgs">Password
+                and Confirm Password must be match</span>
+          </div>
     </div>
 </div>
 <div class="button">
-    <span style="margin-bottom:20px ;"><input type="checkbox" style=" cursor:pointer" ngModel id="termNconditions" name="termNconditions"> <label for="termNconditions" style=" cursor:pointer"> I Agree To The </label> <a routerLink="/privacy-policy" target="_blank">Terms & Conditions.</a></span>
+    <span style="margin-bottom:20px ;"><input type="checkbox" style=" cursor:pointer"  id="termNconditions" formControlName="termNconditions" name="termNconditions"> <label for="termNconditions" style=" cursor:pointer"> I Agree To The </label> <a routerLink="/privacy-policy" target="_blank">Terms & Conditions.</a></span>
     <div class="captcha" style="display: flex; justify-content: center;">
         <ngx-recaptcha2 #captchaElem
             [siteKey]="siteKey"
