@@ -15,8 +15,8 @@
     <div class="input-box">
     <input type="number" #phone formControlName="phone" name="phone" [ngClass]="isReadonly?'disable-input':''" [readOnly]="isReadonly" required placeholder="Enter Phone">   
     <div *ngIf="signupForm.get('phone')?.invalid && (signupForm.get('phone')?.touched || signupForm.get('phone')?.dirty)" class="error-message" >
-        <span *ngIf="signupForm.get('phone')?.errors['required']">phone is required</span>
-        <span *ngIf="signupForm.get('phone')?.errors['pattern']">Invalid Mobile number</span>
+        <span *ngIf="signupForm.get('phone')?.errors['required']">Phone is required</span>
+        <span *ngIf="signupForm.get('phone')?.errors['pattern']">Invalid phone number</span>
     </div>
     </div>
     <div class="input-box" style="width: 100%;">
