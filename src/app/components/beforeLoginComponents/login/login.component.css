@@ -49,6 +49,7 @@ form .input-field select {
     border: 2px solid rgb(146, 145, 145);
     border-radius: 5px;
     width: 95%;
+    background-color: white;
 }
 
 form .input-field select option {
