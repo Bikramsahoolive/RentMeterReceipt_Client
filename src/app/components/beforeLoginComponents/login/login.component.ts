@@ -49,10 +49,10 @@ export class LoginComponent {
       this.showDiv=true;
     }
 
-    if(this.firstOpen && this.showDiv){
-      this.firstOpen = false;
-      setTimeout(()=>this.authenticatePasskey(),500);
-    }
+    // if(this.firstOpen && this.showDiv){
+    //   this.firstOpen = false;
+    //   setTimeout(()=>this.authenticatePasskey(),500);
+    // }
 
   }
     successCaptcha(token:any){
