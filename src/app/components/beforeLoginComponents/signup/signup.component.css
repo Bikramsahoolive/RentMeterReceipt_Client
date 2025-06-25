@@ -71,7 +71,7 @@ form .user-details .input-box{
     cursor: pointer;
     position: absolute;
     left: 0;
-    top: 8px;
+    top: 0;
     font-size: 20px;
     color: #565252;
 }

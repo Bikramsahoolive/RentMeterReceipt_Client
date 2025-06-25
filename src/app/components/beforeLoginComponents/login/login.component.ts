@@ -22,6 +22,7 @@ export class LoginComponent {
   siteKey:string= environment.siteKey;
   showPassword:boolean=false;
   recaptchaToken="";
+  firstOpen:boolean=true;
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
 
 
@@ -37,6 +38,10 @@ export class LoginComponent {
     }
   });
   ngOnInit(){
+    if(this.firstOpen){
+      this.firstOpen = false;
+      this.authenticatePasskey();
+    }
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
     if(passkeyData && passkeyData!==null || passkeyData!==''){
