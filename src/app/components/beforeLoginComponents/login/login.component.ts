@@ -38,9 +38,9 @@ export class LoginComponent {
     }
   });
   ngOnInit(){
-    if(this.firstOpen){
+    if(this.firstOpen && this.showDiv){
       this.firstOpen = false;
-      this.authenticatePasskey();
+      setTimeout(()=>this.authenticatePasskey(),500);
     }
     const passkeyData = localStorage.getItem('passkey_id')||"";
     
