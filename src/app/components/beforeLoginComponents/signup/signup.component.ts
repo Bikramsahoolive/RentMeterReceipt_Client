@@ -7,6 +7,7 @@ import { environment } from 'src/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ReCaptcha2Component } from 'ngx-captcha';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -15,7 +16,7 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 export class SignupComponent {
 siteKey:string= environment.siteKey;
 signupForm:any = FormGroup
-  constructor(private router : Router, private toastr: ToastrService , private fb:FormBuilder,private signupService:SignupService, private spinner:NgxSpinnerService){
+  constructor(private location: Location, private router : Router, private toastr: ToastrService , private fb:FormBuilder,private signupService:SignupService, private spinner:NgxSpinnerService){
     this.createFormInstance()
   }
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
@@ -285,6 +286,10 @@ signupForm:any = FormGroup
     });
       }
     })
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

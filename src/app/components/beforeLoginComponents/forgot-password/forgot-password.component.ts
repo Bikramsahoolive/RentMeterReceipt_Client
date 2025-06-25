@@ -6,6 +6,7 @@ import { AuthServiceService } from 'src/app/services/auth Service/auth-service.s
 import { environment } from 'src/environment';
 import Swal from 'sweetalert2';
 import { ReCaptcha2Component } from 'ngx-captcha';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -13,7 +14,7 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 })
 export class ForgotPasswordComponent {
   
-  constructor(private toster:ToastrService, private spinner :NgxSpinnerService,private authServ: AuthServiceService,
+  constructor(private location: Location, private toster:ToastrService, private spinner :NgxSpinnerService,private authServ: AuthServiceService,
     private router:Router
   ){}
 ngOnInit(){}
@@ -369,6 +370,10 @@ ngOnInit(){}
         }
       });
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
