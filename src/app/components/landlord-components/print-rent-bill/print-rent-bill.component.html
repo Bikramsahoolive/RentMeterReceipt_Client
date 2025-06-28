@@ -114,5 +114,5 @@
             </div>
         </div>
             <button class="button" *ngIf="showPayBtn && authServe.Rentholder()" (click)="payNow()">Pay Now</button>
-            <a class="button" [routerLink]="['/bill-payment']"[queryParams]="{id:bill.id}" *ngIf="showPayBtn && authServe.Landlord()">Paid</a>
+            <a class="button" [routerLink]="['/bill-payment']"[queryParams]="{id:bill.id}" *ngIf="bill.final_amt-bill.paid_amt!==0 && authServe.Landlord()">Paid</a>
         </div>
