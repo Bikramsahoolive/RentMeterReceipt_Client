@@ -72,6 +72,7 @@ showPayBtn:boolean=false;
       this.paymentMethod='';
     this.landlordServ.getSingleRentBillData(urlid).subscribe({
       next:(res:rentBillData)=>{
+        this.remainingAmount = 0;
         res.pendingBills.forEach((element:any) => {
           this.remainingAmount += element.amount;
         })
