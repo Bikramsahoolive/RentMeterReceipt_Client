@@ -57,7 +57,6 @@ landlordSign:string="../../../../assets/images.png";
 boxVal:string='';
 paymentMethod:string='';
 paidSign:string='';
-showPayBtn:boolean=false;
   ngOnInit(){
     let urlid = this.route.snapshot.paramMap.get('id');
     this.getBillData(urlid);
@@ -78,7 +77,6 @@ showPayBtn:boolean=false;
         })
         this.remainingAmount +=Number(res.final_amt ) - Number(res.paid_amt);
         if(this.remainingAmount !== 0){
-          this.showPayBtn = true;
           this.bill=res;
           this.landlordServ.getLandlordData(res.landlord_id).subscribe({
             next:(LanlordRes:landlordData)=>{
