@@ -72,14 +72,14 @@
                 <div class="data">
                     <strong>Bill Amount : </strong> <Strong>₹ {{bill.final_amt}} /-</Strong>
                 </div>
-                <div class="data">
-                    <strong>Bill Due Amount : </strong> <Strong>₹ {{bill.final_amt-bill.paid_amt}} /-</Strong>
-                </div>
                 <div class="data" *ngIf="bill.paid_amt!=0">
                     <strong>Paid Amount : </strong> <Strong>₹ {{bill.paid_amt}} /-</Strong>
                 </div>
                 <div class="data" *ngIf="bill.transaction_id!='NA'">
                     <span>Transaction ID : </span> <Strong>{{bill.transaction_id}}</Strong>
+                </div>
+                <div class="data">
+                    <strong>Bill Due Amount : </strong> <Strong>₹ {{bill.final_amt-bill.paid_amt}} /-</Strong>
                 </div>
             </div>
 
