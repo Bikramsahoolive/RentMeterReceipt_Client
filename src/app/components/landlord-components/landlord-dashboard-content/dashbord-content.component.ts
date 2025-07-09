@@ -24,8 +24,8 @@ export class DashbordContentComponent {
     }
     rentHolderCount:number=0;
     // rentHolderData:any;
-    totalPaidAmt:number=0;
-    totalDueAmt:number=0;
+    totalPaidAmt:string='0 (0.00%)';
+    totalDueAmt:string='0 (0.00%)';
     billCount:number=0;
     pendingPayout:number=0;
     processedPayoutAmount:number=0;
@@ -89,18 +89,18 @@ export class DashbordContentComponent {
     this.landlordServ.getAllRentBillData().subscribe({
       next:(res:rentBillData[])=>{
         this.billCount = res.length;
-          let due = 0;
-          res.forEach((element:rentBillData) => {
-            due = due + Number(element.final_amt);
-          });
+          // let due = 0;
+          // res.forEach((element:rentBillData) => {
+          //   due = due + Number(element.final_amt);
+          // });
   
-          let totalPaid =0;
-          res.forEach((element:rentBillData)=>{
-            totalPaid = totalPaid + Number(element.paid_amt);
-          })
+          // let totalPaid =0;
+          // res.forEach((element:rentBillData)=>{
+          //   totalPaid = totalPaid + Number(element.paid_amt);
+          // })
   
-          this.totalPaidAmt = totalPaid;
-          this.totalDueAmt=due - totalPaid;
+          // this.totalPaidAmt = totalPaid;
+          // this.totalDueAmt=due - totalPaid;
         
       },
       error:(err)=>{
@@ -209,7 +209,9 @@ export class DashbordContentComponent {
     this.landlordServ.getTotalChartData().subscribe({
       next:(res:any)=>{
         console.log(res);
-
+        this.totalPaidAmt = `${res?.paidData?.paidAmount} (${res?.paidData?.percent}%)`;
+        this.totalDueAmt = `${res?.pendingData?.pendingAmount} (${res?.pendingData?.percent}%)`;
+        
          const data1 = {
       labels: [
         `Billed : ${res?.billedData?.percent}%`,
