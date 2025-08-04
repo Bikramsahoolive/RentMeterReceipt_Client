@@ -146,6 +146,13 @@
     background-color: #1d4281;
     color: white;
   }
+  .table tbody .bill-id {
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+  }
   
   .table tbody tr:nth-child(even) {
     background-color: #7698d1;

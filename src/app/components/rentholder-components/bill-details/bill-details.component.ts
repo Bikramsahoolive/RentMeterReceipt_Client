@@ -189,4 +189,15 @@ export class BillDetailsComponent {
         console.error('Failed to copy: ', err);
       });
     }
+    updateShowStatus(id:any){
+      this.rentholderServe.updateBillShowStatus(id).subscribe({
+        next:(res)=>{
+          // console.log(res);
+        },
+        error:(err)=>{
+          console.log(err.error);
+          
+        }
+      });
+    }
 }

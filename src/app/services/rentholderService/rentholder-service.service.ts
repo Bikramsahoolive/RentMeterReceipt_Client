@@ -69,4 +69,13 @@ export class RentholderServiceService {
     });
     return this.http.delete(`${environment.apiUrl}/rentholder/unregd-passkey/${id}`,{withCredentials:true,headers:header});
   }
+  updateBillShowStatus(id:string){
+    const token = localStorage.getItem('authorization')||'';
+    const header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'authorization':token
+    });
+    return this.http.put(`${environment.apiUrl}/rent-bill/update-billshow-status/${id}`,{},{withCredentials:true,headers:header});
+
+  }
 }
