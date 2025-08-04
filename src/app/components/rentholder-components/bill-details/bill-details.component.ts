@@ -189,7 +189,8 @@ export class BillDetailsComponent {
         console.error('Failed to copy: ', err);
       });
     }
-    updateShowStatus(id:any){
+    updateShowStatus(id:any,state:boolean){
+      if(state) return;
       this.rentholderServe.updateBillShowStatus(id).subscribe({
         next:(res)=>{
           // console.log(res);

@@ -42,7 +42,7 @@
         <tbody>
           <tr *ngFor="let data of datalist | search:searchTerm |paginate:{itemsPerPage:12 ,currentPage:page,totalItems:datalist.length};">
             <td data-label="Bill Date : " style="min-width: 120px;">{{data.billingDate}}</td>
-            <td class="bill-id" data-label="Bill ID : "><a style="color: #3e4f5e;" (click)="updateShowStatus(data.id)" routerLink="/print-rent-bill/{{data.id}}">{{data.id}}</a> <i class="fa-regular fa-copy " #copyBtn style="margin-left: 20px;cursor: pointer; " (click)="copyBillId(copyBtn,data.id)"></i> <img *ngIf="!data.showStatus" src="../../../../assets/home_Image/new-blinking-new-blinking-without-background.gif" width="50px" alt="New"></td>
+            <td class="bill-id" data-label="Bill ID : "><a style="color: #3e4f5e;" (click)="updateShowStatus(data.id,(data.showStatus?true:false))" routerLink="/print-rent-bill/{{data.id}}">{{data.id}}</a> <i class="fa-regular fa-copy " #copyBtn style="margin-left: 20px;cursor: pointer; " (click)="copyBillId(copyBtn,data.id)"></i> <img *ngIf="!data.showStatus" src="../../../../assets/home_Image/new-blinking-new-blinking-without-background.gif" width="50px" alt="New"></td>
             
             
             <!-- <td data-label="Previous Unit : ">{{data.previousUnit}}</td>
