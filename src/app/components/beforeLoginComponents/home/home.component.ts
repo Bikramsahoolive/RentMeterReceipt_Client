@@ -64,4 +64,10 @@ export class HomeComponent {
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  downloadFile() {
+    const link = document.createElement('a');
+    link.href = 'assets/APK/RNMR.apk';
+    link.download = 'RNMR.apk';
+    link.click();
+  }
 }
