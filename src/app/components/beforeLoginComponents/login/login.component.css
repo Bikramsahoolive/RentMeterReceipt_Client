@@ -46,7 +46,7 @@ form .input-field {
 form .input-field select {
     padding: 10px 15px;
     outline: none;
-    border: 2px solid rgb(146, 145, 145);
+    border: 1px solid rgb(146, 145, 145);
     border-radius: 5px;
     width: 95%;
     background-color: white;
@@ -60,7 +60,7 @@ form input {
     padding: 10px 15px;
     width: 95%;
     outline: none;
-    border: 2px solid rgb(146, 145, 145);
+    border: 1px solid rgb(146, 145, 145);
     border-radius: 5px;
 
     &::-webkit-outer-spin-button,
@@ -153,11 +153,11 @@ form input:focus {
 }
 
 .eye {
-    color: #929191;
+    color: #cbcbcb;
     position: absolute;
     right: 20px;
     top: 10px;
-    font-size: 20px;
+    font-size: 17px;
     cursor: pointer;
     background-color: white;
 }

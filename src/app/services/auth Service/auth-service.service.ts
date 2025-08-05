@@ -109,9 +109,12 @@ checkSession(){
     'Content-Type':'application/json',
     'authorization':token
   });
-  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe((result:any)=>{
+  this.http.post(`${environment.apiUrl}/check-session`,{},{withCredentials:true,headers:header}).subscribe({
+    next:(result:any)=>{
     if (result.isActive){
     localStorage.setItem("connect.rid",btoa('true'));
+    localStorage.setItem("connect.sid",btoa(JSON.stringify(result)));
+    localStorage.setItem('authorization',result.authToken);
 }else{
   localStorage.setItem("connect.rid",btoa('false'));
   localStorage.setItem("connect.sid","null");
@@ -134,11 +137,11 @@ this.toastr.error(result.message,'Error!',{progressBar:true,positionClass:"toast
   //   this.logout();
   // }
 }
- },(err)=>{
+ },error:(err)=>{
   console.log(err.error);
   this.toastr.error('Somthing went wrong','Error!',{progressBar:true,positionClass:"toast-top-center"});
  }
-);
+});
  
  }
 
